@@ -1,0 +1,214 @@
+$DarkColor: #0F0F0F;
+$mDark:#181818;
+$sColor:#008dff;
+$secondary-color:$sColor;
+$primary-color:$sColor;
+
+/* ======== Dark Mode Style ========*/
+.darkMod {
+    background-color: #0F0F0F;
+    transition: 1s ease-in-out;
+    color: $sColor;
+
+    a {
+        color: #fff !important;
+        @include transition(0.3s);
+
+        &:hover {
+            color: $sColor !important;
+            @include transition(0.3s);
+        }
+
+        i {
+            color: $sColor !important;
+            @include transition(0.3s);
+        }
+    }
+
+    .active {
+        color: $sColor !important;
+        @include transition(0.3s);
+    }
+
+    /* Headers */
+    .small-nav {
+        background-image: none;
+        background-color: #070d35;
+        transition: 1s ease-in-out;
+
+        .social {
+            i {
+                background-color: $secondary-color;
+                color: #fff !important;
+                @include transition(0.3s);
+
+                &:hover {
+                    background-color: $DarkColor !important;
+                    @include transition(0.3s);
+                }
+            }
+
+        }
+    }   
+    .search-area .search-form-area .form-control{
+        background-color: #001f58bf;
+    color: #fff;
+    }
+    .sub-head-mob{
+        background-color: rgb(0, 16, 53);
+    }
+    .header {
+        background-image: none;
+        background-image: linear-gradient(to right, #0a0a1e, #080a20, #060a22, #030b25, #000b27);
+        transition: 1s ease-in-out;
+    }
+
+    .home-slider {
+        .slide-overlay {
+             background-image: radial-gradient(circle farthest-corner at 10% 20%, rgba(6, 28, 162, 0.36) 0%, rgba(1, 28, 119, 0.16) 91%) !important;
+        }
+    }
+
+
+    /* Home */
+    .home-slider-block {
+        @include boxShadow(0px, 0px, 5px, 0px, #0c0e1f);
+        background-color: $mDark;
+        z-index: 9999;
+        position: relative;
+        transition: 1s ease-in-out;
+
+        .back-color {
+            background-image: linear-gradient(to right top, #0f1224, #0e101f, #0c0e1b, #090c16, #070911);
+            border-radius: 20px 20px 0 0;
+            transition: 1s ease-in-out;
+
+        }
+
+        a {
+            color: #fff !important;
+            @include transition(0.3s);
+
+            &:hover {
+                color: $sColor !important;
+                @include transition(0.3s);
+            }
+
+            i {
+                color: $sColor !important;
+                @include transition(0.3s);
+            }
+        }
+    }
+
+    .slide-info {
+        a{
+            color: #fff;
+            background-color: rgba(0,0,0,0.6);
+            padding: 0.5rem 2rem;
+            display: inline-block;
+            text-decoration: none;
+            i{
+              margin-right:10px;
+            }
+            @include transition(0.3s);
+            &:hover{
+               background-color: #0c0e1f !important;
+               @include transition(0.3s);
+            }
+      }
+    }
+
+    /* Sections */
+    .Fast-Search {
+        background-color: $mDark !important;
+        @include boxShadow(0px, 0px, 5px, 0px, #0c0e1f);
+        ul{
+            li {
+                padding: 10px 20px;
+                border-bottom: 1px solid #0c0e1f;
+                &:hover{
+                    background-color: #0a0a0a;
+                }
+            }
+        }
+        
+    }
+    .movies-genre {
+        background-color: $mDark !important;
+        @include boxShadow(0px, 0px, 5px, 0px, #0c0e1f);
+        border-radius: 20px 20px 0 0;
+        transition: 1s ease-in-out;
+
+        .filters {
+            background-image: linear-gradient(to right top, #0f1224, #0e101f, #0c0e1b, #090c16, #070911);
+            transition: 1s ease-in-out;
+            border: none;
+            @include boxShadow(0px, 0px, 5px, 0px, #0c0e1f);
+
+            .custom-select {
+                background-color: $mDark;
+                color: #fff;
+                border: none;
+                transition: 1s ease-in-out;
+            }
+        }
+    }
+
+    .Single-Movie,.Single-Series, .episode  {
+        .container {
+            background-color: $mDark;
+            @include boxShadow(0px, 0px, 5px, 0px, #0c0e1f);
+            color: #fff !important;
+
+            .movie-information {
+                @include boxShadow(0px, 0px, 5px, 0px, #0c0e1f);
+
+                .movie-title {
+                    background-image: linear-gradient(to right top, #0f1224, #0e101f, #0c0e1b, #090c16, #070911);
+                    @include boxShadow(0px, 0px, 5px, 0px, #0c0e1f);
+                }
+
+                .information-list li {
+                    background-color: $DarkColor;
+                    color:#fff;
+                    i{
+                        color:#fff;
+                    }
+                    span:first-of-type {
+                        color: $sColor;
+                    }
+                }
+            }
+            .poster{
+                border-top: 4px solid $mDark;
+                img{
+                    @include boxShadow(0px, 0px, 5px, 0px, #0c0e1f);
+                }
+            }
+           .descrption
+           {
+            @include boxShadow(0px, 0px, 5px, 0px, #0c0e1f);
+            .title{
+                background-image: linear-gradient(to right top, #0f1224, #0e101f, #0c0e1b, #090c16, #070911);
+               
+               }
+           } 
+           .watch-list button{
+            @include boxShadow(0px, 0px, 5px, 0px, #0c0e1f);
+            color:#fff !important;
+           }
+           .other-title{
+            background-image: linear-gradient(to right top, #0f1224, #0e101f, #0c0e1b, #090c16, #070911);
+            @include boxShadow(0px, 0px, 5px, 0px, #0c0e1f);
+           }
+        }
+    }
+
+    /* Footer */
+    .footer {
+        background-color: #0a0a0a !important;
+        transition: 1s ease-in-out;
+        color: #fff !important;
+    }
+}

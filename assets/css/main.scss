@@ -1,0 +1,12 @@
+/* Import Scss Files */
+
+@import url('https://fonts.googleapis.com/css?family=Cairo&display=swap');
+@import '../sass/vars';
+@import '../sass/mixins';
+@import '../sass/helpers';
+@import '../sass/theme';
+@import '../sass/theme-dark';
+@import '../sass/responsive';
+*{
+    font-family: 'Cairo', sans-serif;
+}
