@@ -6,7 +6,7 @@ export default {
    */
   head: {
     title:
-      "افلام كلاب مشاهدة افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Aflam.Club",
+      "اتفرج اونلاين مشاهدة افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online",
     meta: [
       {
         charset: "utf-8"
@@ -24,22 +24,16 @@ export default {
     link: [
       {
         rel: "icon",
-        type: "image/x-icon",
-        href: "/favicon.ico"
-      }
-      // { rel: 'stylesheet', type: 'text/css', href: 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/css/bootstrap.min.css' },
+        type: "image/svg",
+        href: "/fav.svg"
+      },
+      { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css?family=Tajawal:500&display=swap' },
     ],
     script: [
       {
         src: "https://kit.fontawesome.com/3e50565740.js?ver=1.1",
         type: "text/javascript"
       },
-      {
-        src: "https://connect.facebook.net/es_LA/sdk.js",
-        async:"",
-        defer:"",
-        type: "text/javascript"
-      }
     ]
   },
   /*
@@ -79,6 +73,7 @@ export default {
   mounted() {
     this.$loading = this.$refs.loading;
   },
+  
   /*
    ** Nuxt.js modules
    */

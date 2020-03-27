@@ -7,6 +7,7 @@ import {
 } from './utils'
 
 import NuxtLoading from './components/nuxt-loading.vue'
+import NuxtBuildIndicator from './components/nuxt-build-indicator'
 
 import '..\\node_modules\\bootstrap\\dist\\css\\bootstrap.css'
 
@@ -25,7 +26,7 @@ import _6f6c098b from '..\\layouts\\default.vue'
 const layouts = { "_default": _6f6c098b }
 
 export default {
-  head: {"title":"افلام كلاب مشاهدة افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Aflam.Club","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Aflam.Club Project"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"script":[{"src":"https:\u002F\u002Fkit.fontawesome.com\u002F3e50565740.js?ver=1.1","type":"text\u002Fjavascript"},{"src":"https:\u002F\u002Fconnect.facebook.net\u002Fes_LA\u002Fsdk.js","async":"","defer":"","type":"text\u002Fjavascript"}],"style":[]},
+  head: {"title":"اتفرج اونلاين مشاهدة افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Atfrg.Online Project"}],"link":[{"rel":"icon","type":"image\u002Fsvg","href":"\u002Ffav.svg"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Tajawal:500&display=swap"}],"script":[{"src":"https:\u002F\u002Fkit.fontawesome.com\u002F3e50565740.js?ver=1.1","type":"text\u002Fjavascript"}],"style":[]},
 
   render (h, props) {
     const loadingEl = h('NuxtLoading', { ref: 'loading' })
@@ -59,7 +60,7 @@ export default {
       }
     }, [
       loadingEl,
-
+      h(NuxtBuildIndicator),
       transitionEl
     ])
   },
@@ -169,6 +170,10 @@ export default {
     },
 
     setLayout (layout) {
+      if(layout && typeof layout !== 'string') {
+        throw new Error('[nuxt] Avoid using non-string value as layout property.')
+      }
+
       if (!layout || !layouts['_' + layout]) {
         layout = 'default'
       }

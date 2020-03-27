@@ -1,6 +1,7 @@
 <template>
 <!-- Home Page -->
 <div class="home">
+
 <!-- Container -->
 <div class="container-fluid">
   <div class="row">
@@ -23,16 +24,25 @@ import HomeSlider from '~/components/HomeSlider.vue'
 import Movies from '~/components/movies/MoviesHome.vue'
 import Serieses from '~/components/serieses/SeriesHome.vue'
 import Anime from '~/components/animes/AnimeHome.vue'
+import loading from '~/components/loading.vue'
 export default {
  head: {
-    title:"افلام كلاب مشاهدة افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Aflam.Club",
+    title:"اتفرج اونلاين مشاهدة افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online",
   },
+   data: function () {
+        return {
+          loading:true,
+        }
+   },
   components: {
     HomeSlider,
     Movies,
     Serieses,
-    Anime
-  }
+    Anime,
+    loading
+  },
+
+
 }
 </script>
 <style lang="scss" scoped>
