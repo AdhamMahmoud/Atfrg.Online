@@ -72,11 +72,6 @@
         </div>
         <!-- Movie -->
         <div :class="{ col_show : active == 'movie' , col_hide : active != 'movie' }" id="movie">
-           <button
-              v-if="ShowIntroBtn"
-              class="skipIntro"
-              @click="skip()"
-            >Skip Intro</button>
               <div class="chat chat-video" v-if="firstNote">
               <div class="mine messages">
                   <div class="message last">
@@ -345,7 +340,7 @@ export default {
     },
     handleSearch(){
       this.films=[];
-      fetch('http://www.omdbapi.com/?i='+ this.$props.imdbId + '&apikey=527f9c9a')
+      fetch('https://www.omdbapi.com/?i='+ this.$props.imdbId + '&apikey=527f9c9a')
       .then((res) => { return res.json() } )
       .then((res) =>{
       this.films=res;
@@ -386,7 +381,7 @@ export default {
     },
     handleSearch(){
       this.films=[];
-      fetch('http://www.omdbapi.com/?i='+ this.$props.imdbId + '&apikey=527f9c9a')
+      fetch('https://www.omdbapi.com/?i='+ this.$props.imdbId + '&apikey=527f9c9a')
       .then((res) => { return res.json() } )
       .then((res) =>{
       this.films=res;
@@ -410,14 +405,12 @@ export default {
             if (this.film.currentTime < 120) {
                 this.ShowIntroBtn = true;
                 this.firstNote = true;
-                this.film.fullscreen.exit();
             } else {
                 this.ShowIntroBtn = false;
                 this.firstNote = false;
             }
             if (this.film.currentTime > (this.$props.runtime / 2 * 60) && this.notesdone != true) {
                 if (this.secondNote == false) {
-                    this.film.fullscreen.exit();
                 }
                 this.secondNote = true;
             }
