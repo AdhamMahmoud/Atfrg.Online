@@ -89,7 +89,7 @@
                     </div>
                     <vue-plyr class="player-mov" ref="film" seektime="10" :title="title" :id="id" :options="playerOptions" @playing="nowPlaying" @currentTime="currentTimes" :emit="['playing']">
 
-                        <video>
+                        <video crossorigin="anonymous">
 
                             <!-- Video Source -->
                             <source v-for="video in movLinks" :key="video.id" :src="video.path" type="video/webm" :size="video.quality.replace('Q','')">
@@ -285,9 +285,6 @@ export default {
             };
             return options;
         }
-    },
-    created() {
-        this.handleSearch();
     },
     methods: {
         CloseNote(num) {

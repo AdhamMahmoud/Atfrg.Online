@@ -80,11 +80,25 @@ export default {
   generate: {
     dir: "dist"
   },
+  render: {
+    static: {
+      setHeaders(res) {
+        res.setHeader('X-Frame-Options', 'ALLOWALL')
+        res.setHeader('Access-Control-Allow-Origin', '*')
+        res.setHeader('Access-Control-Allow-Methods', 'GET')
+        res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+   }
+ }
+},
   modules: [
     // Doc: https://bootstrap-vue.js.org/docs/
     "bootstrap-vue/nuxt",
-    "@nuxtjs/apollo"
+    "@nuxtjs/apollo",
+    '@nuxtjs/proxy'
   ],
+  proxy: {
+    '/api/': { target: 'https://api.example.com/', pathRewrite: {'^/api/': ''}, changeOrigin: true }
+  },
   apollo: {
     clientConfigs: {
       default: "~/plugins/my-alternative-apollo-config.js"
