@@ -166,7 +166,7 @@
                     <div v-swiper:mySwiperOnwa="swiperOption" class="my-swiper">
                         <div class="swiper-wrapper">
                             <div v-for="episode in tvSerieses[0].seasons.find(title => title == title).episodes" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
-                                <epitem :id="episode.id" :title="episode.title" :poster="GetPoster(episode.posters)" :genres="tvSerieses[0].genres" :audience="tvSerieses[0].audience" path="/series/episode/" />
+                                <Epsitem :id="episode.id" :title="episode.title" :poster="GetPoster(episode.posters)" :genres="tvSerieses[0].genres" :audience="tvSerieses[0].audience" path="/series/episode/" />
                             </div>
                         </div>
                         <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>
@@ -208,7 +208,7 @@
 import gql from 'graphql-tag';
 import resultNotFound from "~/components/resultNotFound.vue";
 import SeriesItem from '~/components/SeriesItem.vue';
-import epitem from '~/components/epitem.vue';
+import Epsitem from '~/components/Epsitem.vue';
 import bugs from '~/components/bugs.vue';
 export default {
     data: function () {
@@ -320,7 +320,7 @@ export default {
     components: {
         SeriesItem,
         resultNotFound,
-        epitem,
+        Epsitem,
         bugs
     },
     head() {

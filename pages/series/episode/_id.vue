@@ -64,12 +64,12 @@
 <script>
 import resultNotFound from "~/components/resultNotFound.vue";
 import Singleepisode from '~/components/serieses/series/episode.vue';
-import epitem from '~/components/epitem.vue';
+import Epsitem from '~/components/Epsitem.vue';
 export default {
   components:{
     resultNotFound,
     Singleepisode,
-    epitem
+    Epsitem
   },
 }
 </script>
