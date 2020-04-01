@@ -25,7 +25,7 @@ import TrailerItem from "~/components/TrailerItem.vue";
 import gql from 'graphql-tag';
 export default {
     head: {
-        title: "اتفرج اونلاين مشاهدة افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online ",
+        title: "اتفرج اون لاين مشاهدة افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online ",
     },
     data: function () {
         return {

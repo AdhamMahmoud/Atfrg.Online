@@ -33,10 +33,10 @@ export default {
       mounted(){
       setTimeout(() => this.loading = false, 1000);
       window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-gtag('config', 'UA-162494703-1');
+  gtag('config', 'UA-162494703-1');
   }
 };
 </script>

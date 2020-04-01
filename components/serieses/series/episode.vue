@@ -325,18 +325,18 @@ export default {
     },
     head() {
         return {
-            title: "مشاهدة وتحميل " + this.$props.title + " مسلسل  " + this.topTitle + " - Atfrg.Online  اتفرج اونلاين",
+            title: "مشاهدة وتحميل " + this.$props.title + " مسلسل  " + this.topTitle + " - Atfrg.Online  اتفرج اون لاين",
             meta: [
                 // hid is used as unique identifier. Do not use `vmid` for it as it will not work
                 {
                     hid: 'description',
                     name: 'description',
-                    content: "مشاهدة " + this.$props.title + " مسلسل مترجم اونلاين بجودة عالية -  Atfrg.Online  اتفرج اونلاين" || ""
+                    content: "مشاهدة " + this.$props.title + " مسلسل مترجم اون لاين بجودة عالية -  Atfrg.Online  اتفرج اون لاين" || ""
                 },
                 {
                     hid: 'keywords',
                     name: 'keywords',
-                    content: "مشاهدة فيلم,اتفرج اونلاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى" || ""
+                    content: "مشاهدة فيلم,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى" || ""
                 }
             ]
         }

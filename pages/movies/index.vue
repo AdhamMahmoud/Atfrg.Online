@@ -68,7 +68,7 @@ import filters from "~/components/movies/genre/filters";
 import gql from 'graphql-tag';
 export default {
      head: {
-     title:"افلام مترجمة - اتفرج اونلاين مشاهدة افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online ",
+     title:"افلام مترجمة - اتفرج اون لاين مشاهدة افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online ",
   },
     data: function () {
         return {

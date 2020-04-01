@@ -129,7 +129,7 @@ export default {
         };
     },
     methods: {
-               GetYear(date) {
+            GetYear(date) {
             var currentTime = new Date(date);
             var month = ("0" + (currentTime.getMonth() + 1)).slice(-2);
             var day = ("0" + currentTime.getDate()).slice(-2);
