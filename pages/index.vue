@@ -21,6 +21,7 @@
 </div>
 </template>
 <script>
+
 import HomeSlider from '~/components/HomeSlider.vue'
 import Movies from '~/components/movies/MoviesHome.vue'
 import Netflix from '~/components/movies/NetFlixHome.vue'

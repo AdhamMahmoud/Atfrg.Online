@@ -34,6 +34,11 @@ export default {
         src: "https://kit.fontawesome.com/3e50565740.js?ver=1.1",
         type: "text/javascript"
       },
+      {
+        src: "https://www.googletagmanager.com/gtag/js?id=UA-162494703-1",
+        async :"",
+        type: "text/javascript"
+      },
     ]
   },
   /*

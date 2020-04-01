@@ -43,7 +43,7 @@
         <!-- Movie Overlay Information -->
         <div class="information">
           <!-- Movie Name -->
-          <h3 class="name">{{ title }}</h3>
+          <h3 class="name">{{ title + " ("+ year + ")"}}</h3>
           <!-- Movie Category -->
           <div class="subinfo-block">
             <span class="runtime">
@@ -69,6 +69,7 @@ export default {
     return {
       isPlay: false,
       trailer_path: " ",
+      year:"",
       films: []
     };
   },
@@ -96,6 +97,7 @@ export default {
         })
         .then(res => {
           this.films = res;
+          this.year = this.GetYear(res.Released);
         });
     },
     runTrailer(id) {
@@ -104,6 +106,14 @@ export default {
         this.runTrailerNow(id);
       }, 1500);
     },
+     GetYear(date) {
+            var currentTime = new Date(date);
+            var month = ("0" + (currentTime.getMonth() + 1)).slice(-2);
+            var day = ("0" + currentTime.getDate()).slice(-2);
+            var year = currentTime.getFullYear();
+            this.movieyear = year;
+            return year;
+        },
     runTrailerNow(id) {
       if (this.isPlay && this.$refs[id]) {
         this.trailer_path = this.$props.trailer;

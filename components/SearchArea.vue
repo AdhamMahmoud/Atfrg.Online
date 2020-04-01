@@ -15,6 +15,7 @@
                 movies (orderBy: createdAt_DESC, first: 5, where: { isPublished:true, title_contains: $Searchtitle}){
                         id
                         title
+                        releaseDate
                         posters {
                         path
                         size
@@ -43,7 +44,7 @@
                         <ul class="search-result">
                             <li v-for="movie in data.movies" :key="movie.id" @click="EndSearch(true)">
                                 <nuxt-link :to="'/movie/' + movie.title">
-                                    <span class="title">{{ movie.title }}</span>
+                                    <span class="title">{{ movie.title + " (" + GetYear(movie.releaseDate) + ")" }}</span>
                                     <img :src="GetPoster(movie.posters)" :alt="movie.title">
                                 </nuxt-link>
                             </li>
@@ -64,6 +65,7 @@
                 tvSerieses (orderBy: createdAt_DESC, first: 5, where: { isPublished:true, title_contains: $Searchtitle}){
                         id
                         title
+                        releaseDate
                         posters {
                         path
                         size
@@ -93,7 +95,7 @@
                         <ul class="search-result">
                             <li v-for="series in data.tvSerieses" :key="series.id" @click="EndSearch(true)">
                                 <nuxt-link :to="'/series/' + series.title">
-                                    <span class="title">{{ series.title }}</span>
+                                    <span class="title">{{ series.title + " (" + GetYear(series.releaseDate) + ")"  }}</span>
                                     <img :src="GetPoster(series.posters)" :alt="series.title">
                                 </nuxt-link>
                             </li>
@@ -127,6 +129,14 @@ export default {
         };
     },
     methods: {
+               GetYear(date) {
+            var currentTime = new Date(date);
+            var month = ("0" + (currentTime.getMonth() + 1)).slice(-2);
+            var day = ("0" + currentTime.getDate()).slice(-2);
+            var year = currentTime.getFullYear();
+            this.movieyear = year;
+            return year;
+        },
         GetPoster(posters) {
             var path = "";
             var i;

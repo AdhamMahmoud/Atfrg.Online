@@ -1961,6 +1961,12 @@ i {
   .mobile-hidden {
     display: none !important; } }
 @media (min-width: 225px) and (max-width: 576px) {
+  .plyr__volume input {
+    width: 30px  !important; }
+
+  .plyr video {
+    min-height: 400px; }
+
   .mobile-hidden {
     display: none !important; }
 

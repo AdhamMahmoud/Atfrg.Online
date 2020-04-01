@@ -18,7 +18,7 @@
                 <div class="movie-information">
                     <!-- Movie Title -->
                     <div class="movie-title">
-                        {{ title }}
+                        {{ title + " (" +this.movieyear+")"}} 
                     </div>
                     <!-- Movie Info List -->
                     <ul class="information-list">
@@ -66,7 +66,7 @@
                 <div :class="{ col_show : active == 'trailer' , col_hide : active != 'trailer' }" id="trailer">
                     <!-- Trailer Player -->
                     <vue-plyr class="player-mov player-trailer" ref="e3lan" :options="playerOptions">
-                        <div :id="trailer + '?origin=https://atfrg.online/&amp;iv_load_policy=3'" data-plyr-provider="youtube" :data-plyr-embed-id="trailer + '?origin=http://localhost:3000&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1'"></div>
+                        <div :id="trailer + '?origin=https://atfrg.online/&amp;iv_load_policy=3'" data-plyr-provider="youtube" :data-plyr-embed-id="trailer + '?origin=https://atfrg.online/&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1'"></div>
                     </vue-plyr>
               </div>
                 <!-- Movie -->
@@ -88,7 +88,7 @@
                             </div>
                         </div>
                     </div>
-                    <vue-plyr class="player-mov" ref="film" seektime="10" :title="title" :id="id" :options="playerOptions" @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata']">
+                    <vue-plyr class="player-mov" ref="film" seektime="10" :title="title" :poster="poster" :id="id" :options="playerOptions" @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata']">
 
                         <video crossorigin="anonymous">
 
@@ -185,7 +185,7 @@
                         <template v-slot="{ result: { loading, error, data } }">
                             <!-- Loading -->
                             <div v-if="loading" class="loading apollo">
-                                <img src="http://localhost:3000/load.svg" class="svg-load" height="32px" width="32px">
+                                <img src="~assets/images/load.svg" class="svg-load" height="32px" width="32px">
                             </div>
                             <!-- Error -->
                             <div v-else-if="error" class="error apollo">
@@ -238,6 +238,16 @@ export default {
         resultNotFound,
         bugs
     },
+      head(){
+    return{
+       title: "مشاهدة وتحميل فيلم "+this.$props.title+"  ("+this.movieyear+") مترجم - اتفرج اونلاين Atfrg.Online" ,
+        meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        { hid: 'description', name: 'description', content:  "مشاهدة فيلم "+this.$props.title+" مترجم اونلاين بجودة عالية - اتفرج اونلاين Atfrg.Online" || ""},
+        { hid: 'keywords', name: 'keywords', content:  "مشاهدة فيلم,اتفرج اونلاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم "+this.$props.title+" , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اونلاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة" || ""}
+      ]
+    }
+  },
     data: function () {
         return {
             ShowIntroBtn: false,
@@ -246,6 +256,7 @@ export default {
             notesdone: false,
             currentTimes: 0,
             timeload: false,
+            movieyear:"",
             films: [],
             active: "movie",
             overId: 0,
@@ -449,6 +460,7 @@ export default {
             var month = ("0" + (currentTime.getMonth() + 1)).slice(-2);
             var day = ("0" + currentTime.getDate()).slice(-2);
             var year = currentTime.getFullYear();
+            this.movieyear = year;
             var date = day + "/" + month + "/" + year;
             return date;
         },

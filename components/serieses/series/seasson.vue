@@ -61,7 +61,7 @@
                 <div :class="{ col_show : active == 'trailer' , col_hide : active != 'trailer' }" id="trailer">
                     <!-- Trailer Player -->
                     <vue-plyr class="player-mov player-trailer" ref="e3lan" :options="playerOptions">
-                        <div :id="seasons[0].trailerPath + '?origin=https://atfrg.online/&amp;iv_load_policy=3'" data-plyr-provider="youtube" :data-plyr-embed-id="seasons[0].trailerPath"></div>
+                        <div :id="seasons[0].trailerPath" data-plyr-provider="youtube" :data-plyr-embed-id="seasons[0].trailerPath+ '?origin=https://atfrg.online/&amp;iv_load_policy=3'"></div>
                     </vue-plyr>
                 </div>
                 <!-- Movie -->

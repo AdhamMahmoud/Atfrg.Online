@@ -64,6 +64,9 @@ export default {
 </script>
 
 <style lang="scss" scoped="">
+@import '~/assets/sass/_vars.scss';
+@import '~/assets/sass/_mixins.scss';
+
 .bug{
         text-align: center;
     width: 50%;
@@ -90,6 +93,11 @@ export default {
     padding: 8px 2rem;
     border: none;
     border-radius: 20px;
+    }
+}
+@include sm{
+    .bug{
+        width:100%
     }
 }
 </style>

@@ -46,6 +46,12 @@ margin-right: 5px;
 }
 }
 @include sm{
+ .plyr__volume input{
+        width:30px  !important;
+    }
+    .plyr video{
+        min-height:400px;
+    }
 .mobile-hidden{
     display:none !important;
 }
