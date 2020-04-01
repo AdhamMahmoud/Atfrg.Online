@@ -30,9 +30,10 @@
                         <li> <span>النوع</span><i class="fas fa-angle-double-left"></i> <span>{{ films.Genre }}</span></li>
                         <li> <span>التقيم</span><i class="fas fa-angle-double-left"></i> <span> 10 / {{ films.imdbRating }} ( {{ films.imdbVotes }} شخص)</span></li>
                         <li> <span>الترجمة</span><i class="fas fa-angle-double-left"></i>
+                            شكر خاص لـ
                             <span>
-                                <i v-for="(subtitle, index) in subtitles" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="subtitle.path" :default="{ 'default': index == subtitles.length - 2}">
-                                    {{ subtitle.lang.name }}
+                                <i v-for="(subtitle, index) in subtitles" :key="subtitle.id" >
+                                    {{ subtitle.name }}
                                 </i>
                             </span>
                         </li>
@@ -65,9 +66,9 @@
                 <div :class="{ col_show : active == 'trailer' , col_hide : active != 'trailer' }" id="trailer">
                     <!-- Trailer Player -->
                     <vue-plyr class="player-mov player-trailer" ref="e3lan" :options="playerOptions">
-                        <div :id="trailer" data-plyr-provider="youtube" :data-plyr-embed-id="trailer"></div>
+                        <div :id="trailer + '?origin=https://atfrg.online/&amp;iv_load_policy=3'" data-plyr-provider="youtube" :data-plyr-embed-id="trailer + '?origin=http://localhost:3000&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1'"></div>
                     </vue-plyr>
-                </div>
+              </div>
                 <!-- Movie -->
                 <div :class="{ col_show : active == 'movie' , col_hide : active != 'movie' }" id="movie">
                     <!-- Movie Player -->
@@ -87,25 +88,64 @@
                             </div>
                         </div>
                     </div>
-                    <vue-plyr class="player-mov" ref="film" seektime="10" :title="title" :id="id" :options="playerOptions" @playing="nowPlaying" @currentTime="currentTimes" :emit="['playing']">
+                    <vue-plyr class="player-mov" ref="film" seektime="10" :title="title" :id="id" :options="playerOptions" @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata']">
 
                         <video crossorigin="anonymous">
 
                             <!-- Video Source -->
-                            <source v-for="video in movLinks" :key="video.id" :src="video.path" type="video/webm" :size="video.quality.replace('Q','')">
+                            <source v-for="video in movLinks" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/webm" :size="video.quality.replace('Q','')">
                             <!-- Video Subtitles -->
-                            <track v-for="(subtitle, index) in subtitles" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="subtitle.path" :default="{ 'default': index == subtitles.length - 2}">
+                            <track v-for="(subtitle, index) in subtitles" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == subtitles.length - 2}">
                         </video>
                     </vue-plyr>
+
                 </div>
                 <!-- Download -->
                 <div :class="{ col_show : active == 'download' , col_hide : active != 'download' }" id="download">
-                    <ul class="download-item">
-                        <li v-for="video in movLinks" :key="video.id">
-                            <nuxt-link :to="video.path">{{video.quality.replace('Q','')}}</nuxt-link>
-                        </li>
-                    </ul>
+                    <div class="note">
+                        للتحميل يرجي تحميل <span>الفيلم + الترجمة. </span>
+                        يتم وضعهم في مكان <span>واحد</span> بنفس الاسم لتعمل الترجمة.
+                        ننصح بأستخدام برنامج <nuxt-link to="https://www.videolan.org/vlc/download-windows.html">VLC</nuxt-link> .
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">الجودة</th>
+                                <th scope="col">التحمل</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="video in movLinks" :key="video.id">
+                                <th scope="row">1</th>
+                                <td>{{video.quality.replace('Q','')}}</td>
+                                <td>
+                                    <a :href="LinkToken(validLink(video.path))">تحميل</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">اللغة</th>
+                                <th scope="col">المترجم</th>
+                                <th scope="col">التحمل</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="subtitle in subtitles" :key="subtitle.id">
+                                <th scope="row">{{subtitle.lang.name}}</th>
+                                <td>{{subtitle.name }}</td>
+                                <td>
+                                    <a :href="LinkToken(subtitle.path)">تحميل</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+                <bugs :title="title"></bugs>
             </div>
         </div>
     </div>
@@ -180,6 +220,7 @@
 <script>
 import resultNotFound from "~/components/resultNotFound.vue";
 import TrailerItem from "~/components/TrailerItem.vue";
+import bugs from "~/components/bugs.vue";
 import gql from "graphql-tag";
 const WatchCount_Movie = gql `
    mutation Movie($id: ID,$watchCount:Int) {
@@ -194,7 +235,8 @@ const WatchCount_Movie = gql `
 export default {
     components: {
         TrailerItem,
-        resultNotFound
+        resultNotFound,
+        bugs
     },
     data: function () {
         return {
@@ -203,12 +245,13 @@ export default {
             secondNote: false,
             notesdone: false,
             currentTimes: 0,
+            timeload: false,
             films: [],
             active: "movie",
             overId: 0,
             timer: null,
             swiperOption: {
-                slidesPerView: 5,
+                slidesPerView: 4,
                 spaceBetween: 5,
                 navigation: {
                     nextEl: ".swiper-button-next",
@@ -216,12 +259,12 @@ export default {
                 },
                 breakpoints: {
                     1024: {
-                        slidesPerView: 5,
-                        spaceBetween: 40
+                        slidesPerView: 4,
+                        spaceBetween: 10
                     },
                     768: {
                         slidesPerView: 3,
-                        spaceBetween: 40
+                        spaceBetween: 10
                     },
                     640: {
                         slidesPerView: 1,
@@ -256,7 +299,7 @@ export default {
     mounted() {
         this.handleSearch();
         this.film = this.$refs.film.player;
-        this.e3lan = this.$refs.e3lan.player;
+        // this.e3lan = this.$refs.e3lan.player;
         this.WatchCount();
     },
     computed: {
@@ -287,6 +330,26 @@ export default {
         }
     },
     methods: {
+        validLink(path) {      
+            var type = path.slice(-3).toLowerCase();
+            path = path.substring(0, path.length - 3) + type
+            return path;
+        },
+        LinkToken(path){
+            var crypto = require('crypto');
+            var securityKey = '6ecb7c25-9744-498a-a49b-ae4c7980c861';
+            var newpath = path.substring(24, path.length);
+            // Set the time of expiry to one hour from now
+            var expires = Math.round(Date.now() / 1000) + 43200;
+
+            var hashableBase = securityKey + newpath + expires;
+            // Generate and encode the token 
+            var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
+            var token = new Buffer(md5String, 'binary').toString('base64');
+            token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
+            var url = 'https://cdn.atfrg.online' + newpath + '?token=' + token + '&expires=' + expires;
+            return url;
+        },
         CloseNote(num) {
             this.firstNote = false;
             if (num == 2) {
@@ -295,24 +358,28 @@ export default {
             }
 
         },
+        loadeddata() {
+            if (this.readCookie(this.$props.id) != 0) {
+                var time = parseInt(this.readCookie(this.$props.id));
+                this.timer = setTimeout(() => {
+                    this.film.currentTime = time;
+                }, 2000);
+            }
+        },
         nowPlaying() {
             this.film.currentTrack = 1;
             this.film.toggleCaptions(true);
-            if (this.film.currentTime < 120) {
-                this.ShowIntroBtn = true;
-                this.firstNote = true;
-            } else {
-                this.ShowIntroBtn = false;
-                this.firstNote = false;
-            }
             if (this.film.currentTime > (this.$props.runtime / 2 * 60) && this.notesdone != true) {
-                if (this.secondNote == false) {
-                }
+                if (this.secondNote == false) {}
                 this.secondNote = true;
             }
             this.timer = setTimeout(() => {
                 this.ShowIntroBtn = false;
             }, 120000);
+            if (this.film.currentTime > 120) {
+                this.createCookie(this.$props.id, this.film.currentTime, 10);
+            }
+
         },
         skip() {
             this.film.currentTime = 120;
@@ -374,7 +441,7 @@ export default {
         },
         VideoClose() {
             this.film.pause();
-            this.e3lan.pause();
+            // this.e3lan.pause();
         },
 
         getReleaseDate(date) {
@@ -414,6 +481,24 @@ export default {
             var mDisplay = m > 0 ? m + (m == 1 ? " دقيقة, " : " دقيقة, ") : "";
             var sDisplay = s > 0 ? s + (s == 1 ? " ثانية" : " ثانية") : "";
             return hDisplay + mDisplay + sDisplay;
+        },
+        createCookie(name, value, days) {
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+                var expires = "; expires=" + date.toGMTString();
+            } else var expires = "";
+            document.cookie = name + "=" + value + expires + "; path=/";
+        },
+        readCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(";");
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == " ") c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
         }
     }
 };

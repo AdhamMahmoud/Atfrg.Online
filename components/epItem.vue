@@ -1,6 +1,6 @@
 <template>
 <!-- Trailer Item -->
-  <nuxt-link :to="path + title">
+  <nuxt-link :to="path + id">
     <div v-lazy-container="{ selector: 'img', loading: '/load.svg' }"
         class="item-slide">
         <!-- Movie Poster Container-->

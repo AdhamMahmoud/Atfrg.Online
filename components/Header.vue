@@ -35,7 +35,7 @@
                 </button>
                 <!-- Header Logo -->
                 <nuxt-link to="/" exact class="navbar-brand">
-                <img class="atfrg-logo" src="logo.svg" alt="Atfrg.online">
+                <img class="atfrg-logo" src="~/assets/images/logo.svg" alt="Atfrg.online">
                 </nuxt-link>
                 <!-- Header List -->
                 <div :class="['collapse navbar-collapse', {'show scale-in-center' : mobMenu}]" id="navbarSupportedContent">
@@ -172,7 +172,7 @@
                                     </li>
                                     <li class="nav-item pc-hidden" v-if="mobMenu">
                                         <!-- Night Mode Switch -->
-                                        <div class="toggle toggle--daynight pc-hidden">
+                                        <div class="toggle toggle--daynight pc-hidden" id="darkss">
                                             <input @change="DarkMode()" type="checkbox" id="toggle--daynight" class="toggle--checkbox">
                                             <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
                                         </div>
@@ -184,7 +184,7 @@
                 </div>
 
                 <!-- Night Mode Switch -->
-                <div class="toggle toggle--daynight mobile-hidden">
+                <div class="toggle toggle--daynight mobile-hidden" id="darkss">
                     <input @change="DarkMode()" type="checkbox" id="toggle--daynight" class="toggle--checkbox">
                     <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
                 </div>
@@ -284,8 +284,7 @@ export default {
             this.readCookie("darkModeD") == "true" &&
             this.readCookie("darkModeD") != null
         ) {
-            this.$emit("update:darkMode", true);
-            this.darkModeD = true;
+             document.getElementById("toggle--daynight").click(); 
         } else {
             this.$emit("update:darkMode", false);
             this.darkModeD = false;

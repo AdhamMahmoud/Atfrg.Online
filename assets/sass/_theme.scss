@@ -81,7 +81,16 @@ i {
 .loading-icon {
     display: flex;
 }
+.note {
+    box-shadow: 0px 0px 4px 0px #d8d8d8;
+    margin: 1rem;
+    padding: 2rem;
+    border-radius: 5px;
 
+    span {
+        color: red;
+    }
+}
 
 /* Header Style
 ================ */
@@ -153,7 +162,7 @@ i {
                 @include transition(0.3s);
 
                 &:hover {
-                    background-color: $primary-color;
+                    background-color: $secondary-color;
                     @include transition(0.3s);
                 }
             }
@@ -162,7 +171,7 @@ i {
 }
 
 .header {
-    background-image:linear-gradient(109.6deg, #4148cf 21.2%, #5061d8 73.1%);
+    background-image: linear-gradient(109.6deg, #4148cf 21.2%, #5061d8 73.1%);
     width: 100%;
     color: $light-color;
     height: 70px;
@@ -193,10 +202,11 @@ i {
         font-weight: bold;
         letter-spacing: 2px;
         color: $light-color;
-        .atfrg-logo{
-            height: 80px;
-            padding: 8px;
-            margin-top: -2px;
+
+        .atfrg-logo {
+            height: 90px;
+            padding: 10px;
+            margin-top: -1.6rem;
         }
     }
 
@@ -204,7 +214,8 @@ i {
         a {
             color: $light-color;
             font-size: 1.3rem;
-            svg{
+
+            svg {
                 fill: #fff;
                 height: 1.7rem;
                 margin-left: 6px;
@@ -217,7 +228,8 @@ i {
         a {
             color: $primary-color;
             font-weight: bold;
-            svg{
+
+            svg {
                 fill: $primary-color;
             }
         }
@@ -227,19 +239,21 @@ i {
         @include transition(0.3s);
 
         &:hover {
-            color: $primary-color !important;
+            color: $secondary-color !important;
             @include transition(0.3s);
         }
-        &:hover svg{
-                fill: $primary-color;
+
+        &:hover svg {
+            fill: $secondary-color;
         }
     }
 
     .navbar-nav {
         .nuxt-link-active {
-            color: $primary-color !important;
-            svg{
-                fill: $primary-color;
+            color: $secondary-color !important;
+
+            svg {
+                fill: $secondary-color;
             }
         }
     }
@@ -597,7 +611,7 @@ i {
         right: 0;
         width: 100%;
         height: 100%;
-        background-image: linear-gradient(to bottom, rgba(23, 23, 23, 0), $primary-color);
+        background-image: linear-gradient(to bottom, rgba(29, 29, 29, 0.16), #002794);
         -webkit-animation: swing-in-top-fwd 1s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
         animation: swing-in-top-fwd 1s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
         @include transition(0.8s);
@@ -696,9 +710,19 @@ i {
     background-color: #fff;
     z-index: 9999;
     position: relative;
-
+    .drob{
+    display: none;
+    text-align: left;
+    line-height: 46px;
+    position: absolute;
+    left: 3rem;
+        svg{
+            height:20px;
+            fill:#fff;
+        }
+    }
     .back-color {
-        background-image:linear-gradient(109.6deg, #4148cf 21.2%, #5061d8 73.1%);
+        background-image: linear-gradient(109.6deg, #4148cf 21.2%, #5061d8 73.1%);
         border-radius: 20px 20px 0 0;
 
     }
@@ -719,6 +743,14 @@ i {
         color: $light-color;
         font-size: 18px;
         font-weight: bold;
+
+        svg {
+            height: 1.7rem;
+            fill: #fff;
+            vertical-align: middle;
+            font-weight: bold;
+            margin-left: 0.5rem;
+        }
 
         i {
             margin-left: 20px;
@@ -745,10 +777,20 @@ i {
                 outline: none;
             }
         }
+        svg{
+            fill: #fff;
+            height: 20px;
+            margin-left: 10px;
+            vertical-align: middle;
+            margin-top: -3px;
+        }
 
         .active {
             color: $secondary-color;
             font-weight: bold;
+            svg{
+                fill: $secondary-color;
+            }
         }
 
         ul {
@@ -756,13 +798,13 @@ i {
             margin: 0;
             padding: 0;
             text-align: center;
-
+            margin-right: -9rem;
+            font-size:16px;
             li {
                 display: inline-block;
                 padding: 10px 20px;
                 margin: 5px 0 5px 10px;
                 color: $light-color;
-                border-left: 1px solid #dcdcdc;
 
                 &:last-of-type {
                     border-left: none;
@@ -1048,10 +1090,23 @@ $cloud-bgColor: #fff;
     //   width: 100%;
     // }
 
+    .others {
+        display: block;
+        position: relative;
+        margin: 2rem auto;
+        text-align: center;
+
+        a {
+            box-shadow: 0px 0px 4px 0px #d2d2d2;
+            padding: 5px 1rem;
+            margin-left: 10px;
+            text-decoration: none;
+        }
+    }
 
     .plyr__volume {
         input {
-            width: 60px;
+            width: 60px !important;
         }
     }
 
@@ -1212,14 +1267,14 @@ $cloud-bgColor: #fff;
                 }
 
                 i {
-                    color: $secondary-color;
+                    color: #000;
                     display: inline-block;
                     margin-left: 50px;
                     align-self: center;
                 }
 
                 span:first-of-type {
-                    color: $secondary-color;
+                    color: #000;
                     width: 160px;
                     min-width: 160px;
                     max-width: 160px;
@@ -1294,22 +1349,38 @@ $cloud-bgColor: #fff;
     text-align: center;
     width: 50%;
 
-    a {
-        background-color: $primary-color;
-        padding: 0.5rem 1rem;
-        color: #fff;
-        display: block;
-        margin: 1rem 0;
-        border-radius: 20px;
-        text-decoration: none;
-        border: 1px solid $primary-color;
-        @include transition(0.4s);
+    .note {
+        box-shadow: 0px 0px 4px 0px #d8d8d8;
+        margin: 1rem;
+        padding: 2rem;
+        border-radius: 5px;
 
-        &:hover {
-            background-color: #fff;
-            border: 1px solid $secondary-color;
-            color: #000;
+        span {
+            color: red;
+        }
+    }
+
+    .table {
+        border: 2px solid #eaeaea;
+
+        a {
+            background-color: $primary-color;
+            padding: 5px 1rem;
+            color: #fff;
+            display: block;
+            border-radius: 5px;
+            text-decoration: none;
+            border: 1px solid $primary-color;
+            width: 50%;
+            margin: 0 auto;
             @include transition(0.4s);
+
+            &:hover {
+                background-color: #fff;
+                border: 1px solid $secondary-color;
+                color: #000;
+                @include transition(0.4s);
+            }
         }
     }
 
@@ -1317,6 +1388,7 @@ $cloud-bgColor: #fff;
         width: 50%;
         margin: 0 auto;
         list-style: none;
+
     }
 }
 
@@ -1438,8 +1510,8 @@ $cloud-bgColor: #fff;
             // background-attachment: fixed;
             &:hover .slide-info {
                 display: block;
-                -webkit-animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-                animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+                -webkit-animation: fade-in-fwd 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+                animation: fade-in-fwd 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
             }
 
             .slide-trailer {
@@ -1458,21 +1530,22 @@ $cloud-bgColor: #fff;
                 width: 100%;
                 height: 100%;
                 z-index: 2;
-                background-image: radial-gradient(circle farthest-corner at 10% 20%,
-                        rgba(120, 50, 255, 0.1) 0%,
-                        rgba(50, 150, 250, 0.1) 91%);
+                background-image: radial-gradient(circle 523px at 7.1% 19.3%, rgba(147, 15, 255, 0.19) 2%, rgba(5, 49, 255, 0.19) 100.7%);
             }
 
             .slide-info {
-                top: 20%;
-                color: #fff;
-                right: 0;
-                padding: 20px;
                 display: none;
-                background-color: rgba(0, 81, 203, 0.54);
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                text-align: center;
+                padding: 5rem 0;
+                color: #fff;
+                background-image: radial-gradient(circle 523px at 7.1% 19.3%, rgba(147, 15, 255, 0.4) 2%, rgba(5, 49, 255, 0.4) 100.7%);
                 z-index: 20;
                 position: absolute;
-                text-align: right;
+                padding-top: 8rem;
 
                 .title {
                     font-size: 40px;
@@ -1490,25 +1563,22 @@ $cloud-bgColor: #fff;
                 .overview {
                     font-size: 16px;
                     width: 40rem;
+                    display: block;
+                    margin: 0 auto;
                     margin-bottom: 1rem;
                 }
 
                 a {
-                    color: #fff;
-                    background-color: rgba(0, 0, 0, 0.6);
-                    padding: 0.5rem 2rem;
-                    display: inline-block;
-                    text-decoration: none;
+                    svg {
+                        height: 100px;
+                        margin-bottom: 2.5rem;
+                        fill: #fff;
+                        @include transition(.2s);
 
-                    i {
-                        margin-right: 10px;
-                    }
-
-                    @include transition(0.3s);
-
-                    &:hover {
-                        background-color: rgba(0, 81, 203, 1) !important;
-                        @include transition(0.3s);
+                        &:hover {
+                            fill: $secondary-color;
+                            @include transition(.2s);
+                        }
                     }
                 }
             }

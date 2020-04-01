@@ -10,6 +10,7 @@
       <HomeSlider />
     <!--  Movies Block -->
     <Movies />
+    <Netflix />
     <!-- Serieses Block -->
     <Serieses />
      <!--Animes Block -->
@@ -22,12 +23,18 @@
 <script>
 import HomeSlider from '~/components/HomeSlider.vue'
 import Movies from '~/components/movies/MoviesHome.vue'
+import Netflix from '~/components/movies/NetFlixHome.vue'
 import Serieses from '~/components/serieses/SeriesHome.vue'
 import Anime from '~/components/animes/AnimeHome.vue'
 import loading from '~/components/loading.vue'
 export default {
  head: {
-    title:"اتفرج اونلاين مشاهدة افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online",
+    title:"اتفرج اونلاين مشاهدة وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online",
+    meta: [
+       { hid: 'description', name: 'description', content:  "مشاهدة ومتحميل مباشر افلام و مسلسلات وانمي بجودة عالية مترجمة" || ""},
+        { hid: 'keywords', name: 'keywords', content:  "مشاهدة مسلسل ,اتفرج اونلاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اونلاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل " || ""}
+
+    ]
   },
    data: function () {
         return {
@@ -39,7 +46,8 @@ export default {
     Movies,
     Serieses,
     Anime,
-    loading
+    loading,
+    Netflix
   },
 
 

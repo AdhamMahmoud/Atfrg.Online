@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="loading-page">
-   <img class="atfrg-logo" src="logo.svg" alt="Atfrg.online">
+   <img class="atfrg-logo" src="~/assets/images/FullLogo.svg" alt="Atfrg.online">
   </div>
 </template>
 
@@ -34,7 +34,17 @@ export default {
   font-family: sans-serif;
   z-index:9999999;
   img{
-      height:200px
+      height:200px;
+      -webkit-animation: slide-in-fwd-top 3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-in-fwd-top 3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+}
+@media (max-width:500px) {
+  .loading-page {
+  img{
+      height:200px;
+      padding:20px
   }
+}
 }
 </style>

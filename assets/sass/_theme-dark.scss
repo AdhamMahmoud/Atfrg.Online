@@ -51,8 +51,9 @@ $primary-color:$sColor;
         }
     }   
     .search-area .search-form-area .form-control{
-        background-color: #001f58bf;
+        background-color: rgba(25, 14, 60, 0.74902);
     color: #fff;
+    box-shadow: none;;
     }
     .sub-head-mob{
         background-color: rgb(0, 16, 53);
@@ -65,7 +66,7 @@ $primary-color:$sColor;
 
     .home-slider {
         .slide-overlay {
-             background-image: radial-gradient(circle farthest-corner at 10% 20%, rgba(6, 28, 162, 0.36) 0%, rgba(1, 28, 119, 0.16) 91%) !important;
+             background-image: radial-gradient(circle 523px at 7.1% 19.3%, rgba(16, 3, 70, 0.42) 2%, rgba(2, 9, 46, 0.39) 100.7%) !important;
         }
     }
 
@@ -101,23 +102,6 @@ $primary-color:$sColor;
         }
     }
 
-    .slide-info {
-        a{
-            color: #fff;
-            background-color: rgba(0,0,0,0.6);
-            padding: 0.5rem 2rem;
-            display: inline-block;
-            text-decoration: none;
-            i{
-              margin-right:10px;
-            }
-            @include transition(0.3s);
-            &:hover{
-               background-color: #0c0e1f !important;
-               @include transition(0.3s);
-            }
-      }
-    }
 
     /* Sections */
     .Fast-Search {

@@ -69,7 +69,7 @@ export default {
             this.randoms = [];
             var nums = [];
             if (this.movies.length > 0) {
-                for (var i = 0; i < 3; i++) {
+                for (var i = 0; i < 4; i++) {
                     var num = this.GetRandom(this.movies.length);
                     if (nums.includes(num)) {
                         this.randoms = [];
@@ -116,6 +116,14 @@ export default {
         }
     }
 }
+.note{
+    h1{
+            text-align: center;
+    margin: 2rem 1rem;
+    align-items: center;
+    color: #ff0dec;
+    }
+}
 .change {
     text-align: center;
     display: block;
@@ -126,7 +134,7 @@ export default {
     padding: 2rem;
     height: 100px;
     width: 100px;
-    border:2px solid #0095ff;
+    outline: none;
     margin: 2rem auto;
 }
 }

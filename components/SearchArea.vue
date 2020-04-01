@@ -28,7 +28,13 @@
 
                 <!-- Error -->
                 <div v-else-if="error" class="error apollo">
-                    <p> حاول البحث بكلمات اخري ..</p>
+                    <div class="Fast-Search">
+                        <ul class="search-result">
+                            <li>
+                                <p> حاول البحث بكلمات اخري ..</p>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Result -->
@@ -71,7 +77,15 @@
                 <div v-if="loading" class="loading apollo">Loading...</div>
 
                 <!-- Error -->
-                <div v-else-if="error" class="error apollo">An error occurred</div>
+                <div v-else-if="error" class="error apollo">
+                    <div class="Fast-Search">
+                        <ul class="search-result">
+                            <li>
+                                <p> حاول البحث بكلمات اخري ..</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
                 <!-- Result -->
                 <div v-else-if="data != null" class="result apollo">
@@ -90,7 +104,11 @@
                 <!-- No result -->
                 <div v-else class="no-result apollo">
                     <div class="Fast-Search">
-                        <p> حاول البحث بكلمات اخري ..</p>
+                        <ul class="search-result">
+                            <li>
+                                <p> حاول البحث بكلمات اخري ..</p>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </template>

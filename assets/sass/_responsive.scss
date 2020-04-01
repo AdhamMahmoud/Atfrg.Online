@@ -35,7 +35,7 @@ margin-right: 5px;
         font-size:14px;
     }
     .navbar-collapse{
-    background: rgba(0, 0, 29, 0.78);
+    background: rgba(82, 42, 239, 0.89);
     position: absolute;
     top: 11rem;
     text-align: right;
@@ -78,13 +78,12 @@ margin-right: 5px;
     }
 }
 .home-slider .my-swiper .big-slide .slide-info{
-    top: 5%;
-    margin: 1rem;
+   padding-top:5rem;
     .title{
         font-size: 30px;
     }
     .overview{
-        width: auto;
+        display: none;
     }
 }
 }
@@ -96,8 +95,19 @@ margin-right: 5px;
 .home-slider-block .block-type{
     padding:10px
 }
+.home-slider-block .drob{
+    display:block;
+}
+
 .home-slider-block .categories ul{
     display:none;
+    position: absolute;
+    background-image: linear-gradient(109.6deg, #4148cf 21.2%, #5061d8 73.1%);
+    z-index: 999;
+    width: 100%;
+    left: 0;
+    border-radius: 10px;
+    top: 26px;
 }
 .home-slider-block{
     margin:20px 30px;
@@ -111,7 +121,12 @@ margin-right: 5px;
 .Slider-block .my-swiper .swiper-button-prev, .Slider-block .my-swiper .swiper-button-next{
     display:block;
 }
-
+.Single-Movie .watch-list button, .Single-Series .watch-list button, .episode .watch-list button{
+    padding: 8px 20px;
+}
+#download{
+    width: 100%;
+}
 }
 
 /* === Pages === */
@@ -144,6 +159,11 @@ margin-right: 5px;
             li{
                 margin-bottom:10px;
             }
+    }
+    .sub.show{
+        display:block !important;
+        -webkit-animation: fade-in-fwd 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+        animation: fade-in-fwd 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
     }
 }
 

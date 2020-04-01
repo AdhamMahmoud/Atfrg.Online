@@ -7,12 +7,12 @@
       >
         <div class="col-md-12">
           <div
-            :class="{ col_show : active == 'lastupdatesMovies' , col_hide : active != 'lastupdatesMovies' }"
-            id="lastupdatesMovies"
+            :class="{ col_show : active == 'series' , col_hide : active != 'series' }"
+            id="series"
           >
-            <ApolloQuery :query="gql => gql`
+           <ApolloQuery :query="gql => gql`
                      query GetSerieses {
-                      tvSerieses(orderBy: updatedAt_DESC,first:10,  where: { isPublished: true, seriesType: TV , seasons_some:{episodes_some:{id_gt:1}, }}) {
+                      tvSerieses(orderBy: updatedAt_DESC,first:10,  where: { isPublished: true, Production: NETFLIX, seriesType: TV , seasons_some:{episodes_some:{id_gt:1}, }}) {
                         id
                         title
                         posters {
@@ -55,7 +55,7 @@
                 >
                   <!-- Container End -->
                   <div
-                    v-swiper:mySwiperOn1="swiperOption"
+                    v-swiper:mySwiperNetflix="swiperOption"
                     class="my-swiper"
                   >
                     <div class="swiper-wrapper">
@@ -95,16 +95,17 @@
               </template>
             </ApolloQuery>
             <div class="more-btn">
-              <nuxt-link to="/serieses/last-updated"> <i class="im im-angle-right-circle"></i> </nuxt-link>
+              <nuxt-link to="/movies/most-watched"> <i class="im im-angle-right-circle"></i>
+              </nuxt-link>
             </div>
           </div>
           <div
-            :class="{ col_show : active == 'choosen' , col_hide : active != 'choosen' }"
-            id="choosen"
+            :class="{ col_show : active == 'movies' , col_hide : active != 'movies' }"
+            id="movies"
           >
-            <ApolloQuery :query='gql => gql`
-                     query GetSerieses {
-                      tvSerieses(orderBy:releaseDate_DESC,first:10, where: { isPublished: true , seriesType: TV,  seasons_some:{episodes_some:{id_gt:1}}}) {
+            <ApolloQuery :query="gql => gql`
+                      query getMoviestwo {
+                      movies(orderBy: updatedAt_DESC, first:10,  where :{ isPublished: true, Production: NETFLIX}) {
                         id
                         title
                         posters {
@@ -112,21 +113,23 @@
                           path
                         }
                         audience
-                        releaseDate
+                        trailerPath
+                        movieQuality
+                        videoQualities
+                        runtime
                         genres {
                           name
                         }
-                        seasons {
-                          id
-                        }
+                        watchCount
+                        imdbId
                       }
                     }
-                    `'>
+                    `">
               <template v-slot="{ result: { loading, error, data } }">
                 <!-- Loading -->
                 <div
                   v-if="loading"
-                  class="loading"
+                  class="loading apollo"
                 >
                   <img
                     src="~/assets/images/load.svg"
@@ -139,33 +142,40 @@
                 <div
                   v-else-if="error"
                   class="error apollo"
-                >An error occurred</div>
+                >
+                  <resultNotFound />
+                </div>
                 <!-- Result -->
                 <div
-                  v-else-if="data && data.tvSerieses.length > 0"
+                  v-else-if="data && data.movies.length > 0"
                   class="Slider-block"
                 >
                   <!-- Container End -->
                   <div
-                    v-swiper:mySwiperOn2="swiperOption"
+                    v-swiper:mySwiperTwoEW="swiperOption"
                     class="my-swiper"
                   >
                     <div class="swiper-wrapper">
                       <div
-                        v-for="series in data.tvSerieses"
-                        :key="series.id"
-                        :class="[{ poster_over : overId == series.id }, 'swiper-slide' ]"
-                        @mouseover="itemOver(series.id)"
+                        v-for="movie in data.movies"
+                        :key="movie.id"
+                        :class="['swiper-slide' , { poster_over : overId == movie.id }, ]"
+                        @mouseover="itemOver(movie.id)"
                         @mouseleave="itemNotOver"
                       >
-                        <SeriesItem
-                          :id="series.id"
-                          :title="series.title"
-                          :poster="GetPoster(series.posters)"
-                          :genres="series.genres"
-                          :audience="series.audience"
-                          :seasons="series.seasons"
-                          path="/series/"
+                        <TrailerItem
+                          :id="movie.id"
+                          :title="movie.title"
+                          :quality="movie.movieQuality"
+                          :poster="movie.posters"
+                          :trailer="movie.trailerPath"
+                          :genres="movie.genres"
+                          :watchCount="movie.watchCount"
+                          :audience="movie.audience"
+                          :videoQualities="movie.videoQualities[0]"
+                          :runtime="movie.runtime"
+                          :run="true"
+                          :imdbId="movie.imdbId"
                         />
                       </div>
                     </div>
@@ -183,13 +193,17 @@
                 <div
                   v-else
                   class="no-result apollo"
-                ><resultNotFound /></div>
+                >
+                  <resultNotFound />
+                </div>
               </template>
             </ApolloQuery>
             <div class="more-btn">
-              <nuxt-link to="/serieses/new-release"> <i class="im im-angle-right-circle"></i> </nuxt-link>
+              <nuxt-link to="/movies/last-release"> <i class="im im-angle-right-circle"></i>
+              </nuxt-link>
             </div>
           </div>
+          
         </div>
       </div>
     </div>
@@ -197,8 +211,9 @@
 </template>
 
 <script>
-import SeriesItem from "~/components/SeriesItem.vue";
 import resultNotFound from "~/components/resultNotFound.vue";
+import TrailerItem from "~/components/TrailerItem.vue";
+import SeriesItem from "~/components/SeriesItem.vue";
 import {
   Hooper,
   Slide,
@@ -210,11 +225,12 @@ import "hooper/dist/hooper.css";
 
 export default {
   components: {
-    SeriesItem,
+    resultNotFound,
+    TrailerItem,
     Hooper,
     Slide,
-    HooperNavigation,
-    resultNotFound
+    SeriesItem,
+    HooperNavigation
   },
   props: {
     active: String
@@ -224,8 +240,8 @@ export default {
       overId: 0,
       timer: null,
       swiperOption: {
-        slidesPerView: 5,
-        spaceBetween: 5,
+         slidesPerView: 5,
+         spaceBetween: 5,
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev"
@@ -252,7 +268,7 @@ export default {
     };
   },
   methods: {
-    GetPoster(posters) {
+      GetPoster(posters) {
       var path = "";
       var i;
       for (i = 0; i < posters.length; i++) {

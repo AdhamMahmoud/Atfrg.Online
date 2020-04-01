@@ -15,7 +15,7 @@ const _61243120 = () => interopDefault(import('..\\pages\\movies\\new-release.vu
 const _468fc480 = () => interopDefault(import('..\\pages\\serieses\\last-updated.vue' /* webpackChunkName: "pages_serieses_last-updated" */))
 const _1676b94e = () => interopDefault(import('..\\pages\\serieses\\new-release.vue' /* webpackChunkName: "pages_serieses_new-release" */))
 const _58f10c30 = () => interopDefault(import('..\\pages\\movie\\genre\\_name.vue' /* webpackChunkName: "pages_movie_genre__name" */))
-const _41b0dc1d = () => interopDefault(import('..\\pages\\series\\episode\\_name.vue' /* webpackChunkName: "pages_series_episode__name" */))
+const _22367d2d = () => interopDefault(import('..\\pages\\series\\episode\\_id.vue' /* webpackChunkName: "pages_series_episode__id" */))
 const _5cb8a889 = () => interopDefault(import('..\\pages\\series\\season\\_name.vue' /* webpackChunkName: "pages_series_season__name" */))
 const _6b739211 = () => interopDefault(import('..\\pages\\movie\\_name.vue' /* webpackChunkName: "pages_movie__name" */))
 const _9fbb9668 = () => interopDefault(import('..\\pages\\series\\_name.vue' /* webpackChunkName: "pages_series__name" */))
@@ -86,9 +86,9 @@ export const routerOptions = {
     component: _58f10c30,
     name: "movie-genre-name"
   }, {
-    path: "/series/episode/:name?",
-    component: _41b0dc1d,
-    name: "series-episode-name"
+    path: "/series/episode/:id?",
+    component: _22367d2d,
+    name: "series-episode-id"
   }, {
     path: "/series/season/:name?",
     component: _5cb8a889,

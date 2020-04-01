@@ -100,11 +100,11 @@ import SingleMovie from "~/components/movies/movie/Movie.vue";
 export default {
   head(){
     return{
-       title: "مشاهدة فيلم "+this.$route.params.name+" مترجم - افلام كلاب Aflam.Club" ,
+       title: "مشاهدة وتحميل فيلم "+this.$route.params.name+" مترجم - اتفرج اونلاين Atfrg.Online" ,
         meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-        { hid: 'description', name: 'description', content:  "مشاهدة فيلم "+this.$route.params.name+" مترجم اونلاين بجودة عالية - افلام كلاب Aflam.Club" || ""},
-        { hid: 'keywords', name: 'keywords', content:  "مشاهدة فيلم,افلام كلاب , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى" || ""}
+        { hid: 'description', name: 'description', content:  "مشاهدة فيلم "+this.$route.params.name+" مترجم اونلاين بجودة عالية - اتفرج اونلاين Atfrg.Online" || ""},
+        { hid: 'keywords', name: 'keywords', content:  "مشاهدة فيلم,اتفرج اونلاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم "+this.$route.params.name+" , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اونلاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة" || ""}
       ]
     }
   },

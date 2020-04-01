@@ -3,8 +3,8 @@
 
       <ApolloQuery
                     :query="gql => gql`
-                   query getepisode($title: String) {
-                    episodes(where: { title_contains: $title, isPublished: true }) {
+                   query getepisode($id: ID) {
+                    episodes(where: { id_contains: $id, isPublished: true }) {
                       id
                       title
                       runtime
@@ -33,7 +33,7 @@
                     }
                   }
                     `"
-                    :variables="{ title: $route.params.name }">
+                    :variables="{ id: $route.params.id }">
                     <template v-slot="{ result: { loading, error, data } }">
                     <!-- Loading -->
                     <div v-if="loading" class="loading apollo">Loading...</div>
@@ -64,10 +64,12 @@
 <script>
 import resultNotFound from "~/components/resultNotFound.vue";
 import Singleepisode from '~/components/serieses/series/episode.vue';
+import epitem from '~/components/epitem.vue';
 export default {
   components:{
     resultNotFound,
-    Singleepisode
+    Singleepisode,
+    epitem
   },
 }
 </script>

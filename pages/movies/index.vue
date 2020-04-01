@@ -68,7 +68,7 @@ import filters from "~/components/movies/genre/filters";
 import gql from 'graphql-tag';
 export default {
      head: {
-     title:"افلام مترجمة - افلام كلاب مشاهدة افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Aflam.Club ",
+     title:"افلام مترجمة - اتفرج اونلاين مشاهدة افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online ",
   },
     data: function () {
         return {
