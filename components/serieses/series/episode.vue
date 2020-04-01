@@ -32,7 +32,7 @@
                         <li> <span>الترجمة</span><i class="fas fa-angle-double-left"></i>
                             شكر خاص لـ
                             <span>
-                                <i v-for="(subtitle, index) in subtitles" :key="subtitle.id" >
+                                <i v-for="subtitle in subtitles" :key="subtitle.id">
                                     {{ subtitle.name }}
                                 </i>
                             </span>
@@ -64,10 +64,7 @@
             <div class="col-md-12">
                 <!-- trailer -->
                 <div :class="{ col_show : active == 'trailer' , col_hide : active != 'trailer' }" id="trailer">
-                    <!-- Trailer Player -->
-                    <vue-plyr class="player-mov player-trailer" ref="e3lan" :options="playerOptions">
-                        <div :id="tvSerieses[0].seasons[0].trailerPath" data-plyr-provider="youtube" :data-plyr-embed-id="tvSerieses[0].seasons[0].trailerPath + '?origin=https://atfrg.online/&amp;iv_load_policy=3'"></div>
-                    </vue-plyr>
+                    <iframe class="player-mov player-trailer" v-if="active == 'trailer'" :src="'https://www.youtube.com/embed/'+tvSerieses[0].seasons[0].trailerPath"> </iframe>
                 </div>
                 <!-- Movie -->
                 <div :class="{ col_show : active == 'movie' , col_hide : active != 'movie' }" id="movie">
@@ -96,7 +93,7 @@
                             <track v-for="(subtitle, index) in subtitles" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == subtitles.length - 2}">
                         </video>
                     </vue-plyr>
-                    
+
                     <div v-if="tvSerieses[0].seasons[0] != null" class="others">
                         <nuxt-link v-if="GetPerv(tvSerieses[0].seasons[0]) != '#'" :to="GetPerv(tvSerieses[0].seasons[0])"> الحلقة السابقة</nuxt-link>
                         <nuxt-link v-if="GetNext(tvSerieses[0].seasons[0]) != '#'" :to="GetNext(tvSerieses[0].seasons[0])">الحلقة التالية</nuxt-link>
@@ -146,7 +143,7 @@
                     </table>
 
                 </div>
-                 <bugs :title="topTitle + ' ' + title"></bugs>
+                <bugs :title="topTitle + ' ' + title"></bugs>
             </div>
         </div>
     </div>
@@ -367,15 +364,15 @@ export default {
             };
             return options
         },
-         topTitle(){
-             if(this.tvSerieses.length > 0){
-                   return this.tvSerieses[0].seasons[0].title;
-             }
-         }
+        topTitle() {
+            if (this.tvSerieses.length > 0) {
+                return this.tvSerieses[0].seasons[0].title;
+            }
+        }
 
     },
-     created(){
-          this.handleSearch();
+    created() {
+        this.handleSearch();
     },
     mounted() {
         this.handleSearch();
@@ -415,7 +412,7 @@ export default {
             // path = path.replace(/ /g, '%20');
             return path;
         },
-                LinkToken(path){
+        LinkToken(path) {
             var crypto = require('crypto');
             var securityKey = '6ecb7c25-9744-498a-a49b-ae4c7980c861';
             var newpath = path.substring(24, path.length);
@@ -475,7 +472,6 @@ export default {
         },
         VideoClose() {
             this.$refs.episode.player.pause();
-            this.$refs.e3lan.player.pause();
         },
         CloseNote(num) {
             this.firstNote = false;

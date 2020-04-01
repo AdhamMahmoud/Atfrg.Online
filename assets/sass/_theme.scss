@@ -1341,6 +1341,13 @@ $cloud-bgColor: #fff;
         border-top: 4px solid $primary-color;
         border-radius: 22px;
         overflow: hidden;
+        border-top: 4px solid #008dff;
+            border-radius: 22px;
+            overflow: hidden;
+            width: 90%;
+            min-height: 600px;
+            margin: 2rem auto;
+            display: block;
     }
 }
 

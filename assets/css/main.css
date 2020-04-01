@@ -1490,7 +1490,14 @@ i {
     margin: 30px 20px;
     border-top: 4px solid #008dff;
     border-radius: 22px;
-    overflow: hidden; }
+    overflow: hidden;
+    border-top: 4px solid #008dff;
+    border-radius: 22px;
+    overflow: hidden;
+    width: 90%;
+    min-height: 600px;
+    margin: 2rem auto;
+    display: block; }
 
 #download {
   margin: 2rem auto;

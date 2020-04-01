@@ -1,6 +1,6 @@
 <template lang="html">
  <div class="bug">
-     <h4>التبليغ عن الأخطأ</h4>
+     <h4>التبيلغ عن الأخطاء</h4>
      <div v-if="form == true">
     <div class="form-group">
         <textarea v-model="bug" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -70,12 +70,12 @@ export default {
 .bug{
         text-align: center;
     width: 50%;
-    margin: 1rem auto;
-    box-shadow: 0px 0px 2px 0px #949494;
+    margin: 0 auto;
+    // box-shadow: 0px 0px 2px 0px #949494;
     padding: 2rem;
     h4{
         color: #6f25ff;
-        margin-bottom:10pxl
+        margin-bottom:10px;
     }
     .form-control{
         outline:none;

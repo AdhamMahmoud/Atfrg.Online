@@ -32,7 +32,7 @@
                         <li> <span>الترجمة</span><i class="fas fa-angle-double-left"></i>
                             شكر خاص لـ
                             <span>
-                                <i v-for="(subtitle, index) in subtitles" :key="subtitle.id" >
+                                <i v-for="subtitle in subtitles" :key="subtitle.id" >
                                     {{ subtitle.name }}
                                 </i>
                             </span>
@@ -65,9 +65,7 @@
                 <!-- trailer -->
                 <div :class="{ col_show : active == 'trailer' , col_hide : active != 'trailer' }" id="trailer">
                     <!-- Trailer Player -->
-                    <vue-plyr class="player-mov player-trailer" ref="e3lan" :options="playerOptions">
-                        <div :id="trailer + '?origin=https://atfrg.online/&amp;iv_load_policy=3'" data-plyr-provider="youtube" :data-plyr-embed-id="trailer + '?origin=https://atfrg.online/&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1'"></div>
-                    </vue-plyr>
+                    <iframe  class="player-mov player-trailer" v-if="active == 'trailer'" :src="'https://www.youtube.com/embed/'+trailer"> </iframe>                
               </div>
                 <!-- Movie -->
                 <div :class="{ col_show : active == 'movie' , col_hide : active != 'movie' }" id="movie">
@@ -91,7 +89,6 @@
                     <vue-plyr class="player-mov" ref="film" seektime="10" :title="title" :poster="poster" :id="id" :options="playerOptions" @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata']">
 
                         <video crossorigin="anonymous">
-
                             <!-- Video Source -->
                             <source v-for="video in movLinks" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/webm" :size="video.quality.replace('Q','')">
                             <!-- Video Subtitles -->

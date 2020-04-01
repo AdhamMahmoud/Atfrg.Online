@@ -60,9 +60,7 @@
                 <!-- trailer -->
                 <div :class="{ col_show : active == 'trailer' , col_hide : active != 'trailer' }" id="trailer">
                     <!-- Trailer Player -->
-                    <vue-plyr class="player-mov player-trailer" ref="e3lan" :options="playerOptions">
-                        <div :id="seasons[0].trailerPath" data-plyr-provider="youtube" :data-plyr-embed-id="seasons[0].trailerPath+ '?origin=https://atfrg.online/&amp;iv_load_policy=3'"></div>
-                    </vue-plyr>
+                    <iframe class="player-mov player-trailer" v-if="active == 'trailer'" :src="'https://www.youtube.com/embed/'+seasons[0].trailerPath"> </iframe>
                 </div>
                 <!-- Movie -->
                 <div :class="{ col_show : active == 'movie' , col_hide : active != 'movie' }" id="movie">
@@ -152,7 +150,7 @@
                     </div>
 
                 </div>
-                 <bugs :title="title"></bugs>
+                <bugs :title="title"></bugs>
             </div>
         </div>
     </div>
@@ -363,10 +361,9 @@ export default {
     mounted() {
         this.handleSearch();
         this.film = this.$refs.film.player;
-        this.e3lan = this.$refs.e3lan.player;
     },
     methods: {
-loadeddata() {
+        loadeddata() {
             if (this.readCookie(this.$props.id) != 0) {
                 var time = parseInt(this.readCookie(this.$props.id));
                 this.timer = setTimeout(() => {
@@ -374,7 +371,7 @@ loadeddata() {
                 }, 2000);
             }
         },
-                LinkToken(path){
+        LinkToken(path) {
             var crypto = require('crypto');
             var securityKey = '6ecb7c25-9744-498a-a49b-ae4c7980c861';
             var newpath = path.substring(24, path.length);
@@ -454,7 +451,6 @@ loadeddata() {
         },
         VideoClose() {
             this.film.pause();
-            this.e3lan.pause();
         },
         CloseNote(num) {
             this.firstNote = false;

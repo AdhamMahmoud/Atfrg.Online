@@ -1,6 +1,9 @@
 <template>
 <!-- Movies Home -->
 <div class="home-slider-block">
+    <div class="message">
+        <p>المشاهدة والتحميل بدون اعلانات, جاري رفع المحتوي تدريجيا.</p>
+    </div>
     <!-- Container -->
     <div class="container-fluid back-color">
         <div class="row">
@@ -188,6 +191,32 @@ export default {
 @include sm{
     .home-slider-block{
         margin-top: -24rem !important;
+}
+}
+.message{
+   position: absolute;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    top: -45px;
+    left: 36%;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #ca1919;
+    color:#fff;
+    p{
+        margin:0;
+        font-size:15px;
+    }
+}
+@include sm{
+.message{
+ top: -68px;
+    left: 2%;
+    p{
+        margin:0;
+        font-size:14px;
+    }
 }
 }
 </style>

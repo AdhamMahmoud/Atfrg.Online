@@ -1,6 +1,6 @@
 <template>
 <div class="footer">
-    <p>صناعة مصرية <i class="fas fa-heart"></i></p>
+    <p>خليك في البيت<i class="fas fa-heart"></i></p>
 </div>
 </template>
 
@@ -9,9 +9,9 @@
 @import '~/assets/sass/_mixins.scss';
 
 .footer {
-    background-color: #e0e0e0;
+   background-image: linear-gradient(109.6deg, #4148cf 21.2%, #5061d8 73.1%);
     text-align: center;
-    color: $primary-color;
+    color: #fff;
     margin: 0;
     height: 65px;
     line-height: 65px;
