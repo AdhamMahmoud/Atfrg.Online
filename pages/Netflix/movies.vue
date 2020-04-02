@@ -1,20 +1,21 @@
-<template>
+s.<template>
 <div class="movies-genre">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <filters :filtersUpdate.sync="filtersUpdate" :genChange.sync="genChange" :LangChange.sync="LangChange" :QualityChange.sync="QualityChange" :AudienceChange.sync="AudienceChange" :YearStartChange.sync="YearStartChange" :YearEndChange.sync="YearEndChange" />
+                <filters :filtersUpdate.sync="filtersUpdate" :genChange.sync="genChange" :LangChange.sync="LangChange" :QualityChange.sync="QualityChange" 
+                :AudienceChange.sync="AudienceChange" :YearStartChange.sync="YearStartChange" :YearEndChange.sync="YearEndChange"/>
             </div>
         </div>
-        <ApolloQuery :query="gql => gql`
-                    query GetMovies($items: Int , $Filter_languages: [String!], $Filter_years_Start: DateTime!, $Filter_years_End: DateTime!,
-                    $Filter_audiences: [Audience!], $Filter_Qualities:[MovieQuality!], $Filter_genres:[String!]) {
-                    movies(orderBy: watchCount_DESC, first: $items, 
-                    where :{ isPublished: true, lang: { name_in:$Filter_languages }, audience_in: $Filter_audiences , movieQuality_in:$Filter_Qualities, genres_some:{name_in:$Filter_genres}
-                    AND: {
-                        releaseDate_gte: $Filter_years_Start
-                        releaseDate_lte: $Filter_years_End
-                    }}) {
+          <ApolloQuery :query="gql => gql`
+                      query GetMovies($items: Int , $Filter_languages: [String!], $Filter_years_Start: DateTime!, $Filter_years_End: DateTime!,
+                      $Filter_audiences: [Audience!], $Filter_Qualities:[MovieQuality!], $Filter_genres:[String!]) {
+                      movies(orderBy: createdAt_DESC, first: $items, 
+                      where :{ isPublished: true, Production:NETFLIX, lang: { name_in:$Filter_languages }, audience_in: $Filter_audiences , movieQuality_in:$Filter_Qualities, genres_some:{name_in:$Filter_genres}
+                       AND: {
+                          releaseDate_gte: $Filter_years_Start
+                          releaseDate_lte: $Filter_years_End
+                        }}) {
                         id
                         title
                         posters {
@@ -22,10 +23,10 @@
                           path
                         }
                         audience
-                        releaseDate
-                        imdbId
                         trailerPath
                         movieQuality
+                        releaseDate
+                        imdbId
                         videoQualities
                         runtime
                         genres {
@@ -43,13 +44,13 @@
                 </div>
                 <!-- Error -->
                 <div v-else-if="error" class="error apollo">
-                    <resultNotFound />
+                     <resultNotFound />
                 </div>
                 <!-- Result -->
                 <div v-else-if="data && data.movies.length > 0" class="row global-items">
                     <!-- Container End -->
                     <div v-for="movie in data.movies" :key="movie.id" class="col-xl-2 col-lg-3 col-md-3 col-6 global-item">
-                        <TrailerItem :id="movie.id" :title="movie.title" :imdbId="movie.imdbId" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :run="false" />
+                        <TrailerItem :id="movie.id" :title="movie.title" :quality="movie.movieQuality" :poster="movie.posters" :imdbId="movie.imdbId" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :run="false" />
                     </div>
                     <!-- No result -->
                 </div>
@@ -63,13 +64,16 @@
 </template>
 
 <script>
-import resultNotFound from "~/components/resultNotFound.vue";
+import resultNotFound from "~/components/resultNotFound";
 import TrailerItem from "~/components/TrailerItem.vue";
 import filters from "~/components/movies/genre/filters";
+import gql from 'graphql-tag';
 export default {
+     head: {
+     title:"افلام مترجمة - اتفرج اون لاين مشاهدة افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online ",
+  },
     data: function () {
         return {
-            movies: [],
             items: 12,
             filtersUpdate: [],
             Filter_languages: [],
@@ -80,12 +84,13 @@ export default {
             Filter_years_End: "5000",
             Filter_genres: [],
 
-            genChange: [],
-            LangChange: [],
-            QualityChange: [],
-            AudienceChange: [],
-            YearStartChange: '',
-            YearEndChange: '',
+
+            genChange:[],
+            LangChange:[],
+            QualityChange:[],
+            AudienceChange:[],
+            YearStartChange:'',
+            YearEndChange:'',
         }
     },
     components: {
@@ -106,8 +111,8 @@ export default {
     mounted() {
         this.scroll();
     },
-    watch: {
-        filtersUpdate: function () {
+    watch:{
+        filtersUpdate:function(){
             this.Filter_genres = this.filtersUpdate.Filter_genres;
             this.Filter_languages = this.filtersUpdate.Filter_languages;
             this.Filter_Qualities = this.filtersUpdate.Filter_Qualities;
@@ -116,23 +121,23 @@ export default {
             this.Filter_years_Start = this.filtersUpdate.Filter_years_Start;
             this.Filter_years_End = this.filtersUpdate.Filter_years_End;
         },
-        genChange: function () {
-            this.Filter_genres = this.genChange;
+        genChange:function(){
+             this.Filter_genres = this.genChange;
         },
-        LangChange: function () {
-            this.Filter_languages = this.LangChange;
+        LangChange:function(){
+             this.Filter_languages = this.LangChange;
         },
-        QualityChange: function () {
-            this.Filter_Qualities = this.QualityChange;
+        QualityChange:function(){
+         this.Filter_Qualities = this.QualityChange;
         },
-        AudienceChange: function () {
+        AudienceChange:function(){
             this.Filter_audiences = this.AudienceChange;
         },
-        YearStartChange: function () {
-            this.Filter_years_Start = this.YearStartChange;
+        YearStartChange:function(){
+             this.Filter_years_Start = this.YearStartChange;
         },
-        YearEndChange: function () {
-            this.Filter_years_End = this.YearEndChange;
+        YearEndChange:function(){
+             this.Filter_years_End = this.YearEndChange;
         },
     }
 };

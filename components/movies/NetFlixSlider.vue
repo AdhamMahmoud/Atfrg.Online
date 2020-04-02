@@ -95,7 +95,7 @@
               </template>
             </ApolloQuery>
             <div class="more-btn">
-              <nuxt-link to="/movies/most-watched"> <i class="im im-angle-right-circle"></i>
+              <nuxt-link to="/Netflix/series"> <i class="im im-angle-right-circle"></i>
               </nuxt-link>
             </div>
           </div>
@@ -199,7 +199,7 @@
               </template>
             </ApolloQuery>
             <div class="more-btn">
-              <nuxt-link to="/movies/last-release"> <i class="im im-angle-right-circle"></i>
+              <nuxt-link to="/Netflix/movies"> <i class="im im-angle-right-circle"></i>
               </nuxt-link>
             </div>
           </div>

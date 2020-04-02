@@ -22,7 +22,7 @@
                     </div>
                     <!-- Series Info List -->
                     <ul class="information-list">
-                        <li> <span>الغة</span> <i class="fas fa-angle-double-left"></i> <span>{{ lang }}</span></li>
+                        <li> <span>اللغة</span> <i class="fas fa-angle-double-left"></i> <span>{{ lang }}</span></li>
                         <li> <span>تاريخ الاصدار</span><i class="fas fa-angle-double-left"></i> <span>{{ getReleaseDate(releaseDate) }}</span></li>
                         <li> <span>الجمهور</span><i class="fas fa-angle-double-left"></i> <span>{{ getaudience(audience) }}</span></li>
                         <li> <span>النوع</span><i class="fas fa-angle-double-left"></i> <span>
@@ -81,7 +81,7 @@
                     <vue-plyr class="player-mov" ref="film" seektime="10" :title="title" :id="id" :options="playerOptions" @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata']">
                         <video crossorigin="anonymous">
                             <!-- Video Source -->
-                            <source v-for="video in seasons[0].episodes[0].links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/webm" :size="video.quality.replace('Q','')">
+                            <source v-for="video in seasons[0].episodes[0].links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
                             <!-- Video Subtitles -->
                             <track v-for="(subtitle, index) in seasons[0].episodes[0].subtitles" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == seasons[0].episodes[0].subtitles.length - 2}">
                         </video>
@@ -150,7 +150,7 @@
                     <div v-swiper:mySwiperOnwa="swiperOption" class="my-swiper">
                         <div class="swiper-wrapper">
                             <div v-for="episode in seasons[0].episodes" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
-                                <Epsitem :id="episode.id" :title="episode.title" :poster="GetPoster(episode.posters)" :genres="genres" :audience="audience" path="/series/episode/" />
+                                <Epsitem :id="episode.id" :title="episode.title" :poster="GetPoster(seasons[0].posters)" :genres="genres" :audience="audience" path="/series/episode/" />
                             </div>
                         </div>
                         <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>
@@ -204,7 +204,7 @@
                             size
                             path
                           }
-                          episodes {
+                          episodes(orderBy: title_DESC) {
                           id
                           title
                           runtime

@@ -287,6 +287,8 @@ i {
     width: 100%;
     top: 0;
     z-index: 99999;
+    -webkit-animation: slide-in-fwd-top .4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-in-fwd-top 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
 /* Search Area Style
@@ -378,7 +380,8 @@ i {
         overflow: hidden;
 
         p {
-            padding: 10px 0;
+            color: #0064ff;
+text-align: center;
         }
 
         ul {
@@ -1411,7 +1414,6 @@ $cloud-bgColor: #fff;
     margin: 50px;
     border-radius: 10px 10px 0 0;
     background-color: #fff;
-
     .container-fluid {
         padding: 0;
     }

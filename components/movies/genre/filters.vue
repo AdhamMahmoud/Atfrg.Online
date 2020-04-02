@@ -37,7 +37,7 @@
     <!-- Languages -->
      <li v-if="languages.length > 0">
         <select @change="ChangeLang" class="custom-select">
-            <option value="0" selected>اختر الغة</option>
+            <option value="0" selected>اختر اللغة</option>
             <option v-for="lang in languages" :key="lang.id" :value="lang.name">{{lang.name}}</option>
         </select>
     </li>

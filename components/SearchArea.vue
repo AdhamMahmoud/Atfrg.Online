@@ -2,9 +2,9 @@
 <!-- Search Area -->
 <div class="search-area" @mouseleave="EndSearch(false)">
     <!-- Search Area Container -->
-    <form class="search-form-area">
+    <div class="search-form-area">
         <div class="input-div">
-            <button>
+            <button type="button">
                 <i class="fas fa-search"></i>
             </button>
             <input v-model="Searchtitle" @focus="StartSearch" @input="StartSearch" @mouseover="StartSearch" class="form-control" type="text" placeholder="ابحث بأسم الفيلم او المسلسل" />
@@ -49,6 +49,7 @@
                                 </nuxt-link>
                             </li>
                         </ul>
+                    <p  v-if="data.movies.length == 0"> حاول البحث بكلمات اخري.</p> 
                     </div>
                 </div>
 
@@ -100,6 +101,7 @@
                                 </nuxt-link>
                             </li>
                         </ul>
+                        <p  v-if="data.tvSerieses.length == 0"> حاول البحث بكلمات اخري.</p> 
                     </div>
                 </div>
 
@@ -115,7 +117,7 @@
                 </div>
             </template>
         </ApolloQuery>
-    </form>
+    </div>
 
 </div>
 </template>

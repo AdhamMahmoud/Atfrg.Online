@@ -12,6 +12,8 @@ const _51b3e37d = () => interopDefault(import('..\\pages\\anime\\new-release.vue
 const _7154752a = () => interopDefault(import('..\\pages\\movies\\last-release.vue' /* webpackChunkName: "pages_movies_last-release" */))
 const _fe1aae84 = () => interopDefault(import('..\\pages\\movies\\most-watched.vue' /* webpackChunkName: "pages_movies_most-watched" */))
 const _61243120 = () => interopDefault(import('..\\pages\\movies\\new-release.vue' /* webpackChunkName: "pages_movies_new-release" */))
+const _6ceb462e = () => interopDefault(import('..\\pages\\Netflix\\movies.vue' /* webpackChunkName: "pages_Netflix_movies" */))
+const _871a393c = () => interopDefault(import('..\\pages\\Netflix\\series.vue' /* webpackChunkName: "pages_Netflix_series" */))
 const _468fc480 = () => interopDefault(import('..\\pages\\serieses\\last-updated.vue' /* webpackChunkName: "pages_serieses_last-updated" */))
 const _1676b94e = () => interopDefault(import('..\\pages\\serieses\\new-release.vue' /* webpackChunkName: "pages_serieses_new-release" */))
 const _58f10c30 = () => interopDefault(import('..\\pages\\movie\\genre\\_name.vue' /* webpackChunkName: "pages_movie_genre__name" */))
@@ -73,6 +75,14 @@ export const routerOptions = {
     path: "/movies/new-release",
     component: _61243120,
     name: "movies-new-release"
+  }, {
+    path: "/Netflix/movies",
+    component: _6ceb462e,
+    name: "Netflix-movies"
+  }, {
+    path: "/Netflix/series",
+    component: _871a393c,
+    name: "Netflix-series"
   }, {
     path: "/serieses/last-updated",
     component: _468fc480,

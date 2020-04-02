@@ -1,5 +1,5 @@
 <template>
-<div class="Headers" id="head">
+<div :class="['Headers', {'fixed' : scrolled}]" id="head">
     
     <!-- Top Nav -->
     <div class="small-nav">
@@ -214,6 +214,21 @@
 </template>
 
 <script>
+// if (process.client) {
+
+//         window.onscroll = function () {
+//                     var header = document.getElementById("head");
+
+//         // Get the offset position of the navbar
+//         var sticky = header.offsetTop;
+           
+//                        if (window.pageYOffset > sticky) {
+//                 header.classList.add("fixed");
+//             } else {
+//                 header.classList.remove("fixed");
+//             }
+//         };
+// }
 import SearchArea from "~/components/SearchArea.vue";
 import loading from "~/components/loading.vue";
 import Menu from "~/components/Menu.vue";
@@ -225,6 +240,7 @@ export default {
             darkModeD: false,
             mobMenu: false,
             loading: true,
+            scrolled: false
         };
     },
     components: {
@@ -233,6 +249,9 @@ export default {
         loading
     },
     methods: {
+         handleScroll () {
+                this.scrolled = window.scrollY > 0;
+            },
         toggleMobile() {
             if (this.mobMenu == true) {
                 this.mobMenu = false;
@@ -277,6 +296,12 @@ export default {
             return null;
         }
     },
+    beforeMount  () {
+  window.addEventListener('scroll', this.handleScroll);
+},
+beforeDestroy  () {
+  window.removeEventListener('scroll', this.handleScroll);
+},
     mounted() {
         this.loading = true;
          setTimeout(() => this.loading= false, 500);
@@ -296,26 +321,7 @@ export default {
             else{
               this.$store.commit('RemberChooseUpdate', false);
             }
-        window.onscroll = function () {
-            myFunction()
-        };
 
-        // Get the header
-        var header = document.getElementById("head");
-
-        // Get the offset position of the navbar
-        var sticky = header.offsetTop;
-
-        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
-        function myFunction() {
-            if (window.pageYOffset > sticky) {
-                header.classList.add("fixed");
-            } else {
-                header.classList.remove("fixed");
-            }
-        }
-
-  
     }
 };
 </script>

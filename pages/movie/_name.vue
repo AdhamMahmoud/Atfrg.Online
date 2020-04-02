@@ -32,6 +32,7 @@
                         quality
                       }
                       releaseDate
+                      Production
                       runtime
                       genres {
                         name
@@ -68,7 +69,8 @@
             :quality="movie.movieQuality"
             :poster="movie.posters"
             :trailer="movie.trailerPath"
-            :genres="movie.genres[0].name"
+            :genres="movie.genres[1].name"
+            :Production="movie.Production"
             :watchCount="movie.watchCount"
             :audience="movie.audience"
             :videoQualities="movie.videoQualities[0]"

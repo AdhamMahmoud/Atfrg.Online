@@ -22,7 +22,7 @@
                     </div>
                     <!-- Series Info List -->
                     <ul class="information-list">
-                        <li> <span>الغة</span> <i class="fas fa-angle-double-left"></i> <span>{{ lang }}</span></li>
+                        <li> <span>اللغة</span> <i class="fas fa-angle-double-left"></i> <span>{{ lang }}</span></li>
                         <li> <span>تاريخ الاصدار</span><i class="fas fa-angle-double-left"></i> <span>{{ getReleaseDate(releaseDate) }}</span></li>
                         <li> <span>الجمهور</span><i class="fas fa-angle-double-left"></i> <span>{{ getaudience(audience) }}</span></li>
                         <li> <span>النوع</span><i class="fas fa-angle-double-left"></i> <span>
@@ -84,7 +84,7 @@
                     <vue-plyr class="player-mov" ref="film" seektime="10" :title="title" :id="id" :options="playerOptions" @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata']">
                         <video crossorigin="anonymous">
                             <!-- Video Source -->
-                            <source v-for="video in episodes[0].links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/webm" :size="video.quality.replace('Q','')">
+                            <source v-for="video in episodes[0].links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
                             <!-- Video Subtitles -->
                             <track v-for="(subtitle, index) in episodes[0].subtitles" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == episodes[0].subtitles.length - 2}">
                         </video>

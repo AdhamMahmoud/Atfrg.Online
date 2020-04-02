@@ -29,7 +29,7 @@
                                 <div v-else-if="data && data.languages.length > 0">
                                     <!-- Container End -->
                                     <select @change="ChangeLang" class="custom-select">
-                                        <option value="0" selected>اختر الغة</option>
+                                        <option value="0" selected>اختر اللغة</option>
                                         <option v-for="lang in data.languages" :key="lang.id" :value="lang.name">{{lang.name}}</option>
                                     </select>
                                     <!-- No result -->

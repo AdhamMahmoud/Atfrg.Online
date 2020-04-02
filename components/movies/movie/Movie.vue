@@ -22,7 +22,7 @@
                     </div>
                     <!-- Movie Info List -->
                     <ul class="information-list">
-                        <li> <span>الغة</span> <i class="fas fa-angle-double-left"></i> <span>{{ lang }}</span></li>
+                        <li> <span>اللغة</span> <i class="fas fa-angle-double-left"></i> <span>{{ lang }}</span></li>
                         <li> <span>تاريخ الاصدار</span><i class="fas fa-angle-double-left"></i> <span>{{ getReleaseDate(releaseDate) }}</span></li>
                         <li> <span>الجمهور</span><i class="fas fa-angle-double-left"></i> <span>{{ getaudience(audience) }}</span></li>
                         <li> <span>المدة</span> <i class="fas fa-angle-double-left"></i><span>{{ getRunTime(runtime) }} </span></li>
@@ -90,7 +90,7 @@
 
                         <video crossorigin="anonymous">
                             <!-- Video Source -->
-                            <source v-for="video in movLinks" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/webm" :size="video.quality.replace('Q','')">
+                            <source v-for="video in movLinks" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
                             <!-- Video Subtitles -->
                             <track v-for="(subtitle, index) in subtitles" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == subtitles.length - 2}">
                         </video>
@@ -159,8 +159,8 @@
             <div class="col-md-12">
                 <div class="same-movies">
                     <ApolloQuery :query="gql => gql`
-                      query getMovies($audience: Audience!, $genres: String! , $id: ID!) {
-                      movies(orderBy: createdAt_DESC, first:10, where: { isPublished: true , audience: $audience , genres_some: { name: $genres }, id_not:$id}) {
+                      query getMovies($audience: Audience!, $genres: String! , $id: ID!, $Production: Production) {
+                      movies(orderBy: watchCount_DESC, first:10, where: { isPublished: true , audience: $audience , genres_some: { name: $genres }, Production:$Production, id_not:$id}) {
                         id
                         title
                         posters {
@@ -178,7 +178,7 @@
                         watchCount
                       }
                     }
-                    `" :variables="{ audience , genres , id}">
+                    `" :variables="{ audience , genres , id, Production}">
                         <template v-slot="{ result: { loading, error, data } }">
                             <!-- Loading -->
                             <div v-if="loading" class="loading apollo">
@@ -302,12 +302,14 @@ export default {
         overview: String,
         subtitles: Array,
         movLinks: Array,
-        imdbId: String
+        imdbId: String,
+        Production:String
     },
     mounted() {
         this.handleSearch();
         this.film = this.$refs.film.player;
         // this.e3lan = this.$refs.e3lan.player;
+        console.log(this.$props.Production);
         this.WatchCount();
     },
     computed: {
