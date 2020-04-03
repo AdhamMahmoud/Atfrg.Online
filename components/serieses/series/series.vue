@@ -575,9 +575,8 @@ export default {
 
     .plyr video {
         width: 100%;
-        min-height: 550px;
         border-radius: 20px;
-        object-fit: cover;
+         object-fit: contain;
     }
 }
 </style>

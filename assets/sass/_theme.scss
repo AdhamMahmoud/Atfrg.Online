@@ -691,7 +691,6 @@ text-align: center;
 
 // Vue Custom Style
 .plyr--video {
-    max-height: 550px;
     border-radius: 20px;
 }
 
@@ -1115,7 +1114,6 @@ $cloud-bgColor: #fff;
 
     .plyr video {
         width: 100%;
-        min-height: 550px;
         border-radius: 20px;
         object-fit: cover;
     }

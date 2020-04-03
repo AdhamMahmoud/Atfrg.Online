@@ -968,7 +968,6 @@ i {
 
 /* Vue Player */
 .plyr--video {
-  max-height: 550px;
   border-radius: 20px; }
 
 .plyr__progress__container {
@@ -1237,7 +1236,6 @@ i {
   .Single-Series .plyr video,
   .episode .plyr video {
     width: 100%;
-    min-height: 550px;
     border-radius: 20px;
     object-fit: cover; }
   .Single-Movie .same-movies,
