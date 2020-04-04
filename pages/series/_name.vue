@@ -33,7 +33,7 @@
                             size
                             path
                           }
-                          episodes(orderBy:order_DESC) {
+                          episodes(orderBy:order_ASC) {
                           id
                           title
                           runtime
@@ -97,6 +97,7 @@
             :overview="series.overview"
             :keywords="series.keywords"
             :seasons="series.seasons"
+            :episodes="series.seasons[0].episodes"
             :trailerPath="series.trailerPath"
           />
           <!-- No result -->
