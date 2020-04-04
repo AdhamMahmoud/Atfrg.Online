@@ -22,7 +22,7 @@
                         }
                         keywords
                         overview
-                        seasons(where:{title:$title} ){
+                        seasons(orderBy:order_DESC, where:{title:$title} ){
                           id
                           title
                           slug

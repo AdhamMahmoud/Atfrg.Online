@@ -128,7 +128,7 @@ margin-right: 5px;
     display:block;
 }
 .Single-Movie .watch-list button, .Single-Series .watch-list button, .episode .watch-list button{
-    padding: 8px 20px;
+    padding: 8px 2px;
 }
 #download{
     width: 100%;
@@ -137,6 +137,9 @@ margin-right: 5px;
 
 /* === Pages === */
 @include sm{
+    .player-mov {
+        width:100%;
+    }
     .Single-Movie, .Single-Series, .episode {
         margin: 20px !important;
         .container{
@@ -153,9 +156,7 @@ margin-right: 5px;
          .movie-information .information-list li i{
              margin:0;
         }
-        .player-mov{
-                margin: 30px 0 !important;
-        }
+
     }
     .movies-genre{
             margin: 50px 15px;

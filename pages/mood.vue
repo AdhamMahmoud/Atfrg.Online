@@ -4,13 +4,13 @@
         <div class="row">
             <div class="col-12">
                 <button class="change" @click="Generate()">
-                 تغير ؟
+                    تغير ؟
                 </button>
             </div>
         </div>
 
         <div class="row items">
-            <div v-for="movie in randoms" :key="movie.id" class="col-xl-3 col-lg-3 col-md-3 col-6 global-item">
+            <div v-for="movie in randoms" :key="movie.id" class="col-xl-3 col-lg-3 col-md-3 col-12 global-item">
                 <TrailerItem :id="movie.id" :title="movie.title" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :run="false" />
             </div>
         </div>
@@ -87,9 +87,12 @@ export default {
         }
     },
     mounted() {
-        if (this.loaded == false) {
-            this.Generate();
-        }
+        this.timer = setTimeout(() => {
+            if (this.loaded == false) {
+                this.Generate();
+            }
+        }, 1500);
+
     }
 
 };
@@ -98,44 +101,48 @@ export default {
 <style lang="scss">
 @import '~/assets/sass/_vars.scss';
 @import '~/assets/sass/_mixins.scss';
-.movies-genre{
-.items {
-    margin: 2rem;
 
-    .global-item {
-        height: 400px;
+.movies-genre {
+    .items {
+        margin: 2rem;
 
-        .item-slide {
+        .global-item {
             height: 400px;
-            .poster {
-                img {
-                    height: 400px !important;
-                }
-            }
 
+            .item-slide {
+                height: 400px;
+
+                .poster {
+                    img {
+                        height: 400px !important;
+                    }
+                }
+
+            }
         }
     }
-}
-.note{
-    h1{
+
+    .note {
+        h1 {
             text-align: center;
-    margin: 2rem 1rem;
-    align-items: center;
-    color: #ff0dec;
+            margin: 2rem 1rem;
+            align-items: center;
+            color: #ff0dec;
+        }
     }
-}
-.change {
-    text-align: center;
-    display: block;
-    background-image: radial-gradient(circle farthest-corner at 10% 20%, rgba(120, 50, 255, 1) 0%, rgba(50, 150, 250, 1) 91%);
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    padding: 2rem;
-    height: 100px;
-    width: 100px;
-    outline: none;
-    margin: 2rem auto;
-}
+
+    .change {
+        text-align: center;
+        display: block;
+        background-image: radial-gradient(circle farthest-corner at 10% 20%, rgba(120, 50, 255, 1) 0%, rgba(50, 150, 250, 1) 91%);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        padding: 2rem;
+        height: 100px;
+        width: 100px;
+        outline: none;
+        margin: 2rem auto;
+    }
 }
 </style>

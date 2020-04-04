@@ -440,7 +440,7 @@ export default {
         handleSearch() {
             this.films = [];
             fetch(
-                    "https://www.omdbapi.com/?i=" + this.$props.imdbId + "&apikey=527f9c9a"
+                    "https://www.omdbapi.com/?i=" + this.$props.imdbId + "&apikey=bf7293bf"
                 )
                 .then(res => {
                     return res.json();
@@ -561,9 +561,8 @@ export default {
 
     .plyr video {
         width: 100%;
-        min-height: 550px;
         border-radius: 20px;
-        object-fit: cover;
+        object-fit: contain;
     }
 
     .same-movies {

@@ -9,129 +9,80 @@
             </button>
             <input v-model="Searchtitle" @focus="StartSearch" @input="StartSearch" @mouseover="StartSearch" class="form-control" type="text" placeholder="ابحث بأسم الفيلم او المسلسل" />
         </div>
-
-        <ApolloQuery v-if="SearchVal == true" :query="gql => gql`
-                query SearchMovies ($Searchtitle: String!) {
-                movies (orderBy: createdAt_DESC, first: 5, where: { isPublished:true, title_contains: $Searchtitle}){
-                        id
-                        title
-                        releaseDate
-                        posters {
-                        path
-                        size
-                        }
-                }
-                }
-            `" :variables="{ Searchtitle }">
-            <template v-slot="{ result: { loading, error, data } }">
-                <!-- Loading -->
-                <div v-if="loading" class="loading apollo">Loading...</div>
-
-                <!-- Error -->
-                <div v-else-if="error" class="error apollo">
-                    <div class="Fast-Search">
-                        <ul class="search-result">
-                            <li>
-                                <p> حاول البحث بكلمات اخري ..</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Result -->
-                <div v-else-if="data != null" class="result apollo">
-                    <div class="Fast-Search">
-                        <ul class="search-result">
-                            <li v-for="movie in data.movies" :key="movie.id" @click="EndSearch(true)">
-                                <nuxt-link :to="'/movie/' + movie.title">
-                                    <span class="title">{{ movie.title + " (" + GetYear(movie.releaseDate) + ")" }}</span>
-                                    <img :src="GetPoster(movie.posters)" :alt="movie.title">
-                                </nuxt-link>
-                            </li>
-                        </ul>
-                    <p  v-if="data.movies.length == 0"> حاول البحث بكلمات اخري.</p> 
-                    </div>
-                </div>
-
-                <!-- No result -->
-                <div v-else class="no-result apollo">
-                    <div class="Fast-Search">
-                        <p> حاول البحث بكلمات اخري ..</p>
-                    </div>
-                </div>
-            </template>
-        </ApolloQuery>
-        <ApolloQuery v-if="SearchVal == true" :query="gql => gql`
-                query SearchSerieses ($Searchtitle: String!) {
-                tvSerieses (orderBy: createdAt_DESC, first: 5, where: { isPublished:true, title_contains: $Searchtitle}){
-                        id
-                        title
-                        releaseDate
-                        posters {
-                        path
-                        size
-                        }
-                }
-                }
-
-            `" :variables="{ Searchtitle }">
-            <template v-slot="{ result: { loading, error, data } }">
-                <!-- Loading -->
-                <div v-if="loading" class="loading apollo">Loading...</div>
-
-                <!-- Error -->
-                <div v-else-if="error" class="error apollo">
-                    <div class="Fast-Search">
-                        <ul class="search-result">
-                            <li>
-                                <p> حاول البحث بكلمات اخري ..</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Result -->
-                <div v-else-if="data != null" class="result apollo">
-                    <div class="Fast-Search">
-                        <ul class="search-result">
-                            <li v-for="series in data.tvSerieses" :key="series.id" @click="EndSearch(true)">
-                                <nuxt-link :to="'/series/' + series.title">
-                                    <span class="title">{{ series.title + " (" + GetYear(series.releaseDate) + ")"  }}</span>
-                                    <img :src="GetPoster(series.posters)" :alt="series.title">
-                                </nuxt-link>
-                            </li>
-                        </ul>
-                        <p  v-if="data.tvSerieses.length == 0"> حاول البحث بكلمات اخري.</p> 
-                    </div>
-                </div>
-
-                <!-- No result -->
-                <div v-else class="no-result apollo">
-                    <div class="Fast-Search">
-                        <ul class="search-result">
-                            <li>
-                                <p> حاول البحث بكلمات اخري ..</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </template>
-        </ApolloQuery>
+        <div class="Fast-Search" v-if="SearchVal == true">
+            <ul class="search-result">
+                <li v-for="(item,index) in Search" :key="item.id" @click="EndSearch(true)">
+                    <nuxt-link v-if="types[index] == 1" :to="'/movie/' +  item.title">
+                        <span class="title">{{ item.title + " (" + GetYear(item.releaseDate) + ")" }}</span>
+                        <img :src="GetPoster(item.posters)" :alt="item.title">
+                    </nuxt-link>
+                    <nuxt-link v-if="types[index] == 2" :to="'/series/' + item.title">
+                        <span class="title">{{ item.title + " (" + GetYear(item.releaseDate) + ")" }}</span>
+                        <img :src="GetPoster(item.posters)" :alt="item.title">
+                    </nuxt-link>
+                </li>
+                <li v-if="Search.length <= 0">
+                    <p> حاول البحث بكلمات اخري.</p>
+                </li>
+            </ul>
+        </div>
     </div>
 
 </div>
 </template>
 
 <script>
+import gql from 'graphql-tag';
 export default {
     data: function () {
         return {
             Searchtitle: "",
-            SearchVal: false
+            SearchVal: false,
+            tvSerieses: [],
+            movies: [],
+            types: [],
         };
     },
+    apollo: {
+        movies: {
+            query: gql `query GetMovies {
+              movies(where:{isPublished: true}) {
+                id
+                title
+                posters{
+                    id
+                    path
+                    size
+                }
+                releaseDate
+                isPublished
+                createdAt
+              }
+            }
+
+              `,
+        },
+        tvSerieses: {
+            query: gql `query GetMovies {
+              tvSerieses(where:{isPublished: true}) {
+                id
+                title
+                posters{
+                    id
+                    path
+                    size
+                }
+                releaseDate
+                isPublished
+                createdAt
+              }
+            }
+
+              `,
+        },
+    },
     methods: {
-            GetYear(date) {
+        GetYear(date) {
             var currentTime = new Date(date);
             var month = ("0" + (currentTime.getMonth() + 1)).slice(-2);
             var day = ("0" + currentTime.getDate()).slice(-2);
@@ -161,6 +112,39 @@ export default {
                 this.Searchtitle = "";
             }
         }
+    },
+    computed: {
+        Search() {
+            var search = [];
+            this.types = [];
+            var movies = this.movies;
+            if (movies.length > 0) {
+                for (var i = 0; i < movies.length; i++) {
+                    if (movies[i].title.toLowerCase().includes(this.Searchtitle.toLowerCase())) {
+                        if (search.length < 10) {
+                            search.push(movies[i]);
+                            this.types.push(1);
+                        } else {
+                            break;
+                        }
+                    }
+                }
+            }
+            var tvSerieses = this.tvSerieses;
+            if (tvSerieses.length > 0) {
+                for (var i = 0; i < tvSerieses.length; i++) {
+                    if (tvSerieses[i].title.toLowerCase().includes(this.Searchtitle.toLowerCase())) {
+                        if (search.length < 10) {
+                            search.push(tvSerieses[i]);
+                            this.types.push(2);
+                        } else {
+                            break;
+                        }
+                    }
+                }
+            }
+            return search;
+        },
     }
 };
 </script>

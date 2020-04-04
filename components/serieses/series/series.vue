@@ -1,6 +1,6 @@
 <template>
 <!-- Single Series -->
-<div class="Single-Series">
+<div class="Single-Series" v-if="Myseason != 0">
     <!-- Container -->
     <div class="container">
         <div class="row">
@@ -57,7 +57,7 @@
             <div class="col-md-12">
                 <!-- trailer -->
                 <div :class="{ col_show : active == 'trailer' , col_hide : active != 'trailer' }" id="trailer">
-                <iframe  class="player-mov player-trailer" v-if="active == 'trailer'" :src="'https://www.youtube.com/embed/'+ seasons[0].trailerPath"> </iframe>                
+                <iframe  class="player-mov player-trailer" v-if="active == 'trailer'" :src="'https://www.youtube.com/embed/'+ Myseason.trailerPath"> </iframe>                
                 </div>
                 <!-- Movie -->
                 <div :class="{ col_show : active == 'movie' , col_hide : active != 'movie' }" id="movie">
@@ -72,7 +72,7 @@
                     <div class="chat chat-video" v-if="secondNote">
                         <div class="mine messages">
                             <div class="message last">
-                                <p>خد بريك كدا ادخل الحمام وحات حاجة تشربها ✌️❤️</p>
+                                <p>خد بريك كدا ادخل الحمام هات حاجة تشربها ✌️❤️</p>
                                 <button @click="CloseNote(2)">تمام</button>
                             </div>
                         </div>
@@ -81,9 +81,9 @@
                     <vue-plyr class="player-mov" ref="film" seektime="10" :title="title" :id="id" :options="playerOptions" @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata']">
                         <video crossorigin="anonymous">
                             <!-- Video Source -->
-                            <source v-for="video in seasons[0].episodes[0].links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
+                            <source v-for="video in Myepisode.links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
                             <!-- Video Subtitles -->
-                            <track v-for="(subtitle, index) in seasons[0].episodes[0].subtitles" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == seasons[0].episodes[0].subtitles.length - 2}">
+                            <track v-for="(subtitle, index) in Myepisode.subtitles" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == Myepisode.subtitles.length - 2}">
                         </video>
                     </vue-plyr>
                 </div>
@@ -105,7 +105,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="video in seasons[0].episodes[0].links" :key="video.id">
+                            <tr v-for="video in Myepisode.links" :key="video.id">
                                 <th scope="row">1</th>
                                 <td>{{video.quality.replace('Q','')}}</td>
                                 <td><a :href="LinkToken(validLink(video.path))">تحميل</a></td>
@@ -121,7 +121,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="subtitle in seasons[0].episodes[0].subtitles" :key="subtitle.id">
+                            <tr v-for="subtitle in Myepisode.subtitles" :key="subtitle.id">
                                 <th scope="row">{{subtitle.lang.name}}</th>
                                 <td>{{subtitle.name }}</td>
                                 <td><a :href="LinkToken(subtitle.path)">تحميل</a></td>
@@ -149,8 +149,8 @@
                 <div class="same-movies Slider-block">
                     <div v-swiper:mySwiperOnwa="swiperOption" class="my-swiper">
                         <div class="swiper-wrapper">
-                            <div v-for="episode in seasons[0].episodes" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
-                                <Epsitem :id="episode.id" :title="episode.title" :poster="GetPoster(seasons[0].posters)" :genres="genres" :audience="audience" path="/series/episode/" />
+                            <div v-for="episode in Myseason.episodes" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
+                                <Epsitem :id="episode.id" :title="episode.title" :poster="GetPoster(Myseason.posters)" :genres="genres" :audience="audience" path="/series/episode/" />
                             </div>
                         </div>
                         <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>
@@ -172,81 +172,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="same-movies">
-                    <ApolloQuery :query="gql => gql`
-                  query gettvSeries($title:String) {
-                   tvSerieses(where: {isPublished: true , seasons_some:{title_contains:$title}}) {
-                        id
-                        title
-                        posters {
-                        size
-                        path
-                        }
-                        audience
-                        trailerPath
-                        releaseDate
-                        genres {
-                        name
-                        }
-                        lang {
-                        id
-                        name
-                        }
-                        keywords
-                        overview
-                        seasons{
-                          id
-                          title
-                          slug
-                          trailerPath
-                          releaseDate
-                          imdbId
-                          posters {
-                            size
-                            path
-                          }
-                          episodes(orderBy: title_DESC) {
-                          id
-                          title
-                          runtime
-                          isPublished
-                          posters {
-                            size
-                            path
-                          }
-                          videoQualities
-                          subtitles {
-                            id
-                            path
-                            name
-                            lang{
-                              id
-                              name
-                            }
-                          }
-                          links {
-                            id
-                            path
-                            quality
-                          }
-                          slug
-                        }
-                      }
-                    }
-                    }
-                    `" :variables="{ title: $route.params.name }">
-                        <template v-slot="{ result: { loading, error, data } }">
-                            <!-- Loading -->
-                            <div v-if="loading" class="loading apollo">Loading...</div>
-                            <!-- Error -->
-                            <div v-else-if="error" class="error apollo">
-                                <resultNotFound />
-                            </div>
-                            <!-- Result -->
-                            <div v-else-if="data && data.tvSerieses.length > 0" class="Slider-block">
+                  <div class="Slider-block">
                                 <!-- Container End -->
                                 <div v-swiper:mySwiperOn="swiperOption" class="my-swiper">
                                     <div class="swiper-wrapper">
-                                        <div v-for="season in data.tvSerieses[0].seasons" :key="season.id" :class="[{ poster_over : overId == season.id }, 'swiper-slide' ]" @mouseover="itemOver(season.id)" @mouseleave="itemNotOver">
+                                        <div v-for="season in seasons" :key="season.id" :class="[{ poster_over : overId == season.id }, 'swiper-slide' ]" @mouseover="itemOver(season.id)" @mouseleave="itemNotOver">
                                             <SeriesItem :id="season.id" :title="season.title" :poster=" GetPoster(season.posters)" :genres="genres" :audience="audience" :seasons="season.episodes" path="/series/season/" />
                                         </div>
                                     </div>
@@ -255,11 +185,6 @@
                                 </div>
                                 <!-- No result -->
                             </div>
-                            <div v-else class="no-result apollo">
-                                <resultNotFound />
-                            </div>
-                        </template>
-                    </ApolloQuery>
                 </div>
             </div>
         </div>
@@ -466,7 +391,7 @@ export default {
         handleSearch() {
             this.films = [];
             fetch(
-                    "https://www.omdbapi.com/?i=" + this.$props.imdbId + "&apikey=527f9c9a"
+                    "https://www.omdbapi.com/?i=" + this.$props.imdbId + "&apikey=bf7293bf"
                 )
                 .then(res => {
                     return res.json();
@@ -518,6 +443,14 @@ export default {
         }
     },
     computed: {
+        Myseason(){
+            return this.$props.seasons[this.$props.seasons.length - 1];
+        },
+        Myepisode(){
+            if(this.Myseason.episodes != null && this.Myseason.episodes.length > 0){
+                return this.Myseason.episodes[0];
+            }
+        },
         playerOptions() {
             const options = {
                 captions: {

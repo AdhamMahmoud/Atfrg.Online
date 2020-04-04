@@ -184,10 +184,12 @@
                 </div>
 
                 <!-- Night Mode Switch -->
+                
                 <div class="toggle toggle--daynight mobile-hidden" id="darkss">
                     <input @change="DarkMode()" type="checkbox" id="toggle--daynight" class="toggle--checkbox">
                     <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
                 </div>
+                   
                 <!-- <div class="custom-control custom-switch">
                     <input @change="DarkMode()" type="checkbox" class="custom-control-input" id="customSwitch1">
                     <label class="custom-control-label" for="customSwitch1"></label>

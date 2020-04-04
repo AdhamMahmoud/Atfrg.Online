@@ -90,7 +90,7 @@ export default {
     handleSearch() {
       this.films = [];
       fetch(
-        "https://www.omdbapi.com/?i=" + this.$props.imdbId + "&apikey=527f9c9a"
+        "https://www.omdbapi.com/?i=" + this.$props.imdbId + "&apikey=bf7293bf"
       )
         .then(res => {
           return res.json();

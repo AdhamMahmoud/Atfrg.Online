@@ -25,7 +25,7 @@
                         <li> <span>اللغة</span> <i class="fas fa-angle-double-left"></i> <span>{{ tvSerieses[0].lang.name}}</span></li>
                         <li> <span>تاريخ الاصدار</span><i class="fas fa-angle-double-left"></i> <span>{{ getReleaseDate( tvSerieses[0].releaseDate) }}</span></li>
                         <li> <span>الجمهور</span><i class="fas fa-angle-double-left"></i> <span>{{ getaudience(tvSerieses[0].audience) }}</span></li>
-                        <li> <span>المدة</span> <i class="fas fa-angle-double-left"></i><span>{{ getRunTime(runtime) }} </span></li>
+                        <!-- <li> <span>المدة</span> <i class="fas fa-angle-double-left"></i><span>{{ getRunTime(runtime) }} </span></li> -->
                         <li> <span>الجودة</span><i class="fas fa-angle-double-left"></i> <span>{{ videoQualities }}</span></li>
                         <li> <span>النوع</span><i class="fas fa-angle-double-left"></i> <span>{{ films.Genre }}</span></li>
                         <li v-if="handleSearch"> <span>التقيم</span><i class="fas fa-angle-double-left"></i> <span> 10 / {{ films.imdbRating }} ( {{ films.imdbVotes }} شخص)</span></li>
@@ -280,7 +280,7 @@ export default {
     }
     overview
     releaseDate
-    seasons {
+    seasons(orderBy:order_DESC) {
       id
       title
       imdbId
@@ -291,7 +291,7 @@ export default {
         size
         path
       }
-      episodes {
+      episodes(orderBy:order_DESC) {
         id
         title
         runtime
@@ -458,7 +458,7 @@ export default {
         handleSearch() {
             this.films = [];
             if (this.tvSerieses.length > 0) {
-                fetch('https://www.omdbapi.com/?i=' + this.tvSerieses[0].seasons[0].imdbId + '&apikey=527f9c9a')
+                fetch('https://www.omdbapi.com/?i=' + this.tvSerieses[0].seasons[0].imdbId + '&apikey=bf7293bf')
                     .then((res) => {
                         return res.json()
                     })

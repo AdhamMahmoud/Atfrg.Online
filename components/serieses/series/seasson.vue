@@ -212,7 +212,7 @@
                         }
                         keywords
                         overview
-                        seasons{
+                        seasons(orderBy:order_DESC){
                           id
                           title
                           slug
@@ -398,7 +398,7 @@ export default {
         },
         handleSearch() {
             this.films = [];
-            fetch('https://www.omdbapi.com/?i=' + this.$props.imdbId + '&apikey=527f9c9a')
+            fetch('https://www.omdbapi.com/?i=' + this.$props.imdbId + '&apikey=bf7293bf')
                 .then((res) => {
                     return res.json()
                 })
@@ -441,7 +441,7 @@ export default {
         },
         handleSearch() {
             this.films = [];
-            fetch('https://www.omdbapi.com/?i=' + this.$props.imdbId + '&apikey=527f9c9a')
+            fetch('https://www.omdbapi.com/?i=' + this.$props.imdbId + '&apikey=bf7293bf')
                 .then((res) => {
                     return res.json()
                 })

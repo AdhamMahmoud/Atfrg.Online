@@ -22,7 +22,7 @@
                         }
                         keywords
                         overview
-                       seasons{
+                       seasons(orderBy:order_DESC){
                           id
                           title
                           slug
@@ -33,7 +33,7 @@
                             size
                             path
                           }
-                          episodes {
+                          episodes(orderBy:order_DESC) {
                           id
                           title
                           runtime

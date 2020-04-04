@@ -4,7 +4,7 @@
       <ApolloQuery
                     :query="gql => gql`
                    query getepisode($id: ID) {
-                    episodes(where: { id_contains: $id, isPublished: true }) {
+                    episodes(orderBy:order_DESC, where: { id_contains: $id, isPublished: true }) {
                       id
                       title
                       runtime

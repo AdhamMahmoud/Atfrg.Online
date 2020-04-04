@@ -43,7 +43,7 @@
                     }
                     }
                     `"
-      :variables="{ title: $route.params.name }"
+      :variables="{ title: decodeURIComponent($route.params.name) }"
     >
       <template v-slot="{ result: { loading, error, data } }">
         <!-- Loading -->
@@ -104,6 +104,8 @@ export default {
     resultNotFound,
     SingleMovie
   },
-
+  mounted(){
+    console.log(decodeURIComponent(this.$route.params.name));
+  }
 };
 </script>
