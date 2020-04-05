@@ -3,7 +3,7 @@
     <ApolloQuery
       :query="gql => gql`
                     query gettvSeries($title: String!) {
-                    tvSerieses(where: { title: $title, isPublished: true }) {
+                    tvSerieses(where: {title:$title, isPublished: true }) {
                         id
                         title
                         posters {

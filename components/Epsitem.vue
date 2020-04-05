@@ -7,7 +7,7 @@
         <div class="poster">
             <!-- quality -->
             <span class="views">
-                {{ seassonCount(seasons) }}
+                {{ order }}
                 <i class="fas fa-video"></i>
             </span>
             <!-- Movie Poster img -->
@@ -59,7 +59,7 @@ export default {
     quality:String,
     poster:String,
     genres:Array,
-    seasons:Array,
+    order:Number,
     audience:String,
     path:String
   }

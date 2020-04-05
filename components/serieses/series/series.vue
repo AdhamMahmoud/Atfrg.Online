@@ -284,7 +284,7 @@ export default {
             var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
             var token = new Buffer(md5String, 'binary').toString('base64');
             token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
-            var url = 'https://cdn.atfrg.online' + newpath + '?token=' + token + '&expires=' + expires;
+            var url = 'https://atfrgonline.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
             return url;
         },
         loadeddata() {

@@ -26,7 +26,7 @@ export default {
 
   data: function() {
     return {
-      darkMode: false,
+      darkMode: true,
       loading:true,
     }
   },

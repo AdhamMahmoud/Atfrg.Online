@@ -1,18 +1,20 @@
 <template>
 <!-- episode -->
-<div class="episode" v-if="tvSerieses.length > 0">
+<div class="episode">
     <!-- Container -->
     <div class="container">
         <div class="row">
             <!-- poster -->
             <div class="col-md-3">
                 <div class="poster">
-                    <img :src="GetPoster(poster)" :alt="title"></div>
+                    <img :src="GetPoster(poster)" :alt="title"/>
+                    </div>
                 <div class="descrption">
                     <div class="title">القصة</div>
-                    <span class="story">{{ tvSerieses[0].overview }}</span>
+                    <span class="story">{{ Series.overview }}</span>
                 </div>
             </div>
+            
             <!-- Information -->
             <div class="col-md-9">
                 <div class="movie-information">
@@ -22,9 +24,9 @@
                     </div>
                     <!-- Movie Info List -->
                     <ul class="information-list">
-                        <li> <span>اللغة</span> <i class="fas fa-angle-double-left"></i> <span>{{ tvSerieses[0].lang.name}}</span></li>
-                        <li> <span>تاريخ الاصدار</span><i class="fas fa-angle-double-left"></i> <span>{{ getReleaseDate( tvSerieses[0].releaseDate) }}</span></li>
-                        <li> <span>الجمهور</span><i class="fas fa-angle-double-left"></i> <span>{{ getaudience(tvSerieses[0].audience) }}</span></li>
+                        <li> <span>اللغة</span> <i class="fas fa-angle-double-left"></i> <span>{{ Series.lang.name}}</span></li>
+                        <li> <span>تاريخ الاصدار</span><i class="fas fa-angle-double-left"></i> <span>{{ getReleaseDate( Series.releaseDate) }}</span></li>
+                        <li> <span>الجمهور</span><i class="fas fa-angle-double-left"></i> <span>{{ getaudience(Series.audience) }}</span></li>
                         <!-- <li> <span>المدة</span> <i class="fas fa-angle-double-left"></i><span>{{ getRunTime(runtime) }} </span></li> -->
                         <li> <span>الجودة</span><i class="fas fa-angle-double-left"></i> <span>{{ videoQualities }}</span></li>
                         <li> <span>النوع</span><i class="fas fa-angle-double-left"></i> <span>{{ films.Genre }}</span></li>
@@ -64,7 +66,7 @@
             <div class="col-md-12">
                 <!-- trailer -->
                 <div :class="{ col_show : active == 'trailer' , col_hide : active != 'trailer' }" id="trailer">
-                    <iframe class="player-mov player-trailer" v-if="active == 'trailer'" :src="'https://www.youtube.com/embed/'+tvSerieses[0].seasons[0].trailerPath"> </iframe>
+                    <iframe class="player-mov player-trailer" v-if="active == 'trailer'" :src="'https://www.youtube.com/embed/'+ season.trailerPath"> </iframe>
                 </div>
                 <!-- Movie -->
                 <div :class="{ col_show : active == 'movie' , col_hide : active != 'movie' }" id="movie">
@@ -94,10 +96,10 @@
                         </video>
                     </vue-plyr>
 
-                    <div v-if="tvSerieses[0].seasons[0] != null" class="others">
-                        <nuxt-link v-if="GetPerv(tvSerieses[0].seasons[0]) != '#'" :to="GetPerv(tvSerieses[0].seasons[0])"> الحلقة السابقة</nuxt-link>
-                        <nuxt-link v-if="GetNext(tvSerieses[0].seasons[0]) != '#'" :to="GetNext(tvSerieses[0].seasons[0])">الحلقة التالية</nuxt-link>
-                    </div>
+                    <!-- <div v-if="season != null" class="others">
+                        <nuxt-link v-if="GetPerv(season) != '#'" :to="GetPerv(season)"> الحلقة السابقة</nuxt-link>
+                        <nuxt-link v-if="GetNext(season) != '#'" :to="GetNext(season)">الحلقة التالية</nuxt-link>
+                    </div> -->
 
                 </div>
                 <!-- Download -->
@@ -159,17 +161,65 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="same-movies Slider-block">
-                    <div v-swiper:mySwiperOnwa="swiperOption" class="my-swiper">
-                        <div class="swiper-wrapper">
-                            <div v-for="episode in tvSerieses[0].seasons.find(title => title == title).episodes" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
-                                <Epsitem :id="episode.id" :title="episode.title" :poster="GetPoster(tvSerieses[0].seasons.find(title => title == title).posters)" :genres="tvSerieses[0].genres" :audience="tvSerieses[0].audience" path="/series/episode/" />
+             <ApolloQuery :query="gql => gql`
+                  query gettvSeries($id:ID!) {
+                      seasons(orderBy:order_DESC, where: {episodes_some:{id:$id}}){
+                       episodes(orderBy:order_DESC, where: {isPublished: true}) {
+                          id
+                          title
+                          order
+                          runtime
+                          isPublished
+                          posters {
+                            size
+                            path
+                          }
+                          videoQualities
+                          subtitles {
+                            id
+                            path
+                            name
+                            lang{
+                              id
+                              name
+                            }
+                          }
+                          links {
+                            id
+                            path
+                            quality
+                          }
+                          slug
+                        }
+                    }
+                  }
+                    `" :variables="{ id: $route.params.id }">
+                        <template v-slot="{ result: { loading, error, data } }">
+                            <!-- Loading -->
+                            <div v-if="loading" class="loading apollo">Loading...</div>
+                            <!-- Error -->
+                            <div v-else-if="error" class="error apollo">
+                                <resultNotFound />
                             </div>
-                        </div>
-                        <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>
-                        <div class="swiper-button-next" slot="button-next"><i class="fas fa-chevron-left"></i></div>
-                    </div>
-                </div>
+                            <!-- Result -->
+                            <div v-else-if="data && data.seasons.length > 0" class="same-movies Slider-block">
+                                <!-- Container End -->
+                              <div v-swiper:mySwiperOnrra="swiperOption" class="my-swiper">
+                                <div class="swiper-wrapper">
+                                    <div v-for="episode in data.seasons[0].episodes" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
+                                        <Epsitem :id="episode.id" :title="episode.title" :order="episode.order" :poster="GetPoster(Series.seasons.find(title => title == title).posters)" :genres="Series.genres" :audience="Series.audience" path="/series/episode/" />
+                                    </div>
+                                </div>
+                                <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>
+                                <div class="swiper-button-next" slot="button-next"><i class="fas fa-chevron-left"></i></div>
+                            </div>
+                                <!-- No result -->
+                            </div>
+                            <div v-else class="no-result apollo">
+                                <resultNotFound />
+                            </div>
+                        </template>
+                    </ApolloQuery>
             </div>
         </div>
     </div>
@@ -184,17 +234,54 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="same-movies Slider-block">
-                    <div v-swiper:mySwiperOnw2="swiperOption" class="my-swiper">
-                        <div class="swiper-wrapper">
-                            <div v-for="season in tvSerieses[0].seasons" :key="season.id" :class="[{ poster_over : overId == season.id }, 'swiper-slide' ]" @mouseover="itemOver(season.id)" @mouseleave="itemNotOver">
-                                <SeriesItem :id="season.id" :title="season.title" :poster="GetPoster(season.posters)" :genres="tvSerieses[0].genres" :audience="tvSerieses[0].audience" :seasons="season.episodes" path="/series/season/" />
+                  <ApolloQuery :query="gql => gql`
+                  query gettvSeries($id:ID!) {
+                       tvSerieses(where: { seasons_some:{episodes_some:{id:$id}}, isPublished: true }) {
+                        seasons(orderBy:order_DESC){
+                          id
+                          title
+                          slug
+                          trailerPath
+                          releaseDate
+                          imdbId
+                          posters {
+                            size
+                            path
+                          }
+                          episodes{
+                              id
+                              title
+                          }
+                         }
+                       }
+                    }
+                    `" :variables="{ id: $route.params.id }">
+                        <template v-slot="{ result: { loading, error, data } }">
+                            <!-- Loading -->
+                            <div v-if="loading" class="loading apollo">Loading...</div>
+                            <!-- Error -->
+                            <div v-else-if="error" class="error apollo">
+                                <resultNotFound />
                             </div>
-                        </div>
-                        <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>
-                        <div class="swiper-button-next" slot="button-next"><i class="fas fa-chevron-left"></i></div>
-                    </div>
-                </div>
+                            <!-- Result -->
+                            <div v-else-if="data && data.tvSerieses.length > 0" class="same-movies Slider-block">
+                                <!-- Container End -->
+                                <div v-swiper:mySwiperOnw2="swiperOption" class="my-swiper">
+                                    <div class="swiper-wrapper">
+                                        <div v-for="season in data.tvSerieses[0].seasons" :key="season.id" :class="[{ poster_over : overId == season.id }, 'swiper-slide' ]" @mouseover="itemOver(season.id)" @mouseleave="itemNotOver">
+                                            <SeriesItem :id="season.id" :title="season.title" :poster=" GetPoster(season.posters)" :genres="Series.genres" :audience="Series.audience" :seasons="season.episodes" path="/series/season/" />
+                                        </div>
+                                    </div>
+                                    <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>
+                                    <div class="swiper-button-next" slot="button-next"><i class="fas fa-chevron-left"></i></div>
+                                </div>
+                                <!-- No result -->
+                            </div>
+                            <div v-else class="no-result apollo">
+                                <resultNotFound />
+                            </div>
+                        </template>
+                    </ApolloQuery>
             </div>
         </div>
     </div>
@@ -252,10 +339,13 @@ export default {
     props: {
         id: String,
         title: String,
+        season:Array,
         poster: Array,
         runtime: Number,
         subtitles: Array,
         epLinks: Array,
+        order:Number,
+        Series:Object,
         videoQualities: String
     },
     apollo: {
@@ -322,7 +412,7 @@ export default {
     },
     head() {
         return {
-            title: "مشاهدة وتحميل " + this.$props.title + " مسلسل  " + this.topTitle + " - Atfrg.Online  اتفرج اون لاين",
+            title: "مشاهدة وتحميل " + this.$props.title + " مسلسل  " + this.$props.season.title + " - Atfrg.Online  اتفرج اون لاين",
             meta: [
                 // hid is used as unique identifier. Do not use `vmid` for it as it will not work
                 {
@@ -366,7 +456,7 @@ export default {
         },
         topTitle() {
             if (this.tvSerieses.length > 0) {
-                return this.tvSerieses[0].seasons[0].title;
+                return this.season.title;
             }
         }
 
@@ -398,7 +488,7 @@ export default {
         },
         GetPerv(series) {
             var Currindex = series.episodes.findIndex(x => x.id === this.$props.id);
-            if (!(Currindex - 1 < 0)) {
+            if (Currindex - 1 > 0) {
                 var Next = series.episodes[Currindex - 1];
                 return Next.id;
             } else {
@@ -424,7 +514,7 @@ export default {
             var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
             var token = new Buffer(md5String, 'binary').toString('base64');
             token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
-            var url = 'https://cdn.atfrg.online' + newpath + '?token=' + token + '&expires=' + expires;
+            var url = 'https://atfrgonline.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
             return url;
         },
         GetPoster(posters) {
@@ -458,7 +548,7 @@ export default {
         handleSearch() {
             this.films = [];
             if (this.tvSerieses.length > 0) {
-                fetch('https://www.omdbapi.com/?i=' + this.tvSerieses[0].seasons[0].imdbId + '&apikey=bf7293bf')
+                fetch('https://www.omdbapi.com/?i=' + this.$props.season.imdbId + '&apikey=bf7293bf')
                     .then((res) => {
                         return res.json()
                     })

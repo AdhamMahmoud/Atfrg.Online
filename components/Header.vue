@@ -239,7 +239,7 @@ export default {
     data: function () {
         return {
             showSide: false,
-            darkModeD: false,
+            darkModeD: true,
             mobMenu: false,
             loading: true,
             scrolled: false

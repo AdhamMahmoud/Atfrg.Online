@@ -29,7 +29,15 @@ $primary-color:$sColor;
         color: $sColor !important;
         @include transition(0.3s);
     }
-
+    #download .table{
+        color:#fff;
+    }
+    .bug{
+        .form-control{
+            background-color: #17171f;
+    border-color: #2e2e2e;
+        }
+    }
     /* Headers */
     .small-nav {
         background-image: none;
@@ -191,7 +199,7 @@ $primary-color:$sColor;
 
     /* Footer */
     .footer {
-        background-color: #0a0a0a !important;
+        background-color: #15141b !important;
         transition: 1s ease-in-out;
         color: #fff !important;
     }

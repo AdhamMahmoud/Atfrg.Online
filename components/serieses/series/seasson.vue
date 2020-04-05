@@ -131,12 +131,16 @@
                         </tbody>
                     </table>
                     <div class="note">
+                        <span>قريبا تحميل الموسم كامل برابط واحد</span>
+                    </div>
+                    <!-- <div class="note">
                         <span>لتحميل الموسم كامل اتبع الخطواط</span> <br>
                         1- بأستخدام برنامج internet download manager <br>
                         2- انسخ اللينكات ال في البوكس تحت <br>
                         3- من قائمة file اختارة اضافة تحميل جماعي من الحافظة (Patch) <br>
                         4- سيتم تحميل الموسم كامل <br>
                     </div>
+                    
                     <div class="note">
                         <span v-for="ep in episodes" :key="ep.id">
                             <span v-for="link in ep.links" :key="link.id">
@@ -147,7 +151,7 @@
                             </span>
                         </span>
 
-                    </div>
+                    </div> -->
 
                 </div>
                 <bugs :title="title"></bugs>
@@ -170,7 +174,7 @@
                     <div v-swiper:mySwiperOnwa="swiperOption" class="my-swiper">
                         <div class="swiper-wrapper">
                             <div v-for="episode in episodes" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
-                                <Epsitem :id="episode.id" :title="episode.title" :poster="GetPoster(episode.posters)" :genres="genres" :audience="audience" path="/series/episode/" />
+                                <Epsitem :id="episode.id" :title="episode.title" :poster="GetPoster(posters)" :genres="genres" :audience="audience" path="/series/episode/" />
                             </div>
                         </div>
                         <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>
@@ -383,7 +387,7 @@ export default {
             var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
             var token = new Buffer(md5String, 'binary').toString('base64');
             token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
-            var url = 'https://cdn.atfrg.online' + newpath + '?token=' + token + '&expires=' + expires;
+            var url = 'https://atfrgonline.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
             return url;
         },
         validLink(path) {

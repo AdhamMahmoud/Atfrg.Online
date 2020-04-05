@@ -1861,6 +1861,11 @@ i {
     -moz-transition: 0.3s ease-in-out;
     -o-transition: 0.3s ease-in-out;
     transition: 0.3s ease-in-out; }
+  .darkMod #download .table {
+    color: #fff; }
+  .darkMod .bug .form-control {
+    background-color: #17171f;
+    border-color: #2e2e2e; }
   .darkMod .small-nav {
     background-image: none;
     background-color: #070d35;
@@ -2005,7 +2010,7 @@ i {
       -o-box-shadow: 0px 0px 5px 0px #0c0e1f;
       box-shadow: 0px 0px 5px 0px #0c0e1f; }
   .darkMod .footer {
-    background-color: #0a0a0a !important;
+    background-color: #15141b !important;
     transition: 1s ease-in-out;
     color: #fff !important; }
 
