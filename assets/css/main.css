@@ -1265,7 +1265,8 @@ i {
   .episode .plyr video {
     width: 100%;
     border-radius: 20px;
-    object-fit: cover; }
+    object-fit: cover;
+    max-height: 550px; }
   .Single-Movie .same-movies,
   .Single-Series .same-movies,
   .episode .same-movies {
@@ -1837,6 +1838,8 @@ i {
   /* Home */
   /* Sections */
   /* Footer */ }
+  .darkMod .chat .mine .message.last:after {
+    background-color: #0F0F0F; }
   .darkMod a {
     color: #fff !important;
     -webkit-transition: 0.3s ease-in-out;
@@ -2010,6 +2013,7 @@ i {
       -o-box-shadow: 0px 0px 5px 0px #0c0e1f;
       box-shadow: 0px 0px 5px 0px #0c0e1f; }
   .darkMod .footer {
+    background-image: none !important;
     background-color: #15141b !important;
     transition: 1s ease-in-out;
     color: #fff !important; }

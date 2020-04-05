@@ -235,11 +235,10 @@ import SearchArea from "~/components/SearchArea.vue";
 import loading from "~/components/loading.vue";
 import Menu from "~/components/Menu.vue";
 export default {
-    loading: '~/components/loading.vue',
     data: function () {
         return {
             showSide: false,
-            darkModeD: true,
+            darkModeD: false,
             mobMenu: false,
             loading: true,
             scrolled: false
@@ -307,10 +306,8 @@ beforeDestroy  () {
     mounted() {
         this.loading = true;
          setTimeout(() => this.loading= false, 500);
-        if (
-            this.readCookie("darkModeD") == "true" &&
-            this.readCookie("darkModeD") != null
-        ) {
+         console.log(this.readCookie("darkModeD"));
+        if (this.readCookie("darkModeD") == "true" || this.readCookie("darkModeD") == null) {
              document.getElementById("toggle--daynight").click(); 
         } else {
             this.$emit("update:darkMode", false);

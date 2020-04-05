@@ -9,7 +9,9 @@ $primary-color:$sColor;
     background-color: #0F0F0F;
     transition: 1s ease-in-out;
     color: $sColor;
-
+.chat .mine .message.last:after{
+    background-color: #0F0F0F;
+}
     a {
         color: #fff !important;
         @include transition(0.3s);
@@ -199,6 +201,7 @@ $primary-color:$sColor;
 
     /* Footer */
     .footer {
+        background-image: none !important;
         background-color: #15141b !important;
         transition: 1s ease-in-out;
         color: #fff !important;
