@@ -1,0 +1,325 @@
+<template>
+<div>
+  <!-- <div class="chat chat-video" v-if="firstNote"> -->
+                        <!-- <div class="mine messages">
+                            <div class="message last">
+                                <p> جهزت فشارك والحاجة ال هتشربها 😋 ؟</p>
+                                <button @click="CloseNote">كلو تمام</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat chat-video" v-if="secondNote">
+                        <div class="mine messages">
+                            <div class="message last">
+                                <p>خد بريك كدا ادخل الحمام وحات حاجة تشربها ✌️❤️</p>
+                                <button @click="CloseNote(2)">تمام</button>
+                            </div>
+                        </div>
+                    </div> -->
+    <vue-plyr class="player-mov" ref="film" seektime="10" :title="title" :id="id" :options="playerOptions" @enterfullscreen="enterfullscreen"  @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
+        <video  :poster="poster" crossorigin="anonymous">
+            <!-- Video Source -->
+            <source v-for="video in links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
+            <!-- Video Subtitles -->
+            <track v-for="(subtitle, index) in subtitles" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == subtitles.length - 2}">
+        </video>
+    </vue-plyr>
+</div>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            load: false,
+            loader: null,
+            film: null,
+            secondNote:false,
+            notesdone:false,
+            firstNote:null,
+            SecoNote:null,
+
+        }
+    },
+    props: {
+        title: String,
+        poster: String,
+        id: String,
+        links: Array,
+        subtitles: Array,
+    },
+    computed: {
+        playerOptions() {
+            const options = {
+                toggleInvert:true,
+                captions: {
+                    active: false
+                },
+                controls: [
+                    "play-large", // The large play button in the center
+                    "rewind", // Rewind by the seek time (default 10 seconds)
+                    "play", // Play/pause playback
+                    "fast-forward", // Fast forward by the seek time (default 10 seconds)
+                    "progress", // The progress bar and scrubber for playback and buffering
+                    "current-time", // The current time of playback
+                    "duration", // The full duration of the media
+                    "mute", // Toggle mute
+                    "volume", // Volume control
+                    "captions", // Toggle captions
+                    "settings", // Settings menu
+                    "fullscreen" // Toggle fullscreen
+                ]
+            };
+            return options;
+        }
+    },
+    mounted() {
+        this.film = this.$refs.film.player;
+        var list = document.getElementsByClassName("plyr__control--overlaid")[0];
+        this.loader = document.createElement("i");
+        this.loader.classList.add("video-loader");
+        this.loader.innerHTML =
+            '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style=" display: block; shape-rendering: auto;" width="50px" height="50px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><circle cx="50" cy="50" fill="none" stroke="#93dbe9" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138" transform="rotate(53.2159 50 50)"><animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>  </circle></svg>';
+        list.parentNode.insertBefore(this.loader, list.nextSibling);
+
+        // Create Notes .1
+        this.FirstNote = document.createElement("div");
+        this.FirstNote.classList.add("chat");
+        this.FirstNote.classList.add("chat-video");
+        list.parentNode.insertBefore(this.FirstNote, list.nextSibling);
+
+        var mess = document.createElement("div");
+        mess.classList.add("mine");
+        mess.classList.add("messages");
+        this.FirstNote.appendChild(mess);
+        var mine = document.createElement("div");
+        mine.classList.add("message");
+        mine.classList.add("last");
+        this.FirstNote.appendChild(mine);  
+        var text = document.createElement("p");
+        text.innerHTML = 'جهزت فشارك والحاجة ال هتشربها 😋 ؟';
+        mine.appendChild(text); 
+        this.FirstNote.style.display = 'none';
+
+          // Create Notes.2
+        this.SecoNote = document.createElement("div");
+        this.SecoNote.classList.add("chat");
+        this.SecoNote.classList.add("chat-video");
+        list.parentNode.insertBefore(this.SecoNote, list.nextSibling);
+
+        var mess2 = document.createElement("div");
+        mess2.classList.add("mine");
+        mess2.classList.add("messages");
+        this.SecoNote.appendChild(mess2);
+        var mine2 = document.createElement("div");
+        mine2.classList.add("message");
+        mine2.classList.add("last");
+        this.SecoNote.appendChild(mine2);  
+        var text2 = document.createElement("p");
+        text2.innerHTML = 'خد بريك كدا ادخل الحمام وحات حاجة تشربها ✌️❤️';
+        mine2.appendChild(text2); 
+        this.SecoNote.style.display = 'none';
+    },
+    methods: {
+        validLink(path) {
+            var type = path.slice(-3).toLowerCase();
+            path = path.substring(0, path.length - 3) + type
+            return path;
+        },
+        LinkToken(path) {
+            var crypto = require('crypto');
+            var securityKey = '6ecb7c25-9744-498a-a49b-ae4c7980c861';
+            var newpath = path.substring(24, path.length);
+            // Set the time of expiry to one hour from now
+            var expires = Math.round(Date.now() / 1000) + 43200;
+
+            var hashableBase = securityKey + newpath + expires;
+            // Generate and encode the token 
+            var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
+            var token = new Buffer(md5String, 'binary').toString('base64');
+            token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
+            var url = 'https://atfrgonline.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+            return url;
+        },
+        CloseNote(num) {
+            this.firstNote = false;
+            if (num == 2) {
+                this.secondNote = false;
+                this.notesdone = true;
+            }
+
+        },
+        enterfullscreen() {
+            if(window.innerWidth < 600){
+                   screen.orientation.lock('landscape');
+            }
+        },
+        loadeddata() {
+              this.FirstNote.style.display = 'block';
+            if (this.readCookie(this.$props.id) != 0) {
+                var time = parseInt(this.readCookie(this.$props.id));
+                this.timer = setTimeout(() => {
+                    this.film.currentTime = time;
+                }, 1200);
+            }
+        },
+        nowPlaying() {
+            this.film.currentTrack = 1;
+                this.timer = setTimeout(() => {
+                    this.FirstNote.style.display = 'none';
+            }, 10000);
+            if(this.$props.subtitles.length > 0)
+            {
+                   this.film.toggleCaptions(true);
+            }
+         
+            if (this.film.currentTime > (this.$props.runtime / 2 * 60)) {
+                this.SecoNote.style.display = 'block';
+                 this.timer = setTimeout(() => {
+                      this.SecoNote.style.display = 'none';
+                }, 5000);
+            }
+            this.timer = setTimeout(() => {
+                this.ShowIntroBtn = false;
+            }, 120000);
+            if (this.film.currentTime > 120) {
+                this.createCookie(this.$props.id, this.film.currentTime, 10);
+            }
+            //  this.loader.style.display = "block";
+        },
+        createCookie(name, value, days) {
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+                var expires = "; expires=" + date.toGMTString();
+            } else var expires = "";
+            document.cookie = name + "=" + value + expires + "; path=/";
+        },
+        readCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(";");
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == " ") c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+    }
+}
+</script>
+
+<style lang="scss">
+
+@import "~/assets/sass/_vars.scss";
+@import "~/assets/sass/_mixins.scss";
+
+.plyr--full-ui input[type=range] {
+    color: #FFD700;
+}
+
+.plyr__control--overlaid {
+    background: rgba(255, 215, 0, 0.67);
+}
+
+.plyr--video .plyr__control.plyr__tab-focus,
+.plyr--video .plyr__control:hover,
+.plyr--video .plyr__control[aria-expanded=true] {
+    background: #FFD700;
+}
+
+.plyr__control.plyr__tab-focus {
+    box-shadow: 0 0 0 5px rgba(255, 215, 0, 0.67);
+}
+
+.plyr__menu__container .plyr__control[role=menuitemradio][aria-checked=true]::before {
+    background: #FFD700;
+}
+
+.plyr--audio .plyr__control.plyr__tab-focus,
+.plyr--audio .plyr__control:hover,
+.plyr--audio .plyr__control[aria-expanded=true] {
+    background: #FFD700;
+}
+
+.plyr--video .plyr__progress__buffer {
+    color: rgba(8, 108, 248, 0.55);
+}
+
+.plyr--video.plyr--loading .plyr__progress__buffer {
+    background-color: rgba(8, 108, 248, 0.55);
+}
+
+/* .plyr__control--pressed{
+    opacity: 1 !important;
+    visibility: inherit !important;
+} */
+.plyr__volume {
+    input {
+        width: 60px;
+    }
+}
+
+.plyr {
+    height: 600px;
+}
+
+.plyr video {
+    width: 100%;
+    object-fit: contain;
+    height: 100%;
+}
+
+.plyr__video-wrapper {
+    height: 100%;
+}
+
+.video-loader {
+    display: none;
+    border: 0;
+    border-radius: 100%;
+    color: #fff;
+    display: none;
+    left: 50%;
+    padding: 15px;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background-color: transparent !important;
+}
+
+.plyr--loading .video-loader {
+    display: block;
+}
+@include sm{
+    .plyr {
+    height: 400px;
+}
+.plyr video{
+      object-fit: contain !important;
+}
+}
+ .chat-video {
+        bottom: 7rem;
+        right: 2.2rem;
+
+        .mine .message.last:after {
+            background: #000;
+        }
+
+        .mine .message.last:before {
+            background-image: none;
+            background-color: #393939;
+        }
+
+        .mine .message {
+            background-image: none;
+            background-color: #393939;
+        }
+    }
+    .chat .message{
+        background-color: #232323;
+    }
+</style>

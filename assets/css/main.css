@@ -902,7 +902,7 @@ i {
     -o-transition: 0.4s ease-in-out;
     transition: 0.4s ease-in-out;
     transition-delay: 0s;
-    object-fit: fill;
+    object-fit: contain;
     width: 100%;
     height: 100%;
     border-radius: 20px; }
@@ -971,9 +971,6 @@ i {
               content: ""; }
 
 /* Vue Player */
-.plyr--video {
-  border-radius: 20px; }
-
 .plyr__progress__container {
   width: 100%; }
 
@@ -1264,9 +1261,7 @@ i {
   .Single-Series .plyr video,
   .episode .plyr video {
     width: 100%;
-    border-radius: 20px;
-    object-fit: cover;
-    max-height: 550px; }
+    object-fit: contain; }
   .Single-Movie .same-movies,
   .Single-Series .same-movies,
   .episode .same-movies {
@@ -1274,8 +1269,8 @@ i {
   .Single-Movie .chat-video,
   .Single-Series .chat-video,
   .episode .chat-video {
-    bottom: 7rem;
-    right: 12.5%; }
+    bottom: 10rem;
+    right: 2rem; }
     .Single-Movie .chat-video .mine .message.last:after,
     .Single-Series .chat-video .mine .message.last:after,
     .episode .chat-video .mine .message.last:after {
@@ -1513,9 +1508,6 @@ i {
   .episode .player-mov {
     margin: 30px 20px;
     border-top: 4px solid #008dff;
-    border-radius: 22px;
-    max-height: 550px;
-    max-width: 80%;
     margin: 2rem auto; }
   .Single-Movie .player-trailer,
   .Single-Series .player-trailer,
@@ -1755,27 +1747,6 @@ i {
     background-image: radial-gradient(circle farthest-corner at 10% 20%, #2b0477 0%, #0369cf 91%);
     background-attachment: fixed;
     position: relative; }
-  .chat .mine .message.last:before {
-    content: "";
-    position: absolute;
-    z-index: 0;
-    bottom: 0;
-    right: -8px;
-    height: 20px;
-    width: 20px;
-    background-image: radial-gradient(circle farthest-corner at 10% 20%, #2b0477 0%, #0369cf 91%);
-    background-attachment: fixed;
-    border-bottom-left-radius: 15px; }
-  .chat .mine .message.last:after {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    bottom: 0;
-    right: -10px;
-    width: 10px;
-    height: 20px;
-    background: #eaeaea;
-    border-bottom-left-radius: 10px; }
 
 /* == Messages === */
 .chat2 {
@@ -1804,27 +1775,6 @@ i {
     background-image: radial-gradient(circle farthest-corner at 10% 20%, #2b0477 0%, #0369cf 91%);
     background-attachment: fixed;
     position: relative; }
-  .chat2 .mine .message.last:before {
-    content: "";
-    position: absolute;
-    z-index: 0;
-    top: 0;
-    left: -8px;
-    height: 20px;
-    width: 20px;
-    background-image: radial-gradient(circle farthest-corner at 10% 20%, #2b0477 0%, #0369cf 91%);
-    background-attachment: fixed;
-    border-bottom-left-radius: 15px; }
-  .chat2 .mine .message.last:after {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: -10px;
-    width: 10px;
-    height: 20px;
-    background: #eaeaea;
-    border-bottom-left-radius: 10px; }
 
 .fixed .chat {
   top: 36rem; }
@@ -1859,7 +1809,7 @@ i {
       -o-transition: 0.3s ease-in-out;
       transition: 0.3s ease-in-out; }
   .darkMod .active {
-    color: #008dff !important;
+    color: #FFD700 !important;
     -webkit-transition: 0.3s ease-in-out;
     -moz-transition: 0.3s ease-in-out;
     -o-transition: 0.3s ease-in-out;
@@ -1869,6 +1819,8 @@ i {
   .darkMod .bug .form-control {
     background-color: #17171f;
     border-color: #2e2e2e; }
+  .darkMod .home-slider .my-swiper .big-slide .slide-info {
+    background-image: radial-gradient(circle 523px at 7.1% 19.3%, rgba(30, 8, 48, 0.6) 2%, rgba(10, 20, 68, 0.62) 100.7%); }
   .darkMod .small-nav {
     background-image: none;
     background-color: #070d35;
@@ -1887,7 +1839,7 @@ i {
         -o-transition: 0.3s ease-in-out;
         transition: 0.3s ease-in-out; }
   .darkMod .search-area .search-form-area .form-control {
-    background-color: rgba(25, 14, 60, 0.74902);
+    background-color: rgba(31, 26, 46, 0.74902);
     color: #fff;
     box-shadow: none; }
   .darkMod .sub-head-mob {
@@ -1898,6 +1850,8 @@ i {
     transition: 1s ease-in-out; }
   .darkMod .home-slider .slide-overlay {
     background-image: radial-gradient(circle 523px at 7.1% 19.3%, rgba(16, 3, 70, 0.42) 2%, rgba(2, 9, 46, 0.39) 100.7%) !important; }
+  .darkMod .home-slider-block .back-color {
+    background-image: none; }
   .darkMod .home-slider-block {
     -webkit-box-shadow: 0px 0px 5px 0px #0c0e1f;
     -moz-box-shadow: 0px 0px 5px 0px #0c0e1f;
@@ -1908,7 +1862,7 @@ i {
     position: relative;
     transition: 1s ease-in-out; }
     .darkMod .home-slider-block .back-color {
-      background-image: linear-gradient(to right top, #0f1224, #0e101f, #0c0e1b, #090c16, #070911);
+      background-color: #131123;
       border-radius: 20px 20px 0 0;
       transition: 1s ease-in-out; }
     .darkMod .home-slider-block a {
@@ -1949,7 +1903,7 @@ i {
     border-radius: 20px 20px 0 0;
     transition: 1s ease-in-out; }
     .darkMod .movies-genre .filters {
-      background-image: linear-gradient(to right top, #0f1224, #0e101f, #0c0e1b, #090c16, #070911);
+      background-color: #131123;
       transition: 1s ease-in-out;
       border: none;
       -webkit-box-shadow: 0px 0px 5px 0px #0c0e1f;
@@ -1974,7 +1928,7 @@ i {
       -o-box-shadow: 0px 0px 5px 0px #0c0e1f;
       box-shadow: 0px 0px 5px 0px #0c0e1f; }
       .darkMod .Single-Movie .container .movie-information .movie-title, .darkMod .Single-Series .container .movie-information .movie-title, .darkMod .episode .container .movie-information .movie-title {
-        background-image: linear-gradient(to right top, #0f1224, #0e101f, #0c0e1b, #090c16, #070911);
+        background-color: #131123;
         -webkit-box-shadow: 0px 0px 5px 0px #0c0e1f;
         -moz-box-shadow: 0px 0px 5px 0px #0c0e1f;
         -o-box-shadow: 0px 0px 5px 0px #0c0e1f;
@@ -1999,7 +1953,7 @@ i {
       -o-box-shadow: 0px 0px 5px 0px #0c0e1f;
       box-shadow: 0px 0px 5px 0px #0c0e1f; }
       .darkMod .Single-Movie .container .descrption .title, .darkMod .Single-Series .container .descrption .title, .darkMod .episode .container .descrption .title {
-        background-image: linear-gradient(to right top, #0f1224, #0e101f, #0c0e1b, #090c16, #070911); }
+        background-color: #131123; }
     .darkMod .Single-Movie .container .watch-list button, .darkMod .Single-Series .container .watch-list button, .darkMod .episode .container .watch-list button {
       -webkit-box-shadow: 0px 0px 5px 0px #0c0e1f;
       -moz-box-shadow: 0px 0px 5px 0px #0c0e1f;
@@ -2007,7 +1961,7 @@ i {
       box-shadow: 0px 0px 5px 0px #0c0e1f;
       color: #fff !important; }
     .darkMod .Single-Movie .container .other-title, .darkMod .Single-Series .container .other-title, .darkMod .episode .container .other-title {
-      background-image: linear-gradient(to right top, #0f1224, #0e101f, #0c0e1b, #090c16, #070911);
+      background-color: #131123;
       -webkit-box-shadow: 0px 0px 5px 0px #0c0e1f;
       -moz-box-shadow: 0px 0px 5px 0px #0c0e1f;
       -o-box-shadow: 0px 0px 5px 0px #0c0e1f;
@@ -2017,6 +1971,9 @@ i {
     background-color: #15141b !important;
     transition: 1s ease-in-out;
     color: #fff !important; }
+  .darkMod .chat .mine .message {
+    background-image: none;
+    background-color: #090a1f; }
 
 /* === Header === */
 @media (min-width: 1200px) {

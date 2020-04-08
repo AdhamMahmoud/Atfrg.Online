@@ -15,9 +15,13 @@ export default {
         name: "viewport",
         content: "width=device-width, initial-scale=1"
       },
+      {
+        'http-equiv': "Content-Type",
+        content: "text/html; charset=utf-8"
+      },
       
-      { hid: 'description', name: 'description', content:  "مشاهدة ومتحميل مباشر افلام و مسلسلات وانمي بجودة عالية مترجمة - اتفرج اون لاين - بدون اعلانات" || ""},
-      { hid: 'keywords', name: 'keywords', content:  "مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل " || ""}
+      {  name: 'description', content:  "مشاهدة ومتحميل مباشر افلام و مسلسلات وانمي بجودة عالية مترجمة - اتفرج اون لاين - بدون اعلانات"},
+      {  name: 'keywords', content:  "مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل "}
 
     ],
     link: [
@@ -47,7 +51,8 @@ export default {
     "~assets/css/main.css",
     "vue-plyr/dist/vue-plyr.css",
     "swiper/dist/css/swiper.css",
-    "~assets/css/iconmonstr-iconic-font.min.css"
+    "~assets/css/iconmonstr-iconic-font.min.css",
+    'video.js/dist/video-js.css'
   ],
   /*
    ** Plugins to load before mounting the App
@@ -63,7 +68,8 @@ export default {
     {
       src: "~/plugins/lazyload",
       mode: "client",
-    }
+    },
+    { src: '~plugins/nuxt-video-player-plugin', ssr: false }
   ],
   /*
    ** Customize the progress-bar color

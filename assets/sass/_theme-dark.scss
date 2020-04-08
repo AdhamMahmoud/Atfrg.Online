@@ -1,6 +1,7 @@
 $DarkColor: #0F0F0F;
 $mDark:#181818;
 $sColor:#008dff;
+$s2Color:#FFD700;
 $secondary-color:$sColor;
 $primary-color:$sColor;
 
@@ -28,7 +29,7 @@ $primary-color:$sColor;
     }
 
     .active {
-        color: $sColor !important;
+        color: $s2Color !important;
         @include transition(0.3s);
     }
     #download .table{
@@ -39,6 +40,9 @@ $primary-color:$sColor;
             background-color: #17171f;
     border-color: #2e2e2e;
         }
+    }
+    .home-slider .my-swiper .big-slide .slide-info{
+        background-image: radial-gradient(circle 523px at 7.1% 19.3%, rgba(30, 8, 48, 0.6) 2%, rgba(10, 20, 68, 0.62) 100.7%);
     }
     /* Headers */
     .small-nav {
@@ -61,7 +65,7 @@ $primary-color:$sColor;
         }
     }   
     .search-area .search-form-area .form-control{
-        background-color: rgba(25, 14, 60, 0.74902);
+        background-color: rgba(31, 26, 46, 0.74902);
     color: #fff;
     box-shadow: none;;
     }
@@ -80,7 +84,9 @@ $primary-color:$sColor;
         }
     }
 
-
+    .home-slider-block .back-color{
+        background-image:none;
+    }
     /* Home */
     .home-slider-block {
         @include boxShadow(0px, 0px, 5px, 0px, #0c0e1f);
@@ -90,7 +96,7 @@ $primary-color:$sColor;
         transition: 1s ease-in-out;
 
         .back-color {
-            background-image: linear-gradient(to right top, #0f1224, #0e101f, #0c0e1b, #090c16, #070911);
+           background-color:#131123;
             border-radius: 20px 20px 0 0;
             transition: 1s ease-in-out;
 
@@ -135,7 +141,7 @@ $primary-color:$sColor;
         transition: 1s ease-in-out;
 
         .filters {
-            background-image: linear-gradient(to right top, #0f1224, #0e101f, #0c0e1b, #090c16, #070911);
+           background-color:#131123;
             transition: 1s ease-in-out;
             border: none;
             @include boxShadow(0px, 0px, 5px, 0px, #0c0e1f);
@@ -159,7 +165,7 @@ $primary-color:$sColor;
                 @include boxShadow(0px, 0px, 5px, 0px, #0c0e1f);
 
                 .movie-title {
-                    background-image: linear-gradient(to right top, #0f1224, #0e101f, #0c0e1b, #090c16, #070911);
+                   background-color:#131123;
                     @include boxShadow(0px, 0px, 5px, 0px, #0c0e1f);
                 }
 
@@ -184,7 +190,7 @@ $primary-color:$sColor;
            {
             @include boxShadow(0px, 0px, 5px, 0px, #0c0e1f);
             .title{
-                background-image: linear-gradient(to right top, #0f1224, #0e101f, #0c0e1b, #090c16, #070911);
+               background-color:#131123;
                
                }
            } 
@@ -193,7 +199,7 @@ $primary-color:$sColor;
             color:#fff !important;
            }
            .other-title{
-            background-image: linear-gradient(to right top, #0f1224, #0e101f, #0c0e1b, #090c16, #070911);
+           background-color:#131123;
             @include boxShadow(0px, 0px, 5px, 0px, #0c0e1f);
            }
         }
@@ -205,5 +211,9 @@ $primary-color:$sColor;
         background-color: #15141b !important;
         transition: 1s ease-in-out;
         color: #fff !important;
+    }
+    .chat .mine .message{
+        background-image:none;
+        background-color: #090a1f;
     }
 }

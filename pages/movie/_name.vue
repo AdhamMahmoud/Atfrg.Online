@@ -43,7 +43,7 @@
                     }
                     }
                     `"
-      :variables="{ title: decodeURIComponent($route.params.name) }"
+      :variables="{ title: $route.params.name }"
     >
       <template v-slot="{ result: { loading, error, data } }">
         <!-- Loading -->
@@ -69,7 +69,7 @@
             :quality="movie.movieQuality"
             :poster="movie.posters"
             :trailer="movie.trailerPath"
-            :genres="movie.genres[1].name"
+            :genres="movie.genres[0].name"
             :Production="movie.Production"
             :watchCount="movie.watchCount"
             :audience="movie.audience"
@@ -104,8 +104,5 @@ export default {
     resultNotFound,
     SingleMovie
   },
-  mounted(){
-    console.log(decodeURIComponent(this.$route.params.name));
-  }
 };
 </script>

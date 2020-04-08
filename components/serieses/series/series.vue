@@ -61,31 +61,12 @@
                 </div>
                 <!-- Movie -->
                 <div :class="{ col_show : active == 'movie' , col_hide : active != 'movie' }" id="movie">
-                    <div class="chat chat-video" v-if="firstNote">
-                        <div class="mine messages">
-                            <div class="message last">
-                                <p> جهزت فشارك والحاجة ال هتشربها 😋 ؟</p>
-                                <button @click="CloseNote">كلو تمام</button>
-                            </div>
-                        </div>
+                   <MoviePlayer :id="id" :title="title" :poster="GetPoster(seasons[0].posters)" :links="episodes[0].links" :subtitles="episodes[0].subtitles"></MoviePlayer>            
+                    <div class="others">
+                      
+                        <nuxt-link v-if="GetPerv(seasons[0]) != '#'" :to="'./episode/' + GetPerv(seasons[0])"> الحلقة السابقة</nuxt-link>
+                         <nuxt-link v-if="GetNext(seasons[0]) != '#'" :to="'./episode/' + GetNext(seasons[0])">الحلقة التالية</nuxt-link>
                     </div>
-                    <div class="chat chat-video" v-if="secondNote">
-                        <div class="mine messages">
-                            <div class="message last">
-                                <p>خد بريك كدا ادخل الحمام هات حاجة تشربها ✌️❤️</p>
-                                <button @click="CloseNote(2)">تمام</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Movie Player -->
-                    <vue-plyr class="player-mov" ref="film" seektime="10" :title="title" :id="id" :options="playerOptions" @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata']">
-                        <video crossorigin="anonymous">
-                            <!-- Video Source -->
-                            <source v-for="video in episodes[0].links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
-                            <!-- Video Subtitles -->
-                            <track v-for="(subtitle, index) in episodes[0].subtitles" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == episodes[0].subtitles.length - 2}">
-                        </video>
-                    </vue-plyr>
                 </div>
                 <!-- Download -->
                 <div :class="{ col_show : active == 'download' , col_hide : active != 'download' }" id="download">
@@ -194,6 +175,7 @@
 
 <script>
 import resultNotFound from "~/components/resultNotFound.vue";
+import MoviePlayer from "~/components/MoviePlayer.vue";
 import TrailerItem from "~/components/TrailerItem.vue";
 import SeriesItem from "~/components/SeriesItem.vue";
 import Epsitem from '~/components/Epsitem.vue';
@@ -205,6 +187,7 @@ export default {
         resultNotFound,
         SeriesItem,
         Epsitem,
+        MoviePlayer,
         bugs
     },
     data: function () {
@@ -218,8 +201,8 @@ export default {
             notesdone: false,
             currentTimes: 0,
             swiperOption: {
-                slidesPerView: 4,
-                spaceBetween: 4,
+                slidesPerView: 5,
+                spaceBetween: 40,
                 navigation: {
                     nextEl: ".swiper-button-next",
                     prevEl: ".swiper-button-prev"
@@ -264,9 +247,29 @@ export default {
     },
     mounted() {
         this.handleSearch();
-        this.film = this.$refs.film.player;
+        // this.film = this.$refs.film.player;
     },
     methods: {
+          GetNext(series) {
+            var Currindex = series.episodes.findIndex(x => x.id === this.$props.id);
+            if (Currindex + 1 < series.episodes.length) {
+                var Next = series.episodes[Currindex + 2];
+                return Next.id;
+            } else {
+                return "#";
+            }
+
+        },
+        GetPerv(series) {
+            var Currindex = series.episodes.findIndex(x => x.id === this.$props.id);
+            if (Currindex - 1 > 0) {
+                var Next = series.episodes[Currindex - 1];
+                return Next.id;
+            } else {
+                return "#";
+            }
+
+        },
         validLink(path) {      
             var type = path.slice(-3).toLowerCase();
             path = path.substring(0, path.length - 3) + type
@@ -287,14 +290,6 @@ export default {
             var url = 'https://atfrgonline.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
             return url;
         },
-        loadeddata() {
-            if (this.readCookie(this.$props.id) != 0) {
-                var time = parseInt(this.readCookie(this.$props.id));
-                this.timer = setTimeout(() => {
-                    this.film.currentTime = time;
-                }, 2000);
-            }
-        },
         // validLink(path) {
         //     var type = path.slice(-3).toLowerCase();
         //     path = path.substring(0, path.length - 3) + type;
@@ -312,31 +307,6 @@ export default {
                 this.notesdone = true;
             }
 
-        },
-        nowPlaying() {
-            this.film.currentTrack = 1;
-            this.film.toggleCaptions(true);
-            if (this.film.currentTime < 120) {
-                this.ShowIntroBtn = true;
-                this.firstNote = true;
-            } else {
-                this.ShowIntroBtn = false;
-                this.firstNote = false;
-            }
-            if (this.film.currentTime != 0) {
-                this.createCookie(this.$props.id, this.film.currentTime, 10);
-            }
-            if (this.film.currentTime > (this.$props.runtime / 2 * 60) && this.notesdone != true) {
-                if (this.secondNote == false) {}
-                this.secondNote = true;
-            }
-            this.timer = setTimeout(() => {
-                this.ShowIntroBtn = false;
-            }, 120000);
-        },
-        skip() {
-            this.film.currentTime = 120;
-            this.ShowIntroBtn = false;
         },
         seassonCount(c) {
             var count = 1;
@@ -402,7 +372,7 @@ export default {
                 });
         },
         VideoClose() {
-            this.film.pause();
+            // this.film.pause();
         },
         getReleaseDate(date) {
             var currentTime = new Date(date);
@@ -497,12 +467,6 @@ export default {
         input {
             width: 60px;
         }
-    }
-
-    .plyr video {
-        width: 100%;
-        border-radius: 20px;
-         object-fit: contain;
     }
 }
 </style>

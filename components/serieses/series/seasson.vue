@@ -81,14 +81,12 @@
                         </div>
                     </div>
                     <!-- Movie Player -->
-                    <vue-plyr class="player-mov" ref="film" seektime="10" :title="title" :id="id" :options="playerOptions" @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata']">
-                        <video crossorigin="anonymous">
-                            <!-- Video Source -->
-                            <source v-for="video in episodes[0].links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
-                            <!-- Video Subtitles -->
-                            <track v-for="(subtitle, index) in episodes[0].subtitles" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == episodes[0].subtitles.length - 2}">
-                        </video>
-                    </vue-plyr>
+                       <MoviePlayer :id="id" :title="title" :poster="GetPoster(seasons[0].posters)" :links="episodes[0].links" :subtitles="episodes[0].subtitles"></MoviePlayer>
+                    <div class="others">
+                      
+                        <nuxt-link v-if="GetPerv(episodes) != '#'" :to="'../episode/' + GetPerv(episodes)"> الحلقة السابقة</nuxt-link>
+                        <nuxt-link v-if="GetNext(episodes) != '#'" :to="'../episode/' + GetNext(episodes)">الحلقة التالية</nuxt-link>
+                    </div>
                 </div>
                 <!-- Download -->
                 <div :class="{ col_show : active == 'download' , col_hide : active != 'download' }" id="download">
@@ -297,13 +295,15 @@ import SeriesItem from '~/components/SeriesItem.vue';
 import Epsitem from '~/components/Epsitem.vue';
 import bugs from '~/components/bugs.vue';
 import gql from 'graphql-tag';
+import MoviePlayer from "~/components/MoviePlayer.vue";
 export default {
     components: {
         TrailerItem,
         resultNotFound,
         SeriesItem,
         Epsitem,
-        bugs
+        bugs,
+        MoviePlayer
     },
     data: function () {
         return {
@@ -317,14 +317,14 @@ export default {
             timer: null,
             swiperOption: {
                 slidesPerView: 4,
-                spaceBetween: 4,
+                spaceBetween: 40,
                 navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev'
                 },
                 breakpoints: {
                     1024: {
-                        slidesPerView: 5,
+                        slidesPerView: 4,
                         spaceBetween: 40
                     },
                     768: {
@@ -364,16 +364,28 @@ export default {
     },
     mounted() {
         this.handleSearch();
-        this.film = this.$refs.film.player;
+        // this.film = this.$refs.film.player;
     },
     methods: {
-        loadeddata() {
-            if (this.readCookie(this.$props.id) != 0) {
-                var time = parseInt(this.readCookie(this.$props.id));
-                this.timer = setTimeout(() => {
-                    this.film.currentTime = time;
-                }, 2000);
+          GetNext(series) {
+            var Currindex = series.findIndex(x => x.id === this.$props.id);
+            if (Currindex + 1 < series.length) {
+                var Next = series[Currindex + 2];
+                return Next.id;
+            } else {
+                return "#";
             }
+
+        },
+        GetPerv(series) {
+            var Currindex = series.findIndex(x => x.id === this.$props.id);
+            if (Currindex - 1 > 0) {
+                var Next = series[Currindex - 1];
+                return Next.id;
+            } else {
+                return "#";
+            }
+
         },
         LinkToken(path) {
             var crypto = require('crypto');
@@ -454,7 +466,7 @@ export default {
                 })
         },
         VideoClose() {
-            this.film.pause();
+            // this.film.pause();
         },
         CloseNote(num) {
             this.firstNote = false;

@@ -17,6 +17,7 @@ import nuxt_plugin_apollomodule_6283b7eb from 'nuxt_plugin_apollomodule_6283b7eb
 import nuxt_plugin_vueplyr_9db9a11c from 'nuxt_plugin_vueplyr_9db9a11c' // Source: ..\\plugins\\vue-plyr (mode: 'all')
 import nuxt_plugin_swiper_3a1c5924 from 'nuxt_plugin_swiper_3a1c5924' // Source: ..\\plugins\\swiper (mode: 'client')
 import nuxt_plugin_lazyload_af447860 from 'nuxt_plugin_lazyload_af447860' // Source: ..\\plugins\\lazyload (mode: 'client')
+import nuxt_plugin_nuxtvideoplayerplugin_23912ada from 'nuxt_plugin_nuxtvideoplayerplugin_23912ada' // Source: ..\\plugins\\nuxt-video-player-plugin (mode: 'client')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -191,6 +192,10 @@ async function createApp (ssrContext) {
 
   if (process.client && typeof nuxt_plugin_lazyload_af447860 === 'function') {
     await nuxt_plugin_lazyload_af447860(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_nuxtvideoplayerplugin_23912ada === 'function') {
+    await nuxt_plugin_nuxtvideoplayerplugin_23912ada(app.context, inject)
   }
 
   // If server-side, wait for async component to be resolved first

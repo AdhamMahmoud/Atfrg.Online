@@ -75,7 +75,7 @@
             <!-- Result -->
             <div v-else-if="data && data.tvSerieses.length > 0 && data.tvSerieses[0].seasons.length > 0">
                 <!-- Container End -->
-                <Singleepisode v-for="episode in data.tvSerieses[0].seasons[0].episodes" :key="episode.id" :id="episode.id" :order="episode.order" :title="episode.title" :season="data.tvSerieses[0].seasons" :Series="data.tvSerieses[0]" :poster="data.tvSerieses[0].seasons[0].posters" :videoQualities="episode.videoQualities[0]" :runtime="episode.runtime" :epLinks="episode.links" :subtitles="episode.subtitles" />
+                <Singleepisode v-for="episode in data.tvSerieses[0].seasons[0].episodes" :key="episode.id" :imdbId="data.tvSerieses[0].seasons[0].imdbId" :id="episode.id" :order="episode.order" :title="episode.title" :season="data.tvSerieses[0].seasons" :Series="data.tvSerieses[0]" :poster="data.tvSerieses[0].seasons[0].posters" :videoQualities="episode.videoQualities[0]" :runtime="episode.runtime" :epLinks="episode.links" :subtitles="episode.subtitles" />
                 <!-- No result -->
             </div>
             <div v-else class="no-result apollo">

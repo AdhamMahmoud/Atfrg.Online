@@ -68,33 +68,10 @@
                     <iframe  class="player-mov player-trailer" v-if="active == 'trailer'" :src="'https://www.youtube.com/embed/'+trailer"> </iframe>                
               </div>
                 <!-- Movie -->
-                <div :class="{ col_show : active == 'movie' , col_hide : active != 'movie' }" id="movie">
+                <div v-if="active == 'movie' " :class="{ col_show : active == 'movie' , col_hide : active != 'movie' }" id="movie">
                     <!-- Movie Player -->
-                    <div class="chat chat-video" v-if="firstNote">
-                        <div class="mine messages">
-                            <div class="message last">
-                                <p> جهزت فشارك والحاجة ال هتشربها 😋 ؟</p>
-                                <button @click="CloseNote">كلو تمام</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat chat-video" v-if="secondNote">
-                        <div class="mine messages">
-                            <div class="message last">
-                                <p>خد بريك كدا ادخل الحمام وحات حاجة تشربها ✌️❤️</p>
-                                <button @click="CloseNote(2)">تمام</button>
-                            </div>
-                        </div>
-                    </div>
-                    <vue-plyr class="player-mov" ref="film" seektime="10" :title="title" :poster="poster" :id="id" :options="playerOptions" @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata']">
-
-                        <video crossorigin="anonymous">
-                            <!-- Video Source -->
-                            <source v-for="video in movLinks" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
-                            <!-- Video Subtitles -->
-                            <track v-for="(subtitle, index) in subtitles" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == subtitles.length - 2}">
-                        </video>
-                    </vue-plyr>
+                  
+                    <MoviePlayer :id="id" :title="title" :poster="GetPoster(poster)" :links="movLinks" :subtitles="subtitles"></MoviePlayer>
 
                 </div>
                 <!-- Download -->
@@ -216,6 +193,7 @@
 
 <script>
 import resultNotFound from "~/components/resultNotFound.vue";
+import MoviePlayer from "~/components/MoviePlayer.vue";
 import TrailerItem from "~/components/TrailerItem.vue";
 import bugs from "~/components/bugs.vue";
 import gql from "graphql-tag";
@@ -233,7 +211,8 @@ export default {
     components: {
         TrailerItem,
         resultNotFound,
-        bugs
+        bugs,
+        MoviePlayer
     },
       head(){
     return{
@@ -307,7 +286,7 @@ export default {
     },
     mounted() {
         this.handleSearch();
-        this.film = this.$refs.film.player;
+        // this.film = this.$refs.film.player;
         // this.e3lan = this.$refs.e3lan.player;
         this.WatchCount();
     },
@@ -449,7 +428,7 @@ export default {
                 });
         },
         VideoClose() {
-            this.film.pause();
+            // this.film.pause();
             // this.e3lan.pause();
         },
 
@@ -552,18 +531,7 @@ export default {
     //   width: 100%;
     // }
 
-    .plyr__volume {
-        input {
-            width: 60px;
-        }
-    }
-
-    .plyr video {
-        width: 100%;
-        border-radius: 20px;
-        object-fit: contain;
-    }
-
+ 
     .same-movies {
         padding: 0 10px;
     }

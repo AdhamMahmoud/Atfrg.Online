@@ -70,6 +70,13 @@ import SeriesItem from "~/components/SeriesItem.vue";
 import filters from "~/components/serieses/filters";
 import gql from 'graphql-tag';
 export default {
+        head: {
+     title:"مشاهدة وتحميل مسلسلات مترجمة مجانا - اتفرج اون لاين مشاهدة افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online ",
+     meta:[
+        {  name: 'description', content:  "مشاهدة ومتحميل مباشر افلام و مسلسلات وانمي بجودة عالية مترجمة - اتفرج اون لاين - بدون اعلانات"},
+          {  name: 'keywords', content:  "مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل "}
+     ]
+  },
     data: function () {
         return {
             items: 12,

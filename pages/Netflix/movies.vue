@@ -69,8 +69,12 @@ import TrailerItem from "~/components/TrailerItem.vue";
 import filters from "~/components/movies/genre/filters";
 import gql from 'graphql-tag';
 export default {
-     head: {
-     title:"افلام مترجمة - اتفرج اون لاين مشاهدة افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online ",
+        head: {
+     title:"مشاهدة وتحميل افلام NetFlix مترجمة مجانا - اتفرج اون لاين مشاهدة افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online ",
+     meta:[
+        {  name: 'description', content:  "مشاهدة ومتحميل مباشر افلام و مسلسلات وانمي بجودة عالية مترجمة - اتفرج اون لاين - بدون اعلانات"},
+          {  name: 'keywords', content:  "مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل "}
+     ]
   },
     data: function () {
         return {

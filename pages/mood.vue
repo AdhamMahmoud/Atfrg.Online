@@ -11,7 +11,7 @@
 
         <div class="row items">
             <div v-for="movie in randoms" :key="movie.id" class="col-xl-3 col-lg-3 col-md-3 col-12 global-item">
-                <TrailerItem :id="movie.id" :title="movie.title" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :run="false" />
+                <TrailerItem :id="movie.id" :title="movie.title" :imdbId="movie.imdbId" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :run="false" />
             </div>
         </div>
         <!-- Container End -->
@@ -24,9 +24,13 @@ import resultNotFound from "~/components/resultNotFound";
 import TrailerItem from "~/components/TrailerItem.vue";
 import gql from 'graphql-tag';
 export default {
-    head: {
-        title: "اتفرج اون لاين مشاهدة افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online ",
-    },
+        head: {
+     title:"    عجلة الافلام - اتفرج اون لاين مشاهدة افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online ",
+     meta:[
+        {  name: 'description', content:  "مشاهدة ومتحميل مباشر افلام و مسلسلات وانمي بجودة عالية مترجمة - اتفرج اون لاين - بدون اعلانات"},
+          {  name: 'keywords', content:  "مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل "}
+     ]
+  },
     data: function () {
         return {
             items: 12,
@@ -52,6 +56,7 @@ export default {
                     audience
                     trailerPath
                     movieQuality
+                    imdbId
                     videoQualities
                     runtime
                     genres {

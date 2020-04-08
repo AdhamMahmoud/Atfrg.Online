@@ -28,9 +28,9 @@
                         <li> <span>تاريخ الاصدار</span><i class="fas fa-angle-double-left"></i> <span>{{ getReleaseDate( Series.releaseDate) }}</span></li>
                         <li> <span>الجمهور</span><i class="fas fa-angle-double-left"></i> <span>{{ getaudience(Series.audience) }}</span></li>
                         <!-- <li> <span>المدة</span> <i class="fas fa-angle-double-left"></i><span>{{ getRunTime(runtime) }} </span></li> -->
-                        <li> <span>الجودة</span><i class="fas fa-angle-double-left"></i> <span>{{ videoQualities }}</span></li>
+                        <li> <span>الجودة</span><i class="fas fa-angle-double-lefft"></i> <span>{{ videoQualities }}</span></li>
                         <li> <span>النوع</span><i class="fas fa-angle-double-left"></i> <span>{{ films.Genre }}</span></li>
-                        <li v-if="handleSearch"> <span>التقيم</span><i class="fas fa-angle-double-left"></i> <span> 10 / {{ films.imdbRating }} ( {{ films.imdbVotes }} شخص)</span></li>
+                        <li> <span>التقيم</span><i class="fas fa-angle-double-left"></i> <span> 10 / {{ films.imdbRating }} ( {{ films.imdbVotes }} شخص)</span></li>
                         <li> <span>الترجمة</span><i class="fas fa-angle-double-left"></i>
                             شكر خاص لـ
                             <span>
@@ -70,36 +70,63 @@
                 </div>
                 <!-- Movie -->
                 <div :class="{ col_show : active == 'movie' , col_hide : active != 'movie' }" id="movie">
-                    <div class="chat chat-video" v-if="firstNote">
-                        <div class="mine messages">
-                            <div class="message last">
-                                <p> جهزت فشارك والحاجة ال هتشربها 😋 ؟</p>
-                                <button @click="CloseNote">كلو تمام</button>
+                      <MoviePlayer :id="id" :title="title" :poster="GetPoster(poster)" :links="epLinks" :subtitles="subtitles"></MoviePlayer>
+                   
+                      <ApolloQuery :query="gql => gql`
+                  query gettvSeries($id:ID!) {
+                      seasons(orderBy:order_DESC, where: {episodes_some:{id:$id}}){
+                       episodes(orderBy:order_DESC, where: {isPublished: true}) {
+                          id
+                          title
+                          order
+                          runtime
+                          isPublished
+                          posters {
+                            size
+                            path
+                          }
+                          videoQualities
+                          subtitles {
+                            id
+                            path
+                            name
+                            lang{
+                              id
+                              name
+                            }
+                          }
+                          links {
+                            id
+                            path
+                            quality
+                          }
+                          slug
+                        }
+                    }
+                  }
+                    `" :variables="{ id: $route.params.id }">
+                        <template v-slot="{ result: { loading, error, data } }">
+                            <!-- Loading -->
+                            <div v-if="loading" class="loading apollo">Loading...</div>
+                            <!-- Error -->
+                            <div v-else-if="error" class="error apollo">
+                                <resultNotFound />
                             </div>
-                        </div>
-                    </div>
-                    <div class="chat chat-video" v-if="secondNote">
-                        <div class="mine messages">
-                            <div class="message last">
-                                <p>خد بريك كدا ادخل الحمام وحات حاجة تشربها ✌️❤️</p>
-                                <button @click="CloseNote(2)">تمام</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Movie Player -->
-                    <vue-plyr class="player-mov" ref="episode" seektime="10" :title="title" :id="id" :options="playerOptions" @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata']">
-                        <video crossorigin="anonymous">
-                            <!-- Video Source -->
-                            <source v-for="video in epLinks" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
-                            <!-- Video Subtitles -->
-                            <track v-for="(subtitle, index) in subtitles" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == subtitles.length - 2}">
-                        </video>
-                    </vue-plyr>
+                            <!-- Result -->
+                            <div v-else-if="data && data.seasons[0].episodes.length > 0">
+                                <!-- Container End -->
+                                 <div class="others">
+                      
+                                 <nuxt-link v-if="GetNext(data.seasons[0]) != '#'" :to="GetNext(data.seasons[0])">الحلقة السابقة</nuxt-link>
+                                <nuxt-link v-if="GetPerv(data.seasons[0]) != '#'" :to="GetPerv(data.seasons[0])"> الحلقة التالية</nuxt-link>
+                                </div>
 
-                    <!-- <div v-if="season != null" class="others">
-                        <nuxt-link v-if="GetPerv(season) != '#'" :to="GetPerv(season)"> الحلقة السابقة</nuxt-link>
-                        <nuxt-link v-if="GetNext(season) != '#'" :to="GetNext(season)">الحلقة التالية</nuxt-link>
-                    </div> -->
+                            </div>
+                            <div v-else class="no-result apollo">
+                                <resultNotFound />
+                            </div>
+                        </template>
+                    </ApolloQuery>
 
                 </div>
                 <!-- Download -->
@@ -202,12 +229,12 @@
                                 <resultNotFound />
                             </div>
                             <!-- Result -->
-                            <div v-else-if="data && data.seasons.length > 0" class="same-movies Slider-block">
+                            <div v-else-if="data && data.seasons[0].episodes.length > 0" class="same-movies Slider-block">
                                 <!-- Container End -->
                               <div v-swiper:mySwiperOnrra="swiperOption" class="my-swiper">
                                 <div class="swiper-wrapper">
                                     <div v-for="episode in data.seasons[0].episodes" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
-                                        <Epsitem :id="episode.id" :title="episode.title" :order="episode.order" :poster="GetPoster(Series.seasons.find(title => title == title).posters)" :genres="Series.genres" :audience="Series.audience" path="/series/episode/" />
+                                        <Epsitem :id="episode.id" :title="episode.title" :order="episode.order" :poster="GetPoster(poster)" :genres="Series.genres" :audience="Series.audience" path="/series/episode/" />
                                     </div>
                                 </div>
                                 <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>
@@ -268,8 +295,8 @@
                                 <!-- Container End -->
                                 <div v-swiper:mySwiperOnw2="swiperOption" class="my-swiper">
                                     <div class="swiper-wrapper">
-                                        <div v-for="season in data.tvSerieses[0].seasons" :key="season.id" :class="[{ poster_over : overId == season.id }, 'swiper-slide' ]" @mouseover="itemOver(season.id)" @mouseleave="itemNotOver">
-                                            <SeriesItem :id="season.id" :title="season.title" :poster=" GetPoster(season.posters)" :genres="Series.genres" :audience="Series.audience" :seasons="season.episodes" path="/series/season/" />
+                                        <div v-for="seasonb in data.tvSerieses[0].seasons" :key="seasonb.id" :class="[{ poster_over : overId == seasonb.id }, 'swiper-slide' ]" @mouseover="itemOver(seasonb.id)" @mouseleave="itemNotOver">
+                                            <SeriesItem :id="seasonb.id" :title="seasonb.title" :poster=" GetPoster(seasonb.posters)" :genres="Series.genres" :audience="Series.audience" :seasons="seasonb.episodes" path="/series/season/" />
                                         </div>
                                     </div>
                                     <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>
@@ -294,6 +321,7 @@ import resultNotFound from "~/components/resultNotFound.vue";
 import SeriesItem from '~/components/SeriesItem.vue';
 import Epsitem from '~/components/Epsitem.vue';
 import bugs from '~/components/bugs.vue';
+import MoviePlayer from "~/components/MoviePlayer.vue";
 export default {
     data: function () {
         return {
@@ -310,14 +338,14 @@ export default {
             timer: null,
             swiperOption: {
                 slidesPerView: 4,
-                spaceBetween: 4,
+                spaceBetween: 40,
                 navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev'
                 },
                 breakpoints: {
                     1024: {
-                        slidesPerView: 5,
+                        slidesPerView: 4,
                         spaceBetween: 40
                     },
                     768: {
@@ -346,6 +374,7 @@ export default {
         epLinks: Array,
         order:Number,
         Series:Object,
+        imdbId:String,
         videoQualities: String
     },
     apollo: {
@@ -408,17 +437,18 @@ export default {
         SeriesItem,
         resultNotFound,
         Epsitem,
+        MoviePlayer,
         bugs
     },
     head() {
         return {
-            title: "مشاهدة وتحميل " + this.$props.title + " مسلسل  " + this.$props.season.title + " - Atfrg.Online  اتفرج اون لاين",
+            title: "مشاهدة وتحميل " + this.$props.title + " مسلسل  " + this.$props.season[0].title + " - Atfrg.Online  اتفرج اون لاين",
             meta: [
                 // hid is used as unique identifier. Do not use `vmid` for it as it will not work
                 {
                     hid: 'description',
                     name: 'description',
-                    content: "مشاهدة " + this.$props.title + " مسلسل مترجم اون لاين بجودة عالية -  Atfrg.Online  اتفرج اون لاين" || ""
+                    content: "مشاهدة وتحميل " + this.$props.title + " مسلسل  " + this.$props.season[0].title + " - Atfrg.Online  اتفرج اون لاين" || ""
                 },
                 {
                     hid: 'keywords',
@@ -461,24 +491,14 @@ export default {
         }
 
     },
-    created() {
-        this.handleSearch();
-    },
-    mounted() {
-        this.handleSearch();
+    mounted(){
+     this.handleSearch(this.$props.imdbId);
     },
     methods: {
-        loadeddata() {
-            if (this.readCookie(this.$props.id) != 0) {
-                var time = parseInt(this.readCookie(this.$props.id));
-                this.timer = setTimeout(() => {
-                    this.$refs.episode.player.currentTime = time;
-                }, 2000);
-            }
-        },
+ 
         GetNext(series) {
             var Currindex = series.episodes.findIndex(x => x.id === this.$props.id);
-            if (Currindex + 1 < series.episodes.length) {
+            if (Currindex + 1  < series.episodes.length) {
                 var Next = series.episodes[Currindex + 1];
                 return Next.id;
             } else {
@@ -488,7 +508,7 @@ export default {
         },
         GetPerv(series) {
             var Currindex = series.episodes.findIndex(x => x.id === this.$props.id);
-            if (Currindex - 1 > 0) {
+            if (Currindex - 1 >= 0) {
                 var Next = series.episodes[Currindex - 1];
                 return Next.id;
             } else {
@@ -545,23 +565,18 @@ export default {
             this.overId = 0;
             clearTimeout(this.timer);
         },
-        handleSearch() {
+        handleSearch(id) {
             this.films = [];
-            if (this.tvSerieses.length > 0) {
-                fetch('https://www.omdbapi.com/?i=' + this.$props.season.imdbId + '&apikey=bf7293bf')
+                fetch('https://www.omdbapi.com/?i=' + id + '&apikey=bf7293bf')
                     .then((res) => {
                         return res.json()
                     })
                     .then((res) => {
                         this.films = res;
-                        return true;
                     })
-            }
-            return false;
-
         },
         VideoClose() {
-            this.$refs.episode.player.pause();
+            // this.$refs.episode.player.pause();
         },
         CloseNote(num) {
             this.firstNote = false;

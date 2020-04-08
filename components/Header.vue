@@ -34,8 +34,8 @@
                     <i class="fas fa-bars fa-lg"></i>
                 </button>
                 <!-- Header Logo -->
-                <nuxt-link to="/" exact class="navbar-brand">
-                <img class="atfrg-logo" src="~/assets/images/logo.svg" alt="Atfrg.online">
+                <nuxt-link to="/" exact class="navbar-brand" title="logo">
+                <img class="atfrg-logo" src="~/assets/images/logo.svg" alt="logo" title="logo">
                 </nuxt-link>
                 <!-- Header List -->
                 <div :class="['collapse navbar-collapse', {'show scale-in-center' : mobMenu}]" id="navbarSupportedContent">
