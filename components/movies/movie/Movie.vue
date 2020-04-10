@@ -95,7 +95,7 @@
                                 <th scope="row">1</th>
                                 <td>{{video.quality.replace('Q','')}}</td>
                                 <td>
-                                    <a :href="LinkToken(validLink(video.path))">تحميل</a>
+                                    <a :href="LinkToken(validLink(video.path)) " download>تحميل</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -113,7 +113,7 @@
                                 <th scope="row">{{subtitle.lang.name}}</th>
                                 <td>{{subtitle.name }}</td>
                                 <td>
-                                    <a :href="LinkToken(subtitle.path)">تحميل</a>
+                                    <a :href="LinkToken(validLink(subtitle.path))" download>تحميل</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -147,6 +147,7 @@
                         audience
                         trailerPath
                         movieQuality
+                        imdbId
                         videoQualities
                         runtime
                         genres {
@@ -171,7 +172,7 @@
                                 <div v-swiper:mySwiper2="swiperOption" class="my-swiper">
                                     <div class="swiper-wrapper">
                                         <div v-for="movie in data.movies" :key="movie.id" :class="['swiper-slide' , { poster_over : overId == movie.id }, ]" @mouseover="itemOver(movie.id)" @mouseleave="itemNotOver">
-                                            <TrailerItem :id="movie.id" :title="movie.title" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" @mouseleave="itemNotOver" :run="true" />
+                                            <TrailerItem :id="movie.id" :title="movie.title" :imdbId="movie.imdbId" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" @mouseleave="itemNotOver" :run="true" />
                                         </div>
                                     </div>
                                     <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>
@@ -239,7 +240,7 @@ export default {
             timer: null,
             swiperOption: {
                 slidesPerView: 4,
-                spaceBetween: 5,
+                spaceBetween: 10,
                 navigation: {
                     nextEl: ".swiper-button-next",
                     prevEl: ".swiper-button-prev"

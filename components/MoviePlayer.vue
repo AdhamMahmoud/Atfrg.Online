@@ -1,21 +1,5 @@
 <template>
 <div>
-  <!-- <div class="chat chat-video" v-if="firstNote"> -->
-                        <!-- <div class="mine messages">
-                            <div class="message last">
-                                <p> جهزت فشارك والحاجة ال هتشربها 😋 ؟</p>
-                                <button @click="CloseNote">كلو تمام</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat chat-video" v-if="secondNote">
-                        <div class="mine messages">
-                            <div class="message last">
-                                <p>خد بريك كدا ادخل الحمام وحات حاجة تشربها ✌️❤️</p>
-                                <button @click="CloseNote(2)">تمام</button>
-                            </div>
-                        </div>
-                    </div> -->
     <vue-plyr class="player-mov" ref="film" seektime="10" :title="title" :id="id" :options="playerOptions" @enterfullscreen="enterfullscreen"  @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
         <video  :poster="poster" crossorigin="anonymous">
             <!-- Video Source -->
@@ -38,6 +22,7 @@ export default {
             notesdone:false,
             firstNote:null,
             SecoNote:null,
+            logo:null
 
         }
     },
@@ -79,7 +64,7 @@ export default {
         this.loader = document.createElement("i");
         this.loader.classList.add("video-loader");
         this.loader.innerHTML =
-            '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style=" display: block; shape-rendering: auto;" width="50px" height="50px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><circle cx="50" cy="50" fill="none" stroke="#93dbe9" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138" transform="rotate(53.2159 50 50)"><animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>  </circle></svg>';
+            '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style=" display: block; shape-rendering: auto;" width="50px" height="50px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><circle cx="50" cy="50" fill="none" stroke="#fff" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138" transform="rotate(53.2159 50 50)"><animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>  </circle></svg>';
         list.parentNode.insertBefore(this.loader, list.nextSibling);
 
         // Create Notes .1
@@ -119,6 +104,16 @@ export default {
         text2.innerHTML = 'خد بريك كدا ادخل الحمام وحات حاجة تشربها ✌️❤️';
         mine2.appendChild(text2); 
         this.SecoNote.style.display = 'none';
+        if(this.$props.subtitles.length > 0){
+            if(this.$props.subtitles[0].path.length > 5){
+
+                this.logo = document.createElement("img");
+                this.logo.classList.add("video-logo");
+                this.logo.src = "/_nuxt/assets/images/logo.png";
+                list.parentNode.insertBefore(this.logo, list.nextSibling);
+         }
+        }
+
     },
     methods: {
         validLink(path) {
@@ -150,17 +145,23 @@ export default {
 
         },
         enterfullscreen() {
-            if(window.innerWidth < 600){
-                   screen.orientation.lock('landscape');
+            if(window.innerWidth < 800){
+                screen.orientation.lock("natural");
+                screen.orientation.lock("portrait-primary");
+                screen.msLockOrientation.lock("landscape");
+                screen.mozLockOrientation.lock("landscape");
+                screen.orientation.lock('landscape');
             }
         },
         loadeddata() {
-              this.FirstNote.style.display = 'block';
+            this.FirstNote.style.display = 'block';
             if (this.readCookie(this.$props.id) != 0) {
                 var time = parseInt(this.readCookie(this.$props.id));
-                this.timer = setTimeout(() => {
+                if(time != 0){
+                    this.timer = setTimeout(() => {
                     this.film.currentTime = time;
                 }, 1200);
+                }
             }
         },
         nowPlaying() {
@@ -287,6 +288,18 @@ export default {
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     z-index: 2;
+    background-color: transparent !important;
+}
+.video-logo {
+    border: 0;
+    color: #fff;
+    position: absolute;
+    z-index: 2;
+    height: auto;
+    width: 110px;
+    z-index: 9999;
+    top:5%;
+    left:5%;
     background-color: transparent !important;
 }
 

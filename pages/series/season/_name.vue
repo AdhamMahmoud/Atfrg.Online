@@ -33,7 +33,7 @@
                             size
                             path
                           }
-                          episodes {
+                          episodes(orderBy:order_DESC, where:{isPublished: true}) {
                           id
                           title
                           runtime

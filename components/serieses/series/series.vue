@@ -90,6 +90,7 @@
                                 <th scope="row">1</th>
                                 <td>{{video.quality.replace('Q','')}}</td>
                                 <td><a :href="LinkToken(validLink(video.path))">تحميل</a></td>
+                                
                             </tr>
                         </tbody>
                     </table>
@@ -105,7 +106,7 @@
                             <tr v-for="subtitle in seasons[0].episodes[0].subtitles" :key="subtitle.id">
                                 <th scope="row">{{subtitle.lang.name}}</th>
                                 <td>{{subtitle.name }}</td>
-                                <td><a :href="LinkToken(subtitle.path)">تحميل</a></td>
+                                <td><a :href="LinkToken(validLink(subtitle.path))">تحميل</a></td>
                             </tr>
                         </tbody>
                     </table>

@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="loading-page">
-   <img class="atfrg-logo" src="~/assets/images/FullLogo.svg" alt="Atfrg.online">
+   <img class="atfrg-logo" src="~/assets/images/FullLogo.png" alt="Atfrg.online">
   </div>
 </template>
 
@@ -36,7 +36,7 @@ export default {
   img{
       height:200px;
       -webkit-animation: slide-in-fwd-top 1.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: slide-in-fwd-top 1.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	      animation: slide-in-fwd-top 1.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 }
 @media (max-width:500px) {

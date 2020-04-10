@@ -11,7 +11,7 @@
         </div>
         <div class="Fast-Search" v-if="SearchVal == true">
             <ul class="search-result">
-                <li v-for="(item,index) in Search" :key="item.id" @click="EndSearch(true)">
+                <li v-for="(item,index) in Search" :key="item.id" @click="EndSearch(true,'/movie/' +  item.title)">
                     <nuxt-link v-if="types[index] == 1" :to="'/movie/' +  item.title">
                         <span class="title">{{ item.title + " (" + GetYear(item.releaseDate) + ")" }}</span>
                         <img :src="GetPoster(item.posters)" :alt="item.title">
@@ -106,11 +106,15 @@ export default {
                 this.SearchVal = false;
             }
         },
-        EndSearch(clean = false) {
+        EndSearch(clean = false, path = null) {
             this.SearchVal = false;
             if (clean == true) {
                 this.Searchtitle = "";
             }
+            if(path != null){
+                 this.$router.push(path);
+            }
+          
         }
     },
     computed: {

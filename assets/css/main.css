@@ -437,8 +437,12 @@ html {
 .sub-head-mob {
   display: none; }
 
+.top-swtich {
+  padding: 7px;
+  float: left; }
+
 .pc-hidden {
-  display: none; }
+  display: none !important; }
 
 .item-slide {
   -webkit-animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
@@ -1235,6 +1239,7 @@ i {
 .Single-Movie,
 .Single-Series,
 .episode {
+  min-height: 94vh;
   margin: 20px 0;
   text-align: right;
   direction: rtl;
@@ -1270,7 +1275,8 @@ i {
   .Single-Series .chat-video,
   .episode .chat-video {
     bottom: 10rem;
-    right: 2rem; }
+    right: 2rem;
+    z-index: 1; }
     .Single-Movie .chat-video .mine .message.last:after,
     .Single-Series .chat-video .mine .message.last:after,
     .episode .chat-video .mine .message.last:after {
@@ -1537,11 +1543,12 @@ i {
       color: red; }
   #download .table {
     border: 2px solid #eaeaea; }
-    #download .table a {
+    #download .table a, #download .table button {
       background-color: #008dff;
       padding: 5px 1rem;
       color: #fff;
       display: block;
+      border: none;
       border-radius: 5px;
       text-decoration: none;
       border: 1px solid #008dff;
@@ -1551,7 +1558,7 @@ i {
       -moz-transition: 0.4s ease-in-out;
       -o-transition: 0.4s ease-in-out;
       transition: 0.4s ease-in-out; }
-      #download .table a:hover {
+      #download .table a:hover, #download .table button:hover {
         background-color: #fff;
         border: 1px solid #FFD700;
         color: #000;
@@ -1784,11 +1791,14 @@ i {
   background-color: #0F0F0F;
   transition: 1s ease-in-out;
   color: #008dff;
+  min-height: 100vh;
   /* Headers */
   /* Home */
   /* Sections */
   /* Footer */ }
   .darkMod .chat .mine .message.last:after {
+    background-color: #0F0F0F; }
+  .darkMod .home-slider {
     background-color: #0F0F0F; }
   .darkMod a {
     color: #fff !important;
@@ -1975,6 +1985,10 @@ i {
     background-image: none;
     background-color: #090a1f; }
 
+.Single-Movie .others a, .Single-Series .others a, .episode .others a {
+  box-shadow: none;
+  border: 2px solid #2c2c2c; }
+
 /* === Header === */
 @media (min-width: 1200px) {
   .header .navbar-nav .nav-item {
@@ -2017,11 +2031,30 @@ i {
   .mobile-hidden {
     display: none !important; } }
 @media (min-width: 225px) and (max-width: 576px) {
-  .plyr__volume input {
+  .item-slide .overlay {
+    display: block !important;
+    background-image: linear-gradient(to bottom, rgba(29, 29, 29, 0), #011025); }
+
+  .item-slide .overlay .information {
+    text-align: center; }
+
+  .Single-Movie .plyr__volume input, .Single-Series .plyr__volume input, .episode .plyr__volume input {
     width: 30px  !important; }
 
   .plyr video {
     min-height: 400px; }
+
+  .plyr--airplay-supported [data-plyr=airplay], .plyr--captions-enabled [data-plyr=captions], .plyr--pip-supported [data-plyr=pip] {
+    display: none; }
+
+  .plyr__controls > .plyr__control:first-child, .plyr__controls > .plyr__control:first-child + [data-plyr=pause] {
+    display: none; }
+
+  .plyr__controls .plyr__menu + .plyr__control, .plyr__controls {
+    display: none; }
+
+  .plyr--video .plyr__time {
+    display: none; }
 
   .mobile-hidden {
     display: none !important; }
@@ -2048,7 +2081,7 @@ i {
     padding: 1rem 0; }
 
   .pc-hidden {
-    display: block; }
+    display: block !important; }
     .pc-hidden .toggle {
       padding: 10px;
       float: right; }

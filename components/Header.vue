@@ -6,13 +6,21 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6 col-12">
-                    <ul class="contact-us">
-                        <li><a style="color:#00CF91" href="#">طلبات الاضافة</a></li>
-                        <li><a style="color:#FE634E" href="#">سياسة الموقع</a></li>
-                        <li><a style="color:#FFDC00" href="#">اتصل بنا</a></li>
+                    <ul class="contact-us mobile-hidden">
+                        <li class="mobile-hidden"><a style="color:#00CF91" href="#">طلبات الاضافة</a></li>
+                        <li class="mobile-hidden"><a style="color:#FE634E" href="#">سياسة الموقع</a></li>
+                        <li class="mobile-hidden"><a style="color:#FFDC00" href="#">اتصل بنا</a></li>  
                     </ul>
+                <div class="toggle toggle--daynight top-swtich pc-hidden" id="darkss">
+                    <input @change="DarkMode()" type="checkbox" id="toggle--daynight2" class="toggle--checkbox">
+                    <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
                 </div>
-                <div class="col-md-6 col-12">
+                   <nuxt-link class="pc-hidden" to="/mood" style="padding: 7px;
+                float: right;
+                color: #fc0 !important;
+                font-size: 17px;">اختارلي ! </nuxt-link>
+                </div>
+                <div class="col-md-6 col-12 mobile-hidden">
                     <ul class="social">
                         <li><a href="#"> <i class="fab fa-facebook-f"></i></a></li>
                         <li><a href="#"> <i class="fab fa-instagram"></i></a></li>
@@ -35,7 +43,7 @@
                 </button>
                 <!-- Header Logo -->
                 <nuxt-link to="/" exact class="navbar-brand" title="logo">
-                <img class="atfrg-logo" src="~/assets/images/logo.svg" alt="logo" title="logo">
+                <img class="atfrg-logo" src="~/assets/images/logo.png" alt="logo" title="logo">
                 </nuxt-link>
                 <!-- Header List -->
                 <div :class="['collapse navbar-collapse', {'show scale-in-center' : mobMenu}]" id="navbarSupportedContent">
@@ -170,13 +178,6 @@
                                             الانمي
                                         </nuxt-link>
                                     </li>
-                                    <li class="nav-item pc-hidden" v-if="mobMenu">
-                                        <!-- Night Mode Switch -->
-                                        <div class="toggle toggle--daynight pc-hidden" id="darkss">
-                                            <input @change="DarkMode()" type="checkbox" id="toggle--daynight" class="toggle--checkbox">
-                                            <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
-                                        </div>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -185,7 +186,7 @@
 
                 <!-- Night Mode Switch -->
                 
-                <div class="toggle toggle--daynight mobile-hidden" id="darkss">
+                <div class="toggle toggle--daynight mobile-hidden" id="darkss2">
                     <input @change="DarkMode()" type="checkbox" id="toggle--daynight" class="toggle--checkbox">
                     <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
                 </div>
@@ -298,17 +299,21 @@ export default {
         }
     },
     beforeMount  () {
-  window.addEventListener('scroll', this.handleScroll);
-},
-beforeDestroy  () {
-  window.removeEventListener('scroll', this.handleScroll);
-},
+    window.addEventListener('scroll', this.handleScroll);
+    },
+    beforeDestroy  () {
+    window.removeEventListener('scroll', this.handleScroll);
+    },
     mounted() {
-        this.loading = true;
-         setTimeout(() => this.loading= false, 500);
-         console.log(this.readCookie("darkModeD"));
         if (this.readCookie("darkModeD") == "true" || this.readCookie("darkModeD") == null) {
+            if(window.innerWidth > 1000){
              document.getElementById("toggle--daynight").click(); 
+            }
+         
+             else{
+                  document.getElementById("toggle--daynight2").click(); 
+             }
+           
         } else {
             this.$emit("update:darkMode", false);
             this.darkModeD = false;

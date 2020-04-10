@@ -124,7 +124,7 @@
                             <tr v-for="subtitle in episodes[0].subtitles" :key="subtitle.id">
                                 <th scope="row">{{subtitle.lang.name}}</th>
                                 <td>{{subtitle.name }}</td>
-                                <td><a :href="LinkToken(subtitle.path)">تحميل</a></td>
+                                <td><a :href="LinkToken(validLink(subtitle.path))">تحميل</a></td>
                             </tr>
                         </tbody>
                     </table>

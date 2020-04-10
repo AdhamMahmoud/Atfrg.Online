@@ -36,9 +36,12 @@ html {
 .sub-head-mob {
     display: none;
 }
+.top-swtich{
+    padding: 7px;float: left;
+}
 
 .pc-hidden {
-    display: none;
+    display: none !important;
 }
 
 .item-slide {
@@ -1115,6 +1118,7 @@ $cloud-bgColor: #fff;
 .Single-Movie,
 .Single-Series,
 .episode {
+    min-height: 94vh;
     margin: 20px 0;
     text-align: right;
     direction: rtl;
@@ -1157,6 +1161,7 @@ $cloud-bgColor: #fff;
     .chat-video {
         bottom: 10rem;
         right: 2rem;
+        z-index: 1;
 
         .mine .message.last:after {
             background: #000;
@@ -1403,11 +1408,12 @@ $cloud-bgColor: #fff;
     .table {
         border: 2px solid #eaeaea;
 
-        a {
+        a, button {
             background-color: $primary-color;
             padding: 5px 1rem;
             color: #fff;
             display: block;
+            border:none;
             border-radius: 5px;
             text-decoration: none;
             border: 1px solid $primary-color;
