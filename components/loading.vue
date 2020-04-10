@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="loading-page">
-   <img class="atfrg-logo" src="~/assets/images/FullLogo.png" alt="Atfrg.online">
+   <img class="atfrg-logo" src="~/assets/images/FullLogo.svg" alt="Atfrg.online">
   </div>
 </template>
 
