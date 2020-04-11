@@ -146,11 +146,9 @@ export default {
         },
         enterfullscreen() {
             if(window.innerWidth < 800){
-                screen.orientation.lock("natural");
-                screen.orientation.lock("portrait-primary");
+                screen.orientation.lock('landscape');
                 screen.msLockOrientation.lock("landscape");
                 screen.mozLockOrientation.lock("landscape");
-                screen.orientation.lock('landscape');
             }
         },
         loadeddata() {
