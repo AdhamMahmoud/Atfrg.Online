@@ -11,14 +11,11 @@
                         <li class="mobile-hidden"><a style="color:#FE634E" href="#">سياسة الموقع</a></li>
                         <li class="mobile-hidden"><a style="color:#FFDC00" href="#">اتصل بنا</a></li>  
                     </ul>
-                <div class="toggle toggle--daynight top-swtich pc-hidden" id="darkss">
-                    <input @change="DarkMode()" type="checkbox" id="toggle--daynight" class="toggle--checkbox">
-                    <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
-                </div>
-                   <nuxt-link class="pc-hidden" to="/mood" style="padding: 7px;
-                float: right;
-                color: #fc0 !important;
-                font-size: 17px;">اختارلي ! </nuxt-link>
+                    <div v-if="Size" class="toggle toggle--daynight top-swtich pc-hidden" id="darkss">
+                        <input @change="DarkMode()" type="checkbox" id="toggle--daynight" class="toggle--checkbox"/>
+                        <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
+                    </div>
+                   <nuxt-link class="pc-hidden" to="/mood" style="padding: 7px;  float: right;color: #fc0 !important;font-size: 17px;">اختارلي ! </nuxt-link>
                 </div>
                 <div class="col-md-6 col-12 mobile-hidden">
                     <ul class="social">
@@ -305,6 +302,8 @@ export default {
     window.removeEventListener('scroll', this.handleScroll);
     },
     mounted() {
+          if (process.client) {
+            if(window.innerWidth > 800){
         if (this.readCookie("darkModeD") == "true" || this.readCookie("darkModeD") == null) {
                  document.getElementById("toggle--daynight").click(); 
    
@@ -312,6 +311,8 @@ export default {
             this.$emit("update:darkMode", false);
             this.darkModeD = false;
         }
+            }
+          }
           if (this.readCookie("RemberChoose") == 0 &&  this.readCookie("RemberChoose") != null)
             {
               this.$store.commit('RemberChooseUpdate', true);
@@ -320,6 +321,25 @@ export default {
               this.$store.commit('RemberChooseUpdate', false);
             }
 
+    },
+    computed:{
+        Size(){
+            if (process.client) {
+            if(window.innerWidth < 800){
+                   this.timer = setTimeout(() => {
+                    if (this.readCookie("darkModeD") == "true" || this.readCookie("darkModeD") == null) {
+                 document.getElementById("toggle--daynight").click(); 
+   
+                } else {
+                    this.$emit("update:darkMode", false);
+                    this.darkModeD = false;
+                }
+                }, 500);
+                               
+                return true;
+            }}
+            return false;
+        }
     }
 };
 </script>

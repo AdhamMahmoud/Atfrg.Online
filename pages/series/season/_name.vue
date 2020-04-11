@@ -33,7 +33,7 @@
                             size
                             path
                           }
-                          episodes(orderBy:order_DESC, where:{isPublished: true}) {
+                          episodes(orderBy:order_ASC, where:{isPublished: true}) {
                           id
                           title
                           runtime

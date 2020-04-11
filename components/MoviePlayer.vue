@@ -15,6 +15,7 @@
 export default {
     data() {
         return {
+            Show:false,
             load: false,
             loader: null,
             film: null,
@@ -22,7 +23,8 @@ export default {
             notesdone:false,
             firstNote:null,
             SecoNote:null,
-            logo:null
+            logo:null,
+
 
         }
     },
@@ -58,7 +60,7 @@ export default {
             return options;
         }
     },
-    mounted() {
+    mounted() {    
         this.film = this.$refs.film.player;
         var list = document.getElementsByClassName("plyr__control--overlaid")[0];
         this.loader = document.createElement("i");
@@ -113,21 +115,24 @@ export default {
                 list.parentNode.insertBefore(this.logo, list.nextSibling);
          }
         }
-
     },
     methods: {
         validLink(path) {
+             console.log(path);
             var type = path.slice(-3).toLowerCase();
-            path = path.substring(0, path.length - 3) + type
+            path = path.substring(0, path.length - 3) + type;
+            console.log(path);
             return path;
         },
         LinkToken(path) {
+             console.log(path);
+            path = path.replace(/^\s+/g, '');
             var crypto = require('crypto');
             var securityKey = '6ecb7c25-9744-498a-a49b-ae4c7980c861';
             var newpath = path.substring(24, path.length);
             // Set the time of expiry to one hour from now
             var expires = Math.round(Date.now() / 1000) + 43200;
-
+             console.log(newpath);
             var hashableBase = securityKey + newpath + expires;
             // Generate and encode the token 
             var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
@@ -146,9 +151,16 @@ export default {
         },
         enterfullscreen() {
             if(window.innerWidth < 800){
-                screen.orientation.lock('landscape');
-                screen.msLockOrientation.lock("landscape");
-                screen.mozLockOrientation.lock("landscape");
+                var orientation = (screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
+                if (orientation === undefined) 
+                {
+
+                }
+                else{
+                    screen.orientation.lock('landscape');
+                    screen.msLockOrientation.lock("landscape");
+                    screen.mozLockOrientation.lock("landscape");
+                }
             }
         },
         loadeddata() {
@@ -163,26 +175,28 @@ export default {
             }
         },
         nowPlaying() {
-            this.film.currentTrack = 1;
+            if(this.film != null){
+                this.film.currentTrack = 1;
+                    this.timer = setTimeout(() => {
+                        this.FirstNote.style.display = 'none';
+                }, 10000);
+                if(this.$props.subtitles.length > 0)
+                {
+                    this.film.toggleCaptions(true);
+                }
+            
+                if (this.film.currentTime > (this.$props.runtime / 2 * 60)) {
+                    this.SecoNote.style.display = 'block';
+                    this.timer = setTimeout(() => {
+                        this.SecoNote.style.display = 'none';
+                    }, 5000);
+                }
                 this.timer = setTimeout(() => {
-                    this.FirstNote.style.display = 'none';
-            }, 10000);
-            if(this.$props.subtitles.length > 0)
-            {
-                   this.film.toggleCaptions(true);
-            }
-         
-            if (this.film.currentTime > (this.$props.runtime / 2 * 60)) {
-                this.SecoNote.style.display = 'block';
-                 this.timer = setTimeout(() => {
-                      this.SecoNote.style.display = 'none';
-                }, 5000);
-            }
-            this.timer = setTimeout(() => {
-                this.ShowIntroBtn = false;
-            }, 120000);
-            if (this.film.currentTime > 120) {
-                this.createCookie(this.$props.id, this.film.currentTime, 10);
+                    this.ShowIntroBtn = false;
+                }, 120000);
+                if (this.film.currentTime > 120) {
+                    this.createCookie(this.$props.id, this.film.currentTime, 10);
+                }
             }
             //  this.loader.style.display = "block";
         },
