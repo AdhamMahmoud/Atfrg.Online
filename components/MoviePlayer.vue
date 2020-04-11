@@ -109,7 +109,7 @@ export default {
 
                 this.logo = document.createElement("img");
                 this.logo.classList.add("video-logo");
-                this.logo.src = "/_nuxt/assets/images/logo.png";
+                this.logo.src = "/logo.svg";
                 list.parentNode.insertBefore(this.logo, list.nextSibling);
          }
         }
