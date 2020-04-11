@@ -59,15 +59,6 @@ margin-right: 5px;
     .plyr video{
         min-height:400px;
     }
-    .plyr--airplay-supported [data-plyr=airplay], .plyr--captions-enabled [data-plyr=captions], .plyr--pip-supported [data-plyr=pip]{
-        display:none,
-    }
-    .plyr__controls>.plyr__control:first-child, .plyr__controls>.plyr__control:first-child+[data-plyr=pause]{
-        display:none;
-    }
-    .plyr__controls .plyr__menu+.plyr__control, .plyr__controls{
-        display:none;
-    }
     .plyr--video .plyr__time{
         display:none;
     }

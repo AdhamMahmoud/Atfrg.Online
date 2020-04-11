@@ -12,7 +12,7 @@
                         <li class="mobile-hidden"><a style="color:#FFDC00" href="#">اتصل بنا</a></li>  
                     </ul>
                 <div class="toggle toggle--daynight top-swtich pc-hidden" id="darkss">
-                    <input @change="DarkMode()" type="checkbox" id="toggle--daynight2" class="toggle--checkbox">
+                    <input @change="DarkMode()" type="checkbox" id="toggle--daynight" class="toggle--checkbox">
                     <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
                 </div>
                    <nuxt-link class="pc-hidden" to="/mood" style="padding: 7px;
@@ -186,7 +186,7 @@
 
                 <!-- Night Mode Switch -->
                 
-                <div class="toggle toggle--daynight mobile-hidden" id="darkss2">
+                <div class="toggle toggle--daynight mobile-hidden" id="darkss">
                     <input @change="DarkMode()" type="checkbox" id="toggle--daynight" class="toggle--checkbox">
                     <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
                 </div>
@@ -306,14 +306,8 @@ export default {
     },
     mounted() {
         if (this.readCookie("darkModeD") == "true" || this.readCookie("darkModeD") == null) {
-            if(window.innerWidth > 1000){
-             document.getElementById("toggle--daynight").click(); 
-            }
-         
-             else{
-                  document.getElementById("toggle--daynight2").click(); 
-             }
-           
+                 document.getElementById("toggle--daynight").click(); 
+   
         } else {
             this.$emit("update:darkMode", false);
             this.darkModeD = false;
