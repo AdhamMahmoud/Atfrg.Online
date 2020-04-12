@@ -153,33 +153,11 @@ export default {
         },
         enterfullscreen() {
             if(window.innerWidth < 800){
-              if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled ||document.msFullscreenEnabled)
-              {
-                  var i = this.film.player;
-
-                    // go full-screen
-                    if (i.requestFullscreen) {
-                        i.requestFullscreen();
-                    screen.orientation.lock('landscape');
+                var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                if(iOS == false){
+                   screen.orientation.lock('landscape');
                     screen.msLockOrientation.lock("landscape");
                     screen.mozLockOrientation.lock("landscape");
-                    } else if (i.webkitRequestFullscreen) {
-                        i.webkitRequestFullscreen();
-                         screen.orientation.lock('landscape');
-                    screen.msLockOrientation.lock("landscape");
-                    screen.mozLockOrientation.lock("landscape");
-                    } else if (i.mozRequestFullScreen) {
-                        i.mozRequestFullScreen();
-                         screen.orientation.lock('landscape');
-                    screen.msLockOrientation.lock("landscape");
-                    screen.mozLockOrientation.lock("landscape");
-                    } else if (i.msRequestFullscreen) {
-                        i.msRequestFullscreen();
-                         screen.orientation.lock('landscape');
-                        screen.msLockOrientation.lock("landscape");
-                        screen.mozLockOrientation.lock("landscape");
-                    }
-                    
                 }
             }
         },

@@ -2065,6 +2065,9 @@ i {
   .plyr--video .plyr__time {
     display: none; }
 
+  .swiper-slide {
+    padding: 0; }
+
   .mobile-hidden {
     display: none !important; }
 
