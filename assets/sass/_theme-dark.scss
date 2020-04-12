@@ -32,6 +32,9 @@ $primary-color:$sColor;
             @include transition(0.3s);
         }
     }
+    .small-nav .contact-us li a{
+        color:$s2Color !important;
+    }
 
     .active {
         color: $s2Color !important;

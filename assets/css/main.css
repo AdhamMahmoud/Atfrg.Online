@@ -434,6 +434,12 @@
 body {
   background-color: #ececec; }
 
+:-webkit-full-screen {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: none; }
+
 html {
   direction: rtl;
   font-size: 14px; }
@@ -1828,6 +1834,8 @@ i {
       -moz-transition: 0.3s ease-in-out;
       -o-transition: 0.3s ease-in-out;
       transition: 0.3s ease-in-out; }
+  .darkMod .small-nav .contact-us li a {
+    color: #FFD700 !important; }
   .darkMod .active {
     color: #FFD700 !important;
     -webkit-transition: 0.3s ease-in-out;

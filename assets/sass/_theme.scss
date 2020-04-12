@@ -31,7 +31,12 @@
 body {
     background-color: #ececec;
 }
-
+:-webkit-full-screen {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	background: none;
+}
 html {
     direction: rtl;
     font-size: 14px;

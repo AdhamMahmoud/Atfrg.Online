@@ -29,7 +29,7 @@
                         <li> <span>الجودة</span><i class="fas fa-angle-double-left"></i> <span>{{ quality }} - {{ videoQualities }}</span></li>
                         <li> <span>النوع</span><i class="fas fa-angle-double-left"></i> <span>{{ films.Genre }}</span></li>
                         <li> <span>التقيم</span><i class="fas fa-angle-double-left"></i> <span> 10 / {{ films.imdbRating }} ( {{ films.imdbVotes }} شخص)</span></li>
-                        <li> <span>الترجمة</span><i class="fas fa-angle-double-left"></i>
+                        <li v-if="subtitles.length > 0 && subtitles[0].path != null && subtitles[0].path.length > 0"> <span>الترجمة</span><i class="fas fa-angle-double-left"></i>
                             شكر خاص لـ
                             <span>
                                 <i v-for="subtitle in subtitles" :key="subtitle.id" >
@@ -37,6 +37,7 @@
                                 </i>
                             </span>
                         </li>
+                        <li v-else><span>الترجمة</span><i class="fas fa-angle-double-left"></i> لا يوجد</li>
                     </ul>
                 </div>
             </div>

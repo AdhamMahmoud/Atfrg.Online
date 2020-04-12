@@ -31,14 +31,15 @@
                         <li> <span>الجودة</span><i class="fas fa-angle-double-lefft"></i> <span>{{ videoQualities }}</span></li>
                         <li> <span>النوع</span><i class="fas fa-angle-double-left"></i> <span>{{ films.Genre }}</span></li>
                         <li> <span>التقيم</span><i class="fas fa-angle-double-left"></i> <span> 10 / {{ films.imdbRating }} ( {{ films.imdbVotes }} شخص)</span></li>
-                        <li> <span>الترجمة</span><i class="fas fa-angle-double-left"></i>
+                        <li v-if="subtitles.length > 0 && subtitles[0].path != null && subtitles[0].path.length > 0"> <span>الترجمة</span><i class="fas fa-angle-double-left"></i>
                             شكر خاص لـ
                             <span>
-                                <i v-for="subtitle in subtitles" :key="subtitle.id">
+                                <i v-for="subtitle in subtitles" :key="subtitle.id" >
                                     {{ subtitle.name }}
                                 </i>
                             </span>
                         </li>
+                        <li v-else><span>الترجمة</span><i class="fas fa-angle-double-left"></i> لا يوجد</li>
                     </ul>
                 </div>
             </div>
@@ -150,7 +151,7 @@
                             <tr v-for="video in epLinks" :key="video.id">
                                 <th scope="row">1</th>
                                 <td>{{video.quality.replace('Q','')}}</td>
-                                 <td><a :href="LinkToken(video.path)">تحميل</a></td>
+                                 <td><a :href="LinkToken(validLink(video.path))">تحميل</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -166,7 +167,7 @@
                             <tr v-for="subtitle in subtitles" :key="subtitle.id">
                                 <th scope="row">{{subtitle.lang.name}}</th>
                                 <td>{{subtitle.name }}</td>
-                                <td><a :href="LinkToken(subtitle.path)">تحميل</a></td>
+                                <td v-if="subtitle.path.length > 0"><a :href="LinkToken(validLink(subtitle.path))">تحميل</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -229,17 +230,11 @@
                                 <resultNotFound />
                             </div>
                             <!-- Result -->
-                            <div v-else-if="data && data.seasons[0].episodes.length > 0" class="same-movies Slider-block">
+                            <div v-else-if="data && data.seasons[0].episodes.length > 0" class="same-movies Slider-block row">
                                 <!-- Container End -->
-                              <div v-swiper:mySwiperOnrra="swiperOption" class="my-swiper">
-                                <div class="swiper-wrapper">
-                                    <div v-for="episode in data.seasons[0].episodes" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
+                             <div v-for="episode in data.seasons[0].episodes" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide col-md-3 col-6' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
                                         <Epsitem :id="episode.id" :title="episode.title" :order="episode.order" :poster="GetPoster(poster)" :genres="Series.genres" :audience="Series.audience" path="/series/episode/" />
                                     </div>
-                                </div>
-                                <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>
-                                <div class="swiper-button-next" slot="button-next"><i class="fas fa-chevron-left"></i></div>
-                            </div>
                                 <!-- No result -->
                             </div>
                             <div v-else class="no-result apollo">
@@ -353,12 +348,12 @@ export default {
                         spaceBetween: 40
                     },
                     640: {
-                        slidesPerView: 1,
-                        spaceBetween: 5
+                        slidesPerView: 2,
+                        spaceBetween: 40
                     },
                     320: {
-                        slidesPerView: 1,
-                        spaceBetween: 5
+                        slidesPerView: 2,
+                        spaceBetween: 40
                     }
                 }
             },

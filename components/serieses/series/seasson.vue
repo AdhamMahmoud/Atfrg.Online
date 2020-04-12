@@ -124,7 +124,7 @@
                             <tr v-for="subtitle in episodes[0].subtitles" :key="subtitle.id">
                                 <th scope="row">{{subtitle.lang.name}}</th>
                                 <td>{{subtitle.name }}</td>
-                                <td><a :href="LinkToken(validLink(subtitle.path))">تحميل</a></td>
+                                <td v-if="subtitle.path.length > 0"><a :href="LinkToken(validLink(subtitle.path))">تحميل</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -168,15 +168,9 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="same-movies Slider-block">
-                    <div v-swiper:mySwiperOnwa="swiperOption" class="my-swiper">
-                        <div class="swiper-wrapper">
-                            <div v-for="episode in episodes" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
-                                <Epsitem :id="episode.id" :title="episode.title" :poster="GetPoster(posters)" :genres="genres" :audience="audience" path="/series/episode/" />
-                            </div>
-                        </div>
-                        <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>
-                        <div class="swiper-button-next" slot="button-next"><i class="fas fa-chevron-left"></i></div>
+                <div class="same-movies Slider-block row">
+                    <div v-for="episode in episodes" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide col-md-3 col-6' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
+                        <Epsitem :id="episode.id" :title="episode.title" :poster="GetPoster(posters)" :genres="genres" :audience="audience" path="/series/episode/" />
                     </div>
                 </div>
             </div>
@@ -332,12 +326,12 @@ export default {
                         spaceBetween: 40
                     },
                     640: {
-                        slidesPerView: 1,
-                        spaceBetween: 5
+                        slidesPerView: 2,
+                        spaceBetween: 40
                     },
                     320: {
                         slidesPerView: 1,
-                        spaceBetween: 5
+                        spaceBetween: 40
                     }
                 }
             },

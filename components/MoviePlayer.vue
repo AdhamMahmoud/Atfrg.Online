@@ -1,5 +1,10 @@
 <template>
 <div>
+    <div class="note2">
+     <p>مشاهدة ممتعة يا صحبي  😘💙</p>
+     <p>نظراً لسؤء خدمة الأنترنت الخاصة بشركة 🐢🐢 we في مصر قد تواجة مشكلة في تشغيل المحتوي  </p>
+     <span @click="reloadPage()">تحديث المحتوي</span>
+     </div>
     <vue-plyr class="player-mov" ref="film" seektime="10" :title="title" :id="id" :options="playerOptions" @enterfullscreen="enterfullscreen"  @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
         <video  :poster="poster" crossorigin="anonymous">
             <!-- Video Source -->
@@ -151,15 +156,33 @@ export default {
         },
         enterfullscreen() {
             if(window.innerWidth < 800){
-                var orientation = (screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
-                if (orientation === undefined) 
-                {
+              if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled ||document.msFullscreenEnabled)
+              {
+                  var i = this.film.player;
 
-                }
-                else{
+                    // go full-screen
+                    if (i.requestFullscreen) {
+                        i.requestFullscreen();
                     screen.orientation.lock('landscape');
                     screen.msLockOrientation.lock("landscape");
                     screen.mozLockOrientation.lock("landscape");
+                    } else if (i.webkitRequestFullscreen) {
+                        i.webkitRequestFullscreen();
+                         screen.orientation.lock('landscape');
+                    screen.msLockOrientation.lock("landscape");
+                    screen.mozLockOrientation.lock("landscape");
+                    } else if (i.mozRequestFullScreen) {
+                        i.mozRequestFullScreen();
+                         screen.orientation.lock('landscape');
+                    screen.msLockOrientation.lock("landscape");
+                    screen.mozLockOrientation.lock("landscape");
+                    } else if (i.msRequestFullscreen) {
+                        i.msRequestFullscreen();
+                         screen.orientation.lock('landscape');
+                        screen.msLockOrientation.lock("landscape");
+                        screen.mozLockOrientation.lock("landscape");
+                    }
+                    
                 }
             }
         },
@@ -208,6 +231,9 @@ export default {
             } else var expires = "";
             document.cookie = name + "=" + value + expires + "; path=/";
         },
+        reloadPage(){
+            window.location.reload()
+        },
         readCookie(name) {
             var nameEQ = name + "=";
             var ca = document.cookie.split(";");
@@ -226,7 +252,14 @@ export default {
 
 @import "~/assets/sass/_vars.scss";
 @import "~/assets/sass/_mixins.scss";
-
+.note2{
+    text-align:center;
+    margin:1rem 0;
+    span{
+        color:$secondary-color;
+            cursor: pointer;
+    }
+}
 .plyr--full-ui input[type=range] {
     color: #FFD700;
 }
