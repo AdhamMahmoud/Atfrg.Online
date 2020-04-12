@@ -9,18 +9,6 @@
 * {
     font-family: 'Cairo', sans-serif;
 }
-@media screen and (min-width: 300px) and (max-width: 767px) and (orientation: landscape) {
-  html {
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    width: 100vh;
-    height: 100vw;
-    overflow-x: hidden;
-    position: absolute;
-    top: 100%;
-    left: 0;
-  }
-}
 
 .fa,
 .far,
@@ -31,12 +19,7 @@
 body {
     background-color: #ececec;
 }
-:-webkit-full-screen {
-	position: fixed;
-	width: 100%;
-	top: 0;
-	background: none;
-}
+
 html {
     direction: rtl;
     font-size: 14px;
