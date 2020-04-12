@@ -151,7 +151,7 @@
                             <tr v-for="video in epLinks" :key="video.id">
                                 <th scope="row">1</th>
                                 <td>{{video.quality.replace('Q','')}}</td>
-                                 <td><a :href="LinkToken(validLink(video.path))">تحميل</a></td>
+                                 <td><a :href="Download(validLink(video.path))">تحميل</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -167,7 +167,7 @@
                             <tr v-for="subtitle in subtitles" :key="subtitle.id">
                                 <th scope="row">{{subtitle.lang.name}}</th>
                                 <td>{{subtitle.name }}</td>
-                                <td v-if="subtitle.path.length > 0"><a :href="LinkToken(validLink(subtitle.path))">تحميل</a></td>
+                                <td v-if="subtitle.path.length > 0"><a :href="Download(validLink(subtitle.path))">تحميل</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -490,42 +490,7 @@ export default {
      this.handleSearch(this.$props.imdbId);
     },
     methods: {
- downloadFile(data, type="text/plain") {
-                var path = this.validLink(data);
-                var crypto = require('crypto');
-                var securityKey = '6ecb7c25-9744-498a-a49b-ae4c7980c861';
-                var newpath = path.substring(24, path.length);
-                // Set the time of expiry to one hour from now
-                var expires = Math.round(Date.now() / 1000) + 43200;
-
-                var hashableBase = securityKey + newpath + expires;
-                // Generate and encode the token 
-                var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
-                var token = new Buffer(md5String, 'binary').toString('base64');
-                token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
-                var url = 'https://atfrgonline.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
-                var fileName = newpath.substring(1, newpath.length);;
-                data = url;
-                // Create an invisible A element
-                const a = document.createElement("a");
-                a.style.display = "none";
-                document.body.appendChild(a);
-
-                // Set the HREF to a Blob representation of the data to be downloaded
-                a.href = window.URL.createObjectURL(
-                    new Blob([data], { type })
-                );
-
-                // Use download attribute to set set desired file name
-                a.setAttribute("download", fileName);
-
-                // Trigger the download by simulating click
-                a.click();
-
-                // Cleanup
-                window.URL.revokeObjectURL(a.href);
-                document.body.removeChild(a);
-                },
+ 
         GetNext(series) {
             var Currindex = series.episodes.findIndex(x => x.id === this.$props.id);
             if (Currindex + 1  < series.episodes.length) {
@@ -552,12 +517,12 @@ export default {
             // path = path.replace(/ /g, '%20');
             return path;
         },
-        LinkToken(path) {
+        LinkToken(path){
             var crypto = require('crypto');
             var securityKey = '6ecb7c25-9744-498a-a49b-ae4c7980c861';
             var newpath = path.substring(24, path.length);
             // Set the time of expiry to one hour from now
-            var expires = Math.round(Date.now() / 1000) + 43200;
+            var expires = Math.round(Date.now() / 1000) + 21600;
 
             var hashableBase = securityKey + newpath + expires;
             // Generate and encode the token 
@@ -565,6 +530,20 @@ export default {
             var token = new Buffer(md5String, 'binary').toString('base64');
             token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
             var url = 'https://atfrgonline.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+            return url;
+        },
+        Download(path){
+           var crypto = require('crypto');
+            var securityKey = '27ab3ad5-9fbb-4713-9671-5d4cb7a1a31e';
+            var newpath = path.substring(24, path.length);
+            // Set the time of expiry to one hour from now
+            var expires = Math.round(Date.now() / 1000) + 21600;
+            var hashableBase = securityKey + newpath + expires;
+            // Generate and encode the token 
+            var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
+            var token = new Buffer(md5String, 'binary').toString('base64');
+            token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
+            var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
             return url;
         },
         GetPoster(posters) {

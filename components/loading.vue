@@ -28,7 +28,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-   background-image:linear-gradient(109.6deg, #4148cf 21.2%, #5061d8 73.1%);
+   background-image:linear-gradient(109.6deg, #4148cf42 21.2%, #5061d842 73.1%);
   text-align: center;
   padding-top: 11rem;
   font-size: 30px;

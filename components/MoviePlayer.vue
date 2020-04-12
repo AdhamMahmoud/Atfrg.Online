@@ -151,21 +151,21 @@ export default {
 
         },
         enterfullscreen() {
-            if(window.innerWidth < 800){
-                var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-                var iOS2 = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+            // if(window.innerWidth < 800){
+            //     var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            //     var iOS2 = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 
-                if(iOS == true && iOS2 == true){
-                    screen.orientation.lock('portrait');
-                    screen.msLockOrientation.lock("portrait");
-                    screen.mozLockOrientation.lock("portrait");
-                }
-                else{
-                    screen.orientation.lock('landscape');
-                    screen.msLockOrientation.lock("landscape");
-                    screen.mozLockOrientation.lock("landscape");
-                }
-            }
+            //     if(iOS == true && iOS2 == true){
+            //         screen.orientation.lock('portrait');
+            //         screen.msLockOrientation.lock("portrait");
+            //         screen.mozLockOrientation.lock("portrait");
+            //     }
+            //     else{
+            //         screen.orientation.lock('landscape');
+            //         screen.msLockOrientation.lock("landscape");
+            //         screen.mozLockOrientation.lock("landscape");
+            //     }
+            // }
         },
         loadeddata() {
             this.FirstNote.style.display = 'block';

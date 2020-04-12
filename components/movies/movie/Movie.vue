@@ -96,7 +96,7 @@
                                 <th scope="row">1</th>
                                 <td>{{video.quality.replace('Q','')}}</td>
                                 <td>
-                                    <a :href="LinkToken(validLink(video.path)) " download>تحميل</a>
+                                    <a :href="Download(validLink(video.path)) " download>تحميل</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -113,8 +113,8 @@
                             <tr v-for="subtitle in subtitles" :key="subtitle.id">
                                 <th scope="row">{{subtitle.lang.name}}</th>
                                 <td>{{subtitle.name }}</td>
-                                <td>
-                                    <a :href="LinkToken(validLink(subtitle.path))" download>تحميل</a>
+                                <td v-if="subtitle.path.length > 0">
+                                    <a :href="Download(validLink(subtitle.path))" download>تحميل</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -330,7 +330,7 @@ export default {
             var securityKey = '6ecb7c25-9744-498a-a49b-ae4c7980c861';
             var newpath = path.substring(24, path.length);
             // Set the time of expiry to one hour from now
-            var expires = Math.round(Date.now() / 1000) + 43200;
+            var expires = Math.round(Date.now() / 1000) + 21600;
 
             var hashableBase = securityKey + newpath + expires;
             // Generate and encode the token 
@@ -338,6 +338,20 @@ export default {
             var token = new Buffer(md5String, 'binary').toString('base64');
             token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
             var url = 'https://atfrgonline.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+            return url;
+        },
+        Download(path){
+           var crypto = require('crypto');
+            var securityKey = '27ab3ad5-9fbb-4713-9671-5d4cb7a1a31e';
+            var newpath = path.substring(24, path.length);
+            // Set the time of expiry to one hour from now
+            var expires = Math.round(Date.now() / 1000) + 21600;
+            var hashableBase = securityKey + newpath + expires;
+            // Generate and encode the token 
+            var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
+            var token = new Buffer(md5String, 'binary').toString('base64');
+            token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
+            var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
             return url;
         },
         CloseNote(num) {
