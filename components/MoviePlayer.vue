@@ -123,7 +123,6 @@ export default {
     },
     methods: {
         validLink(path) {
-             console.log(path);
             var type = path.slice(-3).toLowerCase();
             path = path.substring(0, path.length - 3) + type;
             return path;
