@@ -126,18 +126,15 @@ export default {
              console.log(path);
             var type = path.slice(-3).toLowerCase();
             path = path.substring(0, path.length - 3) + type;
-            console.log(path);
             return path;
         },
         LinkToken(path) {
-             console.log(path);
             path = path.replace(/^\s+/g, '');
             var crypto = require('crypto');
             var securityKey = '6ecb7c25-9744-498a-a49b-ae4c7980c861';
             var newpath = path.substring(24, path.length);
             // Set the time of expiry to one hour from now
             var expires = Math.round(Date.now() / 1000) + 43200;
-             console.log(newpath);
             var hashableBase = securityKey + newpath + expires;
             // Generate and encode the token 
             var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
