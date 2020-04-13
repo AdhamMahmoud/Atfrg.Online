@@ -6,7 +6,7 @@
      <span @click="reloadPage()">تحديث المحتوي</span>
      </div>
     <vue-plyr class="player-mov" ref="film" seektime="10" :title="title" :id="id" :options="playerOptions" @enterfullscreen="enterfullscreen"  @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
-        <video  :poster="poster" crossorigin="anonymous">
+        <video  :poster="poster" crossorigin="anonymous" playsinline>
             <!-- Video Source -->
             <source v-for="video in links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
             <!-- Video Subtitles -->
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import 'vue-plyr/dist/vue-plyr.css';
 export default {
     data() {
         return {
@@ -44,6 +45,7 @@ export default {
         playerOptions() {
             const options = {
                 toggleInvert:true,
+                clickToPlay:true,
                 captions: {
                     active: false
                 },
@@ -151,21 +153,21 @@ export default {
 
         },
         enterfullscreen() {
-            // if(window.innerWidth < 800){
-            //     var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-            //     var iOS2 = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+            if(window.innerWidth < 800){
+                var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                var iOS2 = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 
-            //     if(iOS == true && iOS2 == true){
-            //         screen.orientation.lock('portrait');
-            //         screen.msLockOrientation.lock("portrait");
-            //         screen.mozLockOrientation.lock("portrait");
-            //     }
-            //     else{
-            //         screen.orientation.lock('landscape');
-            //         screen.msLockOrientation.lock("landscape");
-            //         screen.mozLockOrientation.lock("landscape");
-            //     }
-            // }
+                if(iOS == true && iOS2 == true){
+                    screen.orientation.lock('portrait');
+                    screen.msLockOrientation.lock("portrait");
+                    screen.mozLockOrientation.lock("portrait");
+                }
+                else{
+                    screen.orientation.lock('landscape');
+                    screen.msLockOrientation.lock("landscape");
+                    screen.mozLockOrientation.lock("landscape");
+                }
+            }
         },
         loadeddata() {
             this.FirstNote.style.display = 'block';

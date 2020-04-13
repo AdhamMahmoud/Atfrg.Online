@@ -2037,14 +2037,15 @@ i {
     display: block !important;
     background-image: linear-gradient(to bottom, rgba(29, 29, 29, 0), #011025); }
 
+  .plyr:-webkit-full-screen video, .plyr:fullscreen video {
+    height: 100% !important;
+    width: 100% !important; }
+
   .item-slide .overlay .information {
     text-align: center; }
 
   .Single-Movie .plyr__volume input, .Single-Series .plyr__volume input, .episode .plyr__volume input {
     width: 30px  !important; }
-
-  .plyr video {
-    min-height: 400px; }
 
   .plyr--video .plyr__time {
     display: none; }
@@ -2154,7 +2155,14 @@ i {
   .sub.show {
     display: block !important;
     -webkit-animation: fade-in-fwd 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-    animation: fade-in-fwd 1s cubic-bezier(0.39, 0.575, 0.565, 1) both; } }
+    animation: fade-in-fwd 1s cubic-bezier(0.39, 0.575, 0.565, 1) both; }
+
+  .plyr:-webkit-full-screen {
+    background: #000 !important;
+    border-radius: 0 !important;
+    height: 100% !important;
+    margin: 0 !important;
+    width: 100% !important; } }
 * {
   font-family: 'Tajawal', sans-serif; }
 
