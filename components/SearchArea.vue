@@ -11,7 +11,7 @@
         </div>
         <div class="Fast-Search" v-if="SearchVal == true">
             <ul class="search-result">
-                <li v-for="(item,index) in Search" :key="item.id" @click="EndSearch(true,'/movie/' +  item.title)">
+                <li v-for="(item,index) in Search" :key="item.id" @click="EndSearch(true,types[index],item.title)">
                     <nuxt-link v-if="types[index] == 1" :to="'/movie/' +  item.title">
                         <span class="title">{{ item.title + " (" + GetYear(item.releaseDate) + ")" }}</span>
                         <img :src="GetPoster(item.posters)" :alt="item.title">
@@ -46,7 +46,7 @@ export default {
     apollo: {
         movies: {
             query: gql `query GetMovies {
-              movies(where:{isPublished: true}) {
+              movies(orderBy: releaseDate_DESC, where :{ isPublished: true,watchCount_lte:9999999}) {
                 id
                 title
                 posters{
@@ -64,7 +64,7 @@ export default {
         },
         tvSerieses: {
             query: gql `query GetMovies {
-              tvSerieses(where:{isPublished: true}) {
+              tvSerieses(orderBy: releaseDate_DESC,  where :{ isPublished: true}) {
                 id
                 title
                 posters{
@@ -106,13 +106,19 @@ export default {
                 this.SearchVal = false;
             }
         },
-        EndSearch(clean = false, path = null) {
+        EndSearch(clean = false, type=1,  path = null) {
             this.SearchVal = false;
             if (clean == true) {
                 this.Searchtitle = "";
             }
             if(path != null){
-                 this.$router.push(path);
+                if(type == 1){
+                    this.$router.push('/movie/' + path);
+                }
+                else{
+                     this.$router.push('/series/' + path);
+                }
+                 
             }
           
         }
@@ -124,7 +130,7 @@ export default {
             var movies = this.movies;
             if (movies.length > 0) {
                 for (var i = 0; i < movies.length; i++) {
-                    if (movies[i].title.toLowerCase().includes(this.Searchtitle.toLowerCase())) {
+                    if (movies[i].title.toLowerCase().replace(/\s/g, '').includes(this.Searchtitle.toLowerCase().replace(/\s/g, ''))) {
                         if (search.length < 10) {
                             search.push(movies[i]);
                             this.types.push(1);
@@ -137,7 +143,7 @@ export default {
             var tvSerieses = this.tvSerieses;
             if (tvSerieses.length > 0) {
                 for (var i = 0; i < tvSerieses.length; i++) {
-                    if (tvSerieses[i].title.toLowerCase().includes(this.Searchtitle.toLowerCase())) {
+                    if (tvSerieses[i].title.toLowerCase().replace(/\s/g, '').includes(this.Searchtitle.toLowerCase().replace(/\s/g, ''))) {
                         if (search.length < 10) {
                             search.push(tvSerieses[i]);
                             this.types.push(2);

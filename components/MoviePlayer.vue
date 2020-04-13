@@ -5,12 +5,12 @@
      <p>نظراً لسؤء خدمة الأنترنت الخاصة بشركة 🐢🐢 we في مصر قد تواجة مشكلة في تشغيل المحتوي  </p>
      <span @click="reloadPage()">تحديث المحتوي</span>
      </div>
-    <vue-plyr class="player-mov" ref="film" seektime="10" :title="title" :id="id" :options="playerOptions" @enterfullscreen="enterfullscreen"  @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
-        <video  :poster="poster" crossorigin="anonymous" playsinline>
+    <vue-plyr class="player-mov" :ref="'film' + id" seektime="10" :title="title" :id="id" :options="playerOptions" @enterfullscreen="enterfullscreen"  @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
+        <video :poster="poster" preload="none" crossorigin="anonymous" playsinline>
             <!-- Video Source -->
             <source v-for="video in links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
             <!-- Video Subtitles -->
-            <track v-for="(subtitle, index) in subtitles" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == subtitles.length - 2}">
+            <track v-for="(subtitle, index) in subtitleNew" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == subtitleNew.length - 2}">
         </video>
     </vue-plyr>
 </div>
@@ -65,10 +65,25 @@ export default {
                 ]
             };
             return options;
-        }
+        },
+        subtitleNew(){
+            var sub = this.$props.subtitles;
+            if(sub.length > 0){
+                if(sub[0].path.length > 5){
+                    return sub;
+                }
+                else{
+                    return null;
+                }
+            }
+            return sub;
+        },
+    },
+    beforeDestroy(){
+        this.$refs['film' + this.$props.id].player.destroy();
     },
     mounted() {    
-        this.film = this.$refs.film.player;
+        this.film = this.$refs['film' + this.$props.id].player;
         var list = document.getElementsByClassName("plyr__control--overlaid")[0];
         this.loader = document.createElement("i");
         this.loader.classList.add("video-loader");
@@ -188,9 +203,10 @@ export default {
                 }, 10000);
                 if(this.$props.subtitles.length > 0)
                 {
-                    this.film.toggleCaptions(true);
+                    if(this.$props.subtitles[0].path.length > 1){
+                        this.film.toggleCaptions(true);
+                    } 
                 }
-            
                 if (this.film.currentTime > (this.$props.runtime / 2 * 60)) {
                     this.SecoNote.style.display = 'block';
                     this.timer = setTimeout(() => {

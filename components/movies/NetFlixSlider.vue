@@ -105,7 +105,7 @@
           >
             <ApolloQuery :query="gql => gql`
                       query getMoviestwo {
-                      movies(orderBy: updatedAt_DESC, first:10,  where :{ isPublished: true, Production: NETFLIX}) {
+                      movies(orderBy: releaseDate_DESC, first:15,  where :{ isPublished: true,Production: NETFLIX, watchCount_lte:9999999}) {
                         id
                         title
                         posters {

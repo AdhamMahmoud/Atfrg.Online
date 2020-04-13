@@ -324,7 +324,7 @@
           >
             <ApolloQuery :query='gql => gql`
                       query getMoviestwo {
-                      movies(orderBy: updatedAt_DESC, first:10,  where :{ isPublished: true, movieQuality:BLURAY }) {
+                      movies(orderBy: updatedAt_DESC, first:15,  where :{ isPublished: true,watchCount_lte:9999999,lang:{name:"Arabic"}}) {
                         id
                         title
                         posters {
@@ -417,6 +417,9 @@
                 </div>
               </template>
             </ApolloQuery>
+              <div class="more-btn">
+              <nuxt-link to="/movies/arabic"> <i class="im im-angle-right-circle"></i> </nuxt-link>
+            </div>
           </div>
         </div>
       </div>

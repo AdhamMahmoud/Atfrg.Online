@@ -313,15 +313,6 @@ export default {
         genres2(){
            return this.$props.genres[0].name;
         },
-        gettitle(){
-            if(this.movieyear == ""){
-                 return "مشاهدة وتحميل فيلم " + this.$props.title + " - اتفرج اون لاين Atfrg.Online";
-            }
-            else{
-                 return "مشاهدة وتحميل فيلم " + this.$props.title + "  (" + this.movieyear + ") مترجم - اتفرج اون لاين Atfrg.Online";
-            }
-           
-        },
         playerOptions() {
             const options = {
                 captions: {

@@ -4,7 +4,7 @@
     <ApolloQuery
       :query="gql => gql`
                     query getMovies($title: String!) {
-                      movies(where :{ title: $title, isPublished: true}) {
+                      movies(where :{ title: $title}) {
                       id
                       title
                       posters {
@@ -61,7 +61,7 @@
         <!-- Result -->
         <div v-else-if="data && data.movies.length > 0">
           <!-- Container End -->
-          <SingleMovie
+          <testmovie
             v-for="movie in data.movies"
             :key="movie.id"
             :id="movie.id"
@@ -97,12 +97,12 @@
 
 <script>
 import resultNotFound from "~/components/resultNotFound.vue";
-import SingleMovie from "~/components/movies/movie/Movie.vue";
+import testmovie from "~/components/movies/movie/testmovie.vue";
 
 export default {
   components: {
     resultNotFound,
-    SingleMovie
+    testmovie
   },
 };
 </script>

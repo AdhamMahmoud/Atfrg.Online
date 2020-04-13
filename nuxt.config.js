@@ -31,6 +31,7 @@ export default {
         href: "/fav.svg"
       },
       { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css?family=Tajawal:500&display=swap' },
+      { rel: 'stylesheet', type: 'text/css', href: 'https://cdn.plyr.io/3.5.10/plyr.css' },
     ],
     script: [
       {

@@ -128,6 +128,11 @@
                                         <i class="far fa-clock"></i> اخر التحديثات
                                     </button>
                                 </li>
+                                 <li>
+                                    <button :class="{active : CollapseActive == 'BluRay'}" @click="active('BluRay')">
+                                        <i class="fas fa-compact-disc"></i> افلام عربي
+                                    </button>
+                                </li>
                                 <!-- Item .3 -->
                                 <li>
 
@@ -136,11 +141,7 @@
                                     </button>
                                 </li>
                                 <!-- Item .4 -->
-                                <li>
-                                    <button :class="{active : CollapseActive == 'BluRay'}" @click="active('BluRay')">
-                                        <i class="fas fa-compact-disc"></i> BluRay
-                                    </button>
-                                </li>
+                               
                             </ul>
                         </div>
                     </div>

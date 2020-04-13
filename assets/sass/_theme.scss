@@ -7,6 +7,7 @@
 }
 
 * {
+    font-style: normal;
     font-family: 'Cairo', sans-serif;
 }
 
@@ -595,7 +596,7 @@ i {
         @include transition(0.4s);
         transition-delay: 0s;
         // display: none;
-        object-fit: contain;
+
         width: 100%;
         height: 100%;
         border-radius: 20px;
@@ -662,7 +663,7 @@ i {
                 }
 
                 .audience {
-                    color: #00ff00;
+                    color: #fed600;
                     font-weight: bold;
                 }
 
@@ -1151,7 +1152,7 @@ $cloud-bgColor: #fff;
 
     .plyr video {
         width: 100%;
-        object-fit: contain;
+        
     }
 
     .same-movies {
@@ -1783,5 +1784,22 @@ $cloud-bgColor: #fff;
 
 
 .fixed .chat {
-    top: 36rem;
+    top: 38rem;
+}
+
+.swiper-button-prev, .swiper-container-rtl .swiper-button-next{
+    left: 10px;
+    right: auto;
+}
+.swiper-button-prev, .swiper-button-next{
+    position: absolute;
+    top: 50%;
+    width: 27px;
+    height: 44px;
+    margin-top: -22px;
+    z-index: 10;
+    cursor: pointer;
+    background-size: 27px 44px;
+    background-position: center;
+    background-repeat: no-repeat;
 }

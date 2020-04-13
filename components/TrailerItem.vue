@@ -43,13 +43,14 @@
         <!-- Movie Overlay Information -->
         <div class="information">
           <!-- Movie Name -->
-          <h3 class="name">{{ title + " ("+ year + ")"}}</h3>
+          <h3 v-if="year != ''" class="name">{{ title + " ("+ year + ")"}}</h3>
+          <h3 v-else class="name">{{ title }}</h3>
           <!-- Movie Category -->
           <div class="subinfo-block">
-            <span class="runtime">
+            <span v-if="year != ''" class="runtime">
               {{ runTimeCalc(runtime) }}
             </span>
-            <span class="audience">{{ audience }} </span>
+            <span class="audience">{{ getaudience(audience) }} </span>
             <div class="genres">
               <i
                 v-for="genre in genres"
@@ -98,6 +99,9 @@ export default {
         .then(res => {
           this.films = res;
           this.year = this.GetYear(res.Released);
+          if(res.Released == null){
+            this.year = "";
+          }
         });
     },
     runTrailer(id) {
@@ -130,6 +134,25 @@ export default {
         clearTimeout(this.timer);
       }
     },
+           getaudience(audience) {
+            var audienceText = "";
+            if (audience == "G") {
+                audienceText = "للمشاهدة العامة, مناسب لجميع الاعمار.";
+            } else if (audience == "PG") {
+                audienceText = "ينصح بإرشاد الآباء, بعض المشاهد ربما لا تناسب الاطفال.";
+            } else if (audience == "PG13") {
+                audienceText = "يجب إرشاد الآباء, لا يناسب الأطفال أقل من 13 سنة.";
+            } else if (audience == "R") {
+                audienceText = "للكبار فقط , يحتوى على مشاهد فاضحة او عنيفة.";
+            } else if (audience == "NC17") {
+                audienceText =
+                    " لا يصلح لمن هما اقل من 17 عاما , يحتوى على مشاهد فاضحة او عنيفة";
+            } else {
+                audienceText = "غير مصنف";
+            }
+
+            return audience + " - " + audienceText;
+        },
     runTimeCalc(secounds) {
       return secondsToHms(secounds);
     },
@@ -141,9 +164,29 @@ export default {
           path = posters[i].path;
         }
       }
+
+      if(path.includes("cdn.atfrg")){
+        path = this.LinkToken(path);
+      }
       return path;
-    }
+    },
+    LinkToken(path) {
+            path = path.replace(/^\s+/g, '');
+            var crypto = require('crypto');
+            var securityKey = '6ecb7c25-9744-498a-a49b-ae4c7980c861';
+            var newpath = path.substring(24, path.length);
+            // Set the time of expiry to one hour from now
+            var expires = Math.round(Date.now() / 1000) + 43200;
+            var hashableBase = securityKey + newpath + expires;
+            // Generate and encode the token 
+            var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
+            var token = new Buffer(md5String, 'binary').toString('base64');
+            token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
+            var url = 'https://atfrgonline.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+            return url;
+        },
   },
+  
   mounted() {
     this.handleSearch();
   },
