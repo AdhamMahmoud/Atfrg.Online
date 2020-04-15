@@ -16,6 +16,10 @@ export default {
         content: "width=device-width, initial-scale=1"
       },
       {
+        name: "propeller",
+        content: "6db572cc55a14b132d2e20b503cf81b1"
+      },
+      {
         'http-equiv': "Content-Type",
         content: "text/html; charset=utf-8"
       },

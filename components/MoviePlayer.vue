@@ -30,8 +30,6 @@ export default {
             firstNote:null,
             SecoNote:null,
             logo:null,
-
-
         }
     },
     props: {
@@ -90,13 +88,11 @@ export default {
         this.loader.innerHTML =
             '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style=" display: block; shape-rendering: auto;" width="50px" height="50px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><circle cx="50" cy="50" fill="none" stroke="#fff" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138" transform="rotate(53.2159 50 50)"><animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>  </circle></svg>';
         list.parentNode.insertBefore(this.loader, list.nextSibling);
-
         // Create Notes .1
         this.FirstNote = document.createElement("div");
         this.FirstNote.classList.add("chat");
         this.FirstNote.classList.add("chat-video");
         list.parentNode.insertBefore(this.FirstNote, list.nextSibling);
-
         var mess = document.createElement("div");
         mess.classList.add("mine");
         mess.classList.add("messages");
@@ -109,13 +105,11 @@ export default {
         text.innerHTML = 'جهزت فشارك والحاجة ال هتشربها 😋 ؟';
         mine.appendChild(text); 
         this.FirstNote.style.display = 'none';
-
           // Create Notes.2
         this.SecoNote = document.createElement("div");
         this.SecoNote.classList.add("chat");
         this.SecoNote.classList.add("chat-video");
         list.parentNode.insertBefore(this.SecoNote, list.nextSibling);
-
         var mess2 = document.createElement("div");
         mess2.classList.add("mine");
         mess2.classList.add("messages");
@@ -130,7 +124,6 @@ export default {
         this.SecoNote.style.display = 'none';
         if(this.$props.subtitles.length > 0){
             if(this.$props.subtitles[0].path.length > 5){
-
                 this.logo = document.createElement("img");
                 this.logo.classList.add("video-logo");
                 this.logo.src = "/logo.svg";
@@ -172,13 +165,11 @@ export default {
                 this.secondNote = false;
                 this.notesdone = true;
             }
-
         },
         enterfullscreen() {
             if(window.innerWidth < 800){
                 var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
                 var iOS2 = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
-
                 if(iOS == true && iOS2 == true){
                     screen.orientation.lock('portrait');
                     screen.msLockOrientation.lock("portrait");
@@ -255,7 +246,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 @import "~/assets/sass/_vars.scss";
 @import "~/assets/sass/_mixins.scss";
 .note2{
@@ -269,39 +259,31 @@ export default {
 .plyr--full-ui input[type=range] {
     color: #FFD700;
 }
-
 .plyr__control--overlaid {
     background: rgba(255, 215, 0, 0.67);
 }
-
 .plyr--video .plyr__control.plyr__tab-focus,
 .plyr--video .plyr__control:hover,
 .plyr--video .plyr__control[aria-expanded=true] {
     background: #FFD700;
 }
-
 .plyr__control.plyr__tab-focus {
     box-shadow: 0 0 0 5px rgba(255, 215, 0, 0.67);
 }
-
 .plyr__menu__container .plyr__control[role=menuitemradio][aria-checked=true]::before {
     background: #FFD700;
 }
-
 .plyr--audio .plyr__control.plyr__tab-focus,
 .plyr--audio .plyr__control:hover,
 .plyr--audio .plyr__control[aria-expanded=true] {
     background: #FFD700;
 }
-
 .plyr--video .plyr__progress__buffer {
     color: rgba(8, 108, 248, 0.55);
 }
-
 .plyr--video.plyr--loading .plyr__progress__buffer {
     background-color: rgba(8, 108, 248, 0.55);
 }
-
 /* .plyr__control--pressed{
     opacity: 1 !important;
     visibility: inherit !important;
@@ -311,21 +293,17 @@ export default {
         width: 60px;
     }
 }
-
 .plyr {
     height: 600px;
 }
-
 .plyr video {
     width: 100%;
     object-fit: contain;
     height: 100%;
 }
-
 .plyr__video-wrapper {
     height: 100%;
 }
-
 .video-loader {
     display: none;
     border: 0;
@@ -353,7 +331,6 @@ export default {
     left:5%;
     background-color: transparent !important;
 }
-
 .plyr--loading .video-loader {
     display: block;
 }
@@ -368,16 +345,13 @@ export default {
  .chat-video {
         bottom: 7rem;
         right: 2.2rem;
-
         .mine .message.last:after {
             background: #000;
         }
-
         .mine .message.last:before {
             background-image: none;
             background-color: #393939;
         }
-
         .mine .message {
             background-image: none;
             background-color: #393939;
