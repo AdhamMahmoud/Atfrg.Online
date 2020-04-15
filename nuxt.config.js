@@ -63,6 +63,12 @@ export default {
         async :"",
         type: "text/javascript"
       },
+      {
+        src: "//inpagepush.com/400/3218692",
+        async :"async",
+        "data-cfasync" :"false",
+        type: "text/javascript"
+      },
     ]
   },
   /*
