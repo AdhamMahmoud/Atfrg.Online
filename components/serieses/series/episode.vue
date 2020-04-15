@@ -449,7 +449,19 @@ export default {
                     hid: 'keywords',
                     name: 'keywords',
                     content: "مشاهدة فيلم,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى" || ""
-                }
+                },
+                 {
+                    property: "og:title",
+                    content: "مشاهدة وتحميل " + this.$props.title + " مسلسل  " + this.$props.season[0].title + " - Atfrg.Online  اتفرج اون لاين"
+                },
+                {
+                    property: "og:description",
+                    content: "مشاهدة وتحميل " + this.$props.title + " مسلسل  " + this.$props.season[0].title + " - Atfrg.Online  اتفرج اون لاين" || ""
+                },
+                {
+                    property: "og:image",
+                    content: this.GetPoster(this.$props.poster)
+                },
             ]
         }
     },
@@ -546,13 +558,17 @@ export default {
             var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
             return url;
         },
-        GetPoster(posters) {
+         GetPoster(posters) {
             var path = "";
             var i;
             for (i = 0; i < posters.length; i++) {
                 if (posters[i].size == "THUMBNAIL") {
                     path = posters[i].path;
                 }
+            }
+
+            if (path.includes("cdn.atfrg")) {
+                path = this.LinkToken(path);
             }
             return path;
         },

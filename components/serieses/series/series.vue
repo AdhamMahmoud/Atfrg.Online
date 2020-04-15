@@ -46,7 +46,7 @@
                     </button>
                     <button :class="{ active : active == 'movie'}" @click="activeCol('movie')">
 
-                        الحلقة</button>
+                        الحلقة الأولي الموسم الأول</button>
                     <button :class="{ active : active == 'download'}" @click="activeCol('download')">
                         التحميل</button>
                 </div>
@@ -130,7 +130,7 @@
             <div class="col-md-12">
                 <div class="same-movies Slider-block row">
                     <div v-for="episode in seasons[0].episodes" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide col-md-3 col-6' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
-                                <Epsitem :id="episode.id" :title="episode.title" :poster="GetPoster(seasons[0].posters)" :genres="genres" :audience="audience" path="/series/episode/" />
+                                <Epsitem :id="episode.id" :title="episode.title" :order="episode.order" :poster="GetPoster(seasons[0].posters)" :genres="genres" :audience="audience" path="/series/episode/" />
                             </div>
                 </div>
             </div>
@@ -185,6 +185,29 @@ export default {
         MoviePlayer,
         bugs
     },
+     head(){
+    return{
+       title: "مشاهدة و تحميل مسلسل "+this.$props.title+" مترجم - اتفرج اون لاين Atfrg.Online" ,
+        meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        { hid: 'description', name: 'description', content:  "مشاهدة وتحميل مسلسل "+this.$props.title+" مترجم اون لاين بجودة عالية - اتفرج اون لاين Atfrg.Online" || ""},
+        { hid: 'keywords', name: 'keywords', content:  "مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم "+this.$props.title+" , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل "+this.$props.title+"" || ""},
+        {
+            property: "og:title",
+            content: "مشاهدة و تحميل مسلسل "+this.$props.title+" مترجم - اتفرج اون لاين Atfrg.Online"
+        },
+        {
+            property: "og:description",
+            content: "مشاهدة وتحميل مسلسل "+this.$props.title+" مترجم اون لاين بجودة عالية - اتفرج اون لاين Atfrg.Online" || ""
+        },
+        {
+            property: "og:image",
+            content: this.GetPoster(this.$props.posters)
+        },
+
+      ]
+    }
+  },
     data: function () {
         return {
             active: "movie",
@@ -344,13 +367,17 @@ export default {
             }
             return null;
         },
-        GetPoster(posters) {
+          GetPoster(posters) {
             var path = "";
             var i;
             for (i = 0; i < posters.length; i++) {
                 if (posters[i].size == "THUMBNAIL") {
                     path = posters[i].path;
                 }
+            }
+
+            if (path.includes("cdn.atfrg")) {
+                path = this.LinkToken(path);
             }
             return path;
         },

@@ -69,13 +69,36 @@ import TrailerItem from "~/components/TrailerItem.vue";
 import filters from "~/components/movies/genre/filters";
 import gql from 'graphql-tag';
 export default {
-        head: {
-     title:"مشاهدة وتحميل افلام NetFlix مترجمة مجانا - اتفرج اون لاين مشاهدة افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online ",
-     meta:[
-        {  name: 'description', content:  "مشاهدة وتحميل مباشر افلام و مسلسلات وانمي بجودة عالية مترجمة - اتفرج اون لاين - بدون اعلانات"},
-          {  name: 'keywords', content:  "مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل "}
-     ]
-  },
+      head() {
+        return {
+            title: "افلام NetFlix -  اتفرج اون لاين Atfrg.Online",
+            meta: [
+                // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+                {
+                    hid: 'description',
+                    name: 'description',
+                    content: "مشاهدة وتحميل افلام NetFlix  مترجم اون لاين بجودة عالية - اتفرج اون لاين Atfrg.Online" || ""
+                },
+                {
+                    hid: 'keywords',
+                    name: 'keywords',
+                    content: "مشاهدة فيلم,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, افلام NetFlix  , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة" || ""
+                },
+                {
+                    property: "og:title",
+                    content: "افلام NetFlix -  اتفرج اون لاين Atfrg.Online"
+                },
+                {
+                    property: "og:description",
+                    content: "مشاهدة افلام NetFlix مترجم اون لاين بجودة عالية - اتفرج اون لاين Atfrg.Online" || ""
+                },
+                {
+                    property: "og:image",
+                    content: "https://d1qmdf3vop2l07.cloudfront.net/vital-slipper.cloudvent.net/compressed/_min_/4ce4e6669edb5602a6b38f77eca90b8b.svg"
+                },
+            ]
+        }
+    },
     data: function () {
         return {
             items: 12,

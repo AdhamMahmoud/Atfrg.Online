@@ -22,12 +22,13 @@
                         }
                         keywords
                         overview
-                        seasons(orderBy:order_DESC, where:{title:$title} ){
+                        seasons(orderBy:order_ASC, where:{title:$title} ){
                           id
                           title
                           slug
                           trailerPath
                           releaseDate
+                          order
                           imdbId
                           posters {
                             size
@@ -38,6 +39,7 @@
                           title
                           runtime
                           isPublished
+                          order
                           posters {
                             size
                             path
@@ -113,16 +115,6 @@ export default {
         }
       }
       return this.currentSeasson;
-    }
-  },
-  head(){
-    return{
-       title: "مشاهدة وتحميل مسلسل "+this.$route.params.name+" مترجم - اتفرج اون لاين Atfrg.Online" ,
-        meta: [
-        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-        { hid: 'description', name: 'description', content:  "مشاهدة مسلسل "+this.$route.params.name+" مترجم اون لاين بجودة عالية - اتفرج اون لاين Atfrg.Online" || ""},
-        { hid: 'keywords', name: 'keywords', content:  "مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم "+this.$route.params.name+" , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل "+this.$route.params.name+"" || ""}
-      ]
     }
   },
 }
