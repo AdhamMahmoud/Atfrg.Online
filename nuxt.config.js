@@ -38,10 +38,7 @@ export default {
         property: "og:description",
         content: "مشاهدة وتحميل مباشر افلام و مسلسلات وانمي بجودة عالية مترجمة - اتفرج اون لاين - بدون اعلانات - افلام ومسلسلات مترجمة"
       },
-      {
-        property: "og:image",
-        content: "/fav.svg"
-      },
+   
     ],
     link: [
       {

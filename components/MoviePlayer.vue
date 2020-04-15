@@ -137,6 +137,13 @@ export default {
                 list.parentNode.insertBefore(this.logo, list.nextSibling);
          }
         }
+         if(window.innerWidth < 800){
+            var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            var iOS2 = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+            if(iOS == true && iOS2 == true){
+                document.body.querySelector('.plyr__control[data-plyr="fullscreen"]').style.display = 'none';
+            }
+         }
     },
     methods: {
         validLink(path) {
