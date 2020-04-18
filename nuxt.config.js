@@ -47,12 +47,12 @@ export default {
       //   "data-cfasync" :"false",
       //   type: "text/javascript"
       // },
-      {
-        src: "//native.propellerclick.com/1?z=3227038",
-        async :"async",
-        "data-cfasync" :"false",
-        type: "text/javascript"
-      },
+      // {
+      //   src: "//native.propellerclick.com/1?z=3227038",
+      //   async :"async",
+      //   "data-cfasync" :"false",
+      //   type: "text/javascript"
+      // },
     ]
   },
   /*
