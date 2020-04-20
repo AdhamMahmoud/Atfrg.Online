@@ -76,8 +76,8 @@ export default {
     // box-shadow: 0px 0px 2px 0px #949494;
     padding: 2rem;
     h4{
-        color: #6f25ff;
-        margin-bottom:10px;
+        color: #fff702;
+        margin-bottom:20px;
     }
     .form-control{
         outline:none;

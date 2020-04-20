@@ -199,8 +199,8 @@
     <div class="chat" v-if="$store.getters.RemberChoose == false">
         <div class="mine messages">
             <div class="message last">
-                <p> عارف هتتفرج علي اي ولا تسبلي انا الموضوع دا ؟</p>
-                <button @click="choose(0)">لا شكرا</button>
+                <p> عارف هتتفرج علي اي ولا اختارلك انا فيلم  ؟</p>
+                <button @click="choose(0)">لا تسلم</button>
                   <button @click="choose(1)">يلا بينا</button>
             </div>
         </div>
@@ -230,7 +230,6 @@
 //         };
 // }
 import SearchArea from "~/components/SearchArea.vue";
-import loading from "~/components/loading.vue";
 import Menu from "~/components/Menu.vue";
 export default {
     data: function () {
@@ -238,14 +237,12 @@ export default {
             showSide: false,
             darkModeD: false,
             mobMenu: false,
-            loading: true,
             scrolled: false
         };
     },
     components: {
         SearchArea,
         Menu,
-        loading
     },
     methods: {
          handleScroll () {

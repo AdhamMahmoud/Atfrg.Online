@@ -15,6 +15,8 @@
     </vue-plyr>
 </div>
 </template>
+<script src="https://cdn.plyr.io/3.5.10/plyr.polyfilled.js"></script>
+
 <script>
 import 'vue-plyr/dist/vue-plyr.css';
 export default {
@@ -129,12 +131,18 @@ export default {
                 list.parentNode.insertBefore(this.logo, list.nextSibling);
          }
         }
+         if(this.$props.subtitles.length == 0 || this.$props.subtitles == null){
+                this.logo = document.createElement("img");
+                this.logo.classList.add("video-logo");
+                this.logo.src = "/logo.svg";
+                list.parentNode.insertBefore(this.logo, list.nextSibling);
+         }
          if(window.innerWidth < 800){
-            var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-            var iOS2 = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
-            if(iOS == true && iOS2 == true){
-                document.body.querySelector('.plyr__control[data-plyr="fullscreen"]').style.display = 'none';
-            }
+            // var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            // var iOS2 = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+            // if(iOS == true && iOS2 == true){
+            //     document.body.querySelector('.plyr__control[data-plyr="fullscreen"]').style.display = 'none';
+            // }
          }
      
     },

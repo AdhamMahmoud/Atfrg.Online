@@ -1,7 +1,7 @@
 <template>
   <div :class="{ 'darkMod' : darkMode}">
     <!-- Header -->
-    <loading v-if="loading"></loading>
+    <!-- <loading v-if="loading"></loading> -->
     <Header :darkMode.sync="darkMode" />
 
     <nuxt />
@@ -31,7 +31,7 @@ export default {
     }
   },
       mounted(){
-      setTimeout(() => this.loading = false, 1000);
+      // setTimeout(() => this.loading = false, 1000);
       window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());

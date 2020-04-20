@@ -11,9 +11,9 @@
             id="mostviewMovies"
           >
             <!-- Apoolo Query -->
-            <ApolloQuery :query="gql => gql`
+            <ApolloQuery :query='gql => gql`
                       query getMoviestwo {
-                      movies(orderBy: releaseDate_DESC, first:15,  where :{ isPublished: true,watchCount_lte:9999999}) {
+                      movies(orderBy: watchCount_DESC, first:15,  where :{ isPublished: true,updatedAt_lte:"9999"}) {
                         id
                         title
                         posters {
@@ -32,7 +32,7 @@
                         imdbId
                       }
                     }
-                    `">
+                    `'>
               <template v-slot="{ result: { loading, error, data } }">
                 <!-- Loading -->
                 <div

@@ -26,6 +26,7 @@
                         }
                         seasons {
                           id
+                          imdbId
                         }
                       }
                     }

@@ -137,7 +137,7 @@ export default {
         query GetSliderMovies {
           movies(
             orderBy: createdAt_DESC
-            first: 2
+            first: 1
             where: { isPublished: true, posters_some: { size_in: FULL_SCREEN } }
           ) {
             id
@@ -161,7 +161,7 @@ export default {
         query GetSlidertvSerieses {
           tvSerieses(
             orderBy: createdAt_DESC
-            first: 4
+            first: 1
             where: { isPublished: true, posters_some: { size_in: FULL_SCREEN } }
           ) {
             id
@@ -204,18 +204,8 @@ export default {
     },
     methods: {
             LinkToken(path){
-            var crypto = require('crypto');
-            var securityKey = '6ecb7c25-9744-498a-a49b-ae4c7980c861';
             var newpath = path.substring(24, path.length);
-            // Set the time of expiry to one hour from now
-            var expires = Math.round(Date.now() / 1000) + 43200;
-
-            var hashableBase = securityKey + newpath + expires;
-            // Generate and encode the token 
-            var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
-            var token = new Buffer(md5String, 'binary').toString('base64');
-            token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
-            var url = 'https://atfrgonline.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+            var url = 'https://Atfrgimages.b-cdn.net' + newpath;
             return url;
         },
         GetSlide(posters) {
@@ -226,14 +216,6 @@ export default {
                 }
             }
             return this.LinkToken(path);
-        },
-        GetSlides(){
-            var movies = this.movies;
-            var tv = this.tvSerieses;
-            var count = movies.length + tv.length;
-            for(i = 0;  i < count; i++){
-                
-            }
         },
         getaudience(audience) {
             var audienceText = "";

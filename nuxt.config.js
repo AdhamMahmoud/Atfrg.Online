@@ -91,9 +91,9 @@ export default {
     throttle: 0,
     duration: 5000
   },
-  mounted() {
-    this.$loading = this.$refs.loading;
-  },
+  // mounted() {
+  //   this.$loading = this.$refs.loading;
+  // },
   
   /*
    ** Nuxt.js modules

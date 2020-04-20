@@ -126,7 +126,18 @@ $primary-color:$sColor;
         }
     }
 
-
+    #download .note span{
+        color: #00f3ff;
+    }
+    .chat .message p{
+        color: #ffde00;
+    }
+    .chat .message button{
+        color:#cdccff;
+        &:hover{
+            color:#fff;
+        }
+    }
     /* Sections */
     .Fast-Search {
         background-color: $mDark !important;

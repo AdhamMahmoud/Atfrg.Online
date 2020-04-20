@@ -26,6 +26,7 @@
                         }
                         seasons {
                           id
+                          imdbId
                         }
                       }
                     }
@@ -118,6 +119,7 @@
                         }
                         seasons {
                           id
+                          imdbId
                         }
                       }
                     }

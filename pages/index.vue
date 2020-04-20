@@ -27,16 +27,19 @@ import Movies from '~/components/movies/MoviesHome.vue'
 import Netflix from '~/components/movies/NetFlixHome.vue'
 import Serieses from '~/components/serieses/SeriesHome.vue'
 import Anime from '~/components/animes/AnimeHome.vue'
-import loading from '~/components/loading.vue'
 export default {
  head: {
     title:"اتفرج اون لاين مشاهدة وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online",
     meta: [
        { hid: 'description', name: 'description', content:  "مشاهدة وتحميل مباشر افلام و مسلسلات وانمي بجودة عالية مترجمة - اتفرج اون لاين - بدون اعلانات" || ""},
         { hid: 'keywords', name: 'keywords', content:  "مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل " || ""},
+         {
+        property: "image",
+        content: "https://atfrg.online/og.svg"
+      },
         {
         property: "og:image",
-        content: "https://atfrg.online/fav.svg"
+        content: "https://atfrg.online/og.svg"
       },
       {
           property: "og:title",
@@ -46,20 +49,18 @@ export default {
           property: "og:description",
           content: "مشاهدة وتحميل مباشر افلام و مسلسلات وانمي بجودة عالية مترجمة - اتفرج اون لاين - بدون اعلانات" 
       },
+      {
+          property: "og:keywords",
+          content:"مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل "
+      },
 
     ]
   },
-   data: function () {
-        return {
-          loading:true,
-        }
-   },
   components: {
     HomeSlider,
     Movies,
     Serieses,
     Anime,
-    loading,
     Netflix
   },
 
