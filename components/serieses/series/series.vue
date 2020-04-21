@@ -269,16 +269,23 @@ export default {
     },
     methods: {
           GetNext(series) {
-            var Currindex = series.episodes.findIndex(x => x.id === this.$props.id);
-            if (Currindex + 1 < series.episodes.length) {
-                var Next = series.episodes[Currindex + 2];
-                return Next.id;
-            } else {
-                return "#";
-            }
+              if(series.episodes.length > 2){
+                var Currindex = series.episodes.findIndex(x => x.id === this.$props.id);
+                if (Currindex + 1 < series.episodes.length) {
+                    var Next = series.episodes[Currindex + 2];
+                    return Next.id;
+                } else {
+                    return "#";
+                }
+              }
+              else{
+                   return "#";
+              }
+           
 
         },
         GetPerv(series) {
+             if(series.episodes.length > 2){
             var Currindex = series.episodes.findIndex(x => x.id === this.$props.id);
             if (Currindex - 1 > 0) {
                 var Next = series.episodes[Currindex - 1];
@@ -286,6 +293,9 @@ export default {
             } else {
                 return "#";
             }
+             else{
+                  return "#";
+             }
 
         },
         validLink(path) {      
