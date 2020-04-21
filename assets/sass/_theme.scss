@@ -516,6 +516,7 @@ i {
     height: 100%;
     position: relative;
     border-radius: 20px;
+    min-width: 200px;
     @include transition(1s);
 
     .poster {

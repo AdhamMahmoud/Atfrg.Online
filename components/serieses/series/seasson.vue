@@ -385,6 +385,7 @@ export default {
     },
     methods: {
           GetNext(series) {
+            if(series.length > 2){
             var Currindex = series.findIndex(x => x.id === this.$props.id);
             if (Currindex + 1 < series.length) {
                 var Next = series[Currindex + 2];
@@ -392,9 +393,14 @@ export default {
             } else {
                 return "#";
             }
+               }
+               else{
+                    return "#";
+               }
 
         },
         GetPerv(series) {
+            if(series.length > 2){
             var Currindex = series.findIndex(x => x.id === this.$props.id);
             if (Currindex - 1 > 0) {
                 var Next = series[Currindex - 1];
@@ -402,6 +408,10 @@ export default {
             } else {
                 return "#";
             }
+             }
+             else{
+                return "#";
+             }
 
         },
         LinkToken(path){

@@ -837,6 +837,7 @@ i {
   height: 100%;
   position: relative;
   border-radius: 20px;
+  min-width: 200px;
   -webkit-transition: 1s ease-in-out;
   -moz-transition: 1s ease-in-out;
   -o-transition: 1s ease-in-out;
