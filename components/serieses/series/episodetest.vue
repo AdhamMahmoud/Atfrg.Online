@@ -401,7 +401,7 @@ export default {
             var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
             return url;
         },
-        GetPoster(posters) {
+          GetPoster(posters) {
             var path = "";
             var i;
             for (i = 0; i < posters.length; i++) {
@@ -409,7 +409,16 @@ export default {
                     path = posters[i].path;
                 }
             }
+
+            if (path.includes("cdn.atfrg")) {
+                path = this.LinkToken2(path);
+            }
             return path;
+        },
+         LinkToken2(path){
+            var newpath = path.substring(24, path.length);
+            var url = 'https://Atfrgimages.b-cdn.net' + newpath;
+            return url;
         },
         activeCol(name) {
             this.active = name;
