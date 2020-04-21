@@ -73,11 +73,11 @@ export default {
       src: "~/plugins/vue-plyr",
     },
     {
-      src: "~/plugins/swiper",
+      src: "~/plugins/lazyload",
       mode: "client",
     },
     {
-      src: "~/plugins/lazyload",
+      src: "~/plugins/swiper",
       mode: "client",
     },
     { src: '~plugins/nuxt-video-player-plugin', ssr: false }
