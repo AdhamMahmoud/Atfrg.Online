@@ -6,7 +6,7 @@
      <span @click="reloadPage()">تحديث المحتوي</span>
      </div>
     <vue-plyr class="player-mov" :ref="'film' + id" seektime="10" :title="title" :id="id" :options="playerOptions" @enterfullscreen="enterfullscreen"  @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
-        <video muted :poster="poster" preload="none" crossorigin="anonymous" playsinline>
+        <video :poster="poster" preload="none" crossorigin="anonymous" playsinline>
             <!-- Video Source -->
             <source v-for="video in links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
             <!-- Video Subtitles -->
@@ -138,11 +138,11 @@ export default {
                 list.parentNode.insertBefore(this.logo, list.nextSibling);
          }
          if(window.innerWidth < 800){
-            // var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-            // var iOS2 = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
-            // if(iOS == true && iOS2 == true){
-            //     document.body.querySelector('.plyr__control[data-plyr="fullscreen"]').style.display = 'none';
-            // }
+            var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            var iOS2 = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+            if(iOS == true && iOS2 == true){
+                document.body.querySelector('.plyr__control[data-plyr="fullscreen"]').style.display = 'none';
+            }
          }
      
     },
@@ -369,12 +369,25 @@ export default {
     .chat .message{
         background-color: #232323;
     }
-    .plyr__captions{
-        font-size: 26px !important;
-        bottom: 2rem !important;
+    @include xl{
+         .plyr__captions{
+            font-size: 26px !important;
+            bottom: 2rem !important;
+        }
+        .plyr:-webkit-full-screen .plyr__captions{
+            font-size: 30px !important;
+            bottom: 4rem !important;
+        }
     }
-    .plyr:-webkit-full-screen .plyr__captions{
-        font-size: 30px !important;
-        bottom: 6rem !important;
+     @include lg{
+         .plyr__captions{
+            font-size: 24px !important;
+            bottom: 2rem !important;
+        }
+        .plyr:-webkit-full-screen .plyr__captions{
+            font-size: 26px !important;
+            bottom: 4rem !important;
+        }
     }
+   
 </style>

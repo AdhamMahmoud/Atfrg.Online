@@ -35,11 +35,11 @@ export default {
         { hid: 'keywords', name: 'keywords', content:  "مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل " || ""},
          {
         property: "image",
-        content: "https://atfrg.online/og.svg"
+        content: "https://atfrg.online/og2.png"
       },
         {
         property: "og:image",
-        content: "https://atfrg.online/og.svg"
+        content: "https://atfrg.online/og2.png"
       },
       {
           property: "og:title",
