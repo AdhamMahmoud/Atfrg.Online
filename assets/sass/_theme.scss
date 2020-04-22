@@ -1229,10 +1229,12 @@ $cloud-bgColor: #fff;
         border-top: 4px solid $primary-color;
         border-radius: 22px;
         width: 100%;
+        min-height: 300px;
 
         img {
             width: 100%;
             border-radius: 20px;
+            min-height: 300px;
             @include boxShadow(0, 0, 12px, -1px, rgba(214, 214, 214, 0.6));
         }
     }

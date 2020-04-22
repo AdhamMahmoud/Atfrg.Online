@@ -41,6 +41,13 @@ export default {
         async :"",
         type: "text/javascript"
       },
+      {
+        src: "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0&appId=637758733683983&autoLogAppEvents=1",
+        async :"",
+        defer:"",
+        crossorigin:"anonymous",
+        type: "text/javascript"
+      },
       // {
       //   src: "//inpagepush.com/400/3218692",
       //   async :"async",
@@ -63,7 +70,6 @@ export default {
     "vue-plyr/dist/vue-plyr.css",
     "swiper/dist/css/swiper.css",
     "~assets/css/iconmonstr-iconic-font.min.css",
-    'video.js/dist/video-js.css'
   ],
   /*
    ** Plugins to load before mounting the App
@@ -80,7 +86,6 @@ export default {
       src: "~/plugins/swiper",
       mode: "client",
     },
-    { src: '~plugins/nuxt-video-player-plugin', ssr: false }
   ],
   /*
    ** Customize the progress-bar color
@@ -105,7 +110,8 @@ export default {
     // Doc: https://bootstrap-vue.js.org/docs/
     "bootstrap-vue/nuxt",
     "@nuxtjs/apollo",
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxtjs/component-cache',
   ],
   apollo: {
     clientConfigs: {

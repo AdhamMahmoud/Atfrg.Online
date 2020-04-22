@@ -17,7 +17,6 @@ import nuxt_plugin_apollomodule_6283b7eb from 'nuxt_plugin_apollomodule_6283b7eb
 import nuxt_plugin_vueplyr_9db9a11c from 'nuxt_plugin_vueplyr_9db9a11c' // Source: ..\\plugins\\vue-plyr (mode: 'all')
 import nuxt_plugin_lazyload_af447860 from 'nuxt_plugin_lazyload_af447860' // Source: ..\\plugins\\lazyload (mode: 'client')
 import nuxt_plugin_swiper_3a1c5924 from 'nuxt_plugin_swiper_3a1c5924' // Source: ..\\plugins\\swiper (mode: 'client')
-import nuxt_plugin_nuxtvideoplayerplugin_23912ada from 'nuxt_plugin_nuxtvideoplayerplugin_23912ada' // Source: ..\\plugins\\nuxt-video-player-plugin (mode: 'client')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -64,6 +63,8 @@ async function createApp (ssrContext) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
+    head: {"meta":[{"charset":"UTF-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"name":"propeller","content":"6db572cc55a14b132d2e20b503cf81b1"},{"http-equiv":"Content-Type","content":"text\u002Fhtml; charset=utf-8"}],"link":[{"rel":"icon","type":"image\u002Fsvg","href":"\u002Ffav.svg"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Tajawal:500&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.plyr.io\u002F3.5.10\u002Fplyr.css"}],"script":[{"src":"https:\u002F\u002Fkit.fontawesome.com\u002F3e50565740.js?ver=1.1","type":"text\u002Fjavascript"},{"src":"https:\u002F\u002Fwww.googletagmanager.com\u002Fgtag\u002Fjs?id=UA-162494703-1","async":"","type":"text\u002Fjavascript"},{"src":"https:\u002F\u002Fconnect.facebook.net\u002Fen_US\u002Fsdk.js#xfbml=1&version=v6.0&appId=637758733683983&autoLogAppEvents=1","async":"","defer":"","crossorigin":"anonymous","type":"text\u002Fjavascript"}],"style":[]},
+
     store,
     router,
     nuxt: {
@@ -93,7 +94,10 @@ async function createApp (ssrContext) {
         err = err || null
         app.context._errored = Boolean(err)
         err = err ? normalizeError(err) : null
-        const nuxt = this.nuxt || this.$options.nuxt
+        let nuxt = app.nuxt // to work with @vue/composition-api, see https://github.com/nuxt/nuxt.js/issues/6517#issuecomment-573280207
+        if (this) {
+          nuxt = this.nuxt || this.$options.nuxt
+        }
         nuxt.dateErr = Date.now()
         nuxt.err = err
         // Used in src/server.js
@@ -137,7 +141,7 @@ async function createApp (ssrContext) {
       throw new Error('inject(key, value) has no key provided')
     }
     if (value === undefined) {
-      throw new Error('inject(key, value) has no value provided')
+      throw new Error(`inject('${key}', value) has no value provided`)
     }
 
     key = '$' + key
@@ -192,10 +196,6 @@ async function createApp (ssrContext) {
 
   if (process.client && typeof nuxt_plugin_swiper_3a1c5924 === 'function') {
     await nuxt_plugin_swiper_3a1c5924(app.context, inject)
-  }
-
-  if (process.client && typeof nuxt_plugin_nuxtvideoplayerplugin_23912ada === 'function') {
-    await nuxt_plugin_nuxtvideoplayerplugin_23912ada(app.context, inject)
   }
 
   // If server-side, wait for async component to be resolved first

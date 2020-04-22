@@ -1350,12 +1350,14 @@ i {
   .episode .poster {
     border-top: 4px solid #008dff;
     border-radius: 22px;
-    width: 100%; }
+    width: 100%;
+    min-height: 300px; }
     .Single-Movie .poster img,
     .Single-Series .poster img,
     .episode .poster img {
       width: 100%;
       border-radius: 20px;
+      min-height: 300px;
       -webkit-box-shadow: 0 0 12px -1px rgba(214, 214, 214, 0.6);
       -moz-box-shadow: 0 0 12px -1px rgba(214, 214, 214, 0.6);
       -o-box-shadow: 0 0 12px -1px rgba(214, 214, 214, 0.6);

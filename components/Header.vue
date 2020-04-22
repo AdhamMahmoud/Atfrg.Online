@@ -8,7 +8,7 @@
                 <div class="col-md-6 col-12">
                     <ul class="contact-us mobile-hidden">
                         <li class="mobile-hidden"><a style="color:#00CF91" href="#">طلبات الاضافة</a></li>
-                        <li class="mobile-hidden"><a style="color:#FE634E" href="#">سياسة الموقع</a></li>
+                        <li class="mobile-hidden"><nuxt-link style="color:#FE634E" to="/copyright">حقوق الملكية</nuxt-link></li>
                         <li class="mobile-hidden"><a style="color:#FFDC00" href="#">اتصل بنا</a></li>  
                     </ul>
                     <div v-if="Size" class="toggle toggle--daynight top-swtich pc-hidden" id="darkss">
@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-md-6 col-12 mobile-hidden">
                     <ul class="social">
-                        <li><a href="#"> <i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="https://www.facebook.com/atfrg.online0/" target="_black"> <i class="fab fa-facebook-f"></i></a></li>
                         <li><a href="#"> <i class="fab fa-instagram"></i></a></li>
                         <li><a href="#"> <i class="fab fa-twitter"></i></a></li>
                     </ul>
@@ -45,7 +45,7 @@
                 <!-- Header List -->
                 <div :class="['collapse navbar-collapse', {'show scale-in-center' : mobMenu}]" id="navbarSupportedContent">
                     <div class="container">
-                        <div class="row">
+                        <div class="row" style="width: 100%;">
                             <div class="col-md-6 mobile-hidden">
                                 <SearchArea />
                             </div>

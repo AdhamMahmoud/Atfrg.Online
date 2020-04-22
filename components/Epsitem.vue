@@ -7,8 +7,9 @@
         <div class="poster">
             <!-- quality -->
             <span class="views">
+                الحلقة
                 {{ order }}
-                <i class="fas fa-video"></i>
+             
             </span>
             <!-- Movie Poster img -->
             <img :data-src="poster" :alt="title"></div>

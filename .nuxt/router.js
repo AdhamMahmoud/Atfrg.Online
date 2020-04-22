@@ -4,8 +4,10 @@ import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
 const _1d4e9fb5 = () => interopDefault(import('..\\pages\\anime\\index.vue' /* webpackChunkName: "pages_anime_index" */))
+const _7d923180 = () => interopDefault(import('..\\pages\\copyright.vue' /* webpackChunkName: "pages_copyright" */))
 const _5b06f2ce = () => interopDefault(import('..\\pages\\mood.vue' /* webpackChunkName: "pages_mood" */))
 const _600b55e8 = () => interopDefault(import('..\\pages\\movies\\index.vue' /* webpackChunkName: "pages_movies_index" */))
+const _1e213b27 = () => interopDefault(import('..\\pages\\ramadan.vue' /* webpackChunkName: "pages_ramadan" */))
 const _e9d33374 = () => interopDefault(import('..\\pages\\serieses\\index.vue' /* webpackChunkName: "pages_serieses_index" */))
 const _09203971 = () => interopDefault(import('..\\pages\\anime\\last-updated.vue' /* webpackChunkName: "pages_anime_last-updated" */))
 const _51b3e37d = () => interopDefault(import('..\\pages\\anime\\new-release.vue' /* webpackChunkName: "pages_anime_new-release" */))
@@ -47,6 +49,10 @@ export const routerOptions = {
     component: _1d4e9fb5,
     name: "anime"
   }, {
+    path: "/copyright",
+    component: _7d923180,
+    name: "copyright"
+  }, {
     path: "/mood",
     component: _5b06f2ce,
     name: "mood"
@@ -54,6 +60,10 @@ export const routerOptions = {
     path: "/movies",
     component: _600b55e8,
     name: "movies"
+  }, {
+    path: "/ramadan",
+    component: _1e213b27,
+    name: "ramadan"
   }, {
     path: "/serieses",
     component: _e9d33374,

@@ -29,8 +29,12 @@
                         <li> <span>الجمهور</span><i class="fas fa-angle-double-left"></i> <span>{{ getaudience(Series.audience) }}</span></li>
                         <!-- <li> <span>المدة</span> <i class="fas fa-angle-double-left"></i><span>{{ getRunTime(runtime) }} </span></li> -->
                         <li> <span>الجودة</span><i class="fas fa-angle-double-lefft"></i> <span>{{ videoQualities }}</span></li>
-                        <li> <span>النوع</span><i class="fas fa-angle-double-left"></i> <span>{{ films.Genre }}</span></li>
-                        <li> <span>التقيم</span><i class="fas fa-angle-double-left"></i> <span> 10 / {{ films.imdbRating }} ( {{ films.imdbVotes }} شخص)</span></li>
+                        <!-- <li> <span>النوع</span><i class="fas fa-angle-double-left"></i>  <span>
+                                <i v-for="gen in Series.geners" :key="gen.id" >
+                                    {{ gen.name }}
+                                </i>
+                            </span> </li> -->
+                        <li v-if="Series.lang.name != 'Arabic'"> <span>التقيم</span><i class="fas fa-angle-double-left"></i> <span> 10 / {{ films.imdbRating }} ( {{ films.imdbVotes }} شخص)</span></li>
                         <li v-if="subtitles.length > 0 && subtitles[0].path != null && subtitles[0].path.length > 0"> <span>الترجمة</span><i class="fas fa-angle-double-left"></i>
                             شكر خاص لـ
                             <span>

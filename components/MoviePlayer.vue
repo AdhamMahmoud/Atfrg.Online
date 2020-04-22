@@ -13,10 +13,10 @@
             <track v-for="(subtitle, index) in subtitleNew" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == subtitleNew.length - 2}">
         </video>
     </vue-plyr>
+
+   <div class="fb-page" style="margin: 0 auto;display: block; width: 340px;" data-href="https://www.facebook.com/atfrg.online0/" data-tabs="" data-width="" data-height="" data-small-header="false" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/atfrg.online0/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/atfrg.online0/">Atfrg Online</a></blockquote></div>
 </div>
 </template>
-<script src="https://cdn.plyr.io/3.5.10/plyr.polyfilled.js"></script>
-
 <script>
 import 'vue-plyr/dist/vue-plyr.css';
 export default {

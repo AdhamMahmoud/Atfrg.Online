@@ -10,6 +10,7 @@
       <HomeSlider />
     <!--  Movies Block -->
     <Movies />
+     <Ramadan />
     <Netflix />
     <!-- Serieses Block -->
     <Serieses />
@@ -26,6 +27,7 @@ import HomeSlider from '~/components/HomeSlider.vue'
 import Movies from '~/components/movies/MoviesHome.vue'
 import Netflix from '~/components/movies/NetFlixHome.vue'
 import Serieses from '~/components/serieses/SeriesHome.vue'
+import Ramadan from '~/components/serieses/ramadan.vue'
 import Anime from '~/components/animes/AnimeHome.vue'
 export default {
  head: {
@@ -33,13 +35,9 @@ export default {
     meta: [
        { hid: 'description', name: 'description', content:  "مشاهدة وتحميل مباشر افلام و مسلسلات وانمي بجودة عالية مترجمة - اتفرج اون لاين - بدون اعلانات" || ""},
         { hid: 'keywords', name: 'keywords', content:  "مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل " || ""},
-         {
-        property: "image",
-        content: "https://atfrg.online/og2.png"
-      },
         {
         property: "og:image",
-        content: "https://atfrg.online/og2.png"
+        content: "https://atfrg.online/fav.svg"
       },
       {
           property: "og:title",
@@ -61,7 +59,8 @@ export default {
     Movies,
     Serieses,
     Anime,
-    Netflix
+    Netflix,
+    Ramadan
   },
 
 
