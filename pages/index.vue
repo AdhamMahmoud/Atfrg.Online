@@ -35,9 +35,13 @@ export default {
     meta: [
        { hid: 'description', name: 'description', content:  "مشاهدة وتحميل مباشر افلام و مسلسلات وانمي بجودة عالية مترجمة - اتفرج اون لاين - بدون اعلانات" || ""},
         { hid: 'keywords', name: 'keywords', content:  "مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل " || ""},
+         {
+        property: "image",
+        content: "https://atfrg.online/og2.png"
+      },
         {
         property: "og:image",
-        content: "https://atfrg.online/fav.svg"
+        content: "https://atfrg.online/og2.png"
       },
       {
           property: "og:title",
