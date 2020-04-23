@@ -18,6 +18,7 @@
 </div>
 </template>
 <script>
+imort './dist/vue-plyr.ssr.js';
 import 'vue-plyr/dist/vue-plyr.css';
 export default {
     data() {
