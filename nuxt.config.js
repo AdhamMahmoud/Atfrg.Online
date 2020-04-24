@@ -21,6 +21,10 @@ export default {
         'http-equiv': "Content-Type",
         content: "text/html; charset=utf-8"
       },  
+      {
+        name: "apple-mobile-web-app-capable",
+        content: "yes"
+      },  
     ],
     link: [
       {
@@ -57,7 +61,7 @@ export default {
       {
         async :"async",
         "data-cfasync" :"false",
-        src: "http://native.propellerclick.com/1?z=3241905&eid=p_3241905",
+        src: "//native.propellerclick.com/1?z=3227038&eid=p_3227038",
       },
     ]
   },

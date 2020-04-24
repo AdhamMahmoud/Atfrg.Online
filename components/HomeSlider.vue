@@ -160,7 +160,7 @@ export default {
             query: gql `
         query GetSlidertvSerieses {
           tvSerieses(
-            orderBy: createdAt_DESC
+            orderBy: updatedAt_DESC
             first: 1
             where: { isPublished: true, posters_some: { size_in: FULL_SCREEN } }
           ) {
@@ -203,7 +203,7 @@ export default {
         };
     },
     methods: {
-            LinkToken(path){
+          LinkToken(path){
             var newpath = path.substring(24, path.length);
             var url = 'https://Atfrgimages.b-cdn.net' + newpath;
             return url;
