@@ -6,7 +6,7 @@
         <span @click="reloadPage()">تحديث المحتوي</span>
     </div>
     <vue-plyr v-if="links != null" clickToPlay="true" class="player-mov" :ref="'film' + id"  seektime="10" :title="title" :id="id" :options="playerOptions" @enterfullscreen="enterfullscreen" @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
-        <video crossorigin="anonymous" playsinline :poster="poster">
+        <video crossorigin="anonymous" :id="'vid'+ id" playsinline :poster="poster">
             <!-- Video Source -->
             <source v-for="video in links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
             <!-- Video Subtitles -->
@@ -203,6 +203,11 @@ export default {
                     }
                 }
             }
+        if (iOS == true && iOS2 == true) {
+            this.$refs['film' + this.$props.id].player.webkitEnterFullscreen();
+            this.$refs['film' + this.$props.id].webkitEnterFullscreen();
+            document.getElementsById("vid" + this.$props.id)[0].webkitEnterFullscreen();
+        }
     },
     loadeddata() {
         this.FirstNote.style.display = 'block';
