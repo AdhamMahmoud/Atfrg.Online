@@ -444,7 +444,7 @@ export default {
             });
         },
 
-        GetPoster(posters) {
+       GetPoster(posters) {
             var path = "";
             var i;
             for (i = 0; i < posters.length; i++) {
@@ -452,11 +452,15 @@ export default {
                     path = posters[i].path;
                 }
             }
-
             if (path.includes("cdn.atfrg")) {
-                path = this.LinkToken(path);
+                path = this.LinkToken2(path);
             }
             return path;
+        },
+         LinkToken2(path){
+            var newpath = path.substring(24, path.length);
+            var url = 'https://Atfrgimages.b-cdn.net' + newpath;
+            return url;
         },
         LinkToken(path) {
             path = path.replace(/^\s+/g, '');

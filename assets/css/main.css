@@ -1276,7 +1276,7 @@ i {
   .Single-Movie .chat-video,
   .Single-Series .chat-video,
   .episode .chat-video {
-    bottom: 10rem;
+    position: absolute;
     right: 2rem;
     z-index: 1; }
     .Single-Movie .chat-video .mine .message.last:after,
@@ -1722,6 +1722,44 @@ i {
         z-index: 2; }
 
 /* == Messages === */
+.chatb {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 30px;
+  right: 10px;
+  z-index: 99999; }
+  .chatb a {
+    color: #fff;
+    margin-left: 1rem; }
+  .chatb .messages {
+    margin-top: 30px;
+    display: flex; }
+  .chatb .message {
+    border-radius: 20px;
+    padding: 1rem 1rem;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: inline-block; }
+    .chatb .message p {
+      display: block;
+      margin-bottom: 10px; }
+    .chatb .message button {
+      background-color: transparent;
+      border: none;
+      margin-left: 1rem;
+      color: #45fffc; }
+      .chatb .message button:hover {
+        color: #000; }
+  .chatb .mine {
+    align-items: flex-end; }
+  .chatb .mine .message {
+    color: white;
+    background-image: radial-gradient(circle farthest-corner at 10% 20%, #2b0477 0%, #0369cf 91%);
+    background-attachment: fixed;
+    position: relative; }
+
 .chat {
   display: flex;
   flex-direction: column;

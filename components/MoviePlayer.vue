@@ -1,12 +1,12 @@
 <template>
 <div>
     <div class="note2">
-     <p>مشاهدة ممتعة يا صحبي  😘💙</p>
-     <p>نظراً لسؤء خدمة الأنترنت الخاصة بشركة 🐢🐢 we في مصر قد تواجة مشكلة في تشغيل المحتوي  </p>
-     <span @click="reloadPage()">تحديث المحتوي</span>
-     </div>
-    <vue-plyr class="player-mov" :ref="'film' + id" seektime="10" :title="title" :id="id" :options="playerOptions" @enterfullscreen="enterfullscreen"  @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
-        <video :poster="poster" preload="none" crossorigin="anonymous" playsinline>
+        <p>مشاهدة ممتعة يا صحبي 😘💙</p>
+        <p>نظراً لسؤء خدمة الأنترنت الخاصة بشركة 🐢🐢 we في مصر قد تواجة مشكلة في تشغيل المحتوي </p>
+        <span @click="reloadPage()">تحديث المحتوي</span>
+    </div>
+    <vue-plyr class="player-mov" :ref="'film' + id" clickToPlay="true" seektime="10" :title="title" :id="id" :options="playerOptions" @enterfullscreen="enterfullscreen" @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
+        <video crossorigin="anonymous" playsinline :poster="poster">
             <!-- Video Source -->
             <source v-for="video in links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
             <!-- Video Subtitles -->
@@ -14,24 +14,27 @@
         </video>
     </vue-plyr>
 
-   <div class="fb-page" style="margin: 0 auto;display: block; width: 340px;" data-href="https://www.facebook.com/atfrg.online0/" data-tabs="" data-width="" data-height="" data-small-header="false" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/atfrg.online0/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/atfrg.online0/">Atfrg Online</a></blockquote></div>
+    <!-- <div class="fb-page" style="margin: 0 auto;display: block; width: 340px;" data-href="https://www.facebook.com/atfrg.online0/" data-tabs="" data-width="" data-height="" data-small-header="false" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="true">
+        <blockquote cite="https://www.facebook.com/atfrg.online0/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/atfrg.online0/">Atfrg Online</a></blockquote>
+    </div> -->
 </div>
 </template>
+
 <script>
-imort './dist/vue-plyr.ssr.js';
+// import './dist/vue-plyr.ssr.js';
 import 'vue-plyr/dist/vue-plyr.css';
 export default {
     data() {
         return {
-            Show:false,
+            Show: false,
             load: false,
             loader: null,
             film: null,
-            secondNote:false,
-            notesdone:false,
-            firstNote:null,
-            SecoNote:null,
-            logo:null,
+            secondNote: false,
+            notesdone: false,
+            firstNote: null,
+            SecoNote: null,
+            logo: null,
         }
     },
     props: {
@@ -44,8 +47,8 @@ export default {
     computed: {
         playerOptions() {
             const options = {
-                toggleInvert:true,
-                clickToPlay:true,
+                toggleInvert: true,
+                clickToPlay: true,
                 captions: {
                     active: false
                 },
@@ -66,23 +69,22 @@ export default {
             };
             return options;
         },
-        subtitleNew(){
+        subtitleNew() {
             var sub = this.$props.subtitles;
-            if(sub.length > 0){
-                if(sub[0].path.length > 5){
+            if (sub.length > 0) {
+                if (sub[0].path.length > 5) {
                     return sub;
-                }
-                else{
+                } else {
                     return null;
                 }
             }
             return sub;
         },
     },
-    beforeDestroy(){
+    beforeDestroy() {
         this.$refs['film' + this.$props.id].player.destroy();
     },
-    mounted() {    
+    mounted() {
         this.film = this.$refs['film' + this.$props.id].player;
         var list = document.getElementsByClassName("plyr__control--overlaid")[0];
         this.loader = document.createElement("i");
@@ -93,6 +95,7 @@ export default {
         // Create Notes .1
         this.FirstNote = document.createElement("div");
         this.FirstNote.classList.add("chat");
+        this.FirstNote.classList.add("chatb");
         this.FirstNote.classList.add("chat-video");
         list.parentNode.insertBefore(this.FirstNote, list.nextSibling);
         var mess = document.createElement("div");
@@ -102,14 +105,15 @@ export default {
         var mine = document.createElement("div");
         mine.classList.add("message");
         mine.classList.add("last");
-        this.FirstNote.appendChild(mine);  
+        this.FirstNote.appendChild(mine);
         var text = document.createElement("p");
-        text.innerHTML = 'جهزت فشارك والحاجة ال هتشربها 😋 ؟';
-        mine.appendChild(text); 
+        text.innerHTML = '💙💙 احنا في رمضان يا صحبي متنساش .. صلي علي محمد';
+        mine.appendChild(text);
         this.FirstNote.style.display = 'none';
-          // Create Notes.2
+        // Create Notes.2
         this.SecoNote = document.createElement("div");
         this.SecoNote.classList.add("chat");
+        this.SecoNote.classList.add("chatb");
         this.SecoNote.classList.add("chat-video");
         list.parentNode.insertBefore(this.SecoNote, list.nextSibling);
         var mess2 = document.createElement("div");
@@ -119,36 +123,36 @@ export default {
         var mine2 = document.createElement("div");
         mine2.classList.add("message");
         mine2.classList.add("last");
-        this.SecoNote.appendChild(mine2);  
+        this.SecoNote.appendChild(mine2);
         var text2 = document.createElement("p");
-        text2.innerHTML = 'خد بريك كدا ادخل الحمام وحات حاجة تشربها ✌️❤️';
-        mine2.appendChild(text2); 
+        text2.innerHTML = '✌️❤️ خد بريك كدا وقوم صلي';
+        mine2.appendChild(text2);
         this.SecoNote.style.display = 'none';
-        if(this.$props.subtitles.length > 0){
-            if(this.$props.subtitles[0].path.length > 5){
+        if (this.$props.subtitles.length > 0) {
+            if (this.$props.subtitles[0].path.length > 5) {
                 this.logo = document.createElement("img");
                 this.logo.classList.add("video-logo");
                 this.logo.src = "/logo.svg";
                 list.parentNode.insertBefore(this.logo, list.nextSibling);
-         }
-        }
-         if(this.$props.subtitles.length == 0 || this.$props.subtitles == null){
-                this.logo = document.createElement("img");
-                this.logo.classList.add("video-logo");
-                this.logo.src = "/logo.svg";
-                list.parentNode.insertBefore(this.logo, list.nextSibling);
-         }
-         if(window.innerWidth < 800){
-            var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-            var iOS2 = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
-            if(iOS == true && iOS2 == true){
-                document.body.querySelector('.plyr__control[data-plyr="fullscreen"]').style.display = 'none';
             }
-         }
-     
+        }
+        if (this.$props.subtitles.length == 0 || this.$props.subtitles == null) {
+            this.logo = document.createElement("img");
+            this.logo.classList.add("video-logo");
+            this.logo.src = "/logo.svg";
+            list.parentNode.insertBefore(this.logo, list.nextSibling);
+        }
+        //  if(window.innerWidth < 800){
+        //     var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        //     var iOS2 = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+        //     if(iOS == true && iOS2 == true){
+        //         document.body.querySelector('.plyr__control[data-plyr="fullscreen"]').style.display = 'none';
+        //     }
+        //  }
+
     },
     methods: {
- 
+
         validLink(path) {
             var type = path.slice(-3).toLowerCase();
             path = path.substring(0, path.length - 3) + type;
@@ -177,123 +181,130 @@ export default {
             }
         },
         enterfullscreen() {
-            if(window.innerWidth < 800){
-                var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-                var iOS2 = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
-                if(iOS == true && iOS2 == true){
-                    screen.orientation.lock('portrait');
-                    screen.msLockOrientation.lock("portrait");
-                    screen.mozLockOrientation.lock("portrait");
-                }
-                else{
+            var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            var iOS2 = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+            if (iOS != true && iOS2 != true) {
+                 if (window.innerWidth < 800) {
                     screen.orientation.lock('landscape');
                     screen.msLockOrientation.lock("landscape");
                     screen.mozLockOrientation.lock("landscape");
                 }
             }
-        },
-        loadeddata() {
-            this.FirstNote.style.display = 'block';
-            if (this.readCookie(this.$props.id) != 0) {
-                var time = parseInt(this.readCookie(this.$props.id));
-                if(time != 0){
-                    this.timer = setTimeout(() => {
+    },
+    loadeddata() {
+        this.FirstNote.style.display = 'block';
+        if (this.readCookie(this.$props.id) != 0) {
+            var time = parseInt(this.readCookie(this.$props.id));
+            if (time != 0) {
+                this.timer = setTimeout(() => {
                     this.film.currentTime = time;
                 }, 1200);
-                }
             }
-        },
-        nowPlaying() {
-            if(this.film != null){
-                this.film.currentTrack = 1;
-                    this.timer = setTimeout(() => {
-                        this.FirstNote.style.display = 'none';
-                }, 10000);
-                if(this.$props.subtitles.length > 0)
-                {
-                    if(this.$props.subtitles[0].path.length > 1){
-                        this.film.toggleCaptions(true);
-                    } 
-                }
-                if (this.film.currentTime > (this.$props.runtime / 2 * 60)) {
-                    this.SecoNote.style.display = 'block';
-                    this.timer = setTimeout(() => {
-                        this.SecoNote.style.display = 'none';
-                    }, 5000);
-                }
-                this.timer = setTimeout(() => {
-                    this.ShowIntroBtn = false;
-                }, 120000);
-                if (this.film.currentTime > 120) {
-                    this.createCookie(this.$props.id, this.film.currentTime, 10);
-                }
-            }
-            //  this.loader.style.display = "block";
-        },
-        createCookie(name, value, days) {
-            if (days) {
-                var date = new Date();
-                date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-                var expires = "; expires=" + date.toGMTString();
-            } else var expires = "";
-            document.cookie = name + "=" + value + expires + "; path=/";
-        },
-        reloadPage(){
-            window.location.reload()
-        },
-        readCookie(name) {
-            var nameEQ = name + "=";
-            var ca = document.cookie.split(";");
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == " ") c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-            }
-            return null;
         }
+    },
+    nowPlaying() {
+        if (this.film != null) {
+            if (this.$props.subtitles.length > 0) {
+                this.film.currentTrack = 1;
+            }
+            this.timer = setTimeout(() => {
+                this.FirstNote.style.display = 'none';
+            }, 10000);
+            if (this.$props.subtitles.length > 0) {
+                if (this.$props.subtitles[0].path.length > 1) {
+                    this.film.toggleCaptions(true);
+                }
+            }
+            if (this.film.currentTime > (this.$props.runtime / 2 * 60)) {
+                this.SecoNote.style.display = 'block';
+                this.timer = setTimeout(() => {
+                    this.SecoNote.style.display = 'none';
+                }, 5000);
+            }
+            this.timer = setTimeout(() => {
+                this.ShowIntroBtn = false;
+            }, 120000);
+            if (this.film.currentTime > 120) {
+                this.createCookie(this.$props.id, this.film.currentTime, 10);
+            }
+        }
+        //  this.loader.style.display = "block";
+    },
+    createCookie(name, value, days) {
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+            var expires = "; expires=" + date.toGMTString();
+        } else var expires = "";
+        document.cookie = name + "=" + value + expires + "; path=/";
+    },
+    reloadPage() {
+        window.location.reload()
+    },
+    readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(";");
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == " ") c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
     }
+}
 }
 </script>
 
 <style lang="scss">
 @import "~/assets/sass/_vars.scss";
 @import "~/assets/sass/_mixins.scss";
-.note2{
-    text-align:center;
-    margin:1rem 0;
-    span{
-        color:$secondary-color;
-            cursor: pointer;
+
+.note2 {
+    text-align: center;
+    margin: 1rem 0;
+
+    span {
+        color: $secondary-color;
+        cursor: pointer;
     }
 }
+
 .plyr--full-ui input[type=range] {
     color: #FFD700;
 }
+
 .plyr__control--overlaid {
     background: rgba(255, 215, 0, 0.67);
 }
+
 .plyr--video .plyr__control.plyr__tab-focus,
 .plyr--video .plyr__control:hover,
 .plyr--video .plyr__control[aria-expanded=true] {
     background: #FFD700;
 }
+
 .plyr__control.plyr__tab-focus {
     box-shadow: 0 0 0 5px rgba(255, 215, 0, 0.67);
 }
+
 .plyr__menu__container .plyr__control[role=menuitemradio][aria-checked=true]::before {
     background: #FFD700;
 }
+
 .plyr--audio .plyr__control.plyr__tab-focus,
 .plyr--audio .plyr__control:hover,
 .plyr--audio .plyr__control[aria-expanded=true] {
     background: #FFD700;
 }
+
 .plyr--video .plyr__progress__buffer {
     color: rgba(8, 108, 248, 0.55);
 }
+
 .plyr--video.plyr--loading .plyr__progress__buffer {
     background-color: rgba(8, 108, 248, 0.55);
 }
+
 /* .plyr__control--pressed{
     opacity: 1 !important;
     visibility: inherit !important;
@@ -303,17 +314,21 @@ export default {
         width: 60px;
     }
 }
+
 .plyr {
     height: 600px;
 }
+
 .plyr video {
     width: 100%;
     object-fit: contain;
     height: 100%;
 }
+
 .plyr__video-wrapper {
     height: 100%;
 }
+
 .video-loader {
     display: none;
     border: 0;
@@ -329,6 +344,7 @@ export default {
     z-index: 2;
     background-color: transparent !important;
 }
+
 .video-logo {
     border: 0;
     color: #fff;
@@ -337,58 +353,69 @@ export default {
     height: auto;
     width: 110px;
     z-index: 9999;
-    top:5%;
-    left:5%;
+    top: 5%;
+    left: 5%;
     background-color: transparent !important;
 }
+
 .plyr--loading .video-loader {
     display: block;
 }
-@include sm{
+
+@include sm {
     .plyr {
-    height: 400px;
+        height: 400px;
+    }
+
+    .plyr video {
+        object-fit: contain !important;
+    }
 }
-.plyr video{
-      object-fit: contain !important;
+
+.chat-video {
+    bottom: 7rem;
+    right: 2.2rem;
+
+    .mine .message.last:after {
+        background: #000;
+    }
+
+    .mine .message.last:before {
+        background-image: none;
+        background-color: #393939;
+    }
+
+    .mine .message {
+        background-image: none;
+        background-color: #393939;
+    }
 }
+
+.chat .message {
+    background-color: #232323;
 }
- .chat-video {
-        bottom: 7rem;
-        right: 2.2rem;
-        .mine .message.last:after {
-            background: #000;
-        }
-        .mine .message.last:before {
-            background-image: none;
-            background-color: #393939;
-        }
-        .mine .message {
-            background-image: none;
-            background-color: #393939;
-        }
+
+@include xl {
+    .plyr__captions {
+        font-size: 26px !important;
+        bottom: 2rem !important;
     }
-    .chat .message{
-        background-color: #232323;
+
+    .plyr:-webkit-full-screen .plyr__captions {
+        font-size: 30px !important;
+        bottom: 4rem !important;
     }
-    @include xl{
-         .plyr__captions{
-            font-size: 26px !important;
-            bottom: 2rem !important;
-        }
-        .plyr:-webkit-full-screen .plyr__captions{
-            font-size: 30px !important;
-            bottom: 4rem !important;
-        }
+}
+
+@include lg {
+    .plyr__captions {
+        font-size: 24px !important;
+        bottom: 2rem !important;
     }
-     @include lg{
-         .plyr__captions{
-            font-size: 24px !important;
-            bottom: 2rem !important;
-        }
-        .plyr:-webkit-full-screen .plyr__captions{
-            font-size: 26px !important;
-            bottom: 4rem !important;
-        }
+
+    .plyr:-webkit-full-screen .plyr__captions {
+        font-size: 26px !important;
+        bottom: 4rem !important;
     }
-   
+}
 </style>
