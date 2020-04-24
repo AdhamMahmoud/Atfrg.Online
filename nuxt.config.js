@@ -63,6 +63,10 @@ export default {
         "data-cfasync" :"false",
         src: "//native.propellerclick.com/1?z=3227038&eid=p_3227038",
       },
+      {
+        "data-cfasync" :"false",
+        src: "//p393613.clksite.com/adServe/banners?tid=393613_773071_0&eid=ads2",
+      },
     ]
   },
   /*

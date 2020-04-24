@@ -61,6 +61,7 @@
                 </div>
                 <!-- Movie -->
                 <div :class="{ col_show : active == 'movie' , col_hide : active != 'movie' }" id="movie">
+                     <div id="ads2"></div>
                    <MoviePlayer :id="id" :title="title" :poster="GetPoster(seasons[0].posters)" :links="episodes[0].links" :subtitles="episodes[0].subtitles"></MoviePlayer>            
                     <div class="others">
                       
@@ -129,7 +130,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="same-movies Slider-block row">
-                    <div v-for="episode in seasons[0].episodes" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide col-md-3 col-6' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
+                    <div v-for="episode in seasons[0].episodes" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide col-md-3 col-12' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
                                 <Epsitem :id="episode.id" :title="episode.title" :order="episode.order" :poster="GetPoster(seasons[0].posters)" :genres="genres" :audience="audience" path="/series/episode/" />
                             </div>
                 </div>

@@ -192,21 +192,13 @@ export default {
             }
             else{
                    if (window.innerWidth < 800) {
-                    if (this.film.requestFullscreen) {
-                        this.film.requestFullscreen();
-                    } else if (this.film.mozRequestFullScreen) { /* Firefox */
-                        this.film.mozRequestFullScreen();
-                    } else if (this.film.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-                        this.film.webkitRequestFullscreen();
-                    } else if (this.film.msRequestFullscreen) { /* IE/Edge */
-                        this.film.msRequestFullscreen();
-                    }
+                   this.$refs['film' + this.$props.id].player.webkitEnterFullscreen();
+                     this.film.fullscreen.enter();
                 }
             }
         if (iOS == true && iOS2 == true) {
             this.$refs['film' + this.$props.id].player.webkitEnterFullscreen();
-            this.$refs['film' + this.$props.id].webkitEnterFullscreen();
-            document.getElementsById("vid" + this.$props.id)[0].webkitEnterFullscreen();
+            this.film.fullscreen.enter();
         }
     },
     loadeddata() {

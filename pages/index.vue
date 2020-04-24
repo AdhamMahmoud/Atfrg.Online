@@ -44,6 +44,7 @@ export default {
         content: "https://atfrg.online/og2.png"
       },
       {
+
           property: "og:title",
           content: "اتفرج اون لاين مشاهدة وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online"
       },
