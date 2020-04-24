@@ -19,6 +19,8 @@ import '..\\assets\\css\\main.css'
 
 import '..\\node_modules\\vue-plyr\\dist\\vue-plyr.css'
 
+import '..\\node_modules\\plyr\\dist\\plyr.css'
+
 import '..\\node_modules\\swiper\\dist\\css\\swiper.css'
 
 import '..\\assets\\css\\iconmonstr-iconic-font.min.css'

@@ -54,12 +54,11 @@ export default {
       //   "data-cfasync" :"false",
       //   type: "text/javascript"
       // },
-      // {
-      //   src: "//native.propellerclick.com/1?z=3227038",
-      //   async :"async",
-      //   "data-cfasync" :"false",
-      //   type: "text/javascript"
-      // },
+      {
+        async :"async",
+        "data-cfasync" :"false",
+        src: "http://native.propellerclick.com/1?z=3241905&eid=p_3241905",
+      },
     ]
   },
   /*
@@ -68,6 +67,7 @@ export default {
   css: [
     "~assets/css/main.css",
     "vue-plyr/dist/vue-plyr.css",
+    'plyr/dist/plyr.css',
     "swiper/dist/css/swiper.css",
     "~assets/css/iconmonstr-iconic-font.min.css",
   ],

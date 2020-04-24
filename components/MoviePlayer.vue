@@ -5,7 +5,7 @@
         <p>نظراً لسؤء خدمة الأنترنت الخاصة بشركة 🐢🐢 we في مصر قد تواجة مشكلة في تشغيل المحتوي </p>
         <span @click="reloadPage()">تحديث المحتوي</span>
     </div>
-    <vue-plyr class="player-mov" :ref="'film' + id" clickToPlay="true" seektime="10" :title="title" :id="id" :options="playerOptions" @enterfullscreen="enterfullscreen" @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
+    <vue-plyr v-if="links != null" class="player-mov" :ref="'film' + id"  seektime="10" :title="title" :id="id" :options="playerOptions" @enterfullscreen="enterfullscreen" @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
         <video crossorigin="anonymous" playsinline :poster="poster">
             <!-- Video Source -->
             <source v-for="video in links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
@@ -13,7 +13,7 @@
             <track v-for="(subtitle, index) in subtitleNew" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == subtitleNew.length - 2}">
         </video>
     </vue-plyr>
-
+    <div id="p_3241905"></div>
     <!-- <div class="fb-page" style="margin: 0 auto;display: block; width: 340px;" data-href="https://www.facebook.com/atfrg.online0/" data-tabs="" data-width="" data-height="" data-small-header="false" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="true">
         <blockquote cite="https://www.facebook.com/atfrg.online0/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/atfrg.online0/">Atfrg Online</a></blockquote>
     </div> -->
