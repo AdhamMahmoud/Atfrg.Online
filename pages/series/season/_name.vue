@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div v-if="$route.params.name != null">
 
       <ApolloQuery
                     :query='gql => gql`
-                  query gettvSeries($title:String) {
+                  query gettvSeries($title:String!) {
                    tvSerieses(where: {isPublished: true , seasons_some:{title_contains:$title}}) {
                         id
                         title

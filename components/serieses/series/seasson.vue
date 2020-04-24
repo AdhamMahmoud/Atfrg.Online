@@ -169,7 +169,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="same-movies Slider-block row">
-                    <div v-for="episode in episodes" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide col-md-3 col-6' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
+                    <div v-for="episode in episodes" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide col-md-3 col-12' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
                         <Epsitem :id="episode.id" :order="episode.order" :title="episode.title" :poster="GetPoster(posters)" :genres="genres" :audience="audience" path="/series/episode/" />
                     </div>
                 </div>
@@ -187,9 +187,9 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="same-movies">
+                <div class="same-movies" v-if="$route.params.name != null">
                     <ApolloQuery :query="gql => gql`
-                  query gettvSeries($title:String) {
+                  query gettvSeries($title:String!) {
                    tvSerieses(where: {isPublished: true , seasons_some:{title_contains:$title}}) {
                         id
                         title

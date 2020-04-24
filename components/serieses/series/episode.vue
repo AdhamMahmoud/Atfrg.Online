@@ -177,7 +177,7 @@
                     </table>
 
                 </div>
-                <bugs :title="topTitle + ' ' + title"></bugs>
+                <bugs :title="$props.title + ' ' + $props.season[0].title"></bugs>
             </div>
         </div>
     </div>
@@ -236,7 +236,7 @@
                             <!-- Result -->
                             <div v-else-if="data && data.seasons[0].episodes.length > 0" class="same-movies Slider-block row">
                                 <!-- Container End -->
-                             <div v-for="episode in data.seasons[0].episodes" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide col-md-3 col-6' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
+                             <div v-for="episode in data.seasons[0].episodes" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide col-md-3 col-12' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
                                         <Epsitem :id="episode.id" :title="episode.title" :order="episode.order" :poster="GetPoster(poster)" :genres="Series.genres" :audience="Series.audience" path="/series/episode/" />
                                     </div>
                                 <!-- No result -->

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="$route.params.name != null">
     <ApolloQuery
       :query="gql => gql`
                     query gettvSeries($title: String!) {
