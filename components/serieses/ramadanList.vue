@@ -12,7 +12,7 @@
           >
            <ApolloQuery :query='gql => gql`
                      query GetSerieses {
-                      tvSerieses(orderBy: updatedAt_DESC,first:20,  where: { isPublished: true, lang: {name:"Arabic"}, seriesType: TV  }}) {
+                      tvSerieses(orderBy: updatedAt_DESC,first:20,  where: { isPublished: true, lang: {name:"Arabic"}, seriesType: TV  }) {
                         id
                         title
                         posters {
