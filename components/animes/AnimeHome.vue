@@ -10,7 +10,7 @@
                         <!-- Block Title -->
                         <div class="block-type">
                             <nuxt-link to="/anime">
-                                <svg id="Layer_1" enable-background="new 0 0 256 256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                                <svg id="Layer_1" enable-background="new 0 0 256 256" viewBox="0 0 256 256">
                                     <path d="m233.295 40.2-5.639-2.513c-3.787-1.688-5.489-6.126-3.801-9.913l.474-1.064c1.688-3.787 6.126-5.489 9.913-3.801l5.639 2.513c3.787 1.688 5.489 6.126 3.801 9.913l-.474 1.064c-1.688 3.786-6.126 5.488-9.913 3.801z" fill="#e0ebfc" />
                                     <circle cx="126.882" cy="107.158" fill="#6bdddd" r="82.218" />
                                     <path d="m127.749 162.275c-13.783 0-24.997-9.619-24.997-21.443 0-1.657 1.343-3 3-3s3 1.343 3 3c0 8.515 8.522 15.443 18.997 15.443s18.997-6.928 18.997-15.443c0-1.657 1.343-3 3-3s3 1.343 3 3c0 11.824-11.214 21.443-24.997 21.443z" fill="#3762cc" />
@@ -39,7 +39,7 @@
                             </nuxt-link>
                         </div>
                                                                             <div class="drob" @click="ShowNav">
-                               <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                               <svg version="1.1" id="Layer_1"  x="0px" y="0px"
 	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 <g>
 	<g>

@@ -5,7 +5,7 @@
         <p>نظراً لسؤء خدمة الأنترنت الخاصة بشركة 🐢🐢 we في مصر قد تواجة مشكلة في تشغيل المحتوي </p>
         <span @click="reloadPage()">تحديث المحتوي</span>
     </div>
-    <vue-plyr v-if="links != null" clickToPlay="true" class="player-mov" :ref="'film' + id"  seektime="10" :title="title" :id="id" :options="playerOptions" @playing="nowPlaying" @loadeddata="loadeddata" :emit="['playing','loadeddata']">
+    <vue-plyr v-if="links != null" clickToPlay="true" class="player-mov" :ref="'film' + id"  seektime="10" :title="title" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
         <video crossorigin="anonymous" :id="'vid'+ id" playsinline :poster="poster">
             <!-- Video Source -->
             <source v-for="video in links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
@@ -13,10 +13,10 @@
             <track v-for="(subtitle, index) in subtitleNew" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == subtitleNew.length - 2}">
         </video>
     </vue-plyr>
-    <div class="note2">
+    <!-- <div class="note2">
         <p>💙 يوجد اختبار للأعلانات  نأسف اذا كان شئ خارج مجرد تجربة</p>
-    </div>
-    <div id="p_3227038"></div>
+    </div> -->
+    <!-- <div id="p_3227038"></div> -->
     <!-- <div class="fb-page" style="margin: 0 auto;display: block; width: 340px;" data-href="https://www.facebook.com/atfrg.online0/" data-tabs="" data-width="" data-height="" data-small-header="false" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="true">
         <blockquote cite="https://www.facebook.com/atfrg.online0/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/atfrg.online0/">Atfrg Online</a></blockquote>
     </div> -->
@@ -53,7 +53,7 @@ export default {
                 toggleInvert: true,
                 clickToPlay: true,
                 captions: {
-                    active: false
+                    active: true
                 },
                 fullscreen:{
                     enabled: true, fallback: true, iosNative: 'force' 
@@ -187,27 +187,15 @@ export default {
                 this.notesdone = true;
             }
         },
-    //     enterfullscreen() {
-    //         var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    //         var iOS2 = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
-    //         if (iOS != true && iOS2 != true) {
-    //              if (window.innerWidth < 800) {
-    //                 screen.orientation.lock('landscape');
-    //                 screen.msLockOrientation.lock("landscape");
-    //                 screen.mozLockOrientation.lock("landscape");
-    //             }
-    //         }
-    //         else{
-    //                if (window.innerWidth < 800) {
-    //                this.$refs['film' + this.$props.id].player.webkitEnterFullscreen();
-    //                  this.film.fullscreen.enter();
-    //             }
-    //         }
-    //     if (iOS == true && iOS2 == true) {
-    //         this.$refs['film' + this.$props.id].player.webkitEnterFullscreen();
-    //         this.film.fullscreen.enter();
-    //     }
-    // },
+        enterfullscreenFull() {
+            // var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            // var iOS2 = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+            if (window.innerWidth < 800) {
+            screen.orientation.lock('landscape');
+            screen.msLockOrientation.lock("landscape");
+            screen.mozLockOrientation.lock("landscape");
+            }
+    },
     loadeddata() {
         this.FirstNote.style.display = 'block';
         if (this.readCookie(this.$props.id) != 0) {

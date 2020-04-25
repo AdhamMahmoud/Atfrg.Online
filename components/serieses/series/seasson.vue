@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     <!-- Movie Player -->
-                       <MoviePlayer :id="id" :title="title" :poster="GetPoster(seasons[0].posters)" :links="episodes[0].links" :subtitles="episodes[0].subtitles"></MoviePlayer>
+                       <MoviePlayer v-if="episodes[0] != null" :id="id" :title="title" :poster="GetPoster(seasons[0].posters)" :links="episodes[0].links" :subtitles="episodes[0].subtitles"></MoviePlayer>
                     <div class="others">
                       
                         <nuxt-link v-if="GetPerv(episodes) != '#'" :to="'../episode/' + GetPerv(episodes)"> الحلقة السابقة</nuxt-link>
@@ -96,7 +96,7 @@
                         ننصح بأستخدام برنامج <nuxt-link to="https://www.videolan.org/vlc/download-windows.html">VLC</nuxt-link> .
                     </div>
 
-                    <table class="table">
+                    <table class="table" v-if="episodes[0] != null">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>

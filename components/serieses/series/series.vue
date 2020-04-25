@@ -62,7 +62,7 @@
                 <!-- Movie -->
                 <div :class="{ col_show : active == 'movie' , col_hide : active != 'movie' }" id="movie">
                      <div id="ads2"></div>
-                   <MoviePlayer :id="id" :title="title" :poster="GetPoster(seasons[0].posters)" :links="episodes[0].links" :subtitles="episodes[0].subtitles"></MoviePlayer>            
+                   <MoviePlayer v-if="episodes[0] != null" :id="id" :title="title" :poster="GetPoster(seasons[0].posters)" :links="episodes[0].links" :subtitles="episodes[0].subtitles"></MoviePlayer>            
                     <div class="others">
                       
                         <nuxt-link v-if="GetPerv(seasons[0]) != '#'" :to="'./episode/' + GetPerv(seasons[0])"> الحلقة السابقة</nuxt-link>
@@ -78,7 +78,7 @@
                         يمكنك تحميل <span>الموسم كامل</span> فقط ادخل للصفحة الخاصة بالموسم في قسم التحميل.
                     </div>
 
-                    <table class="table">
+                    <table class="table" v-ift="episodes[0] != null">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -87,7 +87,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="video in seasons[0].episodes[0].links" :key="video.id">
+                            <tr v-for="video in episodes[0].links" :key="video.id">
                                 <th scope="row">1</th>
                                 <td>{{video.quality.replace('Q','')}}</td>
                                 <td><a :href="Download(validLink(video.path))">تحميل</a></td>

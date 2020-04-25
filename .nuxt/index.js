@@ -13,6 +13,9 @@ import { createStore } from './store.js'
 /* Plugins */
 
 import nuxt_plugin_bootstrapvue_6dd9ca4e from 'nuxt_plugin_bootstrapvue_6dd9ca4e' // Source: .\\bootstrap-vue.js (mode: 'all')
+import nuxt_plugin_smoothscrollpolyfill_1e1c2812 from 'nuxt_plugin_smoothscrollpolyfill_1e1c2812' // Source: .\\nuxt-polyfill\\smoothscroll-polyfill.js (mode: 'all')
+import nuxt_plugin_intersectionobserver_7babc29e from 'nuxt_plugin_intersectionobserver_7babc29e' // Source: .\\nuxt-polyfill\\intersection-observer.js (mode: 'all')
+import nuxt_plugin_urlpolyfill_90a8796e from 'nuxt_plugin_urlpolyfill_90a8796e' // Source: .\\nuxt-polyfill\\url-polyfill.js (mode: 'all')
 import nuxt_plugin_apollomodule_6283b7eb from 'nuxt_plugin_apollomodule_6283b7eb' // Source: .\\apollo-module.js (mode: 'all')
 import nuxt_plugin_vueplyr_9db9a11c from 'nuxt_plugin_vueplyr_9db9a11c' // Source: ..\\plugins\\vue-plyr (mode: 'all')
 import nuxt_plugin_lazyload_af447860 from 'nuxt_plugin_lazyload_af447860' // Source: ..\\plugins\\lazyload (mode: 'client')
@@ -63,7 +66,7 @@ async function createApp (ssrContext) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"meta":[{"charset":"UTF-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"name":"propeller","content":"6db572cc55a14b132d2e20b503cf81b1"},{"http-equiv":"Content-Type","content":"text\u002Fhtml; charset=utf-8"},{"name":"apple-mobile-web-app-capable","content":"yes"}],"link":[{"rel":"icon","type":"image\u002Fsvg","href":"\u002Ffav.svg"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Tajawal:500&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.plyr.io\u002F3.5.10\u002Fplyr.css"}],"script":[{"src":"https:\u002F\u002Fkit.fontawesome.com\u002F3e50565740.js?ver=1.1","type":"text\u002Fjavascript"},{"src":"https:\u002F\u002Fwww.googletagmanager.com\u002Fgtag\u002Fjs?id=UA-162494703-1","async":"","type":"text\u002Fjavascript"},{"src":"https:\u002F\u002Fconnect.facebook.net\u002Fen_US\u002Fsdk.js#xfbml=1&version=v6.0&appId=637758733683983&autoLogAppEvents=1","async":"","defer":"","crossorigin":"anonymous","type":"text\u002Fjavascript"},{"async":"async","data-cfasync":"false","src":"\u002F\u002Fnative.propellerclick.com\u002F1?z=3227038&eid=p_3227038"},{"data-cfasync":"false","src":"\u002F\u002Fp393613.clksite.com\u002FadServe\u002Fbanners?tid=393613_773071_0&eid=ads2"}],"style":[]},
+    head: {"meta":[{"charset":"UTF-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"name":"propeller","content":"6db572cc55a14b132d2e20b503cf81b1"},{"http-equiv":"Content-Type","content":"text\u002Fhtml; charset=utf-8"},{"name":"apple-mobile-web-app-capable","content":"yes"}],"link":[{"rel":"icon","type":"image\u002Fsvg","href":"\u002Ffav.svg"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Tajawal:500&display=swap"}],"script":[{"src":"https:\u002F\u002Fkit.fontawesome.com\u002F3e50565740.js?ver=1.1","type":"text\u002Fjavascript"},{"src":"https:\u002F\u002Fwww.googletagmanager.com\u002Fgtag\u002Fjs?id=UA-162494703-1","async":"","type":"text\u002Fjavascript"},{"data-cfasync":"false","src":"\u002F\u002Fp393613.clksite.com\u002FadServe\u002Fbanners?tid=393613_773071_0&eid=ads2"}],"style":[]},
 
     store,
     router,
@@ -180,6 +183,18 @@ async function createApp (ssrContext) {
 
   if (typeof nuxt_plugin_bootstrapvue_6dd9ca4e === 'function') {
     await nuxt_plugin_bootstrapvue_6dd9ca4e(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_smoothscrollpolyfill_1e1c2812 === 'function') {
+    await nuxt_plugin_smoothscrollpolyfill_1e1c2812(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_intersectionobserver_7babc29e === 'function') {
+    await nuxt_plugin_intersectionobserver_7babc29e(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_urlpolyfill_90a8796e === 'function') {
+    await nuxt_plugin_urlpolyfill_90a8796e(app.context, inject)
   }
 
   if (typeof nuxt_plugin_apollomodule_6283b7eb === 'function') {

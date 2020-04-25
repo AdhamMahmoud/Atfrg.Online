@@ -56,7 +56,7 @@
                 >
                   <!-- Container End -->
                   <div
-                    v-swiper:mySwiperNetflix="swiperOption"
+                    v-swiper:mySwiperNew="swiperOption"
                     class="my-swiper"
                   >
                     <div class="swiper-wrapper">
@@ -106,7 +106,7 @@
           >
           <ApolloQuery :query='gql => gql`
                      query GetSerieses {
-                      tvSerieses(orderBy: updatedAt_DESC,first:15,  where: { isPublished: true, lang: {name:"Arabic"}, seriesType: TV , seasons_some:{episodes_some:{id_gt:1}, }}) {
+                      tvSerieses(orderBy: updatedAt_DESC,first:10,  where: { isPublished: true, lang: {name:"Arabic"}, seriesType: TV , seasons_some:{episodes_some:{id_gt:1}, }}) {
                         id
                         title
                         posters {
@@ -155,18 +155,18 @@
                 >
                   <!-- Container End -->
                   <div
-                    v-swiper:mySwiperLast="swiperOption"
+                    v-swiper:mspw="swiperOption"
                     class="my-swiper"
                   >
                     <div class="swiper-wrapper">
                       <div
                         v-for="series in data.tvSerieses"
                         :key="series.id"
-                        :class="[{ poster_over : overId == series.id } ]"
+                        :class="[{ poster_over : overId == series.id } , 'swiper-slide']"
                         @mouseover="itemOver(series.id)"
                         @mouseleave="itemNotOver"
                       >
-                        <div class="swiper-slide" style="max-width:250px" v-for="episode in series.seasons[0].episodes" :key="episode.id">
+                        <div v-for="episode in series.seasons[0].episodes" :key="episode.id">
                          <Epsitem :id="episode.id" :title="episode.title" :order="episode.order" :poster="GetPoster(series.posters)" :genres="series.genres" :audience="series.audience" path="/series/episode/" />
                         </div>
                       </div>
