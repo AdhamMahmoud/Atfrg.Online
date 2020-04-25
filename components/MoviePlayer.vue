@@ -5,7 +5,7 @@
         <p>نظراً لسؤء خدمة الأنترنت الخاصة بشركة 🐢🐢 we في مصر قد تواجة مشكلة في تشغيل المحتوي </p>
         <span @click="reloadPage()">تحديث المحتوي</span>
     </div>
-    <vue-plyr v-if="links != null" clickToPlay="true" class="player-mov" :ref="'film' + id"  seektime="10" :title="title" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
+    <vue-plyr clickToPlay="true" class="player-mov" :ref="'film' + id"  seektime="10" :title="title" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
         <video crossorigin="anonymous" :id="'vid'+ id" playsinline :poster="poster">
             <!-- Video Source -->
             <source v-for="video in links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
