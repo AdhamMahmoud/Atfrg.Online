@@ -399,7 +399,9 @@ export default {
 .chat .message {
     background-color: #232323;
 }
-
+.plyr:-webkit-full-screen .plyr__captions {
+    z-index:99999;
+}
 @include xl {
     .plyr__captions {
         font-size: 26px !important;
@@ -409,6 +411,7 @@ export default {
     .plyr:-webkit-full-screen .plyr__captions {
         font-size: 30px !important;
         bottom: 4rem !important;
+        z-index:99999;
     }
 }
 
@@ -421,6 +424,7 @@ export default {
     .plyr:-webkit-full-screen .plyr__captions {
         font-size: 26px !important;
         bottom: 4rem !important;
+         z-index:99999;
     }
 }
 </style>
