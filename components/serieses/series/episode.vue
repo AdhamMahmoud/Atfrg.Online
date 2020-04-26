@@ -544,23 +544,40 @@ export default {
             // path = path.replace(/ /g, '%20');
             return path;
         },
-        LinkToken(path) {
-            var crypto = require('crypto');
-            var securityKey = '6ecb7c25-9744-498a-a49b-ae4c7980c861';
-            var newpath = path.substring(24, path.length);
-            // Set the time of expiry to one hour from now
-            var expires = Math.round(Date.now() / 1000) + 21600;
+  LinkToken(path){
+          if (path.includes("cdn.atfrg")) {
+                var crypto = require('crypto');
+                var securityKey = '6ecb7c25-9744-498a-a49b-ae4c7980c861';
+                var newpath = path.substring(24, path.length);
+                // Set the time of expiry to one hour from now
+                var expires = Math.round(Date.now() / 1000) + 21600;
 
-            var hashableBase = securityKey + newpath + expires;
-            // Generate and encode the token 
-            var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
-            var token = new Buffer(md5String, 'binary').toString('base64');
-            token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
-            var url = 'https://atfrgonline.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+                var hashableBase = securityKey + newpath + expires;
+                // Generate and encode the token 
+                var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
+                var token = new Buffer(md5String, 'binary').toString('base64');
+                token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
+                var url = 'https://atfrgonline.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+          }
+          else if (path.includes("AtfrgRamadan")) {
+                var crypto = require('crypto');
+                var securityKey = '7544a7f3-75bd-4456-a42b-b6c1e8f28255';
+                var newpath = path.substring(30, path.length);
+                // Set the time of expiry to one hour from now
+                var expires = Math.round(Date.now() / 1000) + 21600;
+
+                var hashableBase = securityKey + newpath + expires;
+                // Generate and encode the token 
+                var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
+                var token = new Buffer(md5String, 'binary').toString('base64');
+                token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
+                var url = 'https://AtfrgRamadan.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+          }
             return url;
         },
-        Download(path) {
-            var crypto = require('crypto');
+        Download(path){
+        if (path.includes("cdn.atfrg")) {
+           var crypto = require('crypto');
             var securityKey = '27ab3ad5-9fbb-4713-9671-5d4cb7a1a31e';
             var newpath = path.substring(24, path.length);
             // Set the time of expiry to one hour from now
@@ -571,6 +588,20 @@ export default {
             var token = new Buffer(md5String, 'binary').toString('base64');
             token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
             var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+             } else if (path.includes("AtfrgRamadan")) {
+                var crypto = require('crypto');
+                var securityKey = '0e13e8d1-e333-42f9-9fb6-5e8d7bf34fb8';
+                var newpath = path.substring(30, path.length);
+                // Set the time of expiry to one hour from now
+                var expires = Math.round(Date.now() / 1000) + 21600;
+
+                var hashableBase = securityKey + newpath + expires;
+                // Generate and encode the token 
+                var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
+                var token = new Buffer(md5String, 'binary').toString('base64');
+                token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
+                var url = 'https://ramdanDownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+          }
             return url;
         },
         GetPoster(posters) {
