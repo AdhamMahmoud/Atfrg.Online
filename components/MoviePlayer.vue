@@ -2,9 +2,10 @@
 <div>
     <div class="note2">
         <p>مشاهدة ممتعة يا صحبي 😘💙</p>
-        <p>نظراً لسؤء خدمة الأنترنت الخاصة بشركة 🐢🐢 we في مصر قد تواجة مشكلة في تشغيل المحتوي </p>
+        <p> رمضان كريم ❤️❤️</p>
         <span @click="reloadPage()">تحديث المحتوي</span>
     </div>
+    
     <vue-plyr clickToPlay="true" class="player-mov" :ref="'film' + id"  seektime="10" :title="title" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
         <video crossorigin="anonymous" :id="'vid'+ id" playsinline :poster="poster">
             <!-- Video Source -->
@@ -13,6 +14,7 @@
             <track v-for="(subtitle, index) in subtitleNew" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == subtitleNew.length - 2}">
         </video>
     </vue-plyr>
+ 
     <!-- <div class="note2">
         <p>💙 يوجد اختبار للأعلانات  نأسف اذا كان شئ خارج مجرد تجربة</p>
     </div> -->
@@ -38,6 +40,7 @@ export default {
             firstNote: null,
             SecoNote: null,
             logo: null,
+            ads:null,
         }
     },
     props: {
@@ -100,6 +103,20 @@ export default {
             '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style=" display: block; shape-rendering: auto;" width="50px" height="50px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><circle cx="50" cy="50" fill="none" stroke="#fff" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138" transform="rotate(53.2159 50 50)"><animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>  </circle></svg>';
         list.parentNode.insertBefore(this.loader, list.nextSibling);
         // Create Notes .1
+        this.ads = document.createElement("div");
+        var sc = document.createElement('script');
+        this.ads.classList.add("vide-ad");
+        sc.setAttribute('data-cfasync','false');
+        sc.setAttribute('src','//p393613.clksite.com/adServe/banners?tid=393613_773071_7');
+        this.ads.appendChild(sc);
+        list.parentNode.insertBefore(this.ads, list.nextSibling);
+
+         this.timer = setTimeout(() => {
+            this.ads.style.display = 'none';
+            this.ShowAd();
+        }, 10000);
+
+
         this.FirstNote = document.createElement("div");
         this.FirstNote.classList.add("chat");
         this.FirstNote.classList.add("chatb");
@@ -159,7 +176,17 @@ export default {
 
     },
     methods: {
-
+        ShowAd(){
+            this.ads.style.display = 'none';
+            this.timer = setTimeout(() => {
+            this.ads.style.display = 'block';
+            // hide after 20
+            this.timer = setTimeout(() => {
+            this.ads.style.display = 'none';
+                this.ShowAd();
+            }, 10000);
+        }, 9000000);
+        },
         validLink(path) {
             var type = path.slice(-3).toLowerCase();
             path = path.substring(0, path.length - 3) + type;
@@ -194,6 +221,10 @@ export default {
             screen.orientation.lock('landscape');
             screen.msLockOrientation.lock("landscape");
             screen.mozLockOrientation.lock("landscape");
+          if (this.$props.subtitles.length > 0) {
+                this.film.currentTrack = 1;
+                this.film.toggleCaptions(true);
+            }
             }
     },
     loadeddata() {
@@ -401,6 +432,7 @@ export default {
 }
 .plyr:-webkit-full-screen .plyr__captions {
     z-index:99999;
+    display:block;
 }
 @include xl {
     .plyr__captions {
@@ -426,5 +458,17 @@ export default {
         bottom: 4rem !important;
          z-index:99999;
     }
+}
+.vide-ad{
+      border: 0;
+    color: #fff;
+    position: absolute;
+    z-index: 2;
+    height: auto;
+    width: auto;
+    z-index: 9999;
+    bottom: 10%;
+    left: 23%;
+    background-color: transparent !important;
 }
 </style>

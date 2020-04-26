@@ -3,6 +3,14 @@
 <div class="Single-Series">
     <!-- Container -->
     <div class="container">
+         <div class="row">
+            <div class="col-12">
+                  <div style="margin:0 auto;margin-bottom:2rem">
+                <script data-cfasync='false' type='text/javascript' src='//p393613.clksite.com/adServe/banners?tid=393613_773071_4&eid=393613_773071_4'></script>
+                <div id="393613_773071_4"></div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <!-- poster -->
             <div class="col-md-3">
@@ -64,22 +72,6 @@
                 </div>
                 <!-- Movie -->
                 <div :class="{ col_show : active == 'movie' , col_hide : active != 'movie' }" id="movie">
-                    <div class="chat chat-video" v-if="firstNote">
-                        <div class="mine messages">
-                            <div class="message last">
-                                <p> جهزت فشارك والحاجة ال هتشربها 😋 ؟</p>
-                                <button @click="CloseNote">كلو تمام</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat chat-video" v-if="secondNote">
-                        <div class="mine messages">
-                            <div class="message last">
-                                <p>خد بريك كدا ادخل الحمام وحات حاجة تشربها ✌️❤️</p>
-                                <button @click="CloseNote(2)">تمام</button>
-                            </div>
-                        </div>
-                    </div>
                     <!-- Movie Player -->
                        <MoviePlayer v-if="episodes[0] != null" :id="id" :title="title" :poster="GetPoster(seasons[0].posters)" :links="episodes[0].links" :subtitles="episodes[0].subtitles"></MoviePlayer>
                     <div class="others">
@@ -90,13 +82,16 @@
                 </div>
                 <!-- Download -->
                 <div :class="{ col_show : active == 'download' , col_hide : active != 'download' }" id="download">
-                    <div class="note">
+                    <div class="note" v-if="episodes[0].subtitles.length > 0">
                         للتحميل يرجي تحميل <span>الحلقة + الترجمة. </span>
                         يتم وضعهم في مكان <span>واحد</span> بنفس الاسم لتعمل الترجمة.
                         ننصح بأستخدام برنامج <nuxt-link to="https://www.videolan.org/vlc/download-windows.html">VLC</nuxt-link> .
                     </div>
-
-                    <table class="table" v-if="episodes[0] != null">
+              <div style="margin:0 auto;margin-bottom:2rem" >
+                        <script data-cfasync='false' type='text/javascript' src='//p393613.clksite.com/adServe/banners?tid=393613_773071_5&eid=393613_773071_5'></script>
+                        <div id="393613_773071_5"></div>
+                     </div>
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -105,14 +100,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="video in episodes[0].links" :key="video.id">
-                                <th scope="row">1</th>
+                            <tr v-for="(video,index) in episodes[0].links" :key="video.id">
+                                <th scope="row">{{index}}</th>
                                 <td>{{video.quality.replace('Q','')}}</td>
                                 <td><a :href="Download(validLink(video.path))">تحميل</a></td>
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table">
+                    <table class="table" v-if="episodes[0].subtitles.length > 0">
                         <thead>
                             <tr>
                                 <th scope="col">اللغة</th>

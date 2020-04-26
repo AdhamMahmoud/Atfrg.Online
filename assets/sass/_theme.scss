@@ -1450,7 +1450,9 @@ $cloud-bgColor: #fff;
 }
 
 /*=== Generes === */
-
+.it-client{
+    margin:0 auto;
+}
 .movies-genre {
     @include boxShadow(0px, 0px, 5px, 0px, #d8d8d8);
     margin: 50px;

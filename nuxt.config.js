@@ -50,14 +50,15 @@ export default {
         "data-cfasync" :"false",
         type: "text/javascript"
       },
-      // {
-      //   async :"async",
-      //   "data-cfasync" :"false",
-      //   src: "//native.propellerclick.com/1?z=3227038&eid=p_3227038",
-      // },
       {
+        async :"async",
         "data-cfasync" :"false",
-        src: "//p393613.clksite.com/adServe/banners?tid=393613_773071_0&eid=ads2",
+        src: "//native.propellerclick.com/1?z=3247404&eid=p_3247404",
+      },
+      {
+        async :"async",
+        "data-cfasync" :"false",
+        src: "//native.propellerclick.com/1?z=3247434&eid=p_3247434",
       },
     ]
   },

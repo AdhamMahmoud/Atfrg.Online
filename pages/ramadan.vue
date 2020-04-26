@@ -1,6 +1,14 @@
 <template>
 <div class="movies-genre">
     <div class="container-fluid">
+         <div class="row">
+            <div class="col-12">
+                   <div style="margin:0 auto;margin-bottom:2rem">
+                <script data-cfasync='false' type='text/javascript' src='//p393613.clksite.com/adServe/banners?tid=393613_773071_6&eid=393613_773071_6'></script>
+                <div id="393613_773071_6"></div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-12">
                 <filters :filtersUpdate.sync="filtersUpdate" :genChange.sync="genChange" :LangChange.sync="LangChange" 
@@ -178,5 +186,7 @@ export default {
 <style lang="scss">
 @import '~/assets/sass/_vars.scss';
 @import '~/assets/sass/_mixins.scss';
-
+.it-client{
+margin:0 auto !important;
+}
 </style>

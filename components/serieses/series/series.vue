@@ -4,6 +4,14 @@
     <!-- Container -->
     <div class="container">
         <div class="row">
+            <div class="col-12">
+                <div style="margin:0 auto;margin-bottom:2rem">
+                <script data-cfasync='false' type='text/javascript' src='//p393613.clksite.com/adServe/banners?tid=393613_773071_4&eid=393613_773071_4'></script>
+                <div id="393613_773071_4"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <!-- poster -->
             <div class="col-md-3">
                 <div class="poster">
@@ -71,14 +79,17 @@
                 </div>
                 <!-- Download -->
                 <div :class="{ col_show : active == 'download' , col_hide : active != 'download' }" id="download">
-                    <div class="note">
+                    <div class="note" v-if="episodes[0].subtitles.length > 0">
                         للتحميل يرجي تحميل <span>الحلقة + الترجمة. </span>
                         يتم وضعهم في مكان <span>واحد</span> بنفس الاسم لتعمل الترجمة.
                         ننصح بأستخدام برنامج <nuxt-link to="https://www.videolan.org/vlc/download-windows.html">VLC</nuxt-link> .
                         يمكنك تحميل <span>الموسم كامل</span> فقط ادخل للصفحة الخاصة بالموسم في قسم التحميل.
                     </div>
-
-                    <table class="table" v-ift="episodes[0] != null">
+                    <div style="margin:0 auto;margin-bottom:2rem" >
+                      <script data-cfasync='false' type='text/javascript' src='//p393613.clksite.com/adServe/banners?tid=393613_773071_5'></script>
+                        <div id="393613_773071_5"></div>
+                     </div>
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -95,7 +106,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table">
+                    <table class="table" v-if="episodes[0].subtitles.length > 0">
                         <thead>
                             <tr>
                                 <th scope="col">اللغة</th>
@@ -104,14 +115,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="subtitle in seasons[0].episodes[0].subtitles" :key="subtitle.id">
+                            <tr v-for="subtitle in episodes[0].subtitles" :key="subtitle.id">
                                 <th scope="row">{{subtitle.lang.name}}</th>
                                 <td>{{subtitle.name }}</td>
                                 <td v-if="subtitle.path.length > 0"><a :href="Download(validLink(subtitle.path))">تحميل</a></td>
                             </tr>
                         </tbody>
                     </table>
-
+                
                 </div>
                  <bugs :title="title"></bugs>
             </div>
@@ -130,7 +141,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="same-movies Slider-block row">
-                    <div v-for="episode in seasons[0].episodes" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide col-md-3 col-12' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
+                    <div v-for="episode in seasons[0].episodes" :key="episode.id" style="min-width:250px" :class="[{ poster_over : overId == episode.id }, 'swiper-slide col-md-3 col-12' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
                                 <Epsitem :id="episode.id" :title="episode.title" :order="episode.order" :poster="GetPoster(seasons[0].posters)" :genres="genres" :audience="audience" path="/series/episode/" />
                             </div>
                 </div>

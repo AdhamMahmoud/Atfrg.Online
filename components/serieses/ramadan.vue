@@ -3,6 +3,7 @@
 <div class="home-slider-block">
     <!-- Container -->
     <div class="container-fluid back-color">
+       
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
