@@ -2,6 +2,7 @@
 <!-- Single Series -->
 <div class="Single-Series">
     <!-- Container -->
+    <ads></ads>
     <div class="container">
         <!-- <div class="row">
             <div class="col-12">
@@ -89,6 +90,7 @@
                       <script data-cfasync='false' type='text/javascript' src='//p393613.clksite.com/adServe/banners?tid=393613_773071_5'></script>
                         <div id="393613_773071_5"></div>
                      </div> -->
+                     <ads2></ads2>
                     <table class="table">
                         <thead>
                             <tr>
@@ -188,6 +190,8 @@ import SeriesItem from "~/components/SeriesItem.vue";
 import Epsitem from '~/components/Epsitem.vue';
 import bugs from '~/components/bugs.vue';
 import gql from "graphql-tag";
+import ads from "~/components/ads.vue";
+import ads2 from "~/components/ads2.vue";
 export default {
     components: {
         TrailerItem,
@@ -195,7 +199,9 @@ export default {
         SeriesItem,
         Epsitem,
         MoviePlayer,
-        bugs
+        bugs,
+        ads,
+        ads2
     },
      head(){
     return{

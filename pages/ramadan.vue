@@ -1,14 +1,8 @@
 <template>
 <div class="movies-genre">
+    
     <div class="container-fluid">
-         <div class="row">
-            <div class="col-12">
-                   <div style="margin:0 auto;margin-bottom:2rem">
-                <script data-cfasync='false' type='text/javascript' src='//p393613.clksite.com/adServe/banners?tid=393613_773071_6&eid=393613_773071_6'></script>
-                <div id="393613_773071_6"></div>
-                </div>
-            </div>
-        </div>
+        <ads2></ads2>
         <div class="row">
             <div class="col-12">
                 <filters :filtersUpdate.sync="filtersUpdate" :genChange.sync="genChange" :LangChange.sync="LangChange" 
@@ -77,6 +71,7 @@ import resultNotFound from "~/components/resultNotFound.vue";
 import SeriesItem from "~/components/SeriesItem.vue";
 import filters from "~/components/serieses/filters";
 import gql from 'graphql-tag';
+import ads2 from "~/components/ads2.vue";
 export default {
    head() {
         return {
@@ -130,7 +125,8 @@ export default {
     components: {
         resultNotFound,
         SeriesItem,
-        filters
+        filters,
+        ads2
     },
     methods: {
         scroll() {

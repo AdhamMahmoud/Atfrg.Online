@@ -3,25 +3,17 @@
     <div class="note2">
         <p>مشاهدة ممتعة يا صحبي 😘💙</p>
         <p> رمضان كريم ❤️❤️</p>
-        <span @click="reloadPage()">تحديث المحتوي</span>
+        <!-- <span @click="reloadPage()">تحديث المحتوي</span> -->
     </div>
     
-    <vue-plyr clickToPlay="true" class="player-mov" :ref="'film' + id"  seektime="10" :title="title" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
-        <video crossorigin="anonymous" :id="'vid'+ id" playsinline :poster="poster">
+    <vue-plyr  class="player-mov" :ref="'film' + id" clickToPlay="true" seektime="10" :title="title" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
+        <video preload="none" crossorigin="anonymous" playsinline :poster="poster">
             <!-- Video Source -->
             <source v-for="video in links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
             <!-- Video Subtitles -->
             <track v-for="(subtitle, index) in subtitleNew" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == subtitleNew.length - 2}">
         </video>
     </vue-plyr>
- 
-    <!-- <div class="note2">
-        <p>💙 يوجد اختبار للأعلانات  نأسف اذا كان شئ خارج مجرد تجربة</p>
-    </div> -->
-    <!-- <div id="p_3227038"></div> -->
-    <!-- <div class="fb-page" style="margin: 0 auto;display: block; width: 340px;" data-href="https://www.facebook.com/atfrg.online0/" data-tabs="" data-width="" data-height="" data-small-header="false" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="true">
-        <blockquote cite="https://www.facebook.com/atfrg.online0/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/atfrg.online0/">Atfrg Online</a></blockquote>
-    </div> -->
 </div>
 </template>
 
@@ -41,6 +33,7 @@ export default {
             SecoNote: null,
             logo: null,
             ads:null,
+             ads2:null,
         }
     },
     props: {
@@ -61,7 +54,6 @@ export default {
                 fullscreen:{
                     enabled: true, fallback: true, iosNative: 'force' 
                 },
-                debug:true,
                 controls: [
                     "play-large", // The large play button in the center
                     "rewind", // Rewind by the seek time (default 10 seconds)
@@ -111,11 +103,7 @@ export default {
         this.ads.appendChild(sc);
         list.parentNode.insertBefore(this.ads, list.nextSibling);
 
-         this.timer = setTimeout(() => {
-            this.ads.style.display = 'none';
-            this.ShowAd();
-        }, 10000);
-
+        
 
         this.FirstNote = document.createElement("div");
         this.FirstNote.classList.add("chat");
@@ -131,7 +119,7 @@ export default {
         mine.classList.add("last");
         this.FirstNote.appendChild(mine);
         var text = document.createElement("p");
-        text.innerHTML = '💙💙 صلي علي محمد';
+        text.innerHTML = '💙💙 احنا مكملين بيك';
         mine.appendChild(text);
         this.FirstNote.style.display = 'none';
         // Create Notes.2
@@ -256,6 +244,11 @@ export default {
     },
     nowPlaying() {
         if (this.film != null) {
+             this.timer = setTimeout(() => {
+            this.ads.style.display = 'none';
+            this.ShowAd();
+        }, 10000);
+
             if (this.$props.subtitles.length > 0) {
                 this.film.currentTrack = 1;
             }
@@ -484,7 +477,10 @@ export default {
     width: auto;
     z-index: 9999;
     bottom: 10%;
-    left: 23%;
+    left: 20%;
     background-color: transparent !important;
+}
+.chat .message p{
+    margin-bottom:0 !important;
 }
 </style>

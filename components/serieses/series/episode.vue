@@ -3,14 +3,7 @@
 <div class="episode">
     <!-- Container -->
     <div class="container">
-         <div class="row">
-            <div class="col-12">
-                  <div style="margin:0 auto;margin-bottom:2rem">
-                <script data-cfasync='false' type='text/javascript' src='//p393613.clksite.com/adServe/banners?tid=393613_773071_4&eid=393613_773071_4'></script>
-                <div id="393613_773071_4"></div>
-                </div>
-            </div>
-        </div>
+        <ads></ads>
         <div class="row">
             <!-- poster -->
             <div class="col-md-3">
@@ -150,10 +143,7 @@
                         ننصح بأستخدام برنامج <nuxt-link to="https://www.videolan.org/vlc/download-windows.html">VLC</nuxt-link> .
                         يمكنك تحميل <span>الموسم كامل</span> فقط ادخل للصفحة الخاصة بالموسم في قسم التحميل.
                     </div>
-                    <div style="margin:0 auto;margin-bottom:2rem" >
-                        <script data-cfasync='false' type='text/javascript' src='//p393613.clksite.com/adServe/banners?tid=393613_773071_5&eid=393613_773071_5'></script>
-                        <div id="393613_773071_5"></div>
-                     </div>
+                    <ads2></ads2>
                     <table class="table">
                         <thead>
                             <tr>
@@ -332,6 +322,8 @@ import SeriesItem from '~/components/SeriesItem.vue';
 import Epsitem from '~/components/Epsitem.vue';
 import bugs from '~/components/bugs.vue';
 import MoviePlayer from "~/components/MoviePlayer.vue";
+import ads from "~/components/ads.vue";
+import ads2 from "~/components/ads2.vue";
 export default {
     data: function () {
         return {
@@ -340,6 +332,8 @@ export default {
             secondNote: false,
             notesdone: false,
             films: [],
+            ads:null,
+            ads2:null,
             tvSerieses: [],
             active: "movie",
             overId: 0,
@@ -448,7 +442,9 @@ export default {
         resultNotFound,
         Epsitem,
         MoviePlayer,
-        bugs
+        bugs,
+        ads,
+        ads2
     },
     head() {
         return {

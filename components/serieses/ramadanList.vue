@@ -106,7 +106,7 @@
           >
           <ApolloQuery :query='gql => gql`
                      query GetSerieses {
-                      tvSerieses( where: { isPublished: true, lang: {name:"Arabic"}, seriesType: TV}) {
+                      tvSerieses(orderBy: updatedAt_DESC,first:15, where: { isPublished: true, lang: {name:"Arabic"}, seriesType: TV}) {
                         id
                         title
                         posters {
@@ -118,7 +118,7 @@
                         genres {
                           name
                         }
-                        seasons(orderBy: updatedAt_DESC,first:10) {
+                        seasons {
                           id
                           imdbId
                           episodes(orderBy:createdAt_DESC,first:1){
