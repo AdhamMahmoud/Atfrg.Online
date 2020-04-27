@@ -461,7 +461,7 @@ export default {
             var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
              } else if (path.includes("AtfrgRamadan")) {
                 var crypto = require('crypto');
-                var securityKey = '0e13e8d1-e333-42f9-9fb6-5e8d7bf34fb8';
+                var securityKey = '27ab3ad5-9fbb-4713-9671-5d4cb7a1a31e';
                 var newpath = path.substring(30, path.length);
                 // Set the time of expiry to one hour from now
                 var expires = Math.round(Date.now() / 1000) + 21600;
@@ -471,7 +471,7 @@ export default {
                 var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
                 var token = new Buffer(md5String, 'binary').toString('base64');
                 token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
-                var url = 'https://ramdanDownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+                var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
           }
             return url;
         },
