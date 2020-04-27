@@ -197,7 +197,7 @@ export default {
           }
           else if (path.includes("AtfrgRamadan")) {
                 var crypto = require('crypto');
-                var securityKey = '7544a7f3-75bd-4456-a42b-b6c1e8f28255';
+                var securityKey = '6ecb7c25-9744-498a-a49b-ae4c7980c861';
                 var newpath = path.substring(30, path.length);
                 // Set the time of expiry to one hour from now
                 var expires = Math.round(Date.now() / 1000) + 21600;
@@ -207,7 +207,7 @@ export default {
                 var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
                 var token = new Buffer(md5String, 'binary').toString('base64');
                 token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
-                var url = 'https://AtfrgRamadan.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+                var url = 'https://atfrgonline.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
           }
             return url;
         },
