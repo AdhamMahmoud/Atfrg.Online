@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
+    "build": "NODE_OPTIONS=--max-old-space-size=8192 nuxt build",
     "start": "NODE_OPTIONS=--max-old-space-size=8192 nuxt start",
     "generate": "nuxt generate"
   },

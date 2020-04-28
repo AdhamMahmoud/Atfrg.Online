@@ -12,7 +12,7 @@ export default (ctx, inject) => {
   const providerOptions = { clients: {} }
   const { app, beforeNuxtRender, req } = ctx
   const AUTH_TOKEN_NAME = 'apollo-token'
-  const COOKIE_ATTRIBUTES = {"expires":7,"secure":true}
+  const COOKIE_ATTRIBUTES = {"expires":7,"path":"\u002F","secure":false}
   const AUTH_TYPE = 'Bearer '
 
   // Config
