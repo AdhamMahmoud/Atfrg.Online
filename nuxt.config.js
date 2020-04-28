@@ -5,6 +5,8 @@ export default {
    ** Headers of the page
    */
   head: {
+    title:"اتفرج اون لاين مشاهدة وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online",
+       
     meta: [
       {
         charset: "UTF-8"
@@ -25,6 +27,29 @@ export default {
         name: "apple-mobile-web-app-capable",
         content: "yes"
       },  
+      { hid: 'description', name: 'description', content:  "مشاهدة وتحميل مباشر افلام و مسلسلات وانمي بجودة عالية مترجمة - اتفرج اون لاين - بدون اعلانات" || ""},
+        { hid: 'keywords', name: 'keywords', content:  "مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل " || ""},
+         {
+        property: "image",
+        content: "https://atfrg.online/og2.png"
+      },
+        {
+        property: "og:image",
+        content: "https://atfrg.online/og2.png"
+      },
+      {
+
+          property: "og:title",
+          content: "اتفرج اون لاين مشاهدة وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online"
+      },
+      {
+          property: "og:description",
+          content: "مشاهدة وتحميل مباشر افلام و مسلسلات وانمي بجودة عالية مترجمة - اتفرج اون لاين - بدون اعلانات" 
+      },
+      {
+          property: "og:keywords",
+          content:"مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل "
+      },
     ],
     link: [
       {
@@ -105,7 +130,7 @@ export default {
     'nuxt-polyfill',
   ],
   apollo: {
-    includeNodeModules: false,
+    // includeNodeModules: false,
     clientConfigs: {
       default: "~/plugins/my-alternative-apollo-config.js"
       // alternative: user path to config which returns exact same config options
