@@ -6,16 +6,16 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
-      <!-- Home Slider
+      <!-- Home Slider -->
       <HomeSlider />
     <!--  Movies Block -->
-    <!-- <Movies /> -->
-     <!-- <Ramadan /> -->
-    <!-- <Netflix /> -->
+    <Movies />
+     <Ramadan />
+    <Netflix />
     <!-- Serieses Block -->
-    <!-- <Serieses /> -->
+    <Serieses />
      <!--Animes Block -->
-    <!-- <Anime /> --> -->
+    <Anime />
     </div>
   </div>
 </div>
