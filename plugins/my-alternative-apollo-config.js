@@ -7,7 +7,7 @@
 export default function (context) {
   return {
     ssr:true,
-    httpEndpoint: 'http://localhost:4466',
+    httpEndpoint: 'http://172.17.0.2:4466',
      getAuth: () => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJkZWZhdWx0QGRlZmF1bHQiLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNTg2OTYwODgwLCJleHAiOjE2MTg3ODkyMjN9.2I4N-QE3I2-BgvZr0ilGmictto5q2vNkjnFRGIIKupU"
   }
 }
