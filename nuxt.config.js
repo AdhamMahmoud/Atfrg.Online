@@ -102,7 +102,7 @@ export default {
     "@nuxtjs/apollo",
     '@nuxtjs/sitemap',
     // '@nuxtjs/component-cache',
-    'nuxt-polyfill',
+    // 'nuxt-polyfill',
   ],
   apollo: {
     // includeNodeModules: false,
