@@ -95,14 +95,14 @@ export default {
             '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style=" display: block; shape-rendering: auto;" width="50px" height="50px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><circle cx="50" cy="50" fill="none" stroke="#fff" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138" transform="rotate(53.2159 50 50)"><animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>  </circle></svg>';
         list.parentNode.insertBefore(this.loader, list.nextSibling);
         // Create Notes .1
-        this.ads = document.createElement("div");
-        var sc = document.createElement('script');
-        this.ads.classList.add("vide-ad");
-        sc.setAttribute('data-cfasync','false');
-        sc.setAttribute('src','//p393613.clksite.com/adServe/banners?tid=393613_773071_7');
-        this.ads.appendChild(sc);
-        list.parentNode.insertBefore(this.ads, list.nextSibling);
-
+        // this.ads = document.createElement("div");
+        // var sc = document.createElement('script');
+        // this.ads.classList.add("vide-ad");
+        // sc.setAttribute('data-cfasync','false');
+        // sc.setAttribute('src','//p393613.clksite.com/adServe/banners?tid=393613_773071_7');
+        // this.ads.appendChild(sc);
+        // list.parentNode.insertBefore(this.ads, list.nextSibling);
+        // this.ads.style.display = 'none';
         
 
         this.FirstNote = document.createElement("div");
@@ -165,15 +165,19 @@ export default {
     },
     methods: {
         ShowAd(){
-            this.ads.style.display = 'none';
-            this.timer = setTimeout(() => {
-            this.ads.style.display = 'block';
-            // hide after 20
-            this.timer = setTimeout(() => {
-            this.ads.style.display = 'none';
-                this.ShowAd();
-            }, 10000);
-        }, 9000000);
+        //     // this.ads.style.display = 'none';
+        //     this.timer = setTimeout(() => {
+        //     this.ads.style.display = 'none';
+        //         this.ShowAd();
+        //     }, 10000);
+        //     this.timer = setTimeout(() => {
+        //     this.ads.style.display = 'block';
+        //     // hide after 20
+        //     this.timer = setTimeout(() => {
+        //     this.ads.style.display = 'none';
+        //         this.ShowAd();
+        //     }, 10000);
+        // }, 9000000);
         },
         validLink(path) {
             var type = path.slice(-3).toLowerCase();
@@ -233,6 +237,7 @@ export default {
     },
     loadeddata() {
         this.FirstNote.style.display = 'block';
+        // this.ShowAd();
         if (this.readCookie(this.$props.id) != 0) {
             var time = parseInt(this.readCookie(this.$props.id));
             if (time != 0) {
@@ -244,11 +249,6 @@ export default {
     },
     nowPlaying() {
         if (this.film != null) {
-             this.timer = setTimeout(() => {
-            this.ads.style.display = 'none';
-            this.ShowAd();
-        }, 10000);
-
             if (this.$props.subtitles.length > 0) {
                 this.film.currentTrack = 1;
             }
