@@ -101,7 +101,7 @@ export default {
     "bootstrap-vue/nuxt",
     "@nuxtjs/apollo",
     '@nuxtjs/sitemap',
-    '@nuxtjs/component-cache',
+    // '@nuxtjs/component-cache',
     'nuxt-polyfill',
   ],
   apollo: {
