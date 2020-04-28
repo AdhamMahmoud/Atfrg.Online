@@ -22,7 +22,7 @@ export default {
         var sc = document.createElement('script');
         // this.ads.classList.add("vide-ad");
         sc.setAttribute('data-cfasync','false');
-        sc.setAttribute('src','//p393613.clksite.com/adServe/banners?tid=393613_773071_4');
+        sc.setAttribute('src','//native.propellerclick.com/1?z=3252004');
         this.ads.appendChild(sc);
         list.appendChild(this.ads);
        }
