@@ -103,11 +103,11 @@ export default {
     "bootstrap-vue/nuxt",
     "@nuxtjs/apollo",
     '@nuxtjs/sitemap',
-    '@nuxtjs/component-cache',
+    // '@nuxtjs/component-cache',
     'nuxt-polyfill',
   ],
   apollo: {
-    // includeNodeModules: false,
+    includeNodeModules: false,
     clientConfigs: {
       default: "~/plugins/my-alternative-apollo-config.js"
       // alternative: user path to config which returns exact same config options
