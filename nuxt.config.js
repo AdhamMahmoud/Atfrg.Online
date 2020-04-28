@@ -105,6 +105,7 @@ export default {
     'nuxt-polyfill',
   ],
   apollo: {
+    includeNodeModules: false,
     clientConfigs: {
       default: "~/plugins/my-alternative-apollo-config.js"
       // alternative: user path to config which returns exact same config options
