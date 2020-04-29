@@ -15,6 +15,7 @@ import { createStore } from './store.js'
 import nuxt_plugin_bootstrapvue_6dd9ca4e from 'nuxt_plugin_bootstrapvue_6dd9ca4e' // Source: .\\bootstrap-vue.js (mode: 'all')
 import nuxt_plugin_apollomodule_6283b7eb from 'nuxt_plugin_apollomodule_6283b7eb' // Source: .\\apollo-module.js (mode: 'all')
 import nuxt_plugin_vueplyr_9db9a11c from 'nuxt_plugin_vueplyr_9db9a11c' // Source: ..\\plugins\\vue-plyr (mode: 'all')
+import nuxt_plugin_vueapollo_489f9a28 from 'nuxt_plugin_vueapollo_489f9a28' // Source: ..\\plugins\\vue-apollo (mode: 'all')
 import nuxt_plugin_lazyload_af447860 from 'nuxt_plugin_lazyload_af447860' // Source: ..\\plugins\\lazyload (mode: 'client')
 import nuxt_plugin_swiper_3a1c5924 from 'nuxt_plugin_swiper_3a1c5924' // Source: ..\\plugins\\swiper (mode: 'client')
 
@@ -188,6 +189,10 @@ async function createApp (ssrContext) {
 
   if (typeof nuxt_plugin_vueplyr_9db9a11c === 'function') {
     await nuxt_plugin_vueplyr_9db9a11c(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_vueapollo_489f9a28 === 'function') {
+    await nuxt_plugin_vueapollo_489f9a28(app.context, inject)
   }
 
   if (process.client && typeof nuxt_plugin_lazyload_af447860 === 'function') {
