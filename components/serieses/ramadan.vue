@@ -98,7 +98,7 @@ import SliderList from '~/components/serieses/ramadanList.vue';
 export default {
     data() {
         return {
-            CollapseActive: "series"
+            CollapseActive: "choosen"
         }
     },
     components: {
