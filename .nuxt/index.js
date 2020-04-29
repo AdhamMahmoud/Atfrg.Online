@@ -13,9 +13,6 @@ import { createStore } from './store.js'
 /* Plugins */
 
 import nuxt_plugin_bootstrapvue_6dd9ca4e from 'nuxt_plugin_bootstrapvue_6dd9ca4e' // Source: .\\bootstrap-vue.js (mode: 'all')
-import nuxt_plugin_smoothscrollpolyfill_1e1c2812 from 'nuxt_plugin_smoothscrollpolyfill_1e1c2812' // Source: .\\nuxt-polyfill\\smoothscroll-polyfill.js (mode: 'all')
-import nuxt_plugin_intersectionobserver_7babc29e from 'nuxt_plugin_intersectionobserver_7babc29e' // Source: .\\nuxt-polyfill\\intersection-observer.js (mode: 'all')
-import nuxt_plugin_urlpolyfill_90a8796e from 'nuxt_plugin_urlpolyfill_90a8796e' // Source: .\\nuxt-polyfill\\url-polyfill.js (mode: 'all')
 import nuxt_plugin_apollomodule_6283b7eb from 'nuxt_plugin_apollomodule_6283b7eb' // Source: .\\apollo-module.js (mode: 'all')
 import nuxt_plugin_vueplyr_9db9a11c from 'nuxt_plugin_vueplyr_9db9a11c' // Source: ..\\plugins\\vue-plyr (mode: 'all')
 import nuxt_plugin_lazyload_af447860 from 'nuxt_plugin_lazyload_af447860' // Source: ..\\plugins\\lazyload (mode: 'client')
@@ -183,18 +180,6 @@ async function createApp (ssrContext) {
 
   if (typeof nuxt_plugin_bootstrapvue_6dd9ca4e === 'function') {
     await nuxt_plugin_bootstrapvue_6dd9ca4e(app.context, inject)
-  }
-
-  if (typeof nuxt_plugin_smoothscrollpolyfill_1e1c2812 === 'function') {
-    await nuxt_plugin_smoothscrollpolyfill_1e1c2812(app.context, inject)
-  }
-
-  if (typeof nuxt_plugin_intersectionobserver_7babc29e === 'function') {
-    await nuxt_plugin_intersectionobserver_7babc29e(app.context, inject)
-  }
-
-  if (typeof nuxt_plugin_urlpolyfill_90a8796e === 'function') {
-    await nuxt_plugin_urlpolyfill_90a8796e(app.context, inject)
   }
 
   if (typeof nuxt_plugin_apollomodule_6283b7eb === 'function') {
