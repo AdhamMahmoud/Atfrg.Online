@@ -7,7 +7,7 @@ module.exports = {
       max_memory_restart: "4G",
       instances: 2, // How many app do we need ?
       max_restarts: 1000, // then we have a problem ?!
-      script: "./node_modules/nuxt-start/bin/nuxt-start.js",
+      script: "/usr/src/nuxt-app/node_modules/nuxt-start/bin/nuxt-start.js",
       env: {
         HOST: "0.0.0.0",
         PORT: 3000,

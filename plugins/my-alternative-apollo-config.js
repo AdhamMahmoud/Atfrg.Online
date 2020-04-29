@@ -1,6 +1,6 @@
 export default function(context) {
   return {
-    httpEndpoint: "https://api.atfrg.online/",
+    httpEndpoint: "https://atfrg.space/server/",
     ssr: true,
     // optional
     // override HTTP endpoint in browser only
