@@ -101,9 +101,15 @@ export default {
     "bootstrap-vue/nuxt",
     "@nuxtjs/apollo",
     '@nuxtjs/sitemap',
+    '@nuxtjs/proxy',
     // '@nuxtjs/component-cache',
     // 'nuxt-polyfill',
   ],
+    proxy: {
+      // With options
+      '/api2': { target: 'https://atfrg.space/database/', ws: true },
+
+    },
   apollo: {
     // includeNodeModules: false,
     defaultOptions: {
