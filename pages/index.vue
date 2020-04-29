@@ -11,11 +11,11 @@
     <!--  Movies Block -->
     <Movies />
      <Ramadan />
-    <Netflix />
+    <!-- <Netflix /> -->
     <!-- Serieses Block -->
-    <Serieses />
+    <!-- <Serieses /> -->
      <!--Animes Block -->
-    <Anime />
+    <!-- <Anime /> -->
     </div>
   </div>
 </div>

@@ -39,34 +39,7 @@
                         </ApolloQuery>
                     </li>
                           <li>
-                        <ApolloQuery :query="gql => gql`
-                        query GetQualities {
-                        movies(orderBy: createdAt_DESC) {
-                          id
-                          movieQuality
-                        }
-                      }
-
-                      `" >
-                            <template v-slot="{ result: { loading, error, data } }">
-                                <!-- Loading -->
-                                <div v-if="loading" class="loading apollo">
-                                    <img src="~/assets/images/load.svg" class="svg-load" height="32px" width="32px" />
-                                </div>
-                                <!-- Error -->
-                                <div v-else-if="error" class="error apollo"><resultNotFound /></div>
-                                <!-- Result -->
-                                <div v-else-if="data && data.movies.length > 0" @mouseenter="GetQualities(data.movies)">
-                                    <!-- Container End -->
-                                    <select @change="ChangeLang" class="custom-select">
-                                        <option value="0" selected>اختر الجودة</option>
-                                        <option v-for="quality in ItemQuality" :key="quality" :value="quality">{{ quality }}</option>
-                                    </select>
-                                    <!-- No result -->
-                                </div>
-                                <div v-else class="no-result apollo"><resultNotFound /></div>
-                            </template>
-                        </ApolloQuery>
+                        
                     </li>
                     <li>
                         <ApolloQuery :query="gql => gql`

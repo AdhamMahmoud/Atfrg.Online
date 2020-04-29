@@ -1,31 +1,6 @@
 <template>
 <ul class="filters">
-         <ApolloQuery style="display:none"
-                    :query='gql => gql`
-                      query gettvSerieses {
-                      tvSerieses(orderBy: createdAt_DESC,  where :{ isPublished: true}) {
-                        id
-                        audience
-                        releaseDate
-                      }
-                    }
-                    `'>
-                    <template v-slot="{ result: { loading, error, data } }">
-                    <!-- Loading -->
-                    <div v-if="loading" class="loading apollo">
-                    <img src="~/assets/images/load.svg" class="svg-load" height="32px" width="32px">
-                    </div>
-                    <!-- Error -->
-                    <div v-else-if="error" class="error apollo"><resultNotFound /></div>
-                    <!-- Result -->
-                    <div v-else-if="data && data.tvSerieses.length > 0 && serieses.length != data.tvSerieses.length" class="Slider-block">
-                    <!-- Container End -->
-                    {{ PushSer(data.tvSerieses) }}
-                  <!-- No result -->
-                  </div>
-                  <div v-else class="no-result apollo"><resultNotFound /></div>
-                  </template>
-                  </ApolloQuery>
+   
     <!-- Genres -->
     <li v-if="genres.length > 0">
         <select @change="ChangeGenre" class="custom-select">
