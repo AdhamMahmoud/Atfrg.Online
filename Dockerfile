@@ -19,6 +19,7 @@ RUN npm run build
 # expose 3000 on container
 EXPOSE 3000
 
+RUN ls
 # set app serving to permissive / assigned
 ENV NUXT_HOST=0.0.0.0
 # set app port
