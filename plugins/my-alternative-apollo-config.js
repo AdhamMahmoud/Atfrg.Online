@@ -21,9 +21,9 @@
 import { createHttpLink } from "apollo-link-http";
 
 export default function(context){
-  const link = createHttpLink({ uri: "/graphql", useGETForQueries: true });
   return {
-    httpEndpoint: 'https://atfrg.space/database/',
+   httpEndpoint: 'https://atfrg.space/database/',
+    // wssEndpoint: 'wss://atfrg.space/database/', // optional
     getAuth: (tokenName) => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJkZWZhdWx0QGRlZmF1bHQiLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNTg2OTYwODgwLCJleHAiOjE2MTg3ODkyMjN9.2I4N-QE3I2-BgvZr0ilGmictto5q2vNkjnFRGIIKupU',
   }
 }
