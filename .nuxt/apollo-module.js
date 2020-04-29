@@ -72,6 +72,8 @@ export default (ctx, inject) => {
           providerOptions.defaultClient = defaultApolloCreation.apolloClient
 
   const vueApolloOptions = Object.assign(providerOptions, {
+        defaultOptions: {"$query":{"loadingKey":"loading","fetchPolicy":"cache-and-network"}},
+
       errorHandler (error) {
           require('~/plugins/apollo-error-handler.js').default(error, ctx)
       }

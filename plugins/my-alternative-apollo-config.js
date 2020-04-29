@@ -1,29 +1,25 @@
-// export default function (context) {
-//   return {
-//     httpEndpoint: '',
-//     // You can use `wss` for secure connection (recommended in production)
-//     // Use `null` to disable subscriptions
-//     wsEndpoint: null,
-//     // LocalStorage token
-//     tokenName: 'apollo-token',
-//     // Enable Automatic Query persisting with Apollo Engine
-//     persisting: true,
-//     // Use websockets for everything (no HTTP)
-//     // You need to pass a `wsEndpoint` for this to work
-//     websocketsOnly: true,
-//     // Is being rendered on the server?
-//     ssr: true,
-  
-//     // Override the way the Authorization header is set
-//      getAuth: (tokenName) => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJkZWZhdWx0QGRlZmF1bHQiLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNTg2OTYwODgwLCJleHAiOjE2MTg3ODkyMjN9.2I4N-QE3I2-BgvZr0ilGmictto5q2vNkjnFRGIIKupU',
-//   }
-// }
-import { createHttpLink } from "apollo-link-http";
 
 export default function(context){
   return {
-   httpEndpoint: 'https://atfrg.space/database/',
-    // wssEndpoint: 'wss://atfrg.space/database/', // optional
+    httpEndpoint: 'https://atfrg.space/database/',
+    // optional
+    // override HTTP endpoint in browser only
+    // browserHttpEndpoint: '/graphql',
+    // optional
+    // See https://www.apollographql.com/docs/link/links/http.html#options
+    httpLinkOptions: {
+      credentials: 'same-origin'
+    },
+    // You can use `wss` for secure connection (recommended in production)
+    // Use `null` to disable subscriptions
+    wssEndpoint: 'wss://atfrg.space/database/', // optional
+    // LocalStorage token
+    tokenName: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJkZWZhdWx0QGRlZmF1bHQiLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNTg2OTYwODgwLCJleHAiOjE2MTg3ODkyMjN9.2I4N-QE3I2-BgvZr0ilGmictto5q2vNkjnFRGIIKupU', // optional
+    // Enable Automatic Query persisting with Apollo Engine
+    persisting: true, // Optional
+    // Use websockets for everything (no HTTP)
+    // You need to pass a `wsEndpoint` for this to work
+    websocketsOnly: true, // Optional,
     getAuth: (tokenName) => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJkZWZhdWx0QGRlZmF1bHQiLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNTg2OTYwODgwLCJleHAiOjE2MTg3ODkyMjN9.2I4N-QE3I2-BgvZr0ilGmictto5q2vNkjnFRGIIKupU',
   }
 }
