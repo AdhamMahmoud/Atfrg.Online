@@ -23,8 +23,9 @@ EXPOSE 3000
 ENV NUXT_HOST=0.0.0.0
 # set app port
 ENV NUXT_PORT=3000
-RUN mkdir -p /config
-VOLUME [ "/config" ]
+
+# Used by pm2
+COPY ecosystem.config.js .
 
 # start the app
-CMD [ "pm2-runtime", "start", "/config/ecosystem.config.js" ]
+CMD [ "pm2-runtime", "start", "ecosystem.config.js" ]

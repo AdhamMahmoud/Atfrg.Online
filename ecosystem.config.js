@@ -4,7 +4,8 @@ module.exports = {
       name: "atfrg.online",
       port: 3000,
       restart_delay: 5000,
-      cwd: "/usr/src/nuxt-app/",
+      cwd: "/",
+      max_memory_restart: "4G",
       instances: 2, // How many app do we need ?
       max_restarts: 1000, // then we have a problem ?!
       script: "./node_modules/nuxt-start/bin/nuxt-start.js",
