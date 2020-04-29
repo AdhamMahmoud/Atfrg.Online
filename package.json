@@ -37,6 +37,7 @@
     "nuxt": "^2.12.2",
     "nuxt-polyfill": "^1.0.3",
     "nuxt-ssr-cache": "^1.5.1",
+    "nuxt-start": "^2.12.2",
     "plyr": "^3.5.10",
     "sass-loader": "^7.3.1",
     "smoothscroll-polyfill": "^0.4.4",
