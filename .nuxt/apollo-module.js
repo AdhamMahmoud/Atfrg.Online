@@ -73,7 +73,7 @@ export default (ctx, inject) => {
 
   const vueApolloOptions = Object.assign(providerOptions, {
       errorHandler (error) {
-          console.log('%cError', 'background: red; color: white; padding: 2px 4px; border-radius: 3px; font-weight: bold;', error.message)
+          require('~/plugins/apollo-error-handler.js').default(error, ctx)
       }
   })
 
