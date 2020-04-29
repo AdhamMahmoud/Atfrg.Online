@@ -1,6 +1,6 @@
 export default function (context) {
   return {
-    httpEndpoint: 'https://atfrg.space/database/',
+    httpEndpoint: '',
     // You can use `wss` for secure connection (recommended in production)
     // Use `null` to disable subscriptions
     wsEndpoint: null,
