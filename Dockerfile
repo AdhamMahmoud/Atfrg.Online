@@ -26,6 +26,8 @@ ENV NUXT_PORT=3000
 
 # Used by pm2
 COPY ecosystem.config.js .
+WORKDIR /usr/src/
+RUN ls -a nuxt-app
 
 # start the app
-CMD [ "pm2-runtime", "start", "npm", "--", "start"]
+CMD [ "pm2-runtime", "start", "nuxt-app/ecosystem.config.js"]
