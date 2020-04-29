@@ -20,6 +20,9 @@ RUN npm run build
 EXPOSE 3000
 
 RUN ls
+RUN ls ./node_modules/nuxt
+RUN ls ./node_modules/nuxt/bin
+RUN ls ./node_modules/nuxt/bin/nuxt-start
 # set app serving to permissive / assigned
 ENV NUXT_HOST=0.0.0.0
 # set app port
