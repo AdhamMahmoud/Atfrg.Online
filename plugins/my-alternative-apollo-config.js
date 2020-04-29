@@ -1,7 +1,7 @@
 
 export default function(context){
   return {
-     httpEndpoint: 'http://128.199.41.13:4466/',
+     httpEndpoint: 'https://atfrg.space/database/',
      ssr:true,
     // optional
     // override HTTP endpoint in browser only
