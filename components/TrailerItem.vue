@@ -5,7 +5,7 @@
     class="item-fade"
   >
     <div
-      v-lazy-container="{ selector: 'img', loading: '/load.svg' }"
+      v-lazy-container="{ selector: 'img', loading: 'https://atfrgimages.b-cdn.net/images/load.svg' }"
       class="item-slide"
       @mouseover="runTrailer(id)"
       @mouseleave="stopTrailer(id)"
