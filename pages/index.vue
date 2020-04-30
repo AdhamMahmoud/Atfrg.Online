@@ -33,15 +33,15 @@ export default {
  head: {
     title:"اتفرج اون لاين مشاهدة وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online",
     meta: [
-       { hid: 'description', name: 'description', content:  "مشاهدة وتحميل مباشر افلام و مسلسلات وانمي بجودة عالية مترجمة - اتفرج اون لاين - بدون اعلانات" || ""},
+       { hid: 'description', name: 'description', content:  "اتفرج اون لاين مشاهد وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية بدون اعلانات مزعجة"},
         { hid: 'keywords', name: 'keywords', content:  "مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل " || ""},
          {
         property: "image",
-        content: "https://atfrg.online/og2.png"
+        content: "https://atfrgimages.b-cdn.net/og2.png"
       },
         {
         property: "og:image",
-        content: "https://atfrg.online/og2.png"
+        content: "https://atfrgimages.b-cdn.net/og2.png"
       },
       {
 
@@ -50,7 +50,7 @@ export default {
       },
       {
           property: "og:description",
-          content: "مشاهدة وتحميل مباشر افلام و مسلسلات وانمي بجودة عالية مترجمة - اتفرج اون لاين - بدون اعلانات" 
+          content: "اتفرج اون لاين مشاهد وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية بدون اعلانات مزعجة"
       },
       {
           property: "og:keywords",

@@ -2,7 +2,7 @@
 <!-- Single Series -->
 <div class="Single-Series">
     <!-- Container -->
-    <ads></ads>
+    <!-- <ads></ads> -->
     <div class="container">
          <!-- <div class="row">
             <div class="col-12">
@@ -46,6 +46,7 @@
             </div>
         </div>
     </div>
+     <ads></ads>
     <!-- Container -->
     <div class="container">
         <div class="row">
@@ -88,7 +89,7 @@
                         يتم وضعهم في مكان <span>واحد</span> بنفس الاسم لتعمل الترجمة.
                         ننصح بأستخدام برنامج <nuxt-link to="https://www.videolan.org/vlc/download-windows.html">VLC</nuxt-link> .
                     </div>
-                    <ads2></ads2>
+                    <!-- <ads2></ads2> -->
               <!-- <div style="margin:0 auto;margin-bottom:2rem" >
                         <script data-cfasync='false' type='text/javascript' src='//p393613.clksite.com/adServe/banners?tid=393613_773071_5&eid=393613_773071_5'></script>
                         <div id="393613_773071_5"></div>
@@ -302,18 +303,18 @@ export default {
     },
     head(){
     return{
-       title: "مشاهدة و تحميل مسلسل "+this.$props.title+" مترجم - اتفرج اون لاين Atfrg.Online" ,
+       title: "مسلسل "+this.$props.title+" - اتفرج اون لاين Atfrg.Online" ,
         meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-        { hid: 'description', name: 'description', content:  "مشاهدة وتحميل مسلسل "+this.$props.title+" مترجم اون لاين بجودة عالية - اتفرج اون لاين Atfrg.Online" || ""},
+        { hid: 'description', name: 'description', content:  "مسلسل "+this.$props.title+" مترجم اون لاين بجودة عالية - اتفرج اون لاين Atfrg.Online" || ""},
         { hid: 'keywords', name: 'keywords', content:  "مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم "+this.$props.title+" , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل "+this.$props.title+"" || ""},
         {
             property: "og:title",
-            content: "مشاهدة و تحميل مسلسل "+this.$props.title+" مترجم - اتفرج اون لاين Atfrg.Online"
+            content: "مسلسل "+this.$props.title+" مترجم - اتفرج اون لاين Atfrg.Online"
         },
         {
             property: "og:description",
-            content: "مشاهدة وتحميل مسلسل "+this.$props.title+" مترجم اون لاين بجودة عالية - اتفرج اون لاين Atfrg.Online" || ""
+            content: "مسلسل "+this.$props.title+" مترجم اون لاين بجودة عالية - اتفرج اون لاين Atfrg.Online" || ""
         },
         {
             property: "og:image",

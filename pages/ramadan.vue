@@ -71,7 +71,7 @@ import resultNotFound from "~/components/resultNotFound.vue";
 import SeriesItem from "~/components/SeriesItem.vue";
 import filters from "~/components/serieses/filters";
 import gql from 'graphql-tag';
-import ads2 from "~/components/ads2.vue";
+import ads2 from "~/components/ads.vue";
 export default {
    head() {
         return {
@@ -98,7 +98,7 @@ export default {
                 },
                 {
                     property: "og:image",
-                    content: "https://atfrg.online/fav.svg"
+                    content: "https://atfrgimages.b-cdn.net/og2.png"
                 },
             ]
         }

@@ -188,6 +188,10 @@
                 > <resultNotFound /></div>
               </template>
             </ApolloQuery>
+             <div class="more-btn">
+              <nuxt-link to="/ramadan"> <i class="im im-angle-right-circle"></i>
+              </nuxt-link>
+            </div>
           </div>
           
         </div>

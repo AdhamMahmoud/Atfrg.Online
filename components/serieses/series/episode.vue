@@ -3,7 +3,7 @@
 <div class="episode">
     <!-- Container -->
     <div class="container">
-        <ads></ads>
+     
         <div class="row">
             <!-- poster -->
             <div class="col-md-3">
@@ -50,6 +50,7 @@
             </div>
         </div>
     </div>
+       <ads></ads>
     <!-- Container -->
     <div class="container">
         <div class="row">
@@ -143,7 +144,7 @@
                         ننصح بأستخدام برنامج <nuxt-link to="https://www.videolan.org/vlc/download-windows.html">VLC</nuxt-link> .
                         يمكنك تحميل <span>الموسم كامل</span> فقط ادخل للصفحة الخاصة بالموسم في قسم التحميل.
                     </div>
-                    <ads2></ads2>
+                    <!-- <ads2></ads2> -->
                     <table class="table">
                         <thead>
                             <tr>
@@ -448,13 +449,13 @@ export default {
     },
     head() {
         return {
-            title: "مشاهدة وتحميل " + this.$props.title + " مسلسل  " + this.$props.season[0].title + " - Atfrg.Online  اتفرج اون لاين",
+            title: "" + this.$props.title + " " + this.$props.season[0].title + " - Atfrg.Online  اتفرج اون لاين",
             meta: [
                 // hid is used as unique identifier. Do not use `vmid` for it as it will not work
                 {
                     hid: 'description',
                     name: 'description',
-                    content: "مشاهدة وتحميل " + this.$props.title + " مسلسل  " + this.$props.season[0].title + " - Atfrg.Online  اتفرج اون لاين" || ""
+                    content: "" + this.$props.title + " " + this.$props.season[0].title + " - Atfrg.Online  اتفرج اون لاين" || ""
                 },
                 {
                     hid: 'keywords',
@@ -463,11 +464,11 @@ export default {
                 },
                 {
                     property: "og:title",
-                    content: "مشاهدة وتحميل " + this.$props.title + " مسلسل  " + this.$props.season[0].title + " - Atfrg.Online  اتفرج اون لاين"
+                    content: "" + this.$props.title + " " + this.$props.season[0].title + " - Atfrg.Online  اتفرج اون لاين"
                 },
                 {
                     property: "og:description",
-                    content: "مشاهدة وتحميل " + this.$props.title + " مسلسل  " + this.$props.season[0].title + " - Atfrg.Online  اتفرج اون لاين" || ""
+                    content: "" + this.$props.title + " " + this.$props.season[0].title + " - Atfrg.Online  اتفرج اون لاين" || ""
                 },
                 {
                     property: "og:image",

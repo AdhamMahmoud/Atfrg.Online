@@ -2,7 +2,7 @@
 <!-- Single Series -->
 <div class="Single-Series">
     <!-- Container -->
-    <ads></ads>
+    <!-- <ads></ads> -->
     <div class="container">
         <!-- <div class="row">
             <div class="col-12">
@@ -45,6 +45,7 @@
             </div>
         </div>
     </div>
+     <ads></ads>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -70,7 +71,7 @@
                 </div>
                 <!-- Movie -->
                 <div :class="{ col_show : active == 'movie' , col_hide : active != 'movie' }" id="movie">
-                     <div id="ads2"></div>
+                     <!-- <div id="ads2"></div> -->
                    <MoviePlayer v-if="episodes[0] != null" :id="id" :title="title" :poster="GetPoster(seasons[0].posters)" :links="episodes[0].links" :subtitles="episodes[0].subtitles"></MoviePlayer>            
                     <div class="others">
                       
@@ -208,15 +209,15 @@ export default {
        title: this.GetTitle,
         meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-        { hid: 'description', name: 'description', content:  "مشاهدة وتحميل مسلسل "+this.$props.title+" مترجم اون لاين بجودة عالية - اتفرج اون لاين Atfrg.Online" || ""},
+        { hid: 'description', name: 'description', content:  "مسلسل "+this.$props.title+" مترجم اون لاين بجودة عالية - اتفرج اون لاين Atfrg.Online" || ""},
         { hid: 'keywords', name: 'keywords', content:  "مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم "+this.$props.title+" , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل "+this.$props.title+"" || ""},
         {
             property: "og:title",
-            content: "مشاهدة و تحميل مسلسل "+this.$props.title+" - اتفرج اون لاين Atfrg.Online"
+            content: "مسلسل "+this.$props.title+" - اتفرج اون لاين Atfrg.Online"
         },
         {
             property: "og:description",
-            content: "مشاهدة وتحميل مسلسل "+this.$props.title+" اون لاين بجودة عالية - اتفرج اون لاين Atfrg.Online" || ""
+            content: "مسلسل "+this.$props.title+" اون لاين بجودة عالية - اتفرج اون لاين Atfrg.Online" || ""
         },
         {
             property: "og:image",
@@ -515,10 +516,10 @@ export default {
     computed: {
         GetTitle(){
             if(this.$props.lang != "Arabic"){
-                 return  "مشاهدة و تحميل مسلسل "+this.$props.title+" مترجم - اتفرج اون لاين Atfrg.Online";
+                 return "مسلسل "+this.$props.title+" مترجم - اتفرج اون لاين Atfrg.Online";
             }
             else{
-                 return  "مشاهدة و تحميل مسلسل "+this.$props.title+" - اتفرج اون لاين Atfrg.Online";
+                 return  "مسلسل "+this.$props.title+" - اتفرج اون لاين Atfrg.Online";
             }
         },
         playerOptions() {

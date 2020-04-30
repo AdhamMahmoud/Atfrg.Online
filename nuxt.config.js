@@ -125,6 +125,14 @@ export default {
       meta: {
         /* meta options */
         nativeUI:true,
+        mobileAppIOS:true,
+        author:"Adham Mahmoud",
+        description:"اتفرج اون لاين مشاهدة وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online",
+        ogType:"website",
+        ogSiteName:"اتفرج اون لاين",
+        ogTitle:"اتفرج اون لاين مشاهدة وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online",
+        ogDescription:"اتفرج اون لاين مشاهد وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية بدون اعلانات مزعجة",
+        ogImage:"https://atfrgimages.b-cdn.net/og2.png"
       }
     },
   apollo: {

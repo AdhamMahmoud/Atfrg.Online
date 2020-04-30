@@ -85,6 +85,7 @@ export default {
     },
     beforeDestroy() {
         this.$refs['film' + this.$props.id].player.destroy();
+        this.ads.remove();
     },
     mounted() {
         this.film = this.$refs['film' + this.$props.id].player;
@@ -103,7 +104,7 @@ export default {
         this.ads.appendChild(sc);
         list.parentNode.insertBefore(this.ads, list.nextSibling);
         this.ads.style.display = 'none';
-        
+
 
         this.FirstNote = document.createElement("div");
         this.FirstNote.classList.add("chat");
@@ -180,7 +181,7 @@ export default {
             this.timer3 = setTimeout(() => {
             this.ShowAd();
             }, 300000);
-            
+
            
         },
         validLink(path) {

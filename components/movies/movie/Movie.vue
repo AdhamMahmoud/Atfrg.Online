@@ -52,6 +52,7 @@
             </div>
         </div>
     </div>
+     <ads></ads>
     <!-- Container -->
     <div class="container">
         <div class="row">
@@ -91,7 +92,7 @@
                         يتم وضعهم في مكان <span>واحد</span> بنفس الاسم لتعمل الترجمة.
                         ننصح بأستخدام برنامج <nuxt-link to="https://www.videolan.org/vlc/download-windows.html">VLC</nuxt-link> .
                     </div>
-                    <ads2></ads2>
+                    <!-- <ads2></ads2> -->
                     <table class="table">
                         <thead>
                             <tr>
@@ -208,7 +209,7 @@ import MoviePlayer from "~/components/MoviePlayer.vue";
 import TrailerItem from "~/components/TrailerItem.vue";
 import bugs from "~/components/bugs.vue";
 import gql from "graphql-tag";
-import ads2 from "~/components/ads2.vue";
+import ads2 from "~/components/ads.vue";
 const WatchCount_Movie = gql `
    mutation Movie($id: ID,$watchCount:Int) {
     updateMovie(where:{id:$id},data:{
