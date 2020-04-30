@@ -40,7 +40,7 @@
                   class="loading"
                 >
                   <img
-                    src="~/assets/images/load.svg"
+                    src="https://atfrgimages.b-cdn.net/images/load.svg"
                     class="svg-load"
                     height="32px"
                     width="32px"
@@ -144,7 +144,7 @@
                   class="loading apollo"
                 >
                   <img
-                    src="~/assets/images/load.svg"
+                    src="https://atfrgimages.b-cdn.net/images/load.svg"
                     class="svg-load"
                     height="32px"
                     width="32px"
@@ -248,7 +248,7 @@
                   class="loading apollo"
                 >
                   <img
-                    src="~/assets/images/load.svg"
+                    src="https://atfrgimages.b-cdn.net/images/load.svg"
                     class="svg-load"
                     height="32px"
                     width="32px"
@@ -351,7 +351,7 @@
                   class="loading apollo"
                 >
                   <img
-                    src="~/assets/images/load.svg"
+                    src="https://atfrgimages.b-cdn.net/images/load.svg"
                     class="svg-load"
                     height="32px"
                     width="32px"

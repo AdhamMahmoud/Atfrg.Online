@@ -2,7 +2,7 @@
 <!-- Movies Home -->
 <div class="home-slider-block">
     <div class="message">
-        <p>المشاهدة والتحميل بدون اعلانات, جاري رفع المحتوي تدريجيا.</p>
+        <p>هنفضل مكملين بيك 💚💪</p>
     </div>
     <!-- Container -->
     <div class="container-fluid back-color">
@@ -200,10 +200,10 @@ export default {
     margin: 0 auto;
     text-align: center;
     top: -45px;
-    left: 36%;
+    left: 42%;
     border-radius: 10px;
     padding: 10px;
-    background-color: #ca1919;
+    background-color: #0c0a2a;
     color:#fff;
     p{
         margin:0;
@@ -212,8 +212,8 @@ export default {
 }
 @include sm{
 .message{
- top: -68px;
-    left: 2%;
+    top: -45px;
+    left: 23%;
     p{
         margin:0;
         font-size:14px;

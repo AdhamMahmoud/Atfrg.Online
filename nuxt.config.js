@@ -30,7 +30,7 @@ export default {
       {
         rel: "icon",
         type: "image/svg",
-        href: "/fav.svg"
+        href: "https://atfrgimages.b-cdn.net/images/fav.svg"
       },
       { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css?family=Tajawal:500&display=swap' },
     ],
@@ -102,6 +102,7 @@ export default {
   modules: [
     // Doc: https://bootstrap-vue.js.org/docs/
     "bootstrap-vue/nuxt",
+    ['@nuxtjs/pwa', { icon: false }],
     "@nuxtjs/apollo",
     '@nuxtjs/sitemap',
     '@nuxtjs/proxy',
@@ -112,6 +113,19 @@ export default {
       // With options
       '/api2': { target: 'https://atfrg.space/database/', ws: true },
 
+    },
+ 
+    pwa: {
+      manifest: {
+        crossorigin: 'use-credentials'
+      },
+      workbox:{
+        cachingExtensions: '~/plugins/workbox-range-request.js',
+      },
+      meta: {
+        /* meta options */
+        nativeUI:true,
+      }
     },
   apollo: {
     // includeNodeModules: false,

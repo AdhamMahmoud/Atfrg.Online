@@ -95,14 +95,14 @@ export default {
             '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style=" display: block; shape-rendering: auto;" width="50px" height="50px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><circle cx="50" cy="50" fill="none" stroke="#fff" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138" transform="rotate(53.2159 50 50)"><animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>  </circle></svg>';
         list.parentNode.insertBefore(this.loader, list.nextSibling);
         // Create Notes .1
-        // this.ads = document.createElement("div");
-        // var sc = document.createElement('script');
-        // this.ads.classList.add("vide-ad");
-        // sc.setAttribute('data-cfasync','false');
-        // sc.setAttribute('src','//p393613.clksite.com/adServe/banners?tid=393613_773071_7');
-        // this.ads.appendChild(sc);
-        // list.parentNode.insertBefore(this.ads, list.nextSibling);
-
+        this.ads = document.createElement("div");
+        var sc = document.createElement('script');
+        this.ads.classList.add("vide-ad");
+        sc.setAttribute('data-cfasync','false');
+        sc.setAttribute('src','//native.propellerclick.com/1?z=3252004');
+        this.ads.appendChild(sc);
+        list.parentNode.insertBefore(this.ads, list.nextSibling);
+        this.ads.style.display = 'none';
         
 
         this.FirstNote = document.createElement("div");
@@ -144,14 +144,14 @@ export default {
             if (this.$props.subtitles[0].path.length > 5) {
                 this.logo = document.createElement("img");
                 this.logo.classList.add("video-logo");
-                this.logo.src = "/logo.svg";
+                this.logo.src = "https://atfrgimages.b-cdn.net/images/logo.svg";
                 list.parentNode.insertBefore(this.logo, list.nextSibling);
             }
         }
         if (this.$props.subtitles.length == 0 || this.$props.subtitles == null) {
             this.logo = document.createElement("img");
             this.logo.classList.add("video-logo");
-            this.logo.src = "/logo.svg";
+            this.logo.src = "https://atfrgimages.b-cdn.net/images/logo.svg";
             list.parentNode.insertBefore(this.logo, list.nextSibling);
         }
         //  if(window.innerWidth < 800){
@@ -165,15 +165,23 @@ export default {
     },
     methods: {
         ShowAd(){
-            this.ads.style.display = 'none';
-            this.timer = setTimeout(() => {
-            this.ads.style.display = 'block';
-            // hide after 20
-            this.timer = setTimeout(() => {
-            this.ads.style.display = 'none';
-                this.ShowAd();
-            }, 10000);
-        }, 9000000);
+            
+            //  Sjow
+             this.timer = setTimeout(() => {
+               this.ads.style.display = 'block';
+              //    Hide 10s
+                 this.timer2 = setTimeout(() => {
+                   this.ads.style.display = 'none';
+                 }, 10000); 
+
+            }, 10000); 
+
+            //5min
+            this.timer3 = setTimeout(() => {
+            this.ShowAd();
+            }, 300000);
+            
+           
         },
         validLink(path) {
             var type = path.slice(-3).toLowerCase();
@@ -221,7 +229,7 @@ export default {
         enterfullscreenFull() {
             // var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
             // var iOS2 = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
-            if (window.innerWidth < 800) {
+            if (window.innerWidth < 500) {
             screen.orientation.lock('landscape');
             screen.msLockOrientation.lock("landscape");
             screen.mozLockOrientation.lock("landscape");
@@ -244,11 +252,8 @@ export default {
     },
     nowPlaying() {
         if (this.film != null) {
-             this.timer = setTimeout(() => {
-            this.ads.style.display = 'none';
-            this.ShowAd();
-        }, 10000);
-
+            // Ads Start
+             this.ShowAd();
             if (this.$props.subtitles.length > 0) {
                 this.film.currentTrack = 1;
             }
@@ -473,11 +478,11 @@ export default {
     color: #fff;
     position: absolute;
     z-index: 2;
-    height: auto;
-    width: auto;
+    height: 30%;
+    width: 50%;
     z-index: 9999;
     bottom: 10%;
-    left: 20%;
+    left: 25%;
     background-color: transparent !important;
 }
 .chat .message p{
