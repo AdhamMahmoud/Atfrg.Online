@@ -127,6 +127,7 @@ export default {
         nativeUI:true,
         mobileAppIOS:true,
         author:"Adham Mahmoud",
+        name:"اتفرج اون لاين مشاهدة وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online",
         description:"اتفرج اون لاين مشاهدة وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online",
         ogType:"website",
         ogSiteName:"اتفرج اون لاين",
