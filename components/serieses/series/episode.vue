@@ -145,6 +145,7 @@
                         يمكنك تحميل <span>الموسم كامل</span> فقط ادخل للصفحة الخاصة بالموسم في قسم التحميل.
                     </div>
                     <!-- <ads2></ads2> -->
+                    <div id="download-ad"></div>
                     <table class="table">
                         <thead>
                             <tr>
@@ -514,7 +515,16 @@ export default {
         this.handleSearch(this.$props.imdbId);
     },
     methods: {
-
+        DownloadAd(){
+            var list = document.getElementById("download-ad");
+        this.ads = document.createElement("div");
+        var sc = document.createElement('script');
+        // this.ads.classList.add("vide-ad");
+        sc.setAttribute('data-cfasync','false');
+        sc.setAttribute('src','//native.propellerclick.com/1?z=3261472');
+        this.ads.appendChild(sc);
+        list.appendChild(this.ads);
+        },
         GetNext(series) {
             var Currindex = series.episodes.findIndex(x => x.id === this.$props.id);
             if (Currindex + 1 < series.episodes.length) {
@@ -622,6 +632,9 @@ export default {
         },
         activeCol(name) {
             this.active = name;
+            if(name = "download"){
+                this.DownloadAd();
+            }
             this.VideoClose();
         },
         itemOver(id) {

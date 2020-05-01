@@ -102,13 +102,27 @@ export default {
   modules: [
     // Doc: https://bootstrap-vue.js.org/docs/
     "bootstrap-vue/nuxt",
-    ['@nuxtjs/pwa', { icon: false }],
+    '@nuxtjs/pwa',
+    '@nuxtjs/onesignal',
     "@nuxtjs/apollo",
     '@nuxtjs/sitemap',
     '@nuxtjs/proxy',
     // '@nuxtjs/component-cache',
     // 'nuxt-polyfill',
   ],
+  oneSignal: {
+    cdn: true,
+
+    // Use any custom URL
+    OneSignalSDK: 'https://cdn.onesignal.com/sdks/OneSignalSDK.js',
+  init: {
+    appId: 'a3e9bedc-f343-47e5-b28f-fa8ef039b8ad',
+    allowLocalhostAsSecureOrigin: true,
+    welcomeNotification: {
+        disable: true
+    }
+  }
+},
     proxy: {
       // With options
       '/api2': { target: 'https://atfrg.space/database/', ws: true },

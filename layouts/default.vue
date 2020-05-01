@@ -16,6 +16,7 @@ import Header from "~/components/Header.vue";
 import SearchArea from "~/components/SearchArea.vue";
 import Footer from "~/components/Footer.vue";
 import loading from "~/components/loading.vue";
+
 export default {
   components: {
     Header,

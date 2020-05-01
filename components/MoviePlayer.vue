@@ -33,7 +33,8 @@ export default {
             SecoNote: null,
             logo: null,
             ads:null,
-             ads2:null,
+            ads2:null,
+            FirstAd:false,
         }
     },
     props: {
@@ -166,19 +167,20 @@ export default {
     },
     methods: {
         ShowAd(){
-            
+            if(this.FirstAd == false){
             //  Sjow
-             this.timer = setTimeout(() => {
-               this.ads.style.display = 'block';
-              //    Hide 10s
-                 this.timer2 = setTimeout(() => {
-                   this.ads.style.display = 'none';
-                 }, 10000); 
-
-            }, 10000); 
-
+                this.timer = setTimeout(() => {
+                this.ads.style.display = 'block';
+                //    Hide 10s
+                    this.timer2 = setTimeout(() => {
+                    this.ads.style.display = 'none';
+                    }, 10000); 
+                }, 10000); 
+                this.FirstAd = true;
+            }
             //5min
             this.timer3 = setTimeout(() => {
+            this.FirstAd = false;
             this.ShowAd();
             }, 300000);
 
@@ -482,8 +484,8 @@ export default {
     height: 30%;
     width: 50%;
     z-index: 9999;
-    bottom: 10%;
-    left: 25%;
+    bottom: 11%;
+    left: 24%;
     background-color: transparent !important;
 }
 .chat .message p{
