@@ -8,6 +8,7 @@ module.exports = {
       instances: 2, // How many app do we need ?
       max_restarts: 1000, // then we have a problem ?!
       script: "nuxt-start.js",
+      cwd: "/usr/src/nuxt-app/",
       env: {
         HOST: "0.0.0.0",
         PORT: 3000,
