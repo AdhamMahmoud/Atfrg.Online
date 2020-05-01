@@ -111,10 +111,10 @@ export default {
     // 'nuxt-polyfill',
   ],
   oneSignal: {
-    cdn: true,
+    // cdn: true,
 
-    // Use any custom URL
-    OneSignalSDK: 'https://cdn.onesignal.com/sdks/OneSignalSDK.js',
+    // // Use any custom URL
+    // OneSignalSDK: 'https://cdn.onesignal.com/sdks/OneSignalSDK.js',
   init: {
     appId: 'a3e9bedc-f343-47e5-b28f-fa8ef039b8ad',
     allowLocalhostAsSecureOrigin: true,
