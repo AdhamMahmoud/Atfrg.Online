@@ -1,7 +1,7 @@
 export default function(context) {
   return {
     httpEndpoint: "https://atfrg.space/database/",
-    ssr: true,
+    // ssr: true,
     // optional
     // override HTTP endpoint in browser only
     // browserHttpEndpoint: '/graphql',
@@ -15,12 +15,12 @@ export default function(context) {
     //  wsEndpoint: 'wss://atfrg.space/database/',
     //  wssEndpoint: 'wss://atfrg.space/database/', // optional
     // LocalStorage token
-    tokenName: "token", // optional
+    // tokenName: "token", // optional
     // Enable Automatic Query persisting with Apollo Engine
-    persisting: false, // Optional
+    // persisting: false, // Optional
     // Use websockets for everything (no HTTP)
     // You need to pass a `wsEndpoint` for this to work
-    websocketsOnly: false, // Optional,
+    // websocketsOnly: false, // Optional,
     getAuth: tokenName =>
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJkZWZhdWx0QGRlZmF1bHQiLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNTg2OTYwODgwLCJleHAiOjE2MTg3ODkyMjN9.2I4N-QE3I2-BgvZr0ilGmictto5q2vNkjnFRGIIKupU"
   };

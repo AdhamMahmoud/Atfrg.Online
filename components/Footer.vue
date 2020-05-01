@@ -1,6 +1,6 @@
 <template>
 <div style="overflow: hidden;">
-   <ads2></ads2>
+   <!-- <ads2></ads2> -->
         <div class="footer">
     <p>خليك في البيت<i class="fas fa-heart"></i></p>
 </div>

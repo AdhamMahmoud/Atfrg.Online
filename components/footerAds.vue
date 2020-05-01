@@ -17,14 +17,14 @@ export default {
         }
        },
        mounted(){
-        var list = document.getElementById("ads-Footer");
-        this.ads = document.createElement("div");
-        var sc = document.createElement('script');
-        // this.ads.classList.add("vide-ad");
-        sc.setAttribute('data-cfasync','false');
-        sc.setAttribute('src','//p393613.clksite.com/adServe/banners?tid=393613_773071_3');
-        this.ads.appendChild(sc);
-        list.appendChild(this.ads);
+        // var list = document.getElementById("ads-Footer");
+        // this.ads = document.createElement("div");
+        // var sc = document.createElement('script');
+        // // this.ads.classList.add("vide-ad");
+        // sc.setAttribute('data-cfasync','false');
+        // sc.setAttribute('src','//p393613.clksite.com/adServe/banners?tid=393613_773071_3');
+        // this.ads.appendChild(sc);
+        // list.appendChild(this.ads);
        }
 }
 </script>

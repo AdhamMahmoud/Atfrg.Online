@@ -139,9 +139,9 @@ export default {
       manifest: {
         crossorigin: 'use-credentials'
       },
-      workbox:{
-        cachingExtensions: '~/plugins/workbox-range-request.js',
-      },
+      // workbox:{
+      //   cachingExtensions: '~/plugins/workbox-range-request.js',
+      // },
       meta: {
         /* meta options */
         nativeUI:true,
@@ -157,18 +157,6 @@ export default {
       }
     },
   apollo: {
-    // includeNodeModules: false,
-    defaultOptions: {
-      // See 'apollo' definition
-      // For example: default query options
-      $query: {
-        loadingKey: 'loading',
-        fetchPolicy: 'cache-and-network',
-      },
-    },
-    cookieAttributes: {
-      secure: true,
-    },
     clientConfigs: {
        default: "~/plugins/my-alternative-apollo-config.js"
       // alternative: user path to config which returns exact same config options
