@@ -12,7 +12,7 @@ export default (ctx, inject) => {
   const providerOptions = { clients: {} }
   const { app, beforeNuxtRender, req } = ctx
   const AUTH_TOKEN_NAME = 'apollo-token'
-  const COOKIE_ATTRIBUTES = {"secure":true}
+  const COOKIE_ATTRIBUTES = {"expires":7,"path":"\u002F","secure":false}
   const AUTH_TYPE = 'Bearer '
 
   // Config
@@ -72,8 +72,6 @@ export default (ctx, inject) => {
           providerOptions.defaultClient = defaultApolloCreation.apolloClient
 
   const vueApolloOptions = Object.assign(providerOptions, {
-        defaultOptions: {"$query":{"loadingKey":"loading","fetchPolicy":"cache-and-network"}},
-
       errorHandler (error) {
           require('~/plugins/apollo-error-handler.js').default(error, ctx)
       }

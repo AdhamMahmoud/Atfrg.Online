@@ -101,7 +101,8 @@ export default {
         // var sc = document.createElement('script');
         // this.ads.classList.add("vide-ad");
         // sc.setAttribute('data-cfasync','false');
-        // sc.setAttribute('src','//native.propellerclick.com/1?z=3252004');
+        // sc.setAttribute('src','//inpagepush.com/400/3246513');
+        // // sc.setAttribute('src','//native.propellerclick.com/1?z=3252004');
         // this.ads.appendChild(sc);
         // list.parentNode.insertBefore(this.ads, list.nextSibling);
         // this.ads.style.display = 'none';
@@ -167,18 +168,18 @@ export default {
     },
     methods: {
         ShowAd(){
-            // if(this.FirstAd == false){
-            // //  Sjow
-            //     this.timer = setTimeout(() => {
-            //     this.ads.style.display = 'block';
-            //     //    Hide 10s
-            //         this.timer2 = setTimeout(() => {
-            //         this.ads.style.display = 'none';
-            //         }, 10000); 
-            //     }, 10000); 
-            //     this.FirstAd = true;
-            // }
-            // //5min
+                this.timer = setTimeout(() => {
+                    var list = document.getElementsByClassName("plyr__control--overlaid")[0];
+                  this.ads = document.createElement("div");
+                    var sc = document.createElement('script');
+                    this.ads.classList.add("vide-ad");
+                    sc.setAttribute('data-cfasync','false');
+                    sc.setAttribute('src','//inpagepush.com/400/3246513');
+                    // sc.setAttribute('src','//native.propellerclick.com/1?z=3252004');
+                    this.ads.appendChild(sc);
+                    list.parentNode.insertBefore(this.ads, list.nextSibling);
+                }, 10000); 
+            //5min
             // this.timer3 = setTimeout(() => {
             // this.FirstAd = false;
             // this.ShowAd();
