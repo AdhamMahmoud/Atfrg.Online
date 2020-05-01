@@ -1,15 +1,19 @@
 export default function(context) {
   return {
-    httpEndpoint: "https://atfrg.space/database/",
+    httpEndpoint: "https://api.atfrg.online",
     // ssr: true,
     // optional
     // override HTTP endpoint in browser only
     // browserHttpEndpoint: '/graphql',
     // optional
     // See https://www.apollographql.com/docs/link/links/http.html#options
-    // httpLinkOptions: {
-    //   credentials: 'same-origin'
-    // },
+    httpLinkOptions: {
+      uri: "/",
+      credentials: "same-origin",
+      fetchOptions: {
+        mode: "no-cors"
+      }
+    },
     // You can use `wss` for secure connection (recommended in production)
     // Use `null` to disable subscriptions
     //  wsEndpoint: 'wss://atfrg.space/database/',
@@ -21,7 +25,6 @@ export default function(context) {
     // Use websockets for everything (no HTTP)
     // You need to pass a `wsEndpoint` for this to work
     // websocketsOnly: false, // Optional,
-    getAuth: tokenName =>
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJkZWZhdWx0QGRlZmF1bHQiLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNTg2OTYwODgwLCJleHAiOjE2MTg3ODkyMjN9.2I4N-QE3I2-BgvZr0ilGmictto5q2vNkjnFRGIIKupU"
+    getAuth: () => ""
   };
 }
