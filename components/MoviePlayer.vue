@@ -97,14 +97,14 @@ export default {
             '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style=" display: block; shape-rendering: auto;" width="50px" height="50px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><circle cx="50" cy="50" fill="none" stroke="#fff" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138" transform="rotate(53.2159 50 50)"><animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>  </circle></svg>';
         list.parentNode.insertBefore(this.loader, list.nextSibling);
         // Create Notes .1
-        this.ads = document.createElement("div");
-        var sc = document.createElement('script');
-        this.ads.classList.add("vide-ad");
-        sc.setAttribute('data-cfasync','false');
-        sc.setAttribute('src','//native.propellerclick.com/1?z=3252004');
-        this.ads.appendChild(sc);
-        list.parentNode.insertBefore(this.ads, list.nextSibling);
-        this.ads.style.display = 'none';
+        // this.ads = document.createElement("div");
+        // var sc = document.createElement('script');
+        // this.ads.classList.add("vide-ad");
+        // sc.setAttribute('data-cfasync','false');
+        // sc.setAttribute('src','//native.propellerclick.com/1?z=3252004');
+        // this.ads.appendChild(sc);
+        // list.parentNode.insertBefore(this.ads, list.nextSibling);
+        // this.ads.style.display = 'none';
 
 
         this.FirstNote = document.createElement("div");
@@ -167,22 +167,22 @@ export default {
     },
     methods: {
         ShowAd(){
-            if(this.FirstAd == false){
-            //  Sjow
-                this.timer = setTimeout(() => {
-                this.ads.style.display = 'block';
-                //    Hide 10s
-                    this.timer2 = setTimeout(() => {
-                    this.ads.style.display = 'none';
-                    }, 10000); 
-                }, 10000); 
-                this.FirstAd = true;
-            }
-            //5min
-            this.timer3 = setTimeout(() => {
-            this.FirstAd = false;
-            this.ShowAd();
-            }, 300000);
+            // if(this.FirstAd == false){
+            // //  Sjow
+            //     this.timer = setTimeout(() => {
+            //     this.ads.style.display = 'block';
+            //     //    Hide 10s
+            //         this.timer2 = setTimeout(() => {
+            //         this.ads.style.display = 'none';
+            //         }, 10000); 
+            //     }, 10000); 
+            //     this.FirstAd = true;
+            // }
+            // //5min
+            // this.timer3 = setTimeout(() => {
+            // this.FirstAd = false;
+            // this.ShowAd();
+            // }, 300000);
 
            
         },

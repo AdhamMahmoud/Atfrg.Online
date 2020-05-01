@@ -632,9 +632,9 @@ export default {
         },
         activeCol(name) {
             this.active = name;
-            if(name = "download"){
-                this.DownloadAd();
-            }
+            // if(name = "download"){
+            //     this.DownloadAd();
+            // }
             this.VideoClose();
         },
         itemOver(id) {
