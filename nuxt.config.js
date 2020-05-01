@@ -119,7 +119,7 @@ export default {
     appId: 'a3e9bedc-f343-47e5-b28f-fa8ef039b8ad',
     allowLocalhostAsSecureOrigin: true,
     welcomeNotification: {
-        disable: true
+        disable: false
     }
   }
 },
