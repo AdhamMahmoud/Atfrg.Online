@@ -120,7 +120,10 @@ export default {
     allowLocalhostAsSecureOrigin: true,
     welcomeNotification: {
         disable: false
-    }
+    },
+    notifyButton: {
+      enable: true,
+    },
   }
 },
     proxy: {

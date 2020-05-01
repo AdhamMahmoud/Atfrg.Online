@@ -5,6 +5,9 @@ OneSignal.push(['init', {
   "allowLocalhostAsSecureOrigin": true,
   "welcomeNotification": {
     "disable": false
+  },
+  "notifyButton": {
+    "enable": true
   }
 }]);
 
