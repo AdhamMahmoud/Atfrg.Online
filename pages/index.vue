@@ -67,27 +67,7 @@ export default {
     Netflix,
     Ramadan
   },
-mounted(){
-   var OneSignal = this.$OneSignal;
-  OneSignal.push(function() {
-    OneSignal.init({
-      appId: "a3e9bedc-f343-47e5-b28f-fa8ef039b8ad",
-      notifyButton: {
-        enable: true,
-      },
-    });
-  });
-  // Inside page components
-// this.$OneSignal.push(() => {
-//     this.$OneSignal.isPushNotificationsEnabled((isEnabled) => {
-//     if (isEnabled) {
-//       console.log('Push notifications are enabled!')
-//     } else {
-//       console.log('Push notifications are not enabled yet.')
-//     }
-//   })
-// })
-}
+
 
 }
 </script>
