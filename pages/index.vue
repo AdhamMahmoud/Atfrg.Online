@@ -54,12 +54,12 @@ export default {
         this.timer = setTimeout(() => {
             this.homeSlider = true;
             this.movies = true;
-        }, 1000);
+        }, 1500);
         this.timer2 = setTimeout(() => {
             this.netflix = true;
             this.Serieses = true;
             this.Anime = true;
-        }, 2000);
+        }, 2500);
     },
     head: {
         title: "اتفرج اون لاين مشاهدة وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online",

@@ -291,7 +291,6 @@ import ads from "~/components/ads.vue";
 import ads2 from "~/components/ads2.vue";
 export default {
     components: {
-        TrailerItem,
         resultNotFound,
         SeriesItem,
         Epsitem,

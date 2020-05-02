@@ -69,9 +69,6 @@ export default {
       src: "~/plugins/vue-plyr",
     },
     {
-      src: "~/plugins/vue-apollo",
-    },
-    {
       src: "~/plugins/lazyload",
       mode: "client",
     },
