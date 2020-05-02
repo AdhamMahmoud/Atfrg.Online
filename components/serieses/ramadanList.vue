@@ -6,13 +6,13 @@
         ref="collapsedevs"
       >
         <div class="col-md-12">
-          <div v-if="active == 'series'"
+          <div
             :class="{ col_show : active == 'series' , col_hide : active != 'series' }"
             id="series"
           >
            <ApolloQuery :query='gql => gql`
                      query GetSerieses {
-                      tvSerieses(orderBy: updatedAt_DESC,first:20,  where: { isPublished: true, lang: {name:"Arabic"}, seriesType: TV  }) {
+                      tvSerieses(orderBy: updatedAt_DESC,first:10,  where: { isPublished: true, lang: {name:"Arabic"}, seriesType: TV  }) {
                         id
                         title
                         posters {
@@ -55,10 +55,7 @@
                   class="Slider-block"
                 >
                   <!-- Container End -->
-                  <div
-                    v-swiper:mySwiperNew="swiperOption"
-                    class="my-swiper"
-                  >
+                   <div v-swiper:mySwiperblurays="swiperOption" class="my-swiper">
                     <div class="swiper-wrapper">
                       <div
                         v-for="series in data.tvSerieses"
@@ -100,13 +97,13 @@
               </nuxt-link>
             </div>
           </div>
-          <div v-if="active == 'choosen'"
+          <div
             :class="{ col_show : active == 'choosen' , col_hide : active != 'choosen' }"
             id="last"
           >
           <ApolloQuery :query='gql => gql`
                      query GetSerieses {
-                      tvSerieses(orderBy: updatedAt_DESC,first:15, where: { isPublished: true, lang: {name:"Arabic"}, seriesType: TV}) {
+                      tvSerieses(orderBy: updatedAt_DESC,first:20, where: { isPublished: true, lang: {name:"Arabic"}, seriesType: TV}) {
                         id
                         title
                         posters {
@@ -154,17 +151,12 @@
                   class="Slider-block"
                 >
                   <!-- Container End -->
-                  <div
-                    v-swiper:mspw="swiperOption"
-                    class="my-swiper"
-                  >
+                   <div v-swiper:mySwiperblurx="swiperOption" class="my-swiper">
                     <div class="swiper-wrapper">
                       <div
                         v-for="series in data.tvSerieses"
                         :key="series.id"
                         :class="[{ poster_over : overId == series.id } , 'swiper-slide']"
-                        @mouseover="itemOver(series.id)"
-                        @mouseleave="itemNotOver"
                       >
                         <div v-for="episode in series.seasons[0].episodes" :key="episode.id">
                          <Epsitem :id="episode.id" :title="episode.title" :order="episode.order" :poster="GetPoster(series.posters)" :genres="series.genres" :audience="series.audience" path="/series/episode/" />
@@ -241,11 +233,11 @@ export default {
         breakpoints: {
             1024: {
               slidesPerView: 5,
-              spaceBetween: 40
+              spaceBetween: 5
             },
             768: {
               slidesPerView: 3,
-              spaceBetween: 40
+              spaceBetween: 5
             },
             640: {
               slidesPerView: 1,
@@ -280,18 +272,18 @@ export default {
             return url;
         },
     itemOver(id) {
-      // if (this.overId == 0) {
-      //   this.overId = 1;
-      //   this.timer = setTimeout(() => {
-      //     if (this.overId == 1) {
-      //       this.overId = id;
-      //     }
-      //   }, 1500);
-      // }
+      if (this.overId == 0) {
+        this.overId = 1;
+        this.timer = setTimeout(() => {
+          if (this.overId == 1) {
+            this.overId = id;
+          }
+        }, 1500);
+      }
     },
     itemNotOver() {
-      // this.overId = 0;
-      // clearTimeout(this.timer);
+      this.overId = 0;
+      clearTimeout(this.timer);
     }
   }
 };

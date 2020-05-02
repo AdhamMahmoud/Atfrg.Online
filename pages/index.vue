@@ -10,7 +10,7 @@
                 <HomeSlider v-if="homeSlider" />
                 <!--  Movies Block -->
                 <Movies v-if="movies" />
-                <Ramadan v-if="movies && scrolled" />
+                <Ramadan v-if="scrolled" />
                 <Netflix v-if="netflix && scrolled" />
                 <!-- Serieses Block -->
                 <Serieses v-if="Serieses && scrolled" />

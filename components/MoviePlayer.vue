@@ -168,17 +168,17 @@ export default {
     },
     methods: {
         ShowAd(){
-                this.timer = setTimeout(() => {
-                    var list = document.getElementsByClassName("plyr__control--overlaid")[0];
-                  this.ads = document.createElement("div");
-                    var sc = document.createElement('script');
-                    this.ads.classList.add("vide-ad");
-                    sc.setAttribute('data-cfasync','false');
-                    sc.setAttribute('src','//inpagepush.com/400/3246513');
-                    // sc.setAttribute('src','//native.propellerclick.com/1?z=3252004');
-                    this.ads.appendChild(sc);
-                    list.parentNode.insertBefore(this.ads, list.nextSibling);
-                }, 10000); 
+                // this.timer = setTimeout(() => {
+                //     var list = document.getElementsByClassName("plyr__control--overlaid")[0];
+                //   this.ads = document.createElement("div");
+                //     var sc = document.createElement('script');
+                //     this.ads.classList.add("vide-ad");
+                //     sc.setAttribute('data-cfasync','false');
+                //     sc.setAttribute('src','//inpagepush.com/400/3246513');
+                //     // sc.setAttribute('src','//native.propellerclick.com/1?z=3252004');
+                //     this.ads.appendChild(sc);
+                //     list.parentNode.insertBefore(this.ads, list.nextSibling);
+                // }, 10000); 
             //5min
             // this.timer3 = setTimeout(() => {
             // this.FirstAd = false;

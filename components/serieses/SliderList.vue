@@ -6,7 +6,7 @@
         ref="collapsedevs"
       >
         <div class="col-md-12">
-          <div v-if="active == 'lastupdatesMovies'"
+          <div
             :class="{ col_show : active == 'lastupdatesMovies' , col_hide : active != 'lastupdatesMovies' }"
             id="lastupdatesMovies"
           >
@@ -55,10 +55,7 @@
                   class="Slider-block"
                 >
                   <!-- Container End -->
-                  <div
-                    v-swiper:mySwiperOn1="swiperOption"
-                    class="my-swiper"
-                  >
+                  <div v-swiper:mySwiperx="swiperOption" class="my-swiper">
                     <div class="swiper-wrapper">
                       <div
                         v-for="series in data.tvSerieses"
@@ -99,7 +96,7 @@
               <nuxt-link to="/serieses/last-updated"> <i class="im im-angle-right-circle"></i> </nuxt-link>
             </div>
           </div>
-          <div v-if="active == 'choosen'"
+          <div
             :class="{ col_show : active == 'choosen' , col_hide : active != 'choosen' }"
             id="choosen"
           >
@@ -149,7 +146,7 @@
                 >
                   <!-- Container End -->
                   <div
-                    v-swiper:mySwiperOn2="swiperOption"
+                    v-swiper:mySwiperlastr="swiperOption"
                     class="my-swiper"
                   >
                     <div class="swiper-wrapper">
@@ -235,11 +232,11 @@ export default {
         breakpoints: {
             1024: {
               slidesPerView: 5,
-              spaceBetween: 40
+              spaceBetween: 5
             },
             768: {
               slidesPerView: 3,
-              spaceBetween: 40
+              spaceBetween: 5
             },
             640: {
               slidesPerView: 1,
@@ -265,18 +262,18 @@ export default {
       return path;
     },
     itemOver(id) {
-      // if (this.overId == 0) {
-      //   this.overId = 1;
-      //   this.timer = setTimeout(() => {
-      //     if (this.overId == 1) {
-      //       this.overId = id;
-      //     }
-      //   }, 1500);
-      // }
+      if (this.overId == 0) {
+        this.overId = 1;
+        this.timer = setTimeout(() => {
+          if (this.overId == 1) {
+            this.overId = id;
+          }
+        }, 1500);
+      }
     },
     itemNotOver() {
-      // this.overId = 0;
-      // clearTimeout(this.timer);
+      this.overId = 0;
+      clearTimeout(this.timer);
     }
   }
 };

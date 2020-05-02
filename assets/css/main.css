@@ -2103,6 +2103,9 @@ i {
   .mobile-hidden {
     display: none !important; } }
 @media (min-width: 225px) and (max-width: 576px) {
+  .Slider-block .my-swiper .swiper-button-prev i, .Slider-block .my-swiper .swiper-button-next i {
+    font-size: 3rem; }
+
   .Single-Movie .chat-video, .Single-Series .chat-video, .episode .chat-video {
     right: 1rem;
     bottom: 4rem; }
@@ -2112,7 +2115,7 @@ i {
 
   .item-slide .overlay {
     display: block !important;
-    background-image: linear-gradient(to bottom, rgba(29, 29, 29, 0), #011025); }
+    background-image: linear-gradient(to bottom, rgba(29, 29, 29, 0), #000e36); }
 
   .item-slide .overlay .information {
     text-align: center; }

@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row" ref="collapsedevs">
             <div class="col-md-12">
-                <div v-if="active == 'mostviewMovies'" :class="{ col_show : active == 'mostviewMovies' , col_hide : active != 'mostviewMovies' }" id="mostviewMovies">
+                <div :class="{ col_show : active == 'mostviewMovies' , col_hide : active != 'mostviewMovies' }" id="mostviewMovies">
                     <!-- Apoolo Query -->
                     <ApolloQuery :query='gql => gql`
                       query getMoviestwo {
@@ -61,7 +61,7 @@
                         </nuxt-link>
                     </div>
                 </div>
-                <div v-if="active == 'lastupdatesMovies'" :class="{ col_show : active == 'lastupdatesMovies' , col_hide : active != 'lastupdatesMovies' }" id="lastupdatesMovies">
+                <div :class="{ col_show : active == 'lastupdatesMovies' , col_hide : active != 'lastupdatesMovies' }" id="lastupdatesMovies">
                     <ApolloQuery :query="gql => gql`
                       query getMoviestwo {
                       movies(orderBy: updatedAt_DESC, first:10,  where :{ isPublished: true}) {
@@ -118,7 +118,7 @@
                         </nuxt-link>
                     </div>
                 </div>
-                <div v-if="active == 'choosen'" :class="{ col_show : active == 'choosen' , col_hide : active != 'choosen' }" id="choosen">
+                <div :class="{ col_show : active == 'choosen' , col_hide : active != 'choosen' }" id="choosen">
                     <ApolloQuery :query='gql => gql`
                       query getMoviestwo {
                       movies(orderBy: releaseDate_DESC,  first:10, where :{ isPublished: true, releaseDate_lt:"2020"}) {
@@ -174,7 +174,7 @@
                         <nuxt-link to="/movies/new-release"> <i class="im im-angle-right-circle"></i> </nuxt-link>
                     </div>
                 </div>
-                <div v-if="active == 'BluRay'" :class="{ col_show : active == 'BluRay' , col_hide : active != 'BluRay' }" id="BluRay">
+                <div  :class="{ col_show : active == 'BluRay' , col_hide : active != 'BluRay' }" id="BluRay">
                     <ApolloQuery :query='gql => gql`
                       query getMoviestwo {
                       movies(orderBy: updatedAt_DESC, first:15,  where :{ isPublished: true,watchCount_lte:9999999,lang:{name:"Arabic"}}) {
@@ -293,18 +293,18 @@ export default {
     },
     methods: {
         itemOver(id) {
-            // if (this.overId == 0) {
-            //     this.overId = 1;
-            //     this.timer = setTimeout(() => {
-            //         if (this.overId == 1) {
-            //             this.overId = id;
-            //         }
-            //     }, 1500);
-            // }
+            if (this.overId == 0) {
+                this.overId = 1;
+                this.timer = setTimeout(() => {
+                    if (this.overId == 1) {
+                        this.overId = id;
+                    }
+                }, 1500);
+            }
         },
         itemNotOver() {
-            // this.overId = 0;
-            // clearTimeout(this.timer);
+            this.overId = 0;
+            clearTimeout(this.timer);
         }
     }
 };
