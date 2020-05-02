@@ -237,10 +237,10 @@ export default {
             screen.orientation.lock('landscape');
             screen.msLockOrientation.lock("landscape");
             screen.mozLockOrientation.lock("landscape");
-          if (this.$props.subtitles.length > 0) {
-                this.film.currentTrack = 1;
-                this.film.toggleCaptions(true);
-            }
+            if (this.$props.subtitles.length > 0) {
+                    this.film.currentTrack = 1;
+                    this.film.toggleCaptions(true);
+                }
             }
     },
     loadeddata() {
@@ -449,7 +449,6 @@ export default {
     background-color: #232323;
 }
 .plyr:-webkit-full-screen .plyr__captions {
-    z-index:99999;
     display:block;
 }
 @include xl {
@@ -461,7 +460,6 @@ export default {
     .plyr:-webkit-full-screen .plyr__captions {
         font-size: 30px !important;
         bottom: 4rem !important;
-        z-index:99999;
     }
 }
 
@@ -474,6 +472,10 @@ export default {
     .plyr:-webkit-full-screen .plyr__captions {
         font-size: 26px !important;
         bottom: 4rem !important;
+    }
+}
+@include sm{
+    .plyr:-webkit-full-screen .plyr__captions {
          z-index:99999;
     }
 }
@@ -482,9 +484,9 @@ export default {
     color: #fff;
     position: absolute;
     z-index: 2;
-    height: 30%;
-    width: 50%;
-    z-index: 9999;
+    height: 0;
+    width: 0;
+    // z-index: 9999;
     bottom: 11%;
     left: 24%;
     background-color: transparent !important;
