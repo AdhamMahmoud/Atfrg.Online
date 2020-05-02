@@ -167,19 +167,11 @@ export default {
                 {
                     hid: 'keywords',
                     name: 'keywords',
-                    content: "مشاهدة فيلم,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم " + this.$props.title + " , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة" || ""
+                    content: "مشاهدة فيلم,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم " + this.$props.genre + " , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة" || ""
                 },
                 {
                     property: "og:title",
-                    content: this.gettitle
-                },
-                {
-                    property: "og:description",
-                    content: "مشاهدة فيلم " + this.$props.title + " مترجم اون لاين بجودة عالية - اتفرج اون لاين Atfrg.Online" || ""
-                },
-                {
-                    property: "og:image",
-                    content: this.GetPoster(this.$props.poster)
+                    content:this.$props.genre
                 },
             ]
         }
