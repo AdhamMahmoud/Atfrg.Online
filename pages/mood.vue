@@ -11,7 +11,7 @@
 
         <div class="row items">
             <div v-for="movie in randoms" :key="movie.id" class="col-xl-3 col-lg-3 col-md-3 col-12 global-item">
-                <TrailerItem :id="movie.id" :title="movie.title" :imdbId="movie.imdbId" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :run="false" />
+                <TrailerItem :releaseDate="movie.releaseDate" :id="movie.id" :title="movie.title" :imdbId="movie.imdbId" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :run="false" />
             </div>
         </div>
         <!-- Container End -->
@@ -56,6 +56,7 @@ export default {
                     audience
                     trailerPath
                     movieQuality
+                    releaseDate
                     imdbId
                     videoQualities
                     runtime

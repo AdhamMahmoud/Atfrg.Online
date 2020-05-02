@@ -43,16 +43,16 @@ export default {
     },
     methods:{
         handleSearch() {
-      this.films = [];
-      fetch(
-        "https://www.omdbapi.com/?i=" + this.$props.seasons[0].imdbId + "&apikey=bf7293bf"
-      )
-        .then(res => {
-          return res.json();
-        })
-        .then(res => {
-          this.films = res;
-        });
+      // this.films = [];
+      // fetch(
+      //   "https://www.omdbapi.com/?i=" + this.$props.seasons[0].imdbId + "&apikey=bf7293bf"
+      // )
+      //   .then(res => {
+      //     return res.json();
+      //   })
+      //   .then(res => {
+      //     this.films = res;
+      //   });
     },
       GetSlide(posters) {
       var po = posters;
@@ -119,9 +119,9 @@ export default {
     audience:String,
     path:String
   },
-   mounted() {
-    this.handleSearch();
-  },
+  //  mounted() {
+  //   this.handleSearch();
+  // },
 }
  
 function secondsToHms(d) {

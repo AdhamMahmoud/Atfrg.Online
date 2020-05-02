@@ -282,7 +282,6 @@
 
 <script>
 import resultNotFound from "~/components/resultNotFound.vue";
-import TrailerItem from '~/components/TrailerItem.vue';
 import SeriesItem from '~/components/SeriesItem.vue';
 import Epsitem from '~/components/Epsitem.vue';
 import bugs from '~/components/bugs.vue';

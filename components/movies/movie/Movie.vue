@@ -161,6 +161,7 @@
                         imdbId
                         videoQualities
                         runtime
+                        releaseDate
                         genres {
                           name
                         }
@@ -183,7 +184,7 @@
                                 <div v-swiper:mySwiper2="swiperOption" class="my-swiper">
                                     <div class="swiper-wrapper">
                                         <div v-for="movie in data.movies" :key="movie.id" :class="['swiper-slide' , { poster_over : overId == movie.id }, ]" @mouseover="itemOver(movie.id)" @mouseleave="itemNotOver">
-                                            <TrailerItem :id="movie.id" :title="movie.title" :imdbId="movie.imdbId" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" @mouseleave="itemNotOver" :run="true" />
+                                            <TrailerItem :releaseDate="movie.releaseDate" :id="movie.id" :title="movie.title" :imdbId="movie.imdbId" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" @mouseleave="itemNotOver" :run="true" />
                                         </div>
                                     </div>
                                     <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>

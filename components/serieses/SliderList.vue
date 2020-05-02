@@ -6,7 +6,7 @@
         ref="collapsedevs"
       >
         <div class="col-md-12">
-          <div
+          <div v-if="active == 'lastupdatesMovies'"
             :class="{ col_show : active == 'lastupdatesMovies' , col_hide : active != 'lastupdatesMovies' }"
             id="lastupdatesMovies"
           >
@@ -99,7 +99,7 @@
               <nuxt-link to="/serieses/last-updated"> <i class="im im-angle-right-circle"></i> </nuxt-link>
             </div>
           </div>
-          <div
+          <div v-if="active == 'choosen'"
             :class="{ col_show : active == 'choosen' , col_hide : active != 'choosen' }"
             id="choosen"
           >
@@ -265,18 +265,18 @@ export default {
       return path;
     },
     itemOver(id) {
-      if (this.overId == 0) {
-        this.overId = 1;
-        this.timer = setTimeout(() => {
-          if (this.overId == 1) {
-            this.overId = id;
-          }
-        }, 1500);
-      }
+      // if (this.overId == 0) {
+      //   this.overId = 1;
+      //   this.timer = setTimeout(() => {
+      //     if (this.overId == 1) {
+      //       this.overId = id;
+      //     }
+      //   }, 1500);
+      // }
     },
     itemNotOver() {
-      this.overId = 0;
-      clearTimeout(this.timer);
+      // this.overId = 0;
+      // clearTimeout(this.timer);
     }
   }
 };

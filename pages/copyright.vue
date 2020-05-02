@@ -21,7 +21,6 @@
 
 <script>
 import resultNotFound from "~/components/resultNotFound";
-import TrailerItem from "~/components/TrailerItem.vue";
 import gql from 'graphql-tag';
 export default {
         head: {

@@ -28,6 +28,7 @@
                         movieQuality
                         videoQualities
                         runtime
+                        releaseDate
                         genres {
                         id
                           name
@@ -49,7 +50,7 @@
                 <div v-else-if="data && data.movies.length > 0" class="row global-items">
                     <!-- Container End -->
                     <div v-for="movie in data.movies" :key="movie.id" class="col-xl-2 col-lg-3 col-md-3 col-6 global-item">
-                        <TrailerItem :id="movie.id" :title="movie.title" :imdbId="movie.imdbId" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :run="false" />
+                        <TrailerItem :releaseDate="movie.releaseDate" :id="movie.id" :title="movie.title" :imdbId="movie.imdbId" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :run="false" />
                     </div>
                     <!-- No result -->
                 </div>

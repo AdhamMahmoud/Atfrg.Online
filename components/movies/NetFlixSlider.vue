@@ -118,6 +118,7 @@
                         movieQuality
                         videoQualities
                         runtime
+                        releaseDate
                         genres {
                           name
                         }
@@ -177,6 +178,7 @@
                           :runtime="movie.runtime"
                           :run="true"
                           :imdbId="movie.imdbId"
+                          :releaseDate="movie.releaseDate"
                         />
                       </div>
                     </div>

@@ -7,15 +7,15 @@
   <div class="row">
     <div class="col-md-12">
       <!-- Home Slider -->
-      <HomeSlider />
+      <HomeSlider v-if="homeSlider" />
     <!--  Movies Block -->
-    <Movies />
-     <Ramadan />
-    <Netflix />
+    <Movies v-if="movies" />
+     <Ramadan  v-if="movies" />
+    <Netflix  v-if="netflix"/>
     <!-- Serieses Block -->
-    <Serieses />
+    <Serieses  v-if="Serieses"/>
      <!--Animes Block -->
-    <Anime />
+    <Anime v-if="Anime"/>
     </div>
   </div>
 </div>
@@ -30,6 +30,26 @@ import Serieses from '~/components/serieses/SeriesHome.vue'
 import Ramadan from '~/components/serieses/ramadan.vue'
 import Anime from '~/components/animes/AnimeHome.vue'
 export default {
+  data(){
+    return{
+      homeSlider:false,
+      movies:false,
+      netflix:false,
+      Serieses:false,
+      Anime:false,
+    }
+  },
+  mounted(){
+   this.timer = setTimeout(() => {
+      this.homeSlider = true;
+      this.movies = true;
+      }, 1000); 
+      this.timer2 = setTimeout(() => {
+      this.netflix = true;
+      this.Serieses = true;
+      this.Anime = true;
+      }, 2000); 
+  },
  head: {
     title:"اتفرج اون لاين مشاهدة وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online",
     meta: [
