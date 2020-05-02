@@ -103,32 +103,32 @@ export default {
     // Doc: https://bootstrap-vue.js.org/docs/
     "bootstrap-vue/nuxt",
     '@nuxtjs/pwa',
-    '@nuxtjs/onesignal',
+    // '@nuxtjs/onesignal',
     "@nuxtjs/apollo",
     '@nuxtjs/sitemap',
     '@nuxtjs/proxy',
     // '@nuxtjs/component-cache',
     'nuxt-polyfill',
   ],
-  oneSignal: {
-    // cdn: true,
+//   oneSignal: {
+//     // cdn: true,
 
-    // // Use any custom URL
-    // OneSignalSDK: 'https://cdn.onesignal.com/sdks/OneSignalSDK.js',
-  init: {
-    appId: 'a3e9bedc-f343-47e5-b28f-fa8ef039b8ad',
-    allowLocalhostAsSecureOrigin: true,
-    autoResubscribe:true,
-    autoRegister:true,
-    welcomeNotification: {
-        disable: false,
-        message:"اتفرج اون لاين مشاهدة مجاناً"
-    },
-    notifyButton: {
-      enable: true,
-    },
-  }
-},
+//     // // Use any custom URL
+//     // OneSignalSDK: 'https://cdn.onesignal.com/sdks/OneSignalSDK.js',
+//   init: {
+//     appId: 'a3e9bedc-f343-47e5-b28f-fa8ef039b8ad',
+//     allowLocalhostAsSecureOrigin: true,
+//     autoResubscribe:true,
+//     autoRegister:true,
+//     welcomeNotification: {
+//         disable: false,
+//         message:"اتفرج اون لاين مشاهدة مجاناً"
+//     },
+//     notifyButton: {
+//       enable: true,
+//     },
+//   }
+// },
     proxy: {
       // With options
       '/api2': { target: 'https://atfrg.space/database/', ws: true },
