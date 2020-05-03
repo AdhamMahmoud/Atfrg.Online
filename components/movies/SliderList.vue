@@ -7,7 +7,7 @@
                     <!-- Apoolo Query -->
                     <ApolloQuery :query='gql => gql`
                       query getMoviestwo {
-                      movies(orderBy: watchCount_DESC, first:15,  where :{ isPublished: true,updatedAt_lte:"9999"}) {
+                      movies(orderBy: watchCount_DESC, first:15,  where :{ isPublished: true, releaseDate_lte:"2050", updatedAt_lte:"2050"}) {
                         id
                         title
                         posters {
@@ -157,7 +157,7 @@
                                 <div v-swiper:mySwiperChoosen="swiperOption" class="my-swiper">
                                     <div class="swiper-wrapper">
                                         <div v-for="movie in data.movies" :key="movie.id" :class="[{ poster_over : overId == movie.id }, 'swiper-slide']" @mouseover="itemOver(movie.id)" @mouseleave="itemNotOver">
-                                            <TrailerItem :releaseDate="releaseDate" :id="movie.id" :title="movie.title" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :imdbId="movie.imdbId" :run="true" />
+                                            <TrailerItem :releaseDate="movie.releaseDate" :id="movie.id" :title="movie.title" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :imdbId="movie.imdbId" :run="true" />
                                         </div>
                                     </div>
                                     <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>
@@ -213,7 +213,7 @@
                                 <div v-swiper:mySwiperbluray="swiperOption" class="my-swiper">
                                     <div class="swiper-wrapper">
                                         <div v-for="movie in data.movies" :key="movie.id" :class="[{ poster_over : overId == movie.id }, 'swiper-slide']" @mouseover="itemOver(movie.id)" @mouseleave="itemNotOver">
-                                            <TrailerItem :releaseDate="releaseDate" id="movie.id" :title="movie.title" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :run="true" :imdbId="movie.imdbId" />
+                                            <TrailerItem :releaseDate="movie.releaseDate" id="movie.id" :title="movie.title" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :run="true" :imdbId="movie.imdbId" />
                                         </div>
                                     </div>
                                     <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>

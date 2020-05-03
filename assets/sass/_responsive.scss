@@ -64,6 +64,16 @@ margin-right: 5px;
 //     height:100% !important;
 //     width:100% !important;
 // }
+.item-slide {
+    min-width:auto;
+    max-width: 300px;
+}
+.Slider-block .my-swiper .swiper-button-next{
+    left: 60px;
+}
+.Slider-block .my-swiper .swiper-button-prev{
+    right: 30px;
+}
 .item-slide .overlay .information{
     text-align: center;
 }

@@ -2,6 +2,9 @@
 <!-- Movies Home -->
 <div class="home-slider-block">
     <!-- Container -->
+       <div class="message">
+        <p>هنفضل مكملين بيك 💚💪</p>
+    </div>
     <div class="container-fluid back-color">
        
         <div class="row">
@@ -72,14 +75,14 @@
                                 <!-- Item .1 -->
                                 <li>
                                     <button :class="{active : CollapseActive == 'series'}" @click="active('series')" aria-controls="series">
-                                        <i class="far fa-clock"></i>  المسلسلات
+                                     <i class="fas fa-award"></i>  المسلسلات
                                     </button>
                                 </li>
                                 <!-- Item .2 -->
                                 <li>
 
                                     <button :class="{active : CollapseActive == 'choosen'}" @click="active('choosen')" aria-controls="choosen">
-                                        <i class="fas fa-award"></i> احدث الحلقات
+                                           <i class="far fa-clock"></i>  احدث الحلقات
                                     </button>
                                 </li>
                             </ul>
@@ -122,7 +125,42 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '~/assets/sass/_vars.scss';
 @import '~/assets/sass/_mixins.scss';
+.home-slider-block {
+      margin-top: -19rem;
+      box-shadow: none;
+}
+@include sm{
+    .home-slider-block{
+        margin-top: -24rem !important;
+}
+}
+.message{
+   position: absolute;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    top: -45px;
+    left: 42%;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #0c0a2a;
+    color:#fff;
+    p{
+        margin:0;
+        font-size:15px;
+    }
+}
+@include sm{
+.message{
+    top: -45px;
+    left: 23%;
+    p{
+        margin:0;
+        font-size:14px;
+    }
+}
+}
 </style>

@@ -1848,6 +1848,9 @@ i {
   background-position: center;
   background-repeat: no-repeat; }
 
+.item-slide .overlay .information .name {
+  direction: ltr; }
+
 /* ======== Dark Mode Style ========*/
 .darkMod {
   background-color: #0F0F0F;
@@ -2116,6 +2119,16 @@ i {
   .item-slide .overlay {
     display: block !important;
     background-image: linear-gradient(to bottom, rgba(29, 29, 29, 0), #000e36); }
+
+  .item-slide {
+    min-width: auto;
+    max-width: 300px; }
+
+  .Slider-block .my-swiper .swiper-button-next {
+    left: 60px; }
+
+  .Slider-block .my-swiper .swiper-button-prev {
+    right: 30px; }
 
   .item-slide .overlay .information {
     text-align: center; }

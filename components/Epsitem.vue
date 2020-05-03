@@ -21,7 +21,7 @@
                         <h3 class="name">{{title}}</h3>
                         <!-- Movie Category -->
                         <div class="subinfo-block">
-                            <span class="audience">{{ audience }}
+                            <span class="audience">{{ getaudience(audience) }}
                             </span>
                             <div class="genres">
                               <i v-for="genre in genres" :key="genre.id"> {{ genre.name }} </i>
@@ -47,7 +47,26 @@ export default {
         }
       }
       return count;
-    }
+    },
+     getaudience(audience) {
+            var audienceText = "";
+            if (audience == "G") {
+                audienceText = "للمشاهدة العامة, مناسب لجميع الاعمار.";
+            } else if (audience == "PG") {
+                audienceText = "ينصح بإرشاد الآباء, بعض المشاهد ربما لا تناسب الاطفال.";
+            } else if (audience == "PG13") {
+                audienceText = "يجب إرشاد الآباء, لا يناسب الأطفال أقل من 13 سنة.";
+            } else if (audience == "R") {
+                audienceText = "للكبار فقط , يحتوى على مشاهد فاضحة او عنيفة.";
+            } else if (audience == "NC17") {
+                audienceText =
+                    " لا يصلح لمن هما اقل من 17 عاما , يحتوى على مشاهد فاضحة او عنيفة";
+            } else {
+                audienceText = "غير مصنف";
+            }
+
+            return audience + " - " + audienceText;
+        },
   },
       data:function(){
         return{

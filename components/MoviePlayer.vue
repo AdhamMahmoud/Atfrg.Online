@@ -86,7 +86,7 @@ export default {
     },
     beforeDestroy() {
         this.$refs['film' + this.$props.id].player.destroy();
-        this.ads.remove();
+        // this.ads.remove();
     },
     mounted() {
         this.film = this.$refs['film' + this.$props.id].player;

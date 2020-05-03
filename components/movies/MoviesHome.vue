@@ -1,9 +1,7 @@
 <template>
 <!-- Movies Home -->
 <div class="home-slider-block">
-    <div class="message">
-        <p>هنفضل مكملين بيك 💚💪</p>
-    </div>
+ 
     <!-- Container -->
     <div class="container-fluid back-color">
         <div class="row">
@@ -185,15 +183,15 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/sass/_vars.scss';
 @import '~/assets/sass/_mixins.scss';
-.home-slider-block {
-      margin-top: -19rem;
-      box-shadow: none;
-}
-@include sm{
-    .home-slider-block{
-        margin-top: -24rem !important;
-}
-}
+// .home-slider-block {
+//       margin-top: -19rem;
+//       box-shadow: none;
+// }
+// @include sm{
+//     .home-slider-block{
+//         margin-top: -24rem !important;
+// }
+// }
 .message{
    position: absolute;
     display: block;
