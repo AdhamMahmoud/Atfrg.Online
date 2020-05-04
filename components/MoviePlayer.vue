@@ -35,6 +35,7 @@ export default {
             ads:null,
             ads2:null,
             FirstAd:false,
+            captionStart:false,
         }
     },
     props: {
@@ -258,8 +259,9 @@ export default {
         if (this.film != null) {
             // Ads Start
              this.ShowAd();
-            if (this.$props.subtitles.length > 0) {
+            if (this.$props.subtitles.length > 0 && this.captionStart == false) {
                 this.film.currentTrack = 1;
+                this.captionStart = true;
             }
             this.timer = setTimeout(() => {
                 this.FirstNote.style.display = 'none';

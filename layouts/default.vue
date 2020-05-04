@@ -36,7 +36,7 @@ export default {
                 // sc.setAttribute('src','//native.propellerclick.com/1?z=3252004');
                 this.ads.appendChild(sc);
                 list.parentNode.insertBefore(this.ads, list.nextSibling);
-            }, 15000);
+            }, 10000);
 
         },
     },
