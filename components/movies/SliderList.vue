@@ -7,7 +7,7 @@
                     <!-- Apoolo Query -->
                     <ApolloQuery :query='gql => gql`
                       query getMoviestwo {
-                      movies(orderBy: watchCount_DESC, first:15,  where :{ isPublished: true, releaseDate_lte:"2050", updatedAt_lte:"2050"}) {
+                      movies(orderBy: updatedAt_DESC, first:15,  where :{ isPublished: true, releaseDate_lte:"2050"}) {
                         id
                         title
                         posters {

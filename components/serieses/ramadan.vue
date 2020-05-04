@@ -3,7 +3,7 @@
 <div class="home-slider-block">
     <!-- Container -->
        <div class="message">
-        <p>هنفضل مكملين بيك 💚💪</p>
+        <p>لو لقيت اي حاجة مش عجباك او اقتراح ابعتلنا 💚</p>
     </div>
     <div class="container-fluid back-color">
        
@@ -143,7 +143,7 @@ export default {
     margin: 0 auto;
     text-align: center;
     top: -45px;
-    left: 42%;
+    left: 37%;
     border-radius: 10px;
     padding: 10px;
     background-color: #0c0a2a;
@@ -156,7 +156,7 @@ export default {
 @include sm{
 .message{
     top: -45px;
-    left: 23%;
+    left: 7%;
     p{
         margin:0;
         font-size:14px;

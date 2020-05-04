@@ -10,9 +10,9 @@
             :class="{ col_show : active == 'lastupdatesMovies' , col_hide : active != 'lastupdatesMovies' }"
             id="lastupdatesMovies"
           >
-            <ApolloQuery :query="gql => gql`
+            <ApolloQuery :query='gql => gql`
                      query GetSerieses {
-                      tvSerieses(orderBy: updatedAt_DESC,first:10,  where: { isPublished: true, seriesType: TV , seasons_some:{episodes_some:{id_gt:1}, }}) {
+                      tvSerieses(orderBy: updatedAt_DESC,first:10,  where: { isPublished: true, seriesType: TV ,lang:{name_not:"Arabic"}, seasons_some:{episodes_some:{id_gt:1}, }}) {
                         id
                         title
                         posters {
@@ -30,7 +30,7 @@
                         }
                       }
                     }
-                    `">
+                    `'>
               <template v-slot="{ result: { loading, error, data } }">
                 <!-- Loading -->
                 <div
@@ -102,7 +102,7 @@
           >
             <ApolloQuery :query='gql => gql`
                      query GetSerieses {
-                      tvSerieses(orderBy:releaseDate_DESC,first:10, where: { isPublished: true , seriesType: TV,  seasons_some:{episodes_some:{id_gt:1}}}) {
+                      tvSerieses(orderBy:releaseDate_DESC,first:10, where: { isPublished: true , lang:{name_not:"Arabic"}, seriesType: TV,  seasons_some:{episodes_some:{id_gt:1}}}) {
                         id
                         title
                         posters {

@@ -8,6 +8,7 @@ const _7d923180 = () => interopDefault(import('..\\pages\\copyright.vue' /* webp
 const _5b06f2ce = () => interopDefault(import('..\\pages\\mood.vue' /* webpackChunkName: "pages_mood" */))
 const _600b55e8 = () => interopDefault(import('..\\pages\\movies\\index.vue' /* webpackChunkName: "pages_movies_index" */))
 const _1e213b27 = () => interopDefault(import('..\\pages\\ramadan.vue' /* webpackChunkName: "pages_ramadan" */))
+const _4f6df3a8 = () => interopDefault(import('..\\pages\\ramadan-last.vue' /* webpackChunkName: "pages_ramadan-last" */))
 const _e9d33374 = () => interopDefault(import('..\\pages\\serieses\\index.vue' /* webpackChunkName: "pages_serieses_index" */))
 const _09203971 = () => interopDefault(import('..\\pages\\anime\\last-updated.vue' /* webpackChunkName: "pages_anime_last-updated" */))
 const _51b3e37d = () => interopDefault(import('..\\pages\\anime\\new-release.vue' /* webpackChunkName: "pages_anime_new-release" */))
@@ -64,6 +65,10 @@ export const routerOptions = {
     path: "/ramadan",
     component: _1e213b27,
     name: "ramadan"
+  }, {
+    path: "/ramadan-last",
+    component: _4f6df3a8,
+    name: "ramadan-last"
   }, {
     path: "/serieses",
     component: _e9d33374,

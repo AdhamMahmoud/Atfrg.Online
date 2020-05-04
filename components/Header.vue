@@ -199,7 +199,7 @@
     <div class="chat" v-if="$store.getters.RemberChoose == false">
         <div class="mine messages">
             <div class="message last">
-                <p> عارف هتتفرج علي اي ولا اختارلك انا فيلم  ؟</p>
+                <p>انا ممكن اساعدك واختارلك فيلم رايق !</p>
                 <button @click="choose(0)">لا تسلم</button>
                   <button @click="choose(1)">يلا بينا</button>
             </div>

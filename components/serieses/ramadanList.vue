@@ -102,7 +102,7 @@
             id="last"
           >
           <ApolloQuery :query='gql => gql`
-                     query GetSerieses {
+                     query GetSeriesesq {
                       tvSerieses(orderBy: updatedAt_DESC,first:20, where: { isPublished: true, lang: {name:"Arabic"}, seriesType: TV}) {
                         id
                         title
@@ -151,7 +151,7 @@
                   class="Slider-block"
                 >
                   <!-- Container End -->
-                   <div v-swiper:mySwiperblurx="swiperOption" class="my-swiper">
+                   <div v-swiper:mySwiperblus="swiperOption" class="my-swiper">
                     <div class="swiper-wrapper">
                       <div
                         v-for="series in data.tvSerieses"
@@ -181,7 +181,7 @@
               </template>
             </ApolloQuery>
              <div class="more-btn">
-              <nuxt-link to="/ramadan"> <i class="im im-angle-right-circle"></i>
+              <nuxt-link to="/ramadan-last">تشوف اخر الحلقات ؟
               </nuxt-link>
             </div>
           </div>
