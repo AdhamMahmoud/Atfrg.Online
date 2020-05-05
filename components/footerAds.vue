@@ -1,12 +1,12 @@
 <template>
 <div class="container">
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-12">
             <div id="ads-Footer" class="ads">
                 <p> الأعلانات دي عشانك عشان نستمر ❤️</p>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 </template>
 <script>

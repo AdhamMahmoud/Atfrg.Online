@@ -48,7 +48,7 @@ export default {
         }
     },
     mounted() {
-        this.ShowAd();
+        // this.ShowAd();
         setTimeout(() => this.loading = false, 800);
         window.dataLayer = window.dataLayer || [];
 

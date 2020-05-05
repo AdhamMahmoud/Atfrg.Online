@@ -56,10 +56,10 @@ export default {
                 fullscreen:{
                     enabled: true, fallback: true, iosNative: 'force' 
                 },
-                ads:{
-                    enabled:true,
-                    tagUrl: 'https://www.movcpm.com/watch.xml?key=823fbda75a576c389938305b8d5aba32'
-                },
+                // ads:{
+                //     enabled:true,
+                //     tagUrl: 'https://www.movcpm.com/watch.xml?key=823fbda75a576c389938305b8d5aba32'
+                // },
                 controls: [
                     "play-large", // The large play button in the center
                     "rewind", // Rewind by the seek time (default 10 seconds)

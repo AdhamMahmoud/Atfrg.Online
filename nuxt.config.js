@@ -44,12 +44,12 @@ export default {
         async :"",
         type: "text/javascript"
       },
-      // {
-      //   src: "//inpagepush.com/400/3246513",
-      //   async :"async",
-      //   "data-cfasync" :"false",
-      //   type: "text/javascript"
-      // },
+      {
+        src: "//inpagepush.com/400/3246513",
+        async :"async",
+        "data-cfasync" :"false",
+        type: "text/javascript"
+      },
     ]
   },
   /*
