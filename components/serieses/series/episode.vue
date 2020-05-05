@@ -515,6 +515,9 @@ export default {
         this.handleSearch(this.$props.imdbId);
     },
     methods: {
+     reverseString(str) {
+    return str.split("").reverse().join("");
+},
         DownloadAd(){
             var list = document.getElementById("download-ad");
         this.ads = document.createElement("div");

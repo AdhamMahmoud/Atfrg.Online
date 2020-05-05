@@ -7,7 +7,7 @@
     </div>
     
     <vue-plyr  class="player-mov" :ref="'film' + id" clickToPlay="true" seektime="10" :title="title" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
-        <video preload="none" crossorigin="anonymous" playsinline :poster="poster">
+        <video preload="none" crossorigin playsinline :poster="poster">
             <!-- Video Source -->
             <source v-for="video in links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
             <!-- Video Subtitles -->
@@ -94,6 +94,7 @@ export default {
         // this.ads.remove();
     },
     mounted() {
+        document.domain = 'atfrg.online';
         this.film = this.$refs['film' + this.$props.id].player;
         var list = document.getElementsByClassName("plyr__control--overlaid")[0];
         this.loader = document.createElement("i");
