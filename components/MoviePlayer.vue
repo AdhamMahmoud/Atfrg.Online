@@ -14,7 +14,7 @@
             <track v-for="(subtitle, index) in subtitleNew" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == subtitleNew.length - 2}">
         </video>
     </vue-plyr>
-</div>
+    </div>
 </template>
 
 <script>
@@ -36,6 +36,7 @@ export default {
             ads2:null,
             FirstAd:false,
             captionStart:false,
+            tagUrls:""
         }
     },
     props: {
@@ -58,8 +59,7 @@ export default {
                 },
                 ads:{
                     enabled:true,
-                    publisherId: '',
-                    tagUrl:'http://imasdk.googleapis.com/js/core/bridge3.384.1_en.html#goog_385799623'
+                    tagUrl: "https://www.movcpm.com/watch.xml?key=823fbda75a576c389938305b8d5aba32"
                 },
                 controls: [
                     "play-large", // The large play button in the center
@@ -99,6 +99,7 @@ export default {
         this.film = this.$refs['film' + this.$props.id].player;
         // let frame = document.getElementsByClassName('plyr__ads')[0];
         //  frame.contentWindow.postMessage("*", 'https://www.movcpm.com/watch.xml?key=823fbda75a576c389938305b8d5aba32');
+        this.tagUrls = 'https://www.movcpm.com/watch.xml?key=823fbda75a576c389938305b8d5aba32';
         var list = document.getElementsByClassName("plyr__control--overlaid")[0];
         this.loader = document.createElement("i");
         this.loader.classList.add("video-loader");

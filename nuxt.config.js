@@ -50,10 +50,10 @@ export default {
         "data-cfasync" :"false",
         type: "text/javascript"
       },
-      {
-        src:"https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js",
-        type: "text/javascript"
-      },
+      // {
+      //   src:"https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js",
+      //   type: "text/javascript"
+      // },
     ]
   },
   /*
@@ -90,9 +90,9 @@ export default {
     throttle: 0,
     duration: 5000
   },
-  mounted() {
-    document.domain = "atfrg.online";
-  },
+  // mounted() {
+  //   document.domain = "atfrg.online";
+  // },
   
   /*
    ** Nuxt.js modules

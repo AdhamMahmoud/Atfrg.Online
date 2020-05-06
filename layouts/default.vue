@@ -49,7 +49,7 @@ export default {
     },
     mounted() {
         // this.ShowAd();
-         document.domain = "atfrg.online";
+        //  document.domain = "atfrg.online";
         setTimeout(() => this.loading = false, 800);
         window.dataLayer = window.dataLayer || [];
 
