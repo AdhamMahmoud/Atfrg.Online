@@ -1,5 +1,5 @@
 <template>
-<div :class="{ 'darkMod' : darkMode}" id="atfrg">
+<div :class="{ 'darkMod' : darkMode}">
     <!-- Header -->
     <loading v-if="loading"></loading>
     <Header :darkMode.sync="darkMode" />
@@ -26,17 +26,17 @@ export default {
     },
     methods: {
         ShowAd() {
-            this.timer = setTimeout(() => {
-                var list = document.getElementById("atfrg");
-                this.ads = document.createElement("div");
-                var sc = document.createElement('script');
-                this.ads.classList.add("ad");
-                sc.setAttribute('data-cfasync', 'false');
-                sc.setAttribute('src', '//inpagepush.com/400/3246513');
-                // sc.setAttribute('src','//native.propellerclick.com/1?z=3252004');
-                this.ads.appendChild(sc);
-                list.parentNode.insertBefore(this.ads, list.nextSibling);
-            }, 10000);
+            // this.timer = setTimeout(() => {
+            //     var list = document.getElementById("atfrg");
+            //     this.ads = document.createElement("div");
+            //     var sc = document.createElement('script');
+            //     this.ads.classList.add("ad");
+            //     sc.setAttribute('data-cfasync', 'false');
+            //     sc.setAttribute('src', '//inpagepush.com/400/3246513');
+            //     // sc.setAttribute('src','//native.propellerclick.com/1?z=3252004');
+            //     this.ads.appendChild(sc);
+            //     list.parentNode.insertBefore(this.ads, list.nextSibling);
+            // }, 10000);
 
         },
     },
@@ -50,7 +50,7 @@ export default {
     mounted() {
         // this.ShowAd();
         //  document.domain = "atfrg.online";
-        setTimeout(() => this.loading = false, 800);
+        setTimeout(() => this.loading = false, 500);
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
