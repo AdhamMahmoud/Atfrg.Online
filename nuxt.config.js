@@ -50,6 +50,10 @@ export default {
         "data-cfasync" :"false",
         type: "text/javascript"
       },
+      {
+        src:"https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js",
+        type: "text/javascript"
+      },
     ]
   },
   /*
@@ -86,9 +90,9 @@ export default {
     throttle: 0,
     duration: 5000
   },
-  // mounted() {
-  //   this.$loading = this.$refs.loading;
-  // },
+  mounted() {
+    document.domain = "atfrg.online";
+  },
   
   /*
    ** Nuxt.js modules
@@ -105,7 +109,7 @@ export default {
     '@nuxtjs/sitemap',
     '@nuxtjs/proxy',
     // '@nuxtjs/component-cache',
-    // 'nuxt-polyfill',
+    'nuxt-polyfill',
   ],
 //   oneSignal: {
 //     // cdn: true,
@@ -160,47 +164,49 @@ export default {
     },
     errorHandler: '~/plugins/apollo-error-handler.js'
   },
-//   polyfill: {
-//     features: [
-//         /* 
-//             Feature without detect:
+  polyfill: {
+    features: [
+        /* 
+            Feature without detect:
 
-//             Note: 
-//               This is not recommended for most polyfills
-//               because the polyfill will always be loaded, parsed and executed.
-//         */
-//         {
-//             require: 'url-polyfill' // NPM package or require path of file
-//         },
+            Note: 
+              This is not recommended for most polyfills
+              because the polyfill will always be loaded, parsed and executed.
+        */
+        {
+         
+            require: 'url-polyfill' // NPM package or require path of file
+        },
 
-//         /* 
-//             Feature with detect:
+        /* 
+            Feature with detect:
 
-//             Detection is better because the polyfill will not be 
-//             loaded, parsed and executed if it's not necessary.
-//         */
-//         {
-//             require: 'intersection-observer',
-//             detect: () => 'IntersectionObserver' in window,
-//         },
+            Detection is better because the polyfill will not be 
+            loaded, parsed and executed if it's not necessary.
+        */
+        {
+            require: 'intersection-observer',
+            detect: () => 'IntersectionObserver' in window,
+        },
 
-//         /*
-//             Feature with detect & install:
+        /*
+            Feature with detect & install:
 
-//             Some polyfills require a installation step
-//             Hence you could supply a install function which accepts the require result
-//         */
-//         {
-//             require: 'smoothscroll-polyfill',
+            Some polyfills require a installation step
+            Hence you could supply a install function which accepts the require result
+        */
+        {
+            require: 'smoothscroll-polyfill',
+            require: 'core-js/es7/object',
 
-//             // Detection found in source: https://github.com/iamdustan/smoothscroll/blob/master/src/smoothscroll.js
-//             detect: () => 'scrollBehavior' in document.documentElement.style && window.__forceSmoothScrollPolyfill__ !== true,
+            // Detection found in source: https://github.com/iamdustan/smoothscroll/blob/master/src/smoothscroll.js
+            detect: () => 'scrollBehavior' in document.documentElement.style && window.__forceSmoothScrollPolyfill__ !== true,
 
-//             // Optional install function called client side after the package is required:
-//             install: (smoothscroll) => smoothscroll.polyfill()
-//         }
-//     ]
-// },
+            // Optional install function called client side after the package is required:
+            install: (smoothscroll) => smoothscroll.polyfill()
+        }
+    ]
+},
   /*
   /*
    ** Build configuration

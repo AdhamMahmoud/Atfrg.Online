@@ -14,6 +14,9 @@ import { createStore } from './store.js'
 
 import nuxt_plugin_workbox_d47eb70a from 'nuxt_plugin_workbox_d47eb70a' // Source: .\\workbox.js (mode: 'client')
 import nuxt_plugin_bootstrapvue_6dd9ca4e from 'nuxt_plugin_bootstrapvue_6dd9ca4e' // Source: .\\bootstrap-vue.js (mode: 'all')
+import nuxt_plugin_object_d475d482 from 'nuxt_plugin_object_d475d482' // Source: .\\nuxt-polyfill\\core-js\\es7\\object.js (mode: 'all')
+import nuxt_plugin_intersectionobserver_7babc29e from 'nuxt_plugin_intersectionobserver_7babc29e' // Source: .\\nuxt-polyfill\\intersection-observer.js (mode: 'all')
+import nuxt_plugin_urlpolyfill_90a8796e from 'nuxt_plugin_urlpolyfill_90a8796e' // Source: .\\nuxt-polyfill\\url-polyfill.js (mode: 'all')
 import nuxt_plugin_apollomodule_6283b7eb from 'nuxt_plugin_apollomodule_6283b7eb' // Source: .\\apollo-module.js (mode: 'all')
 import nuxt_plugin_vueplyr_9db9a11c from 'nuxt_plugin_vueplyr_9db9a11c' // Source: ..\\plugins\\vue-plyr (mode: 'all')
 import nuxt_plugin_lazyload_af447860 from 'nuxt_plugin_lazyload_af447860' // Source: ..\\plugins\\lazyload (mode: 'client')
@@ -64,7 +67,7 @@ async function createApp (ssrContext) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"meta":[{"charset":"UTF-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"name":"propeller","content":"6db572cc55a14b132d2e20b503cf81b1"},{"http-equiv":"Content-Type","content":"text\u002Fhtml; charset=utf-8"},{"name":"apple-mobile-web-app-capable","content":"yes"},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-status-bar-style","name":"apple-mobile-web-app-status-bar-style","content":"default"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"اتفرج اون لاين مشاهدة وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online"},{"hid":"author","name":"author","content":"Adham Mahmoud"},{"hid":"description","name":"description","content":"اتفرج اون لاين مشاهدة وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online"},{"hid":"theme-color","name":"theme-color","content":"#008dff"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"اتفرج اون لاين مشاهدة وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"اتفرج اون لاين"},{"hid":"og:description","name":"og:description","property":"og:description","content":"اتفرج اون لاين مشاهد وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية بدون اعلانات مزعجة"},{"hid":"og:image","name":"og:image","property":"og:image","content":"https:\u002F\u002Fatfrgimages.b-cdn.net\u002Fog2.png"}],"link":[{"rel":"icon","type":"image\u002Fsvg","href":"https:\u002F\u002Fatfrgimages.b-cdn.net\u002Fimages\u002Ffav.svg"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Tajawal:500&display=swap"},{"rel":"manifest","href":"\u002F_nuxt\u002Fmanifest.7d93f120.json","crossorigin":"use-credentials"}],"script":[{"src":"https:\u002F\u002Fkit.fontawesome.com\u002F3e50565740.js?ver=1.1","type":"text\u002Fjavascript"},{"src":"https:\u002F\u002Fwww.googletagmanager.com\u002Fgtag\u002Fjs?id=UA-162494703-1","async":"","type":"text\u002Fjavascript"},{"src":"\u002F\u002Finpagepush.com\u002F400\u002F3246513","async":"async","data-cfasync":"false","type":"text\u002Fjavascript"}],"style":[],"title":"اتفرج اون لاين مشاهدة وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online","htmlAttrs":{"lang":"en"}},
+    head: {"meta":[{"charset":"UTF-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"name":"propeller","content":"6db572cc55a14b132d2e20b503cf81b1"},{"http-equiv":"Content-Type","content":"text\u002Fhtml; charset=utf-8"},{"name":"apple-mobile-web-app-capable","content":"yes"},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-status-bar-style","name":"apple-mobile-web-app-status-bar-style","content":"default"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"اتفرج اون لاين مشاهدة وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online"},{"hid":"author","name":"author","content":"Adham Mahmoud"},{"hid":"description","name":"description","content":"اتفرج اون لاين مشاهدة وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online"},{"hid":"theme-color","name":"theme-color","content":"#008dff"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"اتفرج اون لاين مشاهدة وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"اتفرج اون لاين"},{"hid":"og:description","name":"og:description","property":"og:description","content":"اتفرج اون لاين مشاهد وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية بدون اعلانات مزعجة"},{"hid":"og:image","name":"og:image","property":"og:image","content":"https:\u002F\u002Fatfrgimages.b-cdn.net\u002Fog2.png"}],"link":[{"rel":"icon","type":"image\u002Fsvg","href":"https:\u002F\u002Fatfrgimages.b-cdn.net\u002Fimages\u002Ffav.svg"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Tajawal:500&display=swap"},{"rel":"manifest","href":"\u002F_nuxt\u002Fmanifest.7d93f120.json","crossorigin":"use-credentials"}],"script":[{"src":"https:\u002F\u002Fkit.fontawesome.com\u002F3e50565740.js?ver=1.1","type":"text\u002Fjavascript"},{"src":"https:\u002F\u002Fwww.googletagmanager.com\u002Fgtag\u002Fjs?id=UA-162494703-1","async":"","type":"text\u002Fjavascript"},{"src":"\u002F\u002Finpagepush.com\u002F400\u002F3246513","async":"async","data-cfasync":"false","type":"text\u002Fjavascript"},{"src":"https:\u002F\u002Fcdnjs.cloudflare.com\u002Fajax\u002Flibs\u002Fbabel-polyfill\u002F6.23.0\u002Fpolyfill.min.js","type":"text\u002Fjavascript"}],"style":[],"title":"اتفرج اون لاين مشاهدة وتحميل افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online","htmlAttrs":{"lang":"en"}},
 
     store,
     router,
@@ -185,6 +188,18 @@ async function createApp (ssrContext) {
 
   if (typeof nuxt_plugin_bootstrapvue_6dd9ca4e === 'function') {
     await nuxt_plugin_bootstrapvue_6dd9ca4e(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_object_d475d482 === 'function') {
+    await nuxt_plugin_object_d475d482(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_intersectionobserver_7babc29e === 'function') {
+    await nuxt_plugin_intersectionobserver_7babc29e(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_urlpolyfill_90a8796e === 'function') {
+    await nuxt_plugin_urlpolyfill_90a8796e(app.context, inject)
   }
 
   if (typeof nuxt_plugin_apollomodule_6283b7eb === 'function') {

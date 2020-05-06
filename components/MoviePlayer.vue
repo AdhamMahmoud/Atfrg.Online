@@ -6,8 +6,8 @@
         <!-- <span @click="reloadPage()">تحديث المحتوي</span> -->
     </div>
     
-    <vue-plyr  class="player-mov" :ref="'film' + id" clickToPlay="true" seektime="10" :title="title" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
-        <video preload="none" crossorigin playsinline :poster="poster">
+    <vue-plyr  class="player-mov" :ref="'film' + id" clickToPlay="true" seektime="10"  :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
+        <video preload="none" playsinline crossorigin="anonymous" :poster="poster">
             <!-- Video Source -->
             <source v-for="video in links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
             <!-- Video Subtitles -->
@@ -19,7 +19,7 @@
 
 <script>
 // import './dist/vue-plyr.ssr.js';
-// import 'vue-plyr/dist/vue-plyr.css';
+import 'vue-plyr/dist/vue-plyr.css';
 export default {
     data() {
         return {
@@ -56,10 +56,11 @@ export default {
                 fullscreen:{
                     enabled: true, fallback: true, iosNative: 'force' 
                 },
-                // ads:{
-                //     enabled:true,
-                //     tagUrl: 'https://www.movcpm.com/watch.xml?key=823fbda75a576c389938305b8d5aba32'
-                // },
+                ads:{
+                    enabled:true,
+                    publisherId: '',
+                    tagUrl:'http://imasdk.googleapis.com/js/core/bridge3.384.1_en.html#goog_385799623'
+                },
                 controls: [
                     "play-large", // The large play button in the center
                     "rewind", // Rewind by the seek time (default 10 seconds)
@@ -94,8 +95,10 @@ export default {
         // this.ads.remove();
     },
     mounted() {
-        document.domain = 'atfrg.online';
+        //  document.domain = "atfrg.online";
         this.film = this.$refs['film' + this.$props.id].player;
+        // let frame = document.getElementsByClassName('plyr__ads')[0];
+        //  frame.contentWindow.postMessage("*", 'https://www.movcpm.com/watch.xml?key=823fbda75a576c389938305b8d5aba32');
         var list = document.getElementsByClassName("plyr__control--overlaid")[0];
         this.loader = document.createElement("i");
         this.loader.classList.add("video-loader");
@@ -431,6 +434,19 @@ export default {
     .plyr video {
         object-fit: contain !important;
     }
+    
+.video-logo {
+    border: 0;
+    color: #fff;
+    position: absolute;
+    z-index: 2;
+    height: auto;
+    width: 80px;
+    z-index: 9999;
+    top: 5%;
+    left: 5%;
+    background-color: transparent !important;
+}
 }
 
 .chat-video {
