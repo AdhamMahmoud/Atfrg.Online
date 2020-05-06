@@ -158,7 +158,7 @@
                             <tr v-for="(video,index) in epLinks" :key="video.id">
                                 <th scope="row">{{index}} </th>
                                 <td>{{video.quality.replace('Q','')}}</td>
-                                <td><a :href="Download(validLink(video.path))">تحميل</a></td>
+                                <td><a :href="Download(validLink(video.path))" target="_blacnk">تحميل</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -597,7 +597,8 @@ export default {
             var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
             var token = new Buffer(md5String, 'binary').toString('base64');
             token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
-            var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+            // newpath = path.substring(25, newpath.length);
+          var url = 'https://atfrg.store/?file=' + newpath + '?token=' + token + '&expires=' + expires + '&name=' +  this.$props.title + " " + this.$props.season[0].title;
              } else if (path.includes("AtfrgRamadan")) {
                 var crypto = require('crypto');
                 var securityKey = '27ab3ad5-9fbb-4713-9671-5d4cb7a1a31e';
@@ -610,7 +611,9 @@ export default {
                 var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
                 var token = new Buffer(md5String, 'binary').toString('base64');
                 token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
-                var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+                
+                // var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+                var url = 'https://atfrg.store/?file=' + newpath + '?token=' + token + '&expires=' + expires + '&name=' +  this.$props.title + " " + this.$props.season[0].title;
           }
             return url;
         },

@@ -28,7 +28,7 @@ export default {
         list.appendChild(this.ads);
        },
           beforeDestroy() {
-        // this.ads.remove();
+         this.ads.remove();
     },
 }
 </script>

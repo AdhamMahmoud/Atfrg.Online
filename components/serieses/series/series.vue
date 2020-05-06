@@ -91,7 +91,7 @@
                       <script data-cfasync='false' type='text/javascript' src='//p393613.clksite.com/adServe/banners?tid=393613_773071_5'></script>
                         <div id="393613_773071_5"></div>
                      </div> -->
-                     <ads2></ads2>
+                     <!-- <ads2></ads2> -->
                     <table class="table">
                         <thead>
                             <tr>
@@ -104,7 +104,7 @@
                             <tr v-for="video in episodes[0].links" :key="video.id">
                                 <th scope="row">1</th>
                                 <td>{{video.quality.replace('Q','')}}</td>
-                                <td><a :href="Download(validLink(video.path))">تحميل</a></td>
+                                <td><a :href="Download(validLink(video.path))" target="_blank">تحميل</a></td>
                                 
                             </tr>
                         </tbody>
@@ -121,7 +121,7 @@
                             <tr v-for="subtitle in episodes[0].subtitles" :key="subtitle.id">
                                 <th scope="row">{{subtitle.lang.name}}</th>
                                 <td>{{subtitle.name }}</td>
-                                <td v-if="subtitle.path.length > 0"><a :href="Download(validLink(subtitle.path))">تحميل</a></td>
+                                <td v-if="subtitle.path.length > 0"><a :href="Download(validLink(subtitle.path))" target="_blank">تحميل</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -351,7 +351,7 @@ export default {
           }
             return url;
         },
-        Download(path){
+          Download(path){
         if (path.includes("cdn.atfrg")) {
            var crypto = require('crypto');
             var securityKey = '27ab3ad5-9fbb-4713-9671-5d4cb7a1a31e';
@@ -363,9 +363,10 @@ export default {
             var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
             var token = new Buffer(md5String, 'binary').toString('base64');
             token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
-            var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+            // newpath = path.substring(25, newpath.length);
+          var url = 'https://atfrg.store/?file=' + newpath + '?token=' + token + '&expires=' + expires + '&name=' +  this.GetTitle;
              } else if (path.includes("AtfrgRamadan")) {
-              var crypto = require('crypto');
+                var crypto = require('crypto');
                 var securityKey = '27ab3ad5-9fbb-4713-9671-5d4cb7a1a31e';
                 var newpath = path.substring(30, path.length);
                 // Set the time of expiry to one hour from now
@@ -376,7 +377,9 @@ export default {
                 var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
                 var token = new Buffer(md5String, 'binary').toString('base64');
                 token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
-                var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+                
+                // var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+                var url = 'https://atfrg.store/?file=' + newpath + '?token=' + token + '&expires=' + expires + '&name=' +  this.GetTitle;
           }
             return url;
         },
