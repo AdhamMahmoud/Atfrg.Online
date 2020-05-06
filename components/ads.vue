@@ -23,7 +23,7 @@ export default {
         var sc = document.createElement('script');
         // this.ads.classList.add("vide-ad");
         sc.setAttribute('data-cfasync','false');
-        sc.setAttribute('src','//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js');
+        // sc.setAttribute('src','//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js');
         this.ads.appendChild(sc);
         list.appendChild(this.ads);
        },
