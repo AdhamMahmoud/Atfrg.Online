@@ -71,7 +71,7 @@ import resultNotFound from "~/components/resultNotFound.vue";
 import SeriesItem from "~/components/SeriesItem.vue";
 import filters from "~/components/serieses/filters";
 import gql from 'graphql-tag';
-import ads2 from "~/components/ads.vue";
+import ads2 from "~/components/ads2.vue";
 export default {
    head() {
         return {
