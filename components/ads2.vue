@@ -4,7 +4,7 @@
         <div class="col-12">
             <div id="ads" class="ads">
                 <p> الأعلانات دي عشانك عشان نستمر ❤️</p>
-                <div id="container-65550475d009aa6f1c54ac2455097cc9"></div>
+                <!-- <div id="container-af30aca1ff5507bbeb531b00839438e8"></div> -->
 
             </div>
         </div>
@@ -25,19 +25,19 @@ export default {
             ads:null,
         }
        },
-       mounted(){
-        var list = document.getElementById("ads");
-        this.ads = document.createElement("div");
-        var sc = document.createElement('script');
-        // this.ads.classList.add("vide-ad");
-        sc.setAttribute('data-cfasync','false');
-         sc.setAttribute('src','//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js');
-        this.ads.appendChild(sc);
-        list.appendChild(this.ads);
-       },
-          beforeDestroy() {
-         this.ads.remove();
-    },
+    //    mounted(){
+    //     // var list = document.getElementById("ads");
+    //     // this.ads = document.createElement("div");
+    //     // var sc = document.createElement('script');
+    //     // // this.ads.classList.add("vide-ad");
+    //     // sc.setAttribute('data-cfasync','false');
+    //     //  sc.setAttribute('src','//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js');
+    //     // this.ads.appendChild(sc);
+    //     // list.appendChild(this.ads);
+    //    },
+    //       beforeDestroy() {
+    //      this.ads.remove();
+    // },
 }
 </script>
 <style lang="scss">

@@ -2,9 +2,8 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <div id="ads" class="ads">
+            <div id="ads" class="ads" v-if="Show">
                 <p> الأعلانات دي عشانك عشان نستمر ❤️</p>
-                <div id="container-af30aca1ff5507bbeb531b00839438e8"></div>
             </div>
         </div>
     </div>
@@ -15,23 +14,22 @@ export default {
        data: function () {
         return {
             ads:null,
+            Show:true
         }
        },
-       mounted(){
+       mounted(){  
         var list = document.getElementById("ads");
         this.ads = document.createElement("div");
         var sc = document.createElement('script');
         // this.ads.classList.add("vide-ad");
         sc.setAttribute('data-cfasync','false');
-        sc.setAttribute('src','//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js');
+        sc.setAttribute('src','//native.propellerclick.com/1?z=3258718');
         this.ads.appendChild(sc);
         list.appendChild(this.ads);
        },
         beforeDestroy() {
-        var sc = document.getElementById("container-af30aca1ff5507bbeb531b00839438e8");
-        sc.setAttribute('src','');
-        sc.remove();
          this.ads.remove();
+         this.Show = false;
     },
 }
 </script>

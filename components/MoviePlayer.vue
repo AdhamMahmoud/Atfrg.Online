@@ -111,9 +111,15 @@ export default {
         // var sc = document.createElement('script');
         // this.ads.classList.add("vide-ad");
         // sc.setAttribute('data-cfasync','false');
-        // sc.setAttribute('src','//inpagepush.com/400/3246513');
+        // sc.setAttribute('src','//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js');
         // // sc.setAttribute('src','//native.propellerclick.com/1?z=3252004');
         // this.ads.appendChild(sc);
+
+        // var scx = document.createElement('div');
+        // scx.setAttribute('id','container-af30aca1ff5507bbeb531b00839438e');
+        //  this.ads.appendChild(scx);
+
+
         // list.parentNode.insertBefore(this.ads, list.nextSibling);
         // this.ads.style.display = 'none';
 
@@ -178,18 +184,10 @@ export default {
     },
     methods: {
         ShowAd(){
-                // this.timer = setTimeout(() => {
-                //     var list = document.getElementsByClassName("plyr__control--overlaid")[0];
-                //   this.ads = document.createElement("div");
-                //     var sc = document.createElement('script');
-                //     this.ads.classList.add("vide-ad");
-                //     sc.setAttribute('data-cfasync','false');
-                //     sc.setAttribute('src','//inpagepush.com/400/3246513');
-                //     // sc.setAttribute('src','//native.propellerclick.com/1?z=3252004');
-                //     this.ads.appendChild(sc);
-                //     list.parentNode.insertBefore(this.ads, list.nextSibling);
-                // }, 10000); 
-            //5min
+            //     this.timer = setTimeout(() => {
+            //    this.ads.style.display = 'block';
+            //     }, 10000); 
+            // //5min
             // this.timer3 = setTimeout(() => {
             // this.FirstAd = false;
             // this.ShowAd();

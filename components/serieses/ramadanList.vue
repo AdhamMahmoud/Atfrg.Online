@@ -184,6 +184,9 @@
               <nuxt-link to="/ramadan-last">تشوف اخر الحلقات ؟
               </nuxt-link>
             </div>
+            <div class="ads" id="ads">
+                <div id="container-af30aca1ff5507bbeb531b00839438e8"></div>
+            </div>
           </div>
           
         </div>
@@ -193,6 +196,7 @@
 </template>
 
 <script>
+
 import resultNotFound from "~/components/resultNotFound.vue";
 import TrailerItem from "~/components/TrailerItem.vue";
 import SeriesItem from "~/components/SeriesItem.vue";
@@ -219,9 +223,20 @@ export default {
   props: {
     active: String
   },
+  mounted(){
+       var list = document.getElementById("ads");
+        this.ads = document.createElement("div");
+        var sc = document.createElement('script');
+        // this.ads.classList.add("vide-ad");
+        sc.setAttribute('data-cfasync','false');
+         sc.setAttribute('src','//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js');
+        this.ads.appendChild(sc);
+        list.appendChild(this.ads);
+  },
   data: function() {
     return {
       overId: 0,
+      ads:null,
       timer: null,
       swiperOption: {
          slidesPerView: 5,
@@ -316,5 +331,20 @@ export default {
       @include transition(0.3s);
     }
   }
+}
+.ads{
+    text-align: center;
+      width: 50%;
+      pointer-events: none;
+      margin: 0 auto;
+    max-height: 200px;
+    .it-client{
+    margin:0 auto !important;
+    }
+}
+@include sm{
+.ads{
+   width: auto;
+}
 }
 </style>
