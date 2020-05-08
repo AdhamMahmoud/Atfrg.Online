@@ -45,12 +45,6 @@ export default {
         type: "text/javascript"
       },
       {
-        src: "//inpagepush.com/400/3246513",
-        async :"async",
-        "data-cfasync" :"false",
-        type: "text/javascript"
-      },
-      {
         type: "text/javascript",
         src:"//pl15442421.passtechusa.com/9c/d3/1c/9cd31c6b817458951dc72ca0c6f32ffd.js",
       },
