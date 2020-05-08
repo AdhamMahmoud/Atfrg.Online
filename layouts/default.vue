@@ -1,7 +1,7 @@
 <template>
 <div :class="{ 'darkMod' : darkMode}" >
     <!-- Header -->
-    <loading v-if="loading"></loading>
+  
     <Header :darkMode.sync="darkMode" />
 
     <nuxt />
@@ -48,9 +48,7 @@ export default {
         }
     },
     mounted() {
-         this.ShowAd();
-        //  document.domain = "atfrg.online";
-        setTimeout(() => this.loading = false, 500);
+        
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
