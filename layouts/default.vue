@@ -19,7 +19,6 @@ import Header from "~/components/Header.vue";
 import SearchArea from "~/components/SearchArea.vue";
 import Footer from "~/components/Footer.vue";
 import loading from "~/components/loading.vue";
-
 export default {
     components: {
         Header,
@@ -49,7 +48,6 @@ export default {
             //     this.ads.appendChild(sc);
             //     list.parentNode.insertBefore(this.ads, list.nextSibling);
             // }, 10000);
-
         },
     },
     data: function () {
@@ -64,12 +62,10 @@ export default {
         //  document.domain = "atfrg.online";
         // setTimeout(() => this.loading = false, 500);
         window.dataLayer = window.dataLayer || [];
-
         function gtag() {
             dataLayer.push(arguments);
         }
         gtag('js', new Date());
-
         gtag('config', 'UA-162494703-1');
     }
 };

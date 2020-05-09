@@ -36,7 +36,6 @@ export default {
 .ads {
     text-align: center;
     max-height: 260px;
-
     .it-client {
         margin: 0 auto !important;
     }
