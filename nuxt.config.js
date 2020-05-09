@@ -52,12 +52,12 @@ export default {
         async :"async",
         src:'//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js'
       },
-      {
-        src: "//inpagepush.com/400/3246513",
-        async :"async",
-        "data-cfasync" :"false",
-        type: "text/javascript"
-      },
+      // {
+      //   src: "//inpagepush.com/400/3246513",
+      //   async :"async",
+      //   "data-cfasync" :"false",
+      //   type: "text/javascript"
+      // },
       
     ]
   },
