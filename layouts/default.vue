@@ -1,9 +1,12 @@
 <template>
 <div :class="{ 'darkMod' : darkMode}" >
     <!-- Header -->
-    <loading v-if="loading"></loading>
+    <!-- <loading v-if="loading"></loading> -->
     <Header :darkMode.sync="darkMode" />
-
+    <div id="BannerDefault">
+    <div id="propellerBanner" style="display:none"></div>
+     <div id="propellerDownload" style="display:none"></div>
+    </div>
     <nuxt />
 
     <!-- Footer -->
@@ -23,6 +26,15 @@ export default {
         SearchArea,
         Footer,
         loading
+    },
+    head() {
+        return {
+            script: [
+                 { hid: 'adstra', src: '//native.propellerclick.com/1?z=3258714&eid=propellerDownload' },
+                 { hid: 'stripe', src: '//native.propellerclick.com/1?z=3258718&eid=propellerBanner' },
+                
+            ]
+        }
     },
     methods: {
         ShowAd() {
@@ -50,7 +62,7 @@ export default {
     mounted() {
          this.ShowAd();
         //  document.domain = "atfrg.online";
-        setTimeout(() => this.loading = false, 500);
+        // setTimeout(() => this.loading = false, 500);
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {

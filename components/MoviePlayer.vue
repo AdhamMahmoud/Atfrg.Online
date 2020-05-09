@@ -114,16 +114,11 @@ export default {
         // sc.setAttribute('src','//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js');
         // // sc.setAttribute('src','//native.propellerclick.com/1?z=3252004');
         // this.ads.appendChild(sc);
-
         // var scx = document.createElement('div');
         // scx.setAttribute('id','container-af30aca1ff5507bbeb531b00839438e');
         //  this.ads.appendChild(scx);
-
-
         // list.parentNode.insertBefore(this.ads, list.nextSibling);
         // this.ads.style.display = 'none';
-
-
         this.FirstNote = document.createElement("div");
         this.FirstNote.classList.add("chat");
         this.FirstNote.classList.add("chatb");
@@ -180,7 +175,6 @@ export default {
         //         document.body.querySelector('.plyr__control[data-plyr="fullscreen"]').style.display = 'none';
         //     }
         //  }
-
     },
     methods: {
         ShowAd(){
@@ -192,7 +186,6 @@ export default {
             // this.FirstAd = false;
             // this.ShowAd();
             // }, 300000);
-
            
         },
         validLink(path) {
@@ -207,7 +200,6 @@ export default {
                 var newpath = path.substring(24, path.length);
                 // Set the time of expiry to one hour from now
                 var expires = Math.round(Date.now() / 1000) + 21600;
-
                 var hashableBase = securityKey + newpath + expires;
                 // Generate and encode the token 
                 var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
@@ -221,7 +213,6 @@ export default {
                 var newpath = path.substring(30, path.length);
                 // Set the time of expiry to one hour from now
                 var expires = Math.round(Date.now() / 1000) + 21600;
-
                 var hashableBase = securityKey + newpath + expires;
                 // Generate and encode the token 
                 var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
@@ -321,53 +312,42 @@ export default {
 <style lang="scss">
 @import "~/assets/sass/_vars.scss";
 @import "~/assets/sass/_mixins.scss";
-
 .note2 {
     text-align: center;
     margin: 1rem 0;
-
     span {
         color: $secondary-color;
         cursor: pointer;
     }
 }
-
 .plyr--full-ui input[type=range] {
     color: #FFD700;
 }
-
 .plyr__control--overlaid {
     background: rgba(255, 215, 0, 0.67);
 }
-
 .plyr--video .plyr__control.plyr__tab-focus,
 .plyr--video .plyr__control:hover,
 .plyr--video .plyr__control[aria-expanded=true] {
     background: #FFD700;
 }
-
 .plyr__control.plyr__tab-focus {
     box-shadow: 0 0 0 5px rgba(255, 215, 0, 0.67);
 }
-
 .plyr__menu__container .plyr__control[role=menuitemradio][aria-checked=true]::before {
     background: #FFD700;
 }
-
 .plyr--audio .plyr__control.plyr__tab-focus,
 .plyr--audio .plyr__control:hover,
 .plyr--audio .plyr__control[aria-expanded=true] {
     background: #FFD700;
 }
-
 .plyr--video .plyr__progress__buffer {
     color: rgba(8, 108, 248, 0.55);
 }
-
 .plyr--video.plyr--loading .plyr__progress__buffer {
     background-color: rgba(8, 108, 248, 0.55);
 }
-
 /* .plyr__control--pressed{
     opacity: 1 !important;
     visibility: inherit !important;
@@ -377,21 +357,17 @@ export default {
         width: 60px;
     }
 }
-
 .plyr {
     height: 600px;
 }
-
 .plyr video {
     width: 100%;
     object-fit: contain;
     height: 100%;
 }
-
 .plyr__video-wrapper {
     height: 100%;
 }
-
 .video-loader {
     display: none;
     border: 0;
@@ -407,7 +383,6 @@ export default {
     z-index: 2;
     background-color: transparent !important;
 }
-
 .video-logo {
     border: 0;
     color: #fff;
@@ -420,16 +395,13 @@ export default {
     left: 5%;
     background-color: transparent !important;
 }
-
 .plyr--loading .video-loader {
     display: block;
 }
-
 @include sm {
     .plyr {
         height: 400px;
     }
-
     .plyr video {
         object-fit: contain !important;
     }
@@ -447,26 +419,21 @@ export default {
     background-color: transparent !important;
 }
 }
-
 .chat-video {
     bottom: 7rem;
     right: 2.2rem;
-
     .mine .message.last:after {
         background: #000;
     }
-
     .mine .message.last:before {
         background-image: none;
         background-color: #393939;
     }
-
     .mine .message {
         background-image: none;
         background-color: #393939;
     }
 }
-
 .chat .message {
     background-color: #232323;
 }
@@ -478,19 +445,16 @@ export default {
         font-size: 26px !important;
         bottom: 2rem !important;
     }
-
     .plyr:-webkit-full-screen .plyr__captions {
         font-size: 30px !important;
         bottom: 4rem !important;
     }
 }
-
 @include lg {
     .plyr__captions {
         font-size: 24px !important;
         bottom: 2rem !important;
     }
-
     .plyr:-webkit-full-screen .plyr__captions {
         font-size: 26px !important;
         bottom: 4rem !important;

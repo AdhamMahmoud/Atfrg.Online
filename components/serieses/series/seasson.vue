@@ -42,11 +42,11 @@
                         <li> <span>عدد الحلقات</span><i class="fas fa-angle-double-left"></i> <span>{{ seassonCount(episodes) }} حلقة</span></li>
                         <li> <span>التقيم</span><i class="fas fa-angle-double-left"></i> <span> 10 / {{ films.imdbRating }} ( {{ films.imdbVotes }} شخص)</span></li>
                     </ul>
+                     <ads></ads>
                 </div>
             </div>
         </div>
     </div>
-     <ads></ads>
     <!-- Container -->
     <div class="container">
         <div class="row">
@@ -94,6 +94,8 @@
                         <script data-cfasync='false' type='text/javascript' src='//p393613.clksite.com/adServe/banners?tid=393613_773071_5&eid=393613_773071_5'></script>
                         <div id="393613_773071_5"></div>
                      </div> -->
+                     <downloadAds></downloadAds>
+                     <div id="download-ad"></div>
                     <table class="table">
                         <thead>
                             <tr>
@@ -106,7 +108,7 @@
                             <tr v-for="(video,index) in episodes[0].links" :key="video.id">
                                 <th scope="row">{{index}}</th>
                                 <td>{{video.quality.replace('Q','')}}</td>
-                                <td><a :href="Download(validLink(video.path))" target="_blank">تحميل</a></td>
+                                <td><a :href="Download(validLink(video.path))">تحميل</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -122,7 +124,7 @@
                             <tr v-for="subtitle in episodes[0].subtitles" :key="subtitle.id">
                                 <th scope="row">{{subtitle.lang.name}}</th>
                                 <td>{{subtitle.name }}</td>
-                                <td v-if="subtitle.path.length > 0"><a :href="Download(validLink(subtitle.path))" target="_blank">تحميل</a></td>
+                                <td v-if="subtitle.path.length > 0"><a :href="Download(validLink(subtitle.path))" >تحميل</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -288,7 +290,7 @@ import bugs from '~/components/bugs.vue';
 import gql from 'graphql-tag';
 import MoviePlayer from "~/components/MoviePlayer.vue";
 import ads from "~/components/ads.vue";
-import ads2 from "~/components/ads2.vue";
+import downloadAds from "~/components/ads2.vue";
 export default {
     components: {
         resultNotFound,
@@ -297,7 +299,7 @@ export default {
         bugs,
         MoviePlayer,
         ads,
-        ads2
+        downloadAds
     },
     head(){
     return{
@@ -445,6 +447,16 @@ export default {
           }
             return url;
         },
+          DownloadAd(){
+        var list = document.getElementById("download-ad");
+        this.ads = document.createElement("div");
+        var sc = document.createElement('script');
+        // this.ads.classList.add("vide-ad");
+        sc.setAttribute('data-cfasync','false');
+        sc.setAttribute('src','//native.propellerclick.com/1?z=3261472');
+        this.ads.appendChild(sc);
+        list.appendChild(this.ads);
+        },
           Download(path){
         if (path.includes("cdn.atfrg")) {
            var crypto = require('crypto');
@@ -458,7 +470,7 @@ export default {
             var token = new Buffer(md5String, 'binary').toString('base64');
             token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
             // newpath = path.substring(25, newpath.length);
-          var url = 'https://atfrg.store/?file=' + newpath + '?token=' + token + '&expires=' + expires + '&name=' + this.$props.title;
+            var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
              } else if (path.includes("AtfrgRamadan")) {
                 var crypto = require('crypto');
                 var securityKey = '27ab3ad5-9fbb-4713-9671-5d4cb7a1a31e';
@@ -472,8 +484,8 @@ export default {
                 var token = new Buffer(md5String, 'binary').toString('base64');
                 token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
                 
-                // var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
-                var url = 'https://atfrg.store/?file=' + newpath + '?token=' + token + '&expires=' + expires + '&name=' +  this.$props.title;
+             var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+                // var url = 'https://atfrg.store/?file=' + newpath + '?token=' + token + '&expires=' + expires + '&name=' +  this.$props.title;
           }
             return url;
         },
@@ -483,7 +495,7 @@ export default {
             // path = path.replace(/ /g, '%20');
             return path;
         },
-        activeCol(name) {
+         activeCol(name) {
             this.active = name;
             this.VideoClose();
         },

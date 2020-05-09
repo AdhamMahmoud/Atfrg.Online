@@ -184,9 +184,9 @@
               <nuxt-link to="/ramadan-last">تشوف اخر الحلقات ؟
               </nuxt-link>
             </div>
-            <div class="ads" id="ads">
+            <!-- <div class="ads" id="ads">
                 <div id="container-af30aca1ff5507bbeb531b00839438e8"></div>
-            </div>
+            </div> -->
           </div>
           
         </div>
@@ -224,14 +224,14 @@ export default {
     active: String
   },
   mounted(){
-       var list = document.getElementById("ads");
-        this.ads = document.createElement("div");
-        var sc = document.createElement('script');
-        // this.ads.classList.add("vide-ad");
-        sc.setAttribute('data-cfasync','false');
-         sc.setAttribute('src','//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js');
-        this.ads.appendChild(sc);
-        list.appendChild(this.ads);
+      //  var list = document.getElementById("ads");
+      //   this.ads = document.createElement("div");
+      //   var sc = document.createElement('script');
+      //   // this.ads.classList.add("vide-ad");
+      //   sc.setAttribute('data-cfasync','false');
+      //    sc.setAttribute('src','//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js');
+      //   this.ads.appendChild(sc);
+      //   list.appendChild(this.ads);
   },
   data: function() {
     return {

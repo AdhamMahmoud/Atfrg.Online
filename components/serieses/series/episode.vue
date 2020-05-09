@@ -3,7 +3,7 @@
 <div class="episode">
     <!-- Container -->
     <div class="container">
-     
+
         <div class="row">
             <!-- poster -->
             <div class="col-md-3">
@@ -28,13 +28,7 @@
                         <li> <span>اللغة</span> <i class="fas fa-angle-double-left"></i> <span>{{ Series.lang.name}}</span></li>
                         <li> <span>تاريخ الاصدار</span><i class="fas fa-angle-double-left"></i> <span>{{ getReleaseDate( Series.releaseDate) }}</span></li>
                         <li> <span>الجمهور</span><i class="fas fa-angle-double-left"></i> <span>{{ getaudience(Series.audience) }}</span></li>
-                        <!-- <li> <span>المدة</span> <i class="fas fa-angle-double-left"></i><span>{{ getRunTime(runtime) }} </span></li> -->
                         <li> <span>الجودة</span><i class="fas fa-angle-double-lefft"></i> <span>{{ videoQualities }}</span></li>
-                        <!-- <li> <span>النوع</span><i class="fas fa-angle-double-left"></i>  <span>
-                                <i v-for="gen in Series.geners" :key="gen.id" >
-
-                                </i>
-                            </span> </li> -->
                         <li v-if="Series.lang.name != 'Arabic'"> <span>التقيم</span><i class="fas fa-angle-double-left"></i> <span> 10 / {{ films.imdbRating }} ( {{ films.imdbVotes }} شخص)</span></li>
                         <li v-if="subtitles.length > 0 && subtitles[0].path != null && subtitles[0].path.length > 0"> <span>الترجمة</span><i class="fas fa-angle-double-left"></i>
                             شكر خاص لـ
@@ -46,11 +40,15 @@
                         </li>
                         <li v-else><span>الترجمة</span><i class="fas fa-angle-double-left"></i> لا يوجد</li>
                     </ul>
+
+                    <ads></ads>
+                    <!-- <nuxt-child name="BannerAd" />
+                            <nuxt-child /> -->
                 </div>
             </div>
         </div>
     </div>
-       <ads></ads>
+
     <!-- Container -->
     <div class="container">
         <div class="row">
@@ -145,6 +143,7 @@
                         يمكنك تحميل <span>الموسم كامل</span> فقط ادخل للصفحة الخاصة بالموسم في قسم التحميل.
                     </div>
                     <!-- <ads2></ads2> -->
+                    <downloadAds></downloadAds>
                     <div id="download-ad"></div>
                     <table class="table">
                         <thead>
@@ -158,11 +157,11 @@
                             <tr v-for="(video,index) in epLinks" :key="video.id">
                                 <th scope="row">{{index}} </th>
                                 <td>{{video.quality.replace('Q','')}}</td>
-                                <td><a :href="Download(validLink(video.path))" target="_blacnk">تحميل</a></td>
+                                <td><a :href="Download(validLink(video.path))">تحميل</a></td>
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table"  v-if="subtitles.length > 0">
+                    <table class="table" v-if="subtitles.length > 0">
                         <thead>
                             <tr>
                                 <th scope="col">اللغة</th>
@@ -325,7 +324,8 @@ import Epsitem from '~/components/Epsitem.vue';
 import bugs from '~/components/bugs.vue';
 import MoviePlayer from "~/components/MoviePlayer.vue";
 import ads from "~/components/ads.vue";
-import ads2 from "~/components/ads2.vue";
+import downloadAds from "~/components/ads2.vue";
+// import ads2 from "~/components/ads2.vue";
 export default {
     data: function () {
         return {
@@ -334,8 +334,8 @@ export default {
             secondNote: false,
             notesdone: false,
             films: [],
-            ads:null,
-            ads2:null,
+            ads: null,
+            ads2: null,
             tvSerieses: [],
             active: "movie",
             overId: 0,
@@ -446,7 +446,8 @@ export default {
         MoviePlayer,
         bugs,
         ads,
-        ads2
+        downloadAds
+        // ads2
     },
     head() {
         return {
@@ -515,18 +516,18 @@ export default {
         this.handleSearch(this.$props.imdbId);
     },
     methods: {
-     reverseString(str) {
-    return str.split("").reverse().join("");
-},
-        DownloadAd(){
+        reverseString(str) {
+            return str.split("").reverse().join("");
+        },
+        DownloadAd() {
             var list = document.getElementById("download-ad");
-        this.ads = document.createElement("div");
-        var sc = document.createElement('script');
-        // this.ads.classList.add("vide-ad");
-        sc.setAttribute('data-cfasync','false');
-        sc.setAttribute('src','//native.propellerclick.com/1?z=3261472');
-        this.ads.appendChild(sc);
-        list.appendChild(this.ads);
+            this.ads = document.createElement("div");
+            var sc = document.createElement('script');
+            // this.ads.classList.add("vide-ad");
+            sc.setAttribute('data-cfasync', 'false');
+            sc.setAttribute('src', '//native.propellerclick.com/1?z=3261472');
+            this.ads.appendChild(sc);
+            list.appendChild(this.ads);
         },
         GetNext(series) {
             var Currindex = series.episodes.findIndex(x => x.id === this.$props.id);
@@ -554,8 +555,8 @@ export default {
             // path = path.replace(/ /g, '%20');
             return path;
         },
-  LinkToken(path){
-          if (path.includes("cdn.atfrg")) {
+        LinkToken(path) {
+            if (path.includes("cdn.atfrg")) {
                 var crypto = require('crypto');
                 var securityKey = '6ecb7c25-9744-498a-a49b-ae4c7980c861';
                 var newpath = path.substring(24, path.length);
@@ -568,8 +569,7 @@ export default {
                 var token = new Buffer(md5String, 'binary').toString('base64');
                 token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
                 var url = 'https://atfrgonline.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
-          }
-          else if (path.includes("AtfrgRamadan")) {
+            } else if (path.includes("AtfrgRamadan")) {
                 var crypto = require('crypto');
                 var securityKey = '7544a7f3-75bd-4456-a42b-b6c1e8f28255';
                 var newpath = path.substring(30, path.length);
@@ -582,24 +582,24 @@ export default {
                 var token = new Buffer(md5String, 'binary').toString('base64');
                 token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
                 var url = 'https://AtfrgRamadan.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
-          }
+            }
             return url;
         },
-        Download(path){
-        if (path.includes("cdn.atfrg")) {
-           var crypto = require('crypto');
-            var securityKey = '27ab3ad5-9fbb-4713-9671-5d4cb7a1a31e';
-            var newpath = path.substring(24, path.length);
-            // Set the time of expiry to one hour from now
-            var expires = Math.round(Date.now() / 1000) + 21600;
-            var hashableBase = securityKey + newpath + expires;
-            // Generate and encode the token 
-            var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
-            var token = new Buffer(md5String, 'binary').toString('base64');
-            token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
-            // newpath = path.substring(25, newpath.length);
-          var url = 'https://atfrg.store/?file=' + newpath + '?token=' + token + '&expires=' + expires + '&name=' +  this.$props.title + " " + this.$props.season[0].title;
-             } else if (path.includes("AtfrgRamadan")) {
+        Download(path) {
+            if (path.includes("cdn.atfrg")) {
+                var crypto = require('crypto');
+                var securityKey = '27ab3ad5-9fbb-4713-9671-5d4cb7a1a31e';
+                var newpath = path.substring(24, path.length);
+                // Set the time of expiry to one hour from now
+                var expires = Math.round(Date.now() / 1000) + 21600;
+                var hashableBase = securityKey + newpath + expires;
+                // Generate and encode the token 
+                var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
+                var token = new Buffer(md5String, 'binary').toString('base64');
+                token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
+                // newpath = path.substring(25, newpath.length);
+                var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+            } else if (path.includes("AtfrgRamadan")) {
                 var crypto = require('crypto');
                 var securityKey = '27ab3ad5-9fbb-4713-9671-5d4cb7a1a31e';
                 var newpath = path.substring(30, path.length);
@@ -611,10 +611,10 @@ export default {
                 var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
                 var token = new Buffer(md5String, 'binary').toString('base64');
                 token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
-                
-                // var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
-                var url = 'https://atfrg.store/?file=' + newpath + '?token=' + token + '&expires=' + expires + '&name=' +  this.$props.title + " " + this.$props.season[0].title;
-          }
+
+                var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+                // var url = 'https://atfrg.store/?file=' + newpath + '?token=' + token + '&expires=' + expires + '&name=' +  this.$props.title + " " + this.$props.season[0].title;
+            }
             return url;
         },
         GetPoster(posters) {
@@ -638,9 +638,6 @@ export default {
         },
         activeCol(name) {
             this.active = name;
-            // if(name = "download"){
-            //     this.DownloadAd();
-            // }
             this.VideoClose();
         },
         itemOver(id) {
@@ -763,9 +760,11 @@ export default {
 
 @import '~/assets/sass/_vars.scss';
 @import '~/assets/sass/_mixins.scss';
-.it-client{
-margin:0 auto !important;
+
+.it-client {
+    margin: 0 auto !important;
 }
+
 .episode {
     margin: 20px 0;
     text-align: right;

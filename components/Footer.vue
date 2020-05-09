@@ -1,6 +1,13 @@
 <template>
 <div style="overflow: hidden;">
    <!-- <ads2></ads2> -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                   <div id="container-af30aca1ff5507bbeb531b00839438e8"></div>
+            </div>
+        </div>
+    </div>
         <div class="footer">
     <p>خليك في البيت<i class="fas fa-heart"></i></p>
 </div>
@@ -39,5 +46,10 @@ overflow: hidden;
         margin-right: 5px;
         color: red;
     }
+}
+#container-af30aca1ff5507bbeb531b00839438e8{
+    max-height: 260px;
+    overflow: hidden;
+    margin-bottom: 1rem;
 }
 </style>

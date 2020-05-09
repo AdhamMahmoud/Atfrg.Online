@@ -36,6 +36,10 @@ export default {
     ],
     script: [
       {
+        src:'//imasdk.googleapis.com/js/sdkloader/ima3.js',
+        type: "text/javascript"
+      },
+      {
         src: "https://kit.fontawesome.com/3e50565740.js?ver=1.1",
         type: "text/javascript"
       },
@@ -45,19 +49,16 @@ export default {
         type: "text/javascript"
       },
       {
-        src: "//inpagepush.com/400/3246513",
         async :"async",
-        "data-cfasync" :"false",
-        type: "text/javascript"
-      },
-      {
-        type: "text/javascript",
-        src:"//pl15442421.passtechusa.com/9c/d3/1c/9cd31c6b817458951dc72ca0c6f32ffd.js",
+        src:'//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js'
       },
       // {
-      //   src:"https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js",
+      //   src: "//inpagepush.com/400/3246513",
+      //   async :"async",
+      //   "data-cfasync" :"false",
       //   type: "text/javascript"
       // },
+      
     ]
   },
   /*
@@ -219,13 +220,32 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    // webpack config
-
-    /*
-     ** You can extend webpack config here
-     */
     transpile: ["vue-plyr"],
     vendor: ["vue-plyr"],
+    crossorigin:"anonymous",
+    cache:true,
+    optimization:{
+      minimize: true,
+      splitChunks: {
+        chunks: 'all',
+        automaticNameDelimiter: '.',
+        name: undefined,
+        cacheGroups: {}
+      }
+  },
+  html:{
+    minify:{
+      collapseBooleanAttributes: true,
+      decodeEntities: true,
+      minifyCSS: true,
+      minifyJS: true,
+      processConditionalComments: true,
+      removeEmptyAttributes: true,
+      removeRedundantAttributes: true,
+      trimCustomFragments: true,
+    }
+  },
+  optimizeCSS:true,
     extend(config, ctx) {
       const vueLoader = config.module.rules.find(
         rule => rule.loader === "vue-loader"

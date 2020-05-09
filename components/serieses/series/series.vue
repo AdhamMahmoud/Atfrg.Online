@@ -41,11 +41,12 @@
                             </span></li>
                         <li> <span>عدد الاجزاء</span><i class="fas fa-angle-double-left"></i> <span>{{ seassonCount(seasons) }} جزء</span></li>
                     </ul>
+                    <ads></ads>
                 </div>
             </div>
         </div>
     </div>
-     <ads></ads>
+    
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -92,6 +93,7 @@
                         <div id="393613_773071_5"></div>
                      </div> -->
                      <!-- <ads2></ads2> -->
+                     <downloadAds></downloadAds>
                     <table class="table">
                         <thead>
                             <tr>
@@ -104,7 +106,7 @@
                             <tr v-for="video in episodes[0].links" :key="video.id">
                                 <th scope="row">1</th>
                                 <td>{{video.quality.replace('Q','')}}</td>
-                                <td><a :href="Download(validLink(video.path))" target="_blank">تحميل</a></td>
+                                <td><a :href="Download(validLink(video.path))">تحميل</a></td>
                                 
                             </tr>
                         </tbody>
@@ -121,7 +123,7 @@
                             <tr v-for="subtitle in episodes[0].subtitles" :key="subtitle.id">
                                 <th scope="row">{{subtitle.lang.name}}</th>
                                 <td>{{subtitle.name }}</td>
-                                <td v-if="subtitle.path.length > 0"><a :href="Download(validLink(subtitle.path))" target="_blank">تحميل</a></td>
+                                <td v-if="subtitle.path.length > 0"><a :href="Download(validLink(subtitle.path))">تحميل</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -191,7 +193,7 @@ import Epsitem from '~/components/Epsitem.vue';
 import bugs from '~/components/bugs.vue';
 import gql from "graphql-tag";
 import ads from "~/components/ads.vue";
-import ads2 from "~/components/ads2.vue";
+import downloadAds from "~/components/ads2.vue";
 export default {
     components: {
         resultNotFound,
@@ -200,7 +202,7 @@ export default {
         MoviePlayer,
         bugs,
         ads,
-        ads2
+        downloadAds
     },
      head(){
     return{
@@ -364,7 +366,7 @@ export default {
             var token = new Buffer(md5String, 'binary').toString('base64');
             token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
             // newpath = path.substring(25, newpath.length);
-          var url = 'https://atfrg.store/?file=' + newpath + '?token=' + token + '&expires=' + expires + '&name=' +  this.GetTitle;
+          var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
              } else if (path.includes("AtfrgRamadan")) {
                 var crypto = require('crypto');
                 var securityKey = '27ab3ad5-9fbb-4713-9671-5d4cb7a1a31e';
@@ -378,8 +380,8 @@ export default {
                 var token = new Buffer(md5String, 'binary').toString('base64');
                 token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
                 
-                // var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
-                var url = 'https://atfrg.store/?file=' + newpath + '?token=' + token + '&expires=' + expires + '&name=' +  this.GetTitle;
+                var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
+                // var url = 'https://atfrg.store/?file=' + newpath + '?token=' + token + '&expires=' + expires + '&name=' +  this.GetTitle;
           }
             return url;
         },

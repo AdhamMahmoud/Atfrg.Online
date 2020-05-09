@@ -1,44 +1,44 @@
 <template>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <div id="ads" class="ads" v-if="Show">
-                <p> الأعلانات دي عشانك عشان نستمر ❤️</p>
+            <div id="adsBanner" class="ads">
             </div>
         </div>
     </div>
 </div>
 </template>
+
 <script>
 export default {
-       data: function () {
+    data: function () {
         return {
-            ads:null,
-            Show:true
+            ads: null,
         }
-       },
-       mounted(){  
-        var list = document.getElementById("ads");
-        this.ads = document.createElement("div");
-        var sc = document.createElement('script');
-        // this.ads.classList.add("vide-ad");
-        sc.setAttribute('data-cfasync','false');
-        sc.setAttribute('src','//native.propellerclick.com/1?z=3258718');
-        this.ads.appendChild(sc);
-        list.appendChild(this.ads);
-       },
-        beforeDestroy() {
-         this.ads.remove();
-         this.Show = false;
+    },
+    mounted() {
+        var list = document.getElementById("adsBanner");
+        if(document.getElementById("propellerBanner") != null){
+            this.ads = document.getElementById("propellerBanner");
+            list.appendChild(this.ads); 
+            this.ads.style.display = 'block';   
+        }
+    },
+    beforeDestroy() {
+            this.ads.style.display = 'none';   
+            var perv = document.getElementById("BannerDefault");
+            perv.appendChild(this.ads); 
     },
 }
 </script>
+
 <style lang="scss">
-.ads{
+.ads {
     text-align: center;
-    max-height:260px;
-    .it-client{
-    margin:0 auto !important;
+    max-height: 260px;
+
+    .it-client {
+        margin: 0 auto !important;
     }
 }
 </style>

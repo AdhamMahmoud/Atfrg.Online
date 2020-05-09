@@ -48,11 +48,12 @@
                         </li>
                         <li v-else><span>الترجمة</span><i class="fas fa-angle-double-left"></i> لا يوجد</li>
                     </ul>
+                     <ads></ads>
                 </div>
             </div>
         </div>
     </div>
-     <ads></ads>
+     <!-- <ads></ads> -->
     <!-- Container -->
     <div class="container">
         <div class="row">
@@ -92,7 +93,7 @@
                         يتم وضعهم في مكان <span>واحد</span> بنفس الاسم لتعمل الترجمة.
                         ننصح بأستخدام برنامج <nuxt-link to="https://www.videolan.org/vlc/download-windows.html">VLC</nuxt-link> .
                     </div>
-                    <!-- <ads2></ads2> -->
+                    <downloadAds></downloadAds>
                     <table class="table">
                         <thead>
                             <tr>
@@ -210,7 +211,8 @@ import MoviePlayer from "~/components/MoviePlayer.vue";
 import TrailerItem from "~/components/TrailerItem.vue";
 import bugs from "~/components/bugs.vue";
 import gql from "graphql-tag";
-import ads2 from "~/components/ads.vue";
+import ads from "~/components/ads.vue";
+import downloadAds from "~/components/ads2.vue";
 const WatchCount_Movie = gql `
    mutation Movie($id: ID,$watchCount:Int) {
     updateMovie(where:{id:$id},data:{
@@ -227,7 +229,8 @@ export default {
         resultNotFound,
         bugs,
         MoviePlayer,
-        ads2,
+        ads,
+        downloadAds
     },
     head() {
         return {
