@@ -1,11 +1,7 @@
 <template>
 <div :class="{ 'darkMod' : darkMode}" >
     <!-- Header -->
-<<<<<<< HEAD
     <!-- <loading v-if="loading"></loading> -->
-=======
-  
->>>>>>> 16dd6f06d714238978c3db20d622b0a550c90089
     <Header :darkMode.sync="darkMode" />
     <div id="BannerDefault">
     <div id="propellerBanner" style="display:none"></div>
