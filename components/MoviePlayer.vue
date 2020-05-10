@@ -362,6 +362,7 @@ export default {
         if (document.getElementsByTagName("video")[1] != null){
             if(document.getElementsByTagName("video")[1].src.includes("brazzers")){
                 adsLoader.contentComplete();
+                adsManager.destroy();
                 document.getElementById('ad-container-' + this.$props.id).classList.remove("ShowAd");
                 document.getElementById('ad-container-' + this.$props.id).remove();
                 this.film.play();
