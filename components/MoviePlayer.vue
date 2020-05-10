@@ -126,7 +126,7 @@ export default {
         this.VideoAd.setAttribute('id', 'ad-container-' + this.$props.id);
         list.parentNode.insertBefore(this.VideoAd, list.nextSibling);
         videoElement = document.getElementById('vid' + this.$props.id);
-        // this.initializeIMA();
+        this.initializeIMA();
         this.loader = document.createElement("i");
         this.loader.classList.add("video-loader");
         this.loader.innerHTML =
@@ -201,8 +201,9 @@ export default {
     },
     methods: {
         initializeIMA() {
-            console.log("initializing IMA");
+            google.ima.settings.setLocale('ar_eg');
             adContainer = document.getElementById('ad-container-' + this.$props.id);
+            google.ima.settings.setDisableCustomPlaybackForIOS10Plus(true);
             adContainer.addEventListener('click', this.adContainerClick);
             adDisplayContainer = new google.ima.AdDisplayContainer(adContainer, videoElement);
             adsLoader = new google.ima.AdsLoader(adDisplayContainer);
@@ -232,6 +233,7 @@ export default {
             adsRequest.setAdWillAutoPlay(true);
             adsRequest.setAdWillPlayMuted(true);
             adsRequest.forceNonLinearFullSlot = true;
+            adsRequest.setContinuousPlayback(true);
 
             // Pass the request to the adsLoader to request ads
             adsLoader.requestAds(adsRequest);
@@ -353,12 +355,12 @@ export default {
                 if (document.getElementsByTagName("video")[1].src.includes("brazzers")) {
                     // adsLoader.contentComplete();
                     
-                    // document.getElementById('ad-container-' + this.$props.id).classList.remove("ShowAd");
-                    // document.getElementsByClassName("plyr")[0].classList.remove("stopPointer");
-                    // document.getElementById('ad-container-' + this.$props.id).remove();
-                    // adsManager.destroy();
-                    // videoElement.play();
-                    // this.SkipButton.style.display = 'none';
+                    document.getElementById('ad-container-' + this.$props.id).classList.remove("ShowAd");
+                    document.getElementsByClassName("plyr")[0].classList.remove("stopPointer");
+                    document.getElementById('ad-container-' + this.$props.id).remove();
+                    adsManager.destroy();
+                    videoElement.play();
+                    this.SkipButton.style.display = 'none';
                     
                 }
             }
@@ -426,7 +428,7 @@ export default {
         nowPlaying() {
             if (this.film != null) {
                 // Ads Start
-                // this.loadAds();
+                this.loadAds();
                 if (this.$props.subtitles.length > 0 && this.captionStart == false) {
                     this.film.currentTrack = 1;
                     this.captionStart = true;
