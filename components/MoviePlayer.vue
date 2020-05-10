@@ -80,9 +80,9 @@ export default {
                     fallback: true,
                     iosNative: 'force'
                 },
-                // ads:{
-                //     enabled:true,
-                //     tagUrl: "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dskippablelinear&correlator="
+                // ads: {
+                //     enabled: true,
+                //     tagUrl: "https://www.movcpm.com/watch.xml?key=823fbda75a576c389938305b8d5aba32"
                 // },
                 controls: [
                     "play-large", // The large play button in the center
@@ -115,28 +115,18 @@ export default {
     },
     beforeDestroy() {
         adsLoaded = false;
-        // document.body.removeChild(jsGoogle);
-        // jsGoogle.remove();
+        adsManager.destroy();
         this.$refs['film' + this.$props.id].player.destroy();
         // this.ads.remove();
     },
     mounted() {
-        //  document.domain = "atfrg.online";
-        //  if(google == null){
-        //         var GoogleFile = document.createElement("script");
-        //         GoogleFile.type = "text/javascript";
-        //         GoogleFile.src = 'https://imasdk.googleapis.com/js/sdkloader/ima3.js'
-        //         document.head.appendChild(GoogleFile);
-        //     }
         this.film = this.$refs['film' + this.$props.id].player;
         var list = document.getElementsByClassName("plyr__control--overlaid")[0];
         this.VideoAd = document.createElement("div");
         this.VideoAd.setAttribute('id', 'ad-container-' + this.$props.id);
         list.parentNode.insertBefore(this.VideoAd, list.nextSibling);
         videoElement = document.getElementById('vid' + this.$props.id);
-        this.initializeIMA();
-        this.tagUrls = 'https://www.movcpm.com/watch.xml?key=823fbda75a576c389938305b8d5aba32';
-
+        // this.initializeIMA();
         this.loader = document.createElement("i");
         this.loader.classList.add("video-loader");
         this.loader.innerHTML =
@@ -185,8 +175,8 @@ export default {
         list.parentNode.insertBefore(this.SkipButton, list.nextSibling);
         this.SkipButton.style.display = 'none';
         var idd = this.$props.id;
-        this.SkipButton.onclick = function() {
-             adsLoader.contentComplete();
+        this.SkipButton.onclick = function () {
+            adsLoader.contentComplete();
             videoElement.play();
             document.getElementById('ad-container-' + idd).remove();
             this.style.display = 'none';
@@ -239,7 +229,7 @@ export default {
             adsRequest.linearAdSlotHeight = document.getElementById(this.$props.id).clientHeight;
             adsRequest.nonLinearAdSlotWidth = document.getElementById(this.$props.id).clientWidth;
             adsRequest.nonLinearAdSlotHeight = document.getElementById(this.$props.id).clientHeight / 3;
-             adsRequest.setAdWillAutoPlay(true);
+            adsRequest.setAdWillAutoPlay(true);
             adsRequest.setAdWillPlayMuted(true);
             adsRequest.forceNonLinearFullSlot = true;
 
@@ -358,23 +348,25 @@ export default {
                 }
             }
         },
-        countDownTimer() { 
-        if (document.getElementsByTagName("video")[1] != null){
-            if(document.getElementsByTagName("video")[1].src.includes("brazzers")){
-                adsLoader.contentComplete();
-                adsManager.destroy();
-                document.getElementById('ad-container-' + this.$props.id).classList.remove("ShowAd");
-                document.getElementById('ad-container-' + this.$props.id).remove();
-                this.film.play();
-                this.SkipButton.style.display = 'none';
-                document.getElementsByClassName("plyr")[0].classList.remove("stopPointer");
+        countDownTimer() {
+            if (document.getElementsByTagName("video")[1] != null) {
+                if (document.getElementsByTagName("video")[1].src.includes("brazzers")) {
+                    // adsLoader.contentComplete();
+                    
+                    // document.getElementById('ad-container-' + this.$props.id).classList.remove("ShowAd");
+                    // document.getElementsByClassName("plyr")[0].classList.remove("stopPointer");
+                    // document.getElementById('ad-container-' + this.$props.id).remove();
+                    // adsManager.destroy();
+                    // videoElement.play();
+                    // this.SkipButton.style.display = 'none';
+                    
+                }
             }
-        }
             if (this.adCount > 0) {
                 setTimeout(() => {
                     this.adCount -= 1
                     this.SkipButton.innerHTML = this.adCount + " secs";
-                    this.countDownTimer();   
+                    this.countDownTimer();
                 }, 1000)
             } else {
                 this.SkipButton.innerHTML = "Skip Ad";
@@ -384,22 +376,16 @@ export default {
         loadAds() {
             // Prevent this function from running on if there are already ads loaded
             StartAds = true;
-            console.log("load");
+
             if (adsLoaded) {
                 return;
             }
             adsLoaded = true;
             this.adsWork = true;
             this.SkipButton.style.display = 'block';
-            // var count = 10;
-            //    this.timer = setInterval(this.timerSkip(), 1000);
+
             this.countDownTimer();
 
-            // var counter = setInterval(this.timerSkip(), 1000); //1000 will  run it every 1 second
-            // Prevent triggering immediate playback when ads are loading
-            // event.preventDefault();
-
-            console.log("loading ads");
             document.getElementById('ad-container-' + this.$props.id).classList.add("ShowAd");
             document.getElementsByClassName("plyr")[0].classList.add("stopPointer");
             // Initialize the container. Must be done via a user action on mobile devices.
@@ -409,10 +395,9 @@ export default {
             var width = videoElement.clientWidth;
             var height = videoElement.clientHeight;
             try {
-                //  console.log(google.ima.Ad.getAdvertiserName());
                 adsManager.init(width, height, google.ima.ViewMode.NORMAL);
                 adsManager.start();
-                
+
             } catch (adError) {
                 // Play the video without ads, if an error occurs
                 console.log("AdsManager could not be started");
@@ -420,15 +405,15 @@ export default {
                 document.getElementsByClassName("plyr")[0].classList.remove("stopPointer");
                 this.SkipButton.style.display = 'none';
                 this.adsWork = false;
-                // videoElement.play();
                 videoElement.play();
                 this.FirstNote.style.display = 'block';
             }
-            // console.log(google.ima.Ad.getAdvertiserName());
-            // document.getElementById('ad-container-' + this.$props.id).classList.remove("ShowAd");
-            // document.getElementsByClassName("plyr")[0].classList.add("stopPointer");
-            // this.SecoNote2.style.display = 'none';
-            // this.film.play();
+        //    document.getElementById('ad-container-' + this.$props.id).classList.remove("ShowAd");
+        //             document.getElementsByClassName("plyr")[0].classList.remove("stopPointer");
+                    // document.getElementById('ad-container-' + this.$props.id).remove();
+                    // adsManager.destroy();
+                    // videoElement.play();
+                    // this.SkipButton.style.display = 'none';
         },
         adContainerClick(event) {
             // console.log("ad container clicked");
@@ -441,7 +426,7 @@ export default {
         nowPlaying() {
             if (this.film != null) {
                 // Ads Start
-                this.loadAds(); 
+                // this.loadAds();
                 if (this.$props.subtitles.length > 0 && this.captionStart == false) {
                     this.film.currentTrack = 1;
                     this.captionStart = true;
