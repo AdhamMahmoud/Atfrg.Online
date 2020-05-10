@@ -359,14 +359,16 @@ export default {
             }
         },
         countDownTimer() { 
-            if (document.getElementsByTagName("video")[1] != null){
+        if (document.getElementsByTagName("video")[1] != null){
             if(document.getElementsByTagName("video")[1].src.includes("brazzers")){
                 adsLoader.contentComplete();
-                videoElement.play();
+                document.getElementById('ad-container-' + this.$props.id).classList.remove("ShowAd");
                 document.getElementById('ad-container-' + this.$props.id).remove();
+                this.film.play();
                 this.SkipButton.style.display = 'none';
+                document.getElementsByClassName("plyr")[0].classList.remove("stopPointer");
             }
-           }
+        }
             if (this.adCount > 0) {
                 setTimeout(() => {
                     this.adCount -= 1
