@@ -239,6 +239,9 @@ export default {
             adsRequest.linearAdSlotHeight = document.getElementById(this.$props.id).clientHeight;
             adsRequest.nonLinearAdSlotWidth = document.getElementById(this.$props.id).clientWidth;
             adsRequest.nonLinearAdSlotHeight = document.getElementById(this.$props.id).clientHeight / 3;
+             adsRequest.setAdWillAutoPlay(true);
+            adsRequest.setAdWillPlayMuted(true);
+            adsRequest.forceNonLinearFullSlot = true;
 
             // Pass the request to the adsLoader to request ads
             adsLoader.requestAds(adsRequest);
@@ -392,10 +395,13 @@ export default {
             // videoElement.load();
             adDisplayContainer.initialize();
             videoElement.pause();
-
+            if(document.getElementsByTagName("video")[1].src.includes("brazzers")){
+                    console.log("Brazzers")
+                }
             var width = videoElement.clientWidth;
             var height = videoElement.clientHeight;
             try {
+                 console.log(google.ima.Ad.getAdvertiserName());
                 adsManager.init(width, height, google.ima.ViewMode.NORMAL);
                 adsManager.start();
             } catch (adError) {

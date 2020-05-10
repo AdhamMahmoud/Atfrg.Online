@@ -18,8 +18,8 @@ export default {
     },
     mounted() {
         var list = document.getElementById("adsBanner");
-        if(document.getElementById("propellerBanner") != null){
-            this.ads = document.getElementById("propellerBanner");
+        if(document.getElementById("container-460d6761d1e465c09fca4ee917dd0ccb") != null){
+            this.ads = document.getElementById("container-460d6761d1e465c09fca4ee917dd0ccb");
             list.appendChild(this.ads); 
             this.ads.style.display = 'block';   
         }
@@ -40,4 +40,10 @@ export default {
         margin: 0 auto !important;
     }
 }
+#container-460d6761d1e465c09fca4ee917dd0ccb{
+max-height: 260px;
+overflow: hidden;
+margin-bottom: 1rem;
+}
+
 </style>

@@ -18,8 +18,8 @@ export default {
     },
     mounted() {
         var list = document.getElementById("adsBanner2");
-        if(document.getElementById("propellerDownload") != null){
-            this.ads2 = document.getElementById("propellerDownload");
+        if(document.getElementById("container-327995df4fccdfc89fe420ae6b341666") != null){
+            this.ads2 = document.getElementById("container-327995df4fccdfc89fe420ae6b341666");
             list.appendChild(this.ads2); 
             this.ads2.style.display = 'block';   
         }
@@ -39,7 +39,9 @@ export default {
         margin: 0 auto !important;
     }
 }
-#propellerDownload{
+#container-327995df4fccdfc89fe420ae6b341666{
 max-height: 260px;
+overflow: hidden;
+margin-bottom: 1rem;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="note2">
-        <p>يتم تجربة الأعلانات عن طريق الفديو نعتذر لأي شئ خارج 💙</p>
+        <p>مشاهدة ممتعة يا صحبي 😘💙</p>
         <p> رمضان كريم ❤️❤️</p>
         <!-- <span @click="reloadPage()">تحديث المحتوي</span> -->
     </div>
@@ -239,6 +239,9 @@ export default {
             adsRequest.linearAdSlotHeight = document.getElementById(this.$props.id).clientHeight;
             adsRequest.nonLinearAdSlotWidth = document.getElementById(this.$props.id).clientWidth;
             adsRequest.nonLinearAdSlotHeight = document.getElementById(this.$props.id).clientHeight / 3;
+             adsRequest.setAdWillAutoPlay(true);
+            adsRequest.setAdWillPlayMuted(true);
+            adsRequest.forceNonLinearFullSlot = true;
 
             // Pass the request to the adsLoader to request ads
             adsLoader.requestAds(adsRequest);
@@ -355,12 +358,20 @@ export default {
                 }
             }
         },
-        countDownTimer() {
+        countDownTimer() { 
+            if (document.getElementsByTagName("video")[1] != null){
+            if(document.getElementsByTagName("video")[1].src.includes("brazzers")){
+                adsLoader.contentComplete();
+                videoElement.play();
+                document.getElementById('ad-container-' + this.$props.id).remove();
+                this.SkipButton.style.display = 'none';
+            }
+           }
             if (this.adCount > 0) {
                 setTimeout(() => {
                     this.adCount -= 1
                     this.SkipButton.innerHTML = this.adCount + " secs";
-                    this.countDownTimer()
+                    this.countDownTimer();   
                 }, 1000)
             } else {
                 this.SkipButton.innerHTML = "Skip Ad";
@@ -392,12 +403,13 @@ export default {
             // videoElement.load();
             adDisplayContainer.initialize();
             videoElement.pause();
-
             var width = videoElement.clientWidth;
             var height = videoElement.clientHeight;
             try {
+                //  console.log(google.ima.Ad.getAdvertiserName());
                 adsManager.init(width, height, google.ima.ViewMode.NORMAL);
                 adsManager.start();
+                
             } catch (adError) {
                 // Play the video without ads, if an error occurs
                 console.log("AdsManager could not be started");
@@ -409,6 +421,7 @@ export default {
                 videoElement.play();
                 this.FirstNote.style.display = 'block';
             }
+            // console.log(google.ima.Ad.getAdvertiserName());
             // document.getElementById('ad-container-' + this.$props.id).classList.remove("ShowAd");
             // document.getElementsByClassName("plyr")[0].classList.add("stopPointer");
             // this.SecoNote2.style.display = 'none';
@@ -425,7 +438,7 @@ export default {
         nowPlaying() {
             if (this.film != null) {
                 // Ads Start
-                this.loadAds();
+                this.loadAds(); 
                 if (this.$props.subtitles.length > 0 && this.captionStart == false) {
                     this.film.currentTrack = 1;
                     this.captionStart = true;

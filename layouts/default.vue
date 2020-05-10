@@ -5,7 +5,8 @@
     <Header :darkMode.sync="darkMode" />
     <div id="BannerDefault">
     <div id="propellerBanner" style="display:none"></div>
-     <div id="propellerDownload" style="display:none"></div>
+     <div id="container-327995df4fccdfc89fe420ae6b341666" style="display:none"></div>
+     <div id="container-460d6761d1e465c09fca4ee917dd0ccb" style="display:none"></div>
     </div>
     <nuxt />
 
@@ -31,6 +32,9 @@ export default {
             script: [
                  { hid: 'adstra', src: '//native.propellerclick.com/1?z=3258714&eid=propellerDownload' },
                  { hid: 'stripe', src: '//native.propellerclick.com/1?z=3258718&eid=propellerBanner' },
+                    { hid: 'stripe', src: '//pl15454349.passtechusa.com/460d6761d1e465c09fca4ee917dd0ccb/invoke.js' },
+                    { hid: 'stripe', src: '//pl15454350.passtechusa.com/327995df4fccdfc89fe420ae6b341666/invoke.js' },
+
                 
             ]
         }
