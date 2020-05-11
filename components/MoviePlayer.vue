@@ -437,7 +437,7 @@ export default {
         nowPlaying() {
             if (this.film != null) {
                 // Ads Start
-                this.loadAds();
+                // this.loadAds();
                 if (this.$props.subtitles.length > 0 && this.captionStart == false) {
                     this.film.currentTrack = 1;
                     this.captionStart = true;
