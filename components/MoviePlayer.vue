@@ -78,7 +78,7 @@ export default {
                 fullscreen: {
                     enabled: true,
                     fallback: true,
-                    iosNative: 'force'
+                    iosNative: 'true'
                 },
                 // ads: {
                 //     enabled: true,
@@ -335,7 +335,16 @@ export default {
                 screen.msLockOrientation.lock("landscape");
                 screen.mozLockOrientation.lock("landscape");
                 if (this.$props.subtitles.length > 0) {
-                    this.film.currentTrack = 1;
+                    // this.film.currentTrack = 1;
+                    this.film.toggleCaptions(true);
+                }
+            }
+            if (window.innerWidth > 1800) {
+                screen.orientation.lock('landscape');
+                screen.msLockOrientation.lock("landscape");
+                screen.mozLockOrientation.lock("landscape");
+                if (this.$props.subtitles.length > 0) {
+                    // this.film.currentTrack = 1;
                     this.film.toggleCaptions(true);
                 }
             }
