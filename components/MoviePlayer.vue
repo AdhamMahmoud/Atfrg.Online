@@ -57,6 +57,7 @@ export default {
             adsWork: false,
             SecoNote2: null,
             adCount: 10,
+            adsloadeds: false
             // adsLoaded:false,
         }
     },
@@ -115,7 +116,10 @@ export default {
     },
     beforeDestroy() {
         adsLoaded = false;
-        adsManager.destroy();
+        this.ads.style.display = 'none';
+        var perv = document.getElementById("BannerDefault");
+        perv.appendChild(this.ads);
+        // adsManager.destroy();
         this.$refs['film' + this.$props.id].player.destroy();
         // this.ads.remove();
     },
@@ -125,8 +129,17 @@ export default {
         this.VideoAd = document.createElement("div");
         this.VideoAd.setAttribute('id', 'ad-container-' + this.$props.id);
         list.parentNode.insertBefore(this.VideoAd, list.nextSibling);
+
         videoElement = document.getElementById('vid' + this.$props.id);
         this.initializeIMA();
+
+        this.ads = document.createElement("div");
+        this.ads.setAttribute('id', 'adsBanner');
+        this.ads.classList.add("vide-ad");
+        this.ads.style.display = "none";
+        list.parentNode.insertBefore(this.ads, list.nextSibling);
+        var adsban = this.ads;
+
         this.loader = document.createElement("i");
         this.loader.classList.add("video-loader");
         this.loader.innerHTML =
@@ -176,9 +189,10 @@ export default {
         this.SkipButton.style.display = 'none';
         var idd = this.$props.id;
         this.SkipButton.onclick = function () {
-            adsLoader.contentComplete();
+            // adsLoader.contentComplete();
             videoElement.play();
-            document.getElementById('ad-container-' + idd).remove();
+            // document.getElementById('ad-container-' + idd).remove();
+            adsban.style.display = 'none';
             this.style.display = 'none';
         };
         this.SkipButton.disabled = true;
@@ -360,19 +374,6 @@ export default {
             }
         },
         countDownTimer() {
-            if (document.getElementsByTagName("video")[1] != null) {
-                if (document.getElementsByTagName("video")[1].src.includes("brazzers")) {
-                    // adsLoader.contentComplete();
-                    
-                    document.getElementById('ad-container-' + this.$props.id).classList.remove("ShowAd");
-                    document.getElementsByClassName("plyr")[0].classList.remove("stopPointer");
-                    document.getElementById('ad-container-' + this.$props.id).remove();
-                    adsManager.destroy();
-                    videoElement.play();
-                    this.SkipButton.style.display = 'none';
-                    
-                }
-            }
             if (this.adCount > 0) {
                 setTimeout(() => {
                     this.adCount -= 1
@@ -384,6 +385,31 @@ export default {
                 this.SkipButton.disabled = false;
             }
         },
+        // countDownTimer() {
+        //     if (document.getElementsByTagName("video")[1] != null) {
+        //         if (document.getElementsByTagName("video")[1].src.includes("brazzers")) {
+        //             // adsLoader.contentComplete();
+
+        //             document.getElementById('ad-container-' + this.$props.id).classList.remove("ShowAd");
+        //             document.getElementsByClassName("plyr")[0].classList.remove("stopPointer");
+        //             document.getElementById('ad-container-' + this.$props.id).remove();
+        //             adsManager.destroy();
+        //             videoElement.play();
+        //             this.SkipButton.style.display = 'none';
+
+        //         }
+        //     }
+        //     if (this.adCount > 0) {
+        //         setTimeout(() => {
+        //             this.adCount -= 1
+        //             this.SkipButton.innerHTML = this.adCount + " secs";
+        //             this.countDownTimer();
+        //         }, 1000)
+        //     } else {
+        //         this.SkipButton.innerHTML = "Skip Ad";
+        //         this.SkipButton.disabled = false;
+        //     }
+        // },
         loadAds() {
             // Prevent this function from running on if there are already ads loaded
             StartAds = true;
@@ -419,12 +445,12 @@ export default {
                 videoElement.play();
                 this.FirstNote.style.display = 'block';
             }
-        //    document.getElementById('ad-container-' + this.$props.id).classList.remove("ShowAd");
-        //             document.getElementsByClassName("plyr")[0].classList.remove("stopPointer");
-                    // document.getElementById('ad-container-' + this.$props.id).remove();
-                    // adsManager.destroy();
-                    // videoElement.play();
-                    // this.SkipButton.style.display = 'none';
+            //    document.getElementById('ad-container-' + this.$props.id).classList.remove("ShowAd");
+            //             document.getElementsByClassName("plyr")[0].classList.remove("stopPointer");
+            // document.getElementById('ad-container-' + this.$props.id).remove();
+            // adsManager.destroy();
+            // videoElement.play();
+            // this.SkipButton.style.display = 'none';
         },
         adContainerClick(event) {
             // console.log("ad container clicked");
@@ -437,7 +463,20 @@ export default {
         nowPlaying() {
             if (this.film != null) {
                 // Ads Start
-                // this.loadAds();
+                //  this.loadAds();
+                if (this.adsloadeds == false) {
+                    if (document.getElementById("container-460d6761d1e465c09fca4ee917dd0ccb") != null) {
+                        videoElement.pause();
+                        this.ads2 = document.getElementById("container-460d6761d1e465c09fca4ee917dd0ccb");
+                        this.ads.appendChild(this.ads2);
+                        this.ads2.style.display = 'block';
+                        this.ads.style.display = 'block';
+                        this.SkipButton.style.display = 'block';
+                        this.countDownTimer();
+                        this.adsloadeds = true;
+                    }
+                }
+
                 if (this.$props.subtitles.length > 0 && this.captionStart == false) {
                     this.film.currentTrack = 1;
                     this.captionStart = true;
@@ -705,9 +744,28 @@ export default {
     height: 0;
     width: 0;
     // z-index: 9999;
-    bottom: 11%;
-    left: 24%;
+    width: 60%;
+    top: 60%;
+    left: 22%;
     background-color: transparent !important;
+}
+
+@include sm {
+    .vide-ad {
+        border: 0;
+        color: #fff;
+        position: absolute;
+        z-index: 2;
+        max-height: 150px;
+        // overflow: hidden;
+        width: 60%;
+        top: 29%;
+        left: 22%;
+        #container-460d6761d1e465c09fca4ee917dd0ccb{
+        max-height: 150px;
+        overflow: hidden;
+        }
+    }
 }
 
 .chat .message p {
