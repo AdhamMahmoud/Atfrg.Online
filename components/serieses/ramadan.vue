@@ -3,7 +3,7 @@
 <div class="home-slider-block">
     <!-- Container -->
        <div class="message">
-        <p>لو لقيت اي حاجة مش عجباك او اقتراح ابعتلنا 💚</p>
+        <p>انتظرو مفجأة اليوم💚</p>
     </div>
     <div class="container-fluid back-color">
        

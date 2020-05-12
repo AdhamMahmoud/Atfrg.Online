@@ -35,10 +35,10 @@ export default {
       { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css?family=Tajawal:500&display=swap' },
     ],
     script: [
-      {
-        src:'//imasdk.googleapis.com/js/sdkloader/ima3.js',
-        type: "text/javascript"
-      },
+      // {
+      //   src:'//imasdk.googleapis.com/js/sdkloader/ima3.js',
+      //   type: "text/javascript"
+      // },
       {
         src: "https://kit.fontawesome.com/3e50565740.js?ver=1.1",
         type: "text/javascript"
@@ -49,11 +49,22 @@ export default {
         type: "text/javascript"
       },
       {
-        async :"async",
-        src:'//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js'
+        async: "async",
+        src:'//pl15442421.passtechusa.com/9c/d3/1c/9cd31c6b817458951dc72ca0c6f32ffd.js'
       },
-      {  async :"async", src: '//pl15454349.passtechusa.com/460d6761d1e465c09fca4ee917dd0ccb/invoke.js' },
-      {   async :"async", src: '//pl15454350.passtechusa.com/327995df4fccdfc89fe420ae6b341666/invoke.js' },
+      {
+        async: "async",
+        src: '//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js'
+    },
+    {
+        async: "async",
+        src: '//pl15454349.passtechusa.com/460d6761d1e465c09fca4ee917dd0ccb/invoke.js'
+    },
+    {
+        async: "async",
+        src: '//pl15454350.passtechusa.com/327995df4fccdfc89fe420ae6b341666/invoke.js'
+    },
+  
       // {
       //   src: "//inpagepush.com/400/3246513",
       //   async :"async",

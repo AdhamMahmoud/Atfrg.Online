@@ -116,9 +116,9 @@ export default {
     },
     beforeDestroy() {
         adsLoaded = false;
-        this.ads.style.display = 'none';
-        var perv = document.getElementById("BannerDefault");
-        perv.appendChild(this.ads);
+        // this.ads.style.display = 'none';
+        // var perv = document.getElementById("BannerDefault");
+        // perv.appendChild(this.ads);
         // adsManager.destroy();
         this.$refs['film' + this.$props.id].player.destroy();
         // this.ads.remove();
@@ -129,23 +129,19 @@ export default {
         this.VideoAd = document.createElement("div");
         this.VideoAd.setAttribute('id', 'ad-container-' + this.$props.id);
         list.parentNode.insertBefore(this.VideoAd, list.nextSibling);
-
         videoElement = document.getElementById('vid' + this.$props.id);
-        this.initializeIMA();
-
-        this.ads = document.createElement("div");
-        this.ads.setAttribute('id', 'adsBanner');
-        this.ads.classList.add("vide-ad");
-        this.ads.style.display = "none";
-        list.parentNode.insertBefore(this.ads, list.nextSibling);
+        // this.initializeIMA();
+        // this.ads = document.createElement("div");
+        // this.ads.setAttribute('id', 'adsBanner');
+        // this.ads.classList.add("vide-ad");
+        // this.ads.style.display = "none";
+        // list.parentNode.insertBefore(this.ads, list.nextSibling);
         var adsban = this.ads;
-
         this.loader = document.createElement("i");
         this.loader.classList.add("video-loader");
         this.loader.innerHTML =
             '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style=" display: block; shape-rendering: auto;" width="50px" height="50px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><circle cx="50" cy="50" fill="none" stroke="#fff" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138" transform="rotate(53.2159 50 50)"><animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>  </circle></svg>';
         list.parentNode.insertBefore(this.loader, list.nextSibling);
-
         this.FirstNote = document.createElement("div");
         this.FirstNote.classList.add("chat");
         this.FirstNote.classList.add("chatb");
@@ -188,15 +184,15 @@ export default {
         list.parentNode.insertBefore(this.SkipButton, list.nextSibling);
         this.SkipButton.style.display = 'none';
         var idd = this.$props.id;
+        var plyr = this.film;
         this.SkipButton.onclick = function () {
             // adsLoader.contentComplete();
-            videoElement.play();
+            plyr.play();
             // document.getElementById('ad-container-' + idd).remove();
             adsban.style.display = 'none';
             this.style.display = 'none';
         };
         this.SkipButton.disabled = true;
-
         if (this.$props.subtitles.length > 0) {
             if (this.$props.subtitles[0].path.length > 5) {
                 this.logo = document.createElement("img");
@@ -211,7 +207,6 @@ export default {
             this.logo.src = "https://atfrgimages.b-cdn.net/images/logo.svg";
             list.parentNode.insertBefore(this.logo, list.nextSibling);
         }
-
     },
     methods: {
         initializeIMA() {
@@ -229,15 +224,12 @@ export default {
                 google.ima.AdErrorEvent.Type.AD_ERROR,
                 this.onAdError,
                 false);
-
             // Let the AdsLoader know when the video has ended
             videoElement.addEventListener('ended', function () {
                 adsLoader.contentComplete();
             });
-
             var adsRequest = new google.ima.AdsRequest();
             adsRequest.adTagUrl = 'https://www.movcpm.com/watch.xml?key=823fbda75a576c389938305b8d5aba32';
-
             // Specify the linear and nonlinear slot sizes. This helps the SDK to
             // select the correct creative if multiple are returned.
             adsRequest.linearAdSlotWidth = document.getElementById(this.$props.id).clientWidth;
@@ -248,7 +240,6 @@ export default {
             adsRequest.setAdWillPlayMuted(true);
             adsRequest.forceNonLinearFullSlot = true;
             adsRequest.setContinuousPlayback(true);
-
             // Pass the request to the adsLoader to request ads
             adsLoader.requestAds(adsRequest);
         },
@@ -311,7 +302,6 @@ export default {
                 var newpath = path.substring(24, path.length);
                 // Set the time of expiry to one hour from now
                 var expires = Math.round(Date.now() / 1000) + 21600;
-
                 var hashableBase = securityKey + newpath + expires;
                 // Generate and encode the token 
                 var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
@@ -324,7 +314,6 @@ export default {
                 var newpath = path.substring(30, path.length);
                 // Set the time of expiry to one hour from now
                 var expires = Math.round(Date.now() / 1000) + 21600;
-
                 var hashableBase = securityKey + newpath + expires;
                 // Generate and encode the token 
                 var md5String = crypto.createHash("md5").update(hashableBase).digest("binary");
@@ -389,14 +378,12 @@ export default {
         //     if (document.getElementsByTagName("video")[1] != null) {
         //         if (document.getElementsByTagName("video")[1].src.includes("brazzers")) {
         //             // adsLoader.contentComplete();
-
         //             document.getElementById('ad-container-' + this.$props.id).classList.remove("ShowAd");
         //             document.getElementsByClassName("plyr")[0].classList.remove("stopPointer");
         //             document.getElementById('ad-container-' + this.$props.id).remove();
         //             adsManager.destroy();
         //             videoElement.play();
         //             this.SkipButton.style.display = 'none';
-
         //         }
         //     }
         //     if (this.adCount > 0) {
@@ -413,16 +400,13 @@ export default {
         loadAds() {
             // Prevent this function from running on if there are already ads loaded
             StartAds = true;
-
             if (adsLoaded) {
                 return;
             }
             adsLoaded = true;
             this.adsWork = true;
             this.SkipButton.style.display = 'block';
-
             this.countDownTimer();
-
             document.getElementById('ad-container-' + this.$props.id).classList.add("ShowAd");
             document.getElementsByClassName("plyr")[0].classList.add("stopPointer");
             // Initialize the container. Must be done via a user action on mobile devices.
@@ -434,7 +418,6 @@ export default {
             try {
                 adsManager.init(width, height, google.ima.ViewMode.NORMAL);
                 adsManager.start();
-
             } catch (adError) {
                 // Play the video without ads, if an error occurs
                 console.log("AdsManager could not be started");
@@ -464,19 +447,12 @@ export default {
             if (this.film != null) {
                 // Ads Start
                 //  this.loadAds();
-                if (this.adsloadeds == false) {
-                    if (document.getElementById("container-460d6761d1e465c09fca4ee917dd0ccb") != null) {
-                        videoElement.pause();
-                        this.ads2 = document.getElementById("container-460d6761d1e465c09fca4ee917dd0ccb");
-                        this.ads.appendChild(this.ads2);
-                        this.ads2.style.display = 'block';
-                        this.ads.style.display = 'block';
-                        this.SkipButton.style.display = 'block';
-                        this.countDownTimer();
-                        this.adsloadeds = true;
-                    }
-                }
-
+                // if (this.adsloadeds == false) {                     
+                //         this.ads.style.display = 'block';
+                //         this.SkipButton.style.display = 'block';
+                //         this.countDownTimer();
+                //         this.adsloadeds = true;
+                // }
                 if (this.$props.subtitles.length > 0 && this.captionStart == false) {
                     this.film.currentTrack = 1;
                     this.captionStart = true;
@@ -532,53 +508,42 @@ export default {
 <style lang="scss">
 @import "~/assets/sass/_vars.scss";
 @import "~/assets/sass/_mixins.scss";
-
 .note2 {
     text-align: center;
     margin: 1rem 0;
-
     span {
         color: $secondary-color;
         cursor: pointer;
     }
 }
-
 .plyr--full-ui input[type=range] {
     color: #FFD700;
 }
-
 .plyr__control--overlaid {
     background: rgba(255, 215, 0, 0.67);
 }
-
 .plyr--video .plyr__control.plyr__tab-focus,
 .plyr--video .plyr__control:hover,
 .plyr--video .plyr__control[aria-expanded=true] {
     background: #FFD700;
 }
-
 .plyr__control.plyr__tab-focus {
     box-shadow: 0 0 0 5px rgba(255, 215, 0, 0.67);
 }
-
 .plyr__menu__container .plyr__control[role=menuitemradio][aria-checked=true]::before {
     background: #FFD700;
 }
-
 .plyr--audio .plyr__control.plyr__tab-focus,
 .plyr--audio .plyr__control:hover,
 .plyr--audio .plyr__control[aria-expanded=true] {
     background: #FFD700;
 }
-
 .plyr--video .plyr__progress__buffer {
     color: rgba(8, 108, 248, 0.55);
 }
-
 .plyr--video.plyr--loading .plyr__progress__buffer {
     background-color: rgba(8, 108, 248, 0.55);
 }
-
 /* .plyr__control--pressed{
     opacity: 1 !important;
     visibility: inherit !important;
@@ -588,22 +553,18 @@ export default {
         width: 60px;
     }
 }
-
 .plyr {
     height: 600px;
 }
-
 .plyr video {
     width: 100%;
     object-fit: contain;
     height: 100%;
     border-radius: 0 !important;
 }
-
 .plyr__video-wrapper {
     height: 100%;
 }
-
 .video-loader {
     display: none;
     border: 0;
@@ -619,7 +580,6 @@ export default {
     z-index: 2;
     background-color: transparent !important;
 }
-
 .video-logo {
     border: 0;
     color: #fff;
@@ -632,20 +592,16 @@ export default {
     left: 5%;
     background-color: transparent !important;
 }
-
 .plyr--loading .video-loader {
     display: block;
 }
-
 @include sm {
     .plyr {
         height: 400px;
     }
-
     .plyr video {
         object-fit: contain !important;
     }
-
     .video-logo {
         border: 0;
         color: #fff;
@@ -659,83 +615,67 @@ export default {
         background-color: transparent !important;
     }
 }
-
 .chat-video {
     bottom: 7rem;
     right: 2.2rem;
-
     .mine .message.last:after {
         background: #000;
     }
-
     .mine .message.last:before {
         background-image: none;
         background-color: #393939;
     }
-
     .mine .message {
         background-image: none;
         background-color: #393939;
     }
 }
-
 .ad-chat {
     top: 7rem;
     right: 2.2rem;
-
     .mine .message.last:after {
         background: #000;
     }
-
     .mine .message.last:before {
         background-image: none;
         background-color: #393939;
     }
-
     .mine .message {
         background-image: none;
         background-color: #393939;
     }
 }
-
 .chat .message {
     background-color: #232323;
 }
-
 .plyr:-webkit-full-screen .plyr__captions {
     display: block;
 }
-
 @include xl {
     .plyr__captions {
         font-size: 26px !important;
         bottom: 2rem !important;
     }
-
     .plyr:-webkit-full-screen .plyr__captions {
         font-size: 30px !important;
         bottom: 4rem !important;
     }
 }
-
 @include lg {
     .plyr__captions {
         font-size: 24px !important;
         bottom: 2rem !important;
     }
-
     .plyr:-webkit-full-screen .plyr__captions {
         font-size: 26px !important;
         bottom: 4rem !important;
     }
 }
-
 @include sm {
     .plyr:-webkit-full-screen .plyr__captions {
         z-index: 99999;
     }
 }
-
 .vide-ad {
     border: 0;
     color: #fff;
@@ -749,7 +689,6 @@ export default {
     left: 22%;
     background-color: transparent !important;
 }
-
 @include sm {
     .vide-ad {
         border: 0;
@@ -759,7 +698,7 @@ export default {
         max-height: 150px;
         // overflow: hidden;
         width: 60%;
-        top: 29%;
+        top: 15%;
         left: 22%;
         #container-460d6761d1e465c09fca4ee917dd0ccb{
         max-height: 150px;
@@ -767,39 +706,48 @@ export default {
         }
     }
 }
-
+@include md {
+    .vide-ad {
+        border: 0;
+        color: #fff;
+        position: absolute;
+        z-index: 2;
+        max-height: 150px;
+        // overflow: hidden;
+        width: 60%;
+        top: 15%;
+        left: 22%;
+        #container-460d6761d1e465c09fca4ee917dd0ccb{
+        max-height: 150px;
+        overflow: hidden;
+        }
+    }
+}
 .chat .message p {
     margin-bottom: 0 !important;
 }
-
 .ShowAd {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-
     div {
         height: 100% !important;
         width: 100% !important;
     }
-
     .plyr__control--overlaid {
         pointer-events: none;
     }
 }
-
 .stopPointer {
     .plyr__controls {
         pointer-events: none;
     }
-
     .plyr__control--overlaid {
         pointer-events: none;
     }
-
 }
-
 .skip-button {
     border: 0;
     color: #fff;

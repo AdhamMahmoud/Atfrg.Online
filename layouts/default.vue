@@ -1,11 +1,11 @@
 <template>
-<div :class="{ 'darkMod' : darkMode}" >
+<div :class="{ 'darkMod' : darkMode}">
     <!-- Header -->
     <!-- <loading v-if="loading"></loading> -->
     <Header :darkMode.sync="darkMode" />
     <div id="BannerDefault">
-     <div id="container-327995df4fccdfc89fe420ae6b341666" style="display:none"></div>
-     <div id="container-460d6761d1e465c09fca4ee917dd0ccb" style="display:none"></div>
+        <div id="container-327995df4fccdfc89fe420ae6b341666" style="display:none"></div>
+        <div id="container-460d6761d1e465c09fca4ee917dd0ccb" style="display:none"></div>
     </div>
     <nuxt />
 
@@ -38,7 +38,7 @@ export default {
             darkMode: true,
             loading: true,
             ads: null,
-            StartAds:false,
+            StartAds: false,
         }
     },
     mounted() {
@@ -46,6 +46,7 @@ export default {
         //  document.domain = "atfrg.online";
         // setTimeout(() => this.loading = false, 500);
         window.dataLayer = window.dataLayer || [];
+
         function gtag() {
             dataLayer.push(arguments);
         }
@@ -54,8 +55,9 @@ export default {
     }
 };
 </script>
+
 <style scoped>
-.BannerDefault{
+.BannerDefault {
     z-index: -10;
     display: none;
 }

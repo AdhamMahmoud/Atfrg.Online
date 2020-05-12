@@ -43,6 +43,9 @@ export default {
   },
   methods: {
     send () {
+      if(this.bug == null){
+        return;
+      }
      this.load = true;
      this.form = false;
        this.$apollo.mutate({
