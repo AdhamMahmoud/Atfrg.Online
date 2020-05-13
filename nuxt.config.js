@@ -48,10 +48,10 @@ export default {
         async :"",
         type: "text/javascript"
       },
-      {
-        async: "async",
-        src:'//pl15442421.passtechusa.com/9c/d3/1c/9cd31c6b817458951dc72ca0c6f32ffd.js'
-      },
+      // {
+      //   async: "async",
+      //   src:'//pl15442421.passtechusa.com/9c/d3/1c/9cd31c6b817458951dc72ca0c6f32ffd.js'
+      // },
       {
         async: "async",
         src: '//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js'

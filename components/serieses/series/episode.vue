@@ -639,9 +639,9 @@ export default {
         activeCol(name) {
             this.active = name;
             this.VideoClose();
-            if(name = 'download'){
-                this.DownloadAd();
-            }
+            // if(name = 'download'){
+            //     this.DownloadAd();
+            // }
         },
         itemOver(id) {
             if (this.overId == 0) {

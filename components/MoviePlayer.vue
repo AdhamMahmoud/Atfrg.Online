@@ -1,8 +1,10 @@
 <template>
 <div>
     <div class="note2">
-        <p>مشاهدة ممتعة يا صحبي 😘💙</p>
-        <p> رمضان كريم ❤️❤️</p>
+        <!-- <p>مشاهدة ممتعة يا صحبي 😘💙</p> -->
+        <p> دلوقتي بقا في ابلكيشن للأندرويد تقدر تتفرج وتتابع الموقع اسرع 😘💙</p>
+                <a href='https://play.google.com/store/apps/details?id=com.connect.atfrg&hl=en_US&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img style="height: 65px;width: auto;" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' /></a>
+
         <!-- <span @click="reloadPage()">تحديث المحتوي</span> -->
     </div>
 
@@ -604,14 +606,28 @@ export default {
     }
     .video-logo {
         border: 0;
-        color: #fff;
+        color: rgb(187, 153, 153);
         position: absolute;
         z-index: 2;
         height: auto;
-        width: 80px;
+        width: 50px;
         z-index: 9999;
-        top: 5%;
-        left: 5%;
+        top: 8%;
+        left: 8%;
+        background-color: transparent !important;
+    }
+}
+@include md {
+    .video-logo {
+        border: 0;
+        color: rgb(187, 153, 153);
+        position: absolute;
+        z-index: 2;
+        height: auto;
+        width: 60px;
+        z-index: 9999;
+        top: 8%;
+        left: 8%;
         background-color: transparent !important;
     }
 }
