@@ -1,7 +1,7 @@
 <template>
 <!-- Trailer Item -->
 <nuxt-link :to="'/movie/' + title" class="item-fade">
-    <div v-lazy-container="{ selector: 'img', loading: 'https://atfrgimages.b-cdn.net/images/load.svg' }" class="item-slide">
+    <div v-lazy-container="{ selector: 'img', loading: 'https://atfrgimages.b-cdn.net/images/loader.png' }" class="item-slide">
         <!-- Movie Poster Container-->
         <div class="poster">
             <!-- quality -->

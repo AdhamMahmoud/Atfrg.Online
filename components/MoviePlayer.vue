@@ -22,6 +22,16 @@
 <script>
 import 'vue-plyr/dist/vue-plyr.css';
 export default {
+    head:{
+        script:[
+            {
+            src: "//inpagepush.com/400/3246513",
+            async :"async",
+            "data-cfasync" :"false",
+            type: "text/javascript"
+        },
+        ]
+    },
     data() {
         return {
             Show: false,
@@ -44,6 +54,8 @@ export default {
             adCount: 10,
             adsloadeds: false,
             adTime:null,
+            aa:null,
+            AdsTimer:null,
             // adsLoaded:false,
         }
     },
@@ -167,16 +179,16 @@ export default {
         var idd = this.$props.id;
         var plyr = this.film;
         var tpp = this;
-        this.SkipButton.onclick = function () {
-            // adsLoader.contentComplete();
-            plyr.play();
-            // document.getElementById('ad-container-' + idd).remove();
-            adsban.style.display = 'none';
-            this.style.display = 'none';
-            this.innerHTML = "10 sec";
-            tpp.adCount = 10;
-            tpp.AdCountInVideo();          
-        };
+        // this.SkipButton.onclick = function () {
+        //     // adsLoader.contentComplete();
+        //     plyr.play();
+        //     // document.getElementById('ad-container-' + idd).remove();
+        //     adsban.style.display = 'none';
+        //     this.style.display = 'none';
+        //     this.innerHTML = "10 sec";
+        //     tpp.adCount = 10;
+        //     tpp.AdCountInVideo();          
+        // };
         this.SkipButton.disabled = true;
         if (this.$props.subtitles.length > 0) {
             if (this.$props.subtitles[0].path.length > 5) {
@@ -267,16 +279,17 @@ export default {
             }
         },
         AdCountInVideo(){
-                this.adTime = setTimeout(() => {
-                    this.film.pause();
-                    this.adCount = 10;
-                    this.SkipButton.innerHTML = "10 sec";
-                    this.SkipButton.disabled = true; 
-                    this.SkipButton.style.display = 'block';
-                    this.ads.style.display = "block";
-                    this.countDownTimer();
-                    this.AdCountInVideo();
-                }, 600000);
+            this.AdsTimer = setInterval(this.AdWorkdone, 11000);
+        },
+        AdWorkdone(){
+                    // this.film.pause();
+                    // this.SkipButton.innerHTML = "10 sec";
+                    // this.SkipButton.disabled = true; 
+                    // this.SkipButton.style.display = 'block';
+                    // this.ads.style.display = "block";
+                    // this.countDownTimer();
+                    // clearInterval(this.AdsTimer)
+                    // this.AdCountInVideo(); //600000
         },
         countDownTimer() {
             if (this.adCount >= 0) {
@@ -294,16 +307,9 @@ export default {
             if (this.film != null) {
                 // Ads Start
                 //  this.loadAds();
-                if (this.adsloadeds == false) {                     
-                        // this.ads.style.display = 'block';
-                        // this.film.pause();
-                        // this.SkipButton.style.display = 'block';
-                        // this.countDownTimer();
-                        this.AdCountInVideo();
-                        this.adsloadeds = true;
-                }
-                // else{
-                //     this.AdCountInVideo();
+                // if (this.adsloadeds == false) {                     
+                //         this.AdCountInVideo();
+                //         this.adsloadeds = true;
                 // }
 
                 if (this.$props.subtitles.length > 0 && this.film.currentTrack == 0) {
