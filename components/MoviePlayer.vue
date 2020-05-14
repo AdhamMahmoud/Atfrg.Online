@@ -21,23 +21,6 @@
 
 <script>
 import 'vue-plyr/dist/vue-plyr.css';
-var StartAds = false;
-if (process.client) {
-    var videoElement;
-    var adsLoaded = false;
-    var adContainer;
-    var adDisplayContainer;
-    var adsLoader;
-    var adsManager;
-    window.addEventListener('resize', function (event) {
-        console.log("window resized");
-        if (adsManager) {
-            var width = videoElement.clientWidth;
-            var height = videoElement.clientHeight;
-            adsManager.resize(width, height, google.ima.ViewMode.NORMAL);
-        }
-    });
-}
 export default {
     data() {
         return {
@@ -59,7 +42,8 @@ export default {
             adsWork: false,
             SecoNote2: null,
             adCount: 10,
-            adsloadeds: false
+            adsloadeds: false,
+            adTime:null,
             // adsLoaded:false,
         }
     },
@@ -117,27 +101,22 @@ export default {
         },
     },
     beforeDestroy() {
-        adsLoaded = false;
-        // this.ads.style.display = 'none';
-        // var perv = document.getElementById("BannerDefault");
-        // perv.appendChild(this.ads);
-        // adsManager.destroy();
+        this.ads.style.display = 'none';   
+        document.getElementById("BannerDefault").appendChild(this.ads); 
         this.$refs['film' + this.$props.id].player.destroy();
-        // this.ads.remove();
     },
     mounted() {
         this.film = this.$refs['film' + this.$props.id].player;
         var list = document.getElementsByClassName("plyr__control--overlaid")[0];
-        this.VideoAd = document.createElement("div");
-        this.VideoAd.setAttribute('id', 'ad-container-' + this.$props.id);
-        list.parentNode.insertBefore(this.VideoAd, list.nextSibling);
-        videoElement = document.getElementById('vid' + this.$props.id);
-        // this.initializeIMA();
-        // this.ads = document.createElement("div");
-        // this.ads.setAttribute('id', 'adsBanner');
-        // this.ads.classList.add("vide-ad");
-        // this.ads.style.display = "none";
-        // list.parentNode.insertBefore(this.ads, list.nextSibling);
+        // Banner Ads Get To Video Container
+        if(document.getElementById("container-327995df4fccdfc89fe420ae6b341666") != null){
+            this.ads = document.getElementById("container-327995df4fccdfc89fe420ae6b341666");
+            this.ads.classList.add("vide-ad");
+            list.parentNode.insertBefore(this.ads, list.nextSibling);
+            this.ads.style.display = 'none';   
+        }
+
+
         var adsban = this.ads;
         this.loader = document.createElement("i");
         this.loader.classList.add("video-loader");
@@ -187,12 +166,16 @@ export default {
         this.SkipButton.style.display = 'none';
         var idd = this.$props.id;
         var plyr = this.film;
+        var tpp = this;
         this.SkipButton.onclick = function () {
             // adsLoader.contentComplete();
             plyr.play();
             // document.getElementById('ad-container-' + idd).remove();
             adsban.style.display = 'none';
             this.style.display = 'none';
+            this.innerHTML = "10 sec";
+            tpp.adCount = 10;
+            tpp.AdCountInVideo();          
         };
         this.SkipButton.disabled = true;
         if (this.$props.subtitles.length > 0) {
@@ -211,87 +194,6 @@ export default {
         }
     },
     methods: {
-        initializeIMA() {
-            google.ima.settings.setLocale('ar_eg');
-            adContainer = document.getElementById('ad-container-' + this.$props.id);
-            google.ima.settings.setDisableCustomPlaybackForIOS10Plus(true);
-            adContainer.addEventListener('click', this.adContainerClick);
-            adDisplayContainer = new google.ima.AdDisplayContainer(adContainer, videoElement);
-            adsLoader = new google.ima.AdsLoader(adDisplayContainer);
-            adsLoader.addEventListener(
-                google.ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED,
-                this.onAdsManagerLoaded,
-                false);
-            adsLoader.addEventListener(
-                google.ima.AdErrorEvent.Type.AD_ERROR,
-                this.onAdError,
-                false);
-            // Let the AdsLoader know when the video has ended
-            videoElement.addEventListener('ended', function () {
-                adsLoader.contentComplete();
-            });
-            var adsRequest = new google.ima.AdsRequest();
-            adsRequest.adTagUrl = 'https://www.movcpm.com/watch.xml?key=823fbda75a576c389938305b8d5aba32';
-            // Specify the linear and nonlinear slot sizes. This helps the SDK to
-            // select the correct creative if multiple are returned.
-            adsRequest.linearAdSlotWidth = document.getElementById(this.$props.id).clientWidth;
-            adsRequest.linearAdSlotHeight = document.getElementById(this.$props.id).clientHeight;
-            adsRequest.nonLinearAdSlotWidth = document.getElementById(this.$props.id).clientWidth;
-            adsRequest.nonLinearAdSlotHeight = document.getElementById(this.$props.id).clientHeight / 3;
-            adsRequest.setAdWillAutoPlay(true);
-            adsRequest.setAdWillPlayMuted(true);
-            adsRequest.forceNonLinearFullSlot = true;
-            adsRequest.setContinuousPlayback(true);
-            // Pass the request to the adsLoader to request ads
-            adsLoader.requestAds(adsRequest);
-        },
-        SkipAd() {
-            this.onContentResumeRequested();
-        },
-        onAdsManagerLoaded(adsManagerLoadedEvent) {
-            // Instantiate the AdsManager from the adsLoader response and pass it the video element
-            adsManager = adsManagerLoadedEvent.getAdsManager(
-                videoElement);
-            adsManager.addEventListener(
-                google.ima.AdErrorEvent.Type.AD_ERROR,
-                this.onAdError);
-            adsManager.addEventListener(
-                google.ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED,
-                this.onContentPauseRequested);
-            adsManager.addEventListener(
-                google.ima.AdEvent.Type.CONTENT_RESUME_REQUESTED,
-                this.onContentResumeRequested);
-            adsManager.addEventListener(
-                google.ima.AdEvent.Type.LOADED,
-                this.onAdLoaded);
-        },
-        onAdLoaded(adEvent) {
-            var ad = adEvent.getAd();
-            if (!ad.isLinear()) {
-                videoElement.play();
-                this.FirstNote.style.display = 'block';
-                document.getElementById('ad-container-' + this.$props.id).classList.remove("ShowAd");
-                document.getElementsByClassName("plyr")[0].classList.remove("stopPointer");
-                this.adsWork = false;
-            }
-        },
-        onContentPauseRequested() {
-            videoElement.pause();
-        },
-        onContentResumeRequested() {
-            videoElement.play();
-            this.FirstNote.style.display = 'block';
-            document.getElementById('ad-container-' + this.$props.id).classList.remove("ShowAd");
-            document.getElementsByClassName("plyr")[0].classList.remove("stopPointer");
-            this.adsWork = false;
-        },
-        onAdError(adErrorEvent) {
-            // Handle the error logging.
-            console.log(adErrorEvent.getError());
-            if (adsManager) {
-                adsManager.destroy();
-            }
-        },
         validLink(path) {
             var type = path.slice(-3).toLowerCase();
             path = path.substring(0, path.length - 3) + type;
@@ -339,19 +241,19 @@ export default {
                 screen.orientation.lock('landscape');
                 screen.msLockOrientation.lock("landscape");
                 screen.mozLockOrientation.lock("landscape");
-                if (this.$props.subtitles.length > 0) {
-                    // this.film.currentTrack = 1;
-                    this.film.toggleCaptions(true);
-                }
+                // if (this.$props.subtitles.length > 0) {
+                //     // this.film.currentTrack = 1;
+                //     this.film.toggleCaptions(true);
+                // }
             }
             if (window.innerWidth > 1800) {
                 screen.orientation.lock('landscape');
                 screen.msLockOrientation.lock("landscape");
                 screen.mozLockOrientation.lock("landscape");
-                if (this.$props.subtitles.length > 0) {
-                    // this.film.currentTrack = 1;
-                    this.film.toggleCaptions(true);
-                }
+                // if (this.$props.subtitles.length > 0) {
+                //     // this.film.currentTrack = 1;
+                //     this.film.toggleCaptions(true);
+                // }
             }
         },
         loadeddata() {
@@ -364,9 +266,21 @@ export default {
                 }
             }
         },
+        AdCountInVideo(){
+                this.adTime = setTimeout(() => {
+                    this.film.pause();
+                    this.adCount = 10;
+                    this.SkipButton.innerHTML = "10 sec";
+                    this.SkipButton.disabled = true; 
+                    this.SkipButton.style.display = 'block';
+                    this.ads.style.display = "block";
+                    this.countDownTimer();
+                    this.AdCountInVideo();
+                }, 600000);
+        },
         countDownTimer() {
-            if (this.adCount > 0) {
-                setTimeout(() => {
+            if (this.adCount >= 0) {
+                this.aa = setTimeout(() => {
                     this.adCount -= 1
                     this.SkipButton.innerHTML = this.adCount + " secs";
                     this.countDownTimer();
@@ -376,88 +290,25 @@ export default {
                 this.SkipButton.disabled = false;
             }
         },
-        // countDownTimer() {
-        //     if (document.getElementsByTagName("video")[1] != null) {
-        //         if (document.getElementsByTagName("video")[1].src.includes("brazzers")) {
-        //             // adsLoader.contentComplete();
-        //             document.getElementById('ad-container-' + this.$props.id).classList.remove("ShowAd");
-        //             document.getElementsByClassName("plyr")[0].classList.remove("stopPointer");
-        //             document.getElementById('ad-container-' + this.$props.id).remove();
-        //             adsManager.destroy();
-        //             videoElement.play();
-        //             this.SkipButton.style.display = 'none';
-        //         }
-        //     }
-        //     if (this.adCount > 0) {
-        //         setTimeout(() => {
-        //             this.adCount -= 1
-        //             this.SkipButton.innerHTML = this.adCount + " secs";
-        //             this.countDownTimer();
-        //         }, 1000)
-        //     } else {
-        //         this.SkipButton.innerHTML = "Skip Ad";
-        //         this.SkipButton.disabled = false;
-        //     }
-        // },
-        loadAds() {
-            // Prevent this function from running on if there are already ads loaded
-            StartAds = true;
-            if (adsLoaded) {
-                return;
-            }
-            adsLoaded = true;
-            this.adsWork = true;
-            this.SkipButton.style.display = 'block';
-            this.countDownTimer();
-            document.getElementById('ad-container-' + this.$props.id).classList.add("ShowAd");
-            document.getElementsByClassName("plyr")[0].classList.add("stopPointer");
-            // Initialize the container. Must be done via a user action on mobile devices.
-            // videoElement.load();
-            adDisplayContainer.initialize();
-            videoElement.pause();
-            var width = videoElement.clientWidth;
-            var height = videoElement.clientHeight;
-            try {
-                adsManager.init(width, height, google.ima.ViewMode.NORMAL);
-                adsManager.start();
-            } catch (adError) {
-                // Play the video without ads, if an error occurs
-                console.log("AdsManager could not be started");
-                document.getElementById('ad-container-' + this.$props.id).classList.remove("ShowAd");
-                document.getElementsByClassName("plyr")[0].classList.remove("stopPointer");
-                this.SkipButton.style.display = 'none';
-                this.adsWork = false;
-                videoElement.play();
-                this.FirstNote.style.display = 'block';
-            }
-            //    document.getElementById('ad-container-' + this.$props.id).classList.remove("ShowAd");
-            //             document.getElementsByClassName("plyr")[0].classList.remove("stopPointer");
-            // document.getElementById('ad-container-' + this.$props.id).remove();
-            // adsManager.destroy();
-            // videoElement.play();
-            // this.SkipButton.style.display = 'none';
-        },
-        adContainerClick(event) {
-            // console.log("ad container clicked");
-            // if (videoElement.paused) {
-            //     videoElement.play();
-            // } else {
-            //     videoElement.pause();
-            // }
-        },
         nowPlaying() {
             if (this.film != null) {
                 // Ads Start
                 //  this.loadAds();
-                // if (this.adsloadeds == false) {                     
-                //         this.ads.style.display = 'block';
-                //         this.SkipButton.style.display = 'block';
-                //         this.countDownTimer();
-                //         this.adsloadeds = true;
+                if (this.adsloadeds == false) {                     
+                        // this.ads.style.display = 'block';
+                        // this.film.pause();
+                        // this.SkipButton.style.display = 'block';
+                        // this.countDownTimer();
+                        this.AdCountInVideo();
+                        this.adsloadeds = true;
+                }
+                // else{
+                //     this.AdCountInVideo();
                 // }
-                if (this.$props.subtitles.length > 0 && this.captionStart == false) {
+
+                if (this.$props.subtitles.length > 0 && this.film.currentTrack == 0) {
                     this.film.currentTrack = 1;
-                    this.captionStart = true;
+                    // this.captionStart = true;
                 }
                 this.timer = setTimeout(() => {
                     this.FirstNote.style.display = 'none';
@@ -714,12 +565,16 @@ export default {
         max-height: 150px;
         // overflow: hidden;
         width: 60%;
-        top: 15%;
+        top: 26%;
         left: 22%;
         #container-460d6761d1e465c09fca4ee917dd0ccb{
         max-height: 150px;
         overflow: hidden;
         }
+    }
+    #container-327995df4fccdfc89fe420ae6b341666__stand{
+    max-height: 200px;
+    overflow: hidden;
     }
 }
 @include md {
@@ -752,29 +607,18 @@ export default {
         height: 100% !important;
         width: 100% !important;
     }
-    .plyr__control--overlaid {
-        pointer-events: none;
-    }
-}
-.stopPointer {
-    .plyr__controls {
-        pointer-events: none;
-    }
-    .plyr__control--overlaid {
-        pointer-events: none;
-    }
 }
 .skip-button {
     border: 0;
     color: #fff;
     position: absolute;
-    z-index: 2;
+    z-index: 999;
     height: auto;
     padding: 10px 4rem;
     z-index: 9999;
     bottom: 18%;
     right: 5%;
     letter-spacing: 1px;
-    background-color: #2e2e2ec4;
+    background-color: rgba(46, 47, 50, 0.84);
 }
 </style>

@@ -334,10 +334,10 @@ export default {
         },
         gettitle(){
             if(this.movieyear == ""){
-                 return "مشاهدة وتحميل فيلم " + this.$props.title + " - اتفرج اون لاين Atfrg.Online";
+                 return "مشاهدة فيلم " + this.$props.title + " - اتفرج اون لاين Atfrg.Online";
             }
             else{
-                 return "مشاهدة وتحميل فيلم " + this.$props.title + "  (" + this.movieyear + ") مترجم - اتفرج اون لاين Atfrg.Online";
+                 return "مشاهدة فيلم " + this.$props.title + "  (" + this.movieyear + ") مترجم - اتفرج اون لاين Atfrg.Online";
             }
            
         },

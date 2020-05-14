@@ -66,13 +66,42 @@ import TrailerItem from "~/components/TrailerItem.vue";
 import filters from "~/components/movies/genre/filters";
 import gql from 'graphql-tag';
 export default {
-        head: {
-     title:"مشاهدة وتحميل احدث الافلام العربي المصرية مجانا - اتفرج اون لاين مشاهدة افلام ومسلسلات وانمي مترجمة مجانا وبجودة عالية Atfrg.Online ",
-     meta:[
-        {  name: 'description', content:  "مشاهدة وتحميل مباشر افلام و مسلسلات وانمي بجودة عالية مترجمة - اتفرج اون لاين - بدون اعلانات"},
-          {  name: 'keywords', content:  "مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل "}
-     ]
-  },
+       head: {
+        title: "مشاهدة افلام عربي - اتفرج اون لاين Atfrg.Online",
+        meta: [{
+                hid: 'description',
+                name: 'description',
+                content: "مشاهدة وتحميل افلام عربي مجانا بدون اعلانات علي اتفرج اون لاين Atfrg.Online"
+            },
+            {
+                hid: 'keywords',
+                name: 'keywords',
+                content: "مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل " || ""
+            },
+            {
+                property: "image",
+                content: "https://atfrgimages.b-cdn.net/og2.png"
+            },
+            {
+                property: "og:image",
+                content: "https://atfrgimages.b-cdn.net/og2.png"
+            },
+            {
+
+                property: "og:title",
+                content: "مشاهدة افلام عربي اون لاين - اتفرج اون لاين Atfrg.Online"
+            },
+            {
+                property: "og:description",
+                content: "مشاهدة وتحميل افلام عربي مجانا بدون اعلانات علي اتفرج اون لاين Atfrg.Online"
+            },
+            {
+                property: "og:keywords",
+                content: "مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل "
+            },
+
+        ]
+    },
     data: function () {
         return {
             items: 12,

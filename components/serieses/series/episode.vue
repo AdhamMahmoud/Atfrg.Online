@@ -8,7 +8,7 @@
             <!-- poster -->
             <div class="col-md-3">
                 <div class="poster">
-                    <img :src="GetPoster(poster)" :alt="title" />
+                    <img :src="GetPoster(poster)" :alt="lastTitle" />
                 </div>
                 <div class="descrption">
                     <div class="title">القصة</div>
@@ -21,7 +21,7 @@
                 <div class="movie-information">
                     <!-- Movie Title -->
                     <div class="movie-title">
-                        {{ title }}
+                        {{ lastTitle }}
                     </div>
                     <!-- Movie Info List -->
                     <ul class="information-list">
@@ -60,7 +60,7 @@
                     </button>
                     <button :class="{ active : active == 'movie'}" @click="activeCol('movie')">
 
-                        {{title}}</button>
+                        {{lastTitle}}</button>
                     <button :class="{ active : active == 'download'}" @click="activeCol('download')">
                         التحميل</button>
                 </div>
@@ -329,6 +329,7 @@ import downloadAds from "~/components/ads2.vue";
 export default {
     data: function () {
         return {
+            lastTitle: "",
             ShowIntroBtn: false,
             firstNote: false,
             secondNote: false,
@@ -451,13 +452,13 @@ export default {
     },
     head() {
         return {
-            title: "" + this.$props.title + " " + this.$props.season[0].title + " - Atfrg.Online  اتفرج اون لاين",
+            title: "" + this.$props.season[0].title + "" + this.TitleConvert()  + " - Atfrg.Online  اتفرج اون لاين",
             meta: [
                 // hid is used as unique identifier. Do not use `vmid` for it as it will not work
                 {
                     hid: 'description',
                     name: 'description',
-                    content: "" + this.$props.title + " " + this.$props.season[0].title + " - Atfrg.Online  اتفرج اون لاين" || ""
+                    content: "" + this.lastTitle + " " + this.$props.season[0].title + " - Atfrg.Online  اتفرج اون لاين" || ""
                 },
                 {
                     hid: 'keywords',
@@ -466,11 +467,11 @@ export default {
                 },
                 {
                     property: "og:title",
-                    content: "" + this.$props.title + " " + this.$props.season[0].title + " - Atfrg.Online  اتفرج اون لاين"
+                    content: "" + this.lastTitle + " " + this.$props.season[0].title + " - Atfrg.Online  اتفرج اون لاين"
                 },
                 {
                     property: "og:description",
-                    content: "" + this.$props.title + " " + this.$props.season[0].title + " - Atfrg.Online  اتفرج اون لاين" || ""
+                    content: "" + this.lastTitle + " " + this.$props.season[0].title + " - Atfrg.Online  اتفرج اون لاين" || ""
                 },
                 {
                     property: "og:image",
@@ -514,8 +515,17 @@ export default {
     },
     mounted() {
         this.handleSearch(this.$props.imdbId);
+        console.log(this.lastTitle);
     },
     methods: {
+        TitleConvert(){
+            var title = this.$props.title;
+            var num =  parseInt(title);
+            title = this.$props.title.replace(num,"\u200E");
+            title =  title + " " + num;
+            this.lastTitle = title;
+            return title;
+        },
         reverseString(str) {
             return str.split("").reverse().join("");
         },
@@ -613,7 +623,7 @@ export default {
                 token = token.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
 
                 var url = 'https://atfrgdownload.b-cdn.net' + newpath + '?token=' + token + '&expires=' + expires;
-                // var url = 'https://atfrg.store/?file=' + newpath + '?token=' + token + '&expires=' + expires + '&name=' +  this.$props.title + " " + this.$props.season[0].title;
+                // var url = 'https://atfrg.store/?file=' + newpath + '?token=' + token + '&expires=' + expires + '&name=' +  this.lastTitle + " " + this.$props.season[0].title;
             }
             return url;
         },
