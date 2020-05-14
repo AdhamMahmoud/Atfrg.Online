@@ -80,6 +80,11 @@ export default {
         async :"",
         type: "text/javascript"
       },
+      {
+        src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
+        'data-ad-client' :"ca-pub-1239560438534515",
+        async:''
+      },
       // {
       //   async: "async",
       //   src:'//pl15442421.passtechusa.com/9c/d3/1c/9cd31c6b817458951dc72ca0c6f32ffd.js'
