@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     send () {
-      if(this.bug == null){
+      if(this.bug.length < 1){
         return;
       }
      this.load = true;

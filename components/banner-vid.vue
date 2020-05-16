@@ -20,7 +20,6 @@
 </template>
 
 <script>
-var adsloadeds = false;
 import 'vue-plyr/dist/vue-plyr.css';
 export default {
     head:{
@@ -53,6 +52,7 @@ export default {
             adsWork: false,
             SecoNote2: null,
             adCount: 10,
+            adsloadeds: false,
             adTime:null,
             aa:null,
             AdsTimer:null,
@@ -121,17 +121,13 @@ export default {
         this.film = this.$refs['film' + this.$props.id].player;
         var list = document.getElementsByClassName("plyr__control--overlaid")[0];
         // Banner Ads Get To Video Container
-        this.ads = document.createElement("div");
-        var linke = document.createElement("a");
-        linke.href = 'https://bit.ly/3eQvPqN';
-        linke.targrt = '_blank';
-        this.ads.appendChild(linke);
-        var images = document.createElement("img");
-        images.src= "https://mrkzgulfup.com/uploads/158964700049471.gif";
-        linke.appendChild(images);
-        this.ads.classList.add("vide-ad");
-        list.parentNode.insertBefore(this.ads, list.nextSibling);
-         this.ads.style.display = 'none';   
+        if(document.getElementById("container-327995df4fccdfc89fe420ae6b341666") != null){
+            this.ads = document.getElementById("container-327995df4fccdfc89fe420ae6b341666");
+            this.ads.classList.add("vide-ad");
+            list.parentNode.insertBefore(this.ads, list.nextSibling);
+            this.ads.style.display = 'none';   
+        }
+
 
         var adsban = this.ads;
         this.loader = document.createElement("i");
@@ -183,13 +179,16 @@ export default {
         var idd = this.$props.id;
         var plyr = this.film;
         var tpp = this;
-        this.SkipButton.onclick = function () {
-            // adsLoader.contentComplete();
-            plyr.play();
-            // document.getElementById('ad-container-' + idd).remove();
-            adsban.style.display = 'none';
-            this.style.display = 'none';
-        };
+        // this.SkipButton.onclick = function () {
+        //     // adsLoader.contentComplete();
+        //     plyr.play();
+        //     // document.getElementById('ad-container-' + idd).remove();
+        //     adsban.style.display = 'none';
+        //     this.style.display = 'none';
+        //     this.innerHTML = "10 sec";
+        //     tpp.adCount = 10;
+        //     tpp.AdCountInVideo();          
+        // };
         this.SkipButton.disabled = true;
         if (this.$props.subtitles.length > 0) {
             if (this.$props.subtitles[0].path.length > 5) {
@@ -280,16 +279,17 @@ export default {
             }
         },
         AdCountInVideo(){
-             setTimeout(() => {
-                    this.AdWorkdone();
-                }, 180000)
+            this.AdsTimer = setInterval(this.AdWorkdone, 11000);
         },
         AdWorkdone(){
-                    this.film.pause();
-                    this.SkipButton.disabled = true; 
-                    this.SkipButton.style.display = 'block';
-                    this.ads.style.display = "block";
-                    this.countDownTimer();
+                    // this.film.pause();
+                    // this.SkipButton.innerHTML = "10 sec";
+                    // this.SkipButton.disabled = true; 
+                    // this.SkipButton.style.display = 'block';
+                    // this.ads.style.display = "block";
+                    // this.countDownTimer();
+                    // clearInterval(this.AdsTimer)
+                    // this.AdCountInVideo(); //600000
         },
         countDownTimer() {
             if (this.adCount >= 0) {
@@ -307,10 +307,10 @@ export default {
             if (this.film != null) {
                 // Ads Start
                 //  this.loadAds();
-                if (adsloadeds == false) {                     
-                        this.AdCountInVideo();
-                        adsloadeds = true;
-                }
+                // if (this.adsloadeds == false) {                     
+                //         this.AdCountInVideo();
+                //         this.adsloadeds = true;
+                // }
 
                 if (this.$props.subtitles.length > 0 && this.film.currentTrack == 0) {
                     this.film.currentTrack = 1;
@@ -549,25 +549,6 @@ export default {
         z-index: 99999;
     }
 }
-.plyr:-webkit-full-screen{
-    .vide-ad {
-    border: 0;
-    color: #fff;
-    position: absolute;
-    z-index: 2;
-    height: 0;
-    width: 0;
-    // z-index: 9999;
-       width: auto;
-    top: 70%;
-    left: 12%;
-    background-color: transparent !important;
-    img{
-        width:100%;
-    }
-}
-    
-}
 .vide-ad {
     border: 0;
     color: #fff;
@@ -576,13 +557,10 @@ export default {
     height: 0;
     width: 0;
     // z-index: 9999;
-       width: auto;
-    top: 70%;
-    left: 16%;
+    width: 60%;
+    top: 60%;
+    left: 22%;
     background-color: transparent !important;
-    img{
-        width:100%;
-    }
 }
 @include sm {
     .vide-ad {
@@ -593,7 +571,7 @@ export default {
         max-height: 150px;
         // overflow: hidden;
         width: 60%;
-        top: 73%;
+        top: 26%;
         left: 22%;
         #container-460d6761d1e465c09fca4ee917dd0ccb{
         max-height: 150px;
@@ -614,7 +592,7 @@ export default {
         max-height: 150px;
         // overflow: hidden;
         width: 60%;
-        top: 75%;
+        top: 15%;
         left: 22%;
         #container-460d6761d1e465c09fca4ee917dd0ccb{
         max-height: 150px;

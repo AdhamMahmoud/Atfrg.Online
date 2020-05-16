@@ -44,4 +44,14 @@ export default {
         background-color: transparent;
     }
 }
+.darkMod{
+  .no-result{
+    text-align: center;
+    background-color: #63636317;
+    color: #fff;
+    padding: 0.5rem 4rem;
+    border-radius: 5px;
+    margin: 1rem auto;
+  }
+}
 </style>

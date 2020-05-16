@@ -56,8 +56,11 @@ export default {
 };
 </script>
 
-<style scoped>
-.BannerDefault {
+<style>
+body{
+    overflow: hidden;
+}
+#BannerDefault {
     z-index: -10;
     display: none;
 }
