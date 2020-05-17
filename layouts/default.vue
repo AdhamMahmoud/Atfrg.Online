@@ -57,9 +57,6 @@ export default {
 </script>
 
 <style>
-/* body{
-    overflow: hidden;
-} */
 #BannerDefault {
     z-index: -10;
     display: none;

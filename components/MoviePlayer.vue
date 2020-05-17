@@ -113,25 +113,25 @@ export default {
         },
     },
     beforeDestroy() {
-        this.ads.style.display = 'none';   
-        document.getElementById("BannerDefault").appendChild(this.ads); 
+        // this.ads.style.display = 'none';   
+        // document.getElementById("BannerDefault").appendChild(this.ads); 
         this.$refs['film' + this.$props.id].player.destroy();
     },
     mounted() {
         this.film = this.$refs['film' + this.$props.id].player;
         var list = document.getElementsByClassName("plyr__control--overlaid")[0];
         // Banner Ads Get To Video Container
-        this.ads = document.createElement("div");
-        var linke = document.createElement("a");
-        linke.href = 'https://bit.ly/3eQvPqN';
-        linke.targrt = '_blank';
-        this.ads.appendChild(linke);
-        var images = document.createElement("img");
-        images.src= "https://mrkzgulfup.com/uploads/158964700049471.gif";
-        linke.appendChild(images);
-        this.ads.classList.add("vide-ad");
-        list.parentNode.insertBefore(this.ads, list.nextSibling);
-         this.ads.style.display = 'none';   
+        // this.ads = document.createElement("div");
+        // var linke = document.createElement("a");
+        // linke.href = 'https://bit.ly/3eQvPqN';
+        // linke.targrt = '_blank';
+        // this.ads.appendChild(linke);
+        // var images = document.createElement("img");
+        // images.src= "https://mrkzgulfup.com/uploads/158964700049471.gif";
+        // linke.appendChild(images);
+        // this.ads.classList.add("vide-ad");
+        // list.parentNode.insertBefore(this.ads, list.nextSibling);
+        //  this.ads.style.display = 'none';   
 
         var adsban = this.ads;
         this.loader = document.createElement("i");
@@ -307,10 +307,10 @@ export default {
             if (this.film != null) {
                 // Ads Start
                 //  this.loadAds();
-                if (adsloadeds == false) {                     
-                        this.AdCountInVideo();
-                        adsloadeds = true;
-                }
+                // if (adsloadeds == false) {                     
+                //         this.AdCountInVideo();
+                //         adsloadeds = true;
+                // }
 
                 if (this.$props.subtitles.length > 0 && this.film.currentTrack == 0) {
                     this.film.currentTrack = 1;
