@@ -3,7 +3,7 @@
     <!-- Header -->
     <!-- <loading v-if="loading"></loading> -->
     <Header :darkMode.sync="darkMode" />
-    <div id="BannerDefault">
+    <div id="BannerDefault" v-if="StartAds">
         <div id="container-327995df4fccdfc89fe420ae6b341666" style="display:none"></div>
         <div id="container-460d6761d1e465c09fca4ee917dd0ccb" style="display:none"></div>
     </div>
@@ -44,7 +44,7 @@ export default {
     mounted() {
         this.ShowAd();
         //  document.domain = "atfrg.online";
-        // setTimeout(() => this.loading = false, 500);
+        setTimeout(() => this.StartAds = true, 1000);
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
