@@ -599,8 +599,8 @@ export default {
         width: 0;
         // z-index: 9999;
         width: auto;
-        top: 70%;
-        left: 12%;
+        top: 20%;
+        left: 8%;
         background-color: transparent !important;
 
         img {
