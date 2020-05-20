@@ -636,8 +636,8 @@ export default {
         z-index: 2;
         max-height: 150px;
         // overflow: hidden;
-       top: 20%;
-    left: 8%;
+        top: 20%;
+        left: 8%;
 
         #container-460d6761d1e465c09fca4ee917dd0ccb {
             max-height: 150px;
@@ -659,8 +659,8 @@ export default {
         z-index: 2;
         max-height: 150px;
         // overflow: hidden;
-        top: 37%;
-        left: 25%;
+        top: 20%;
+        left: 8%;
 
         #container-460d6761d1e465c09fca4ee917dd0ccb {
             max-height: 150px;
