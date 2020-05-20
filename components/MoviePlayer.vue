@@ -8,7 +8,7 @@
         <!-- <span @click="reloadPage()">تحديث المحتوي</span> -->
     </div>
     <div class="banner-ad">
-        <a href="http://go.arabclicks.com/aff_c?offer_id=642&aff_id=2065&file_id=9858&file_id=9858" target="_blank"><img src="https://media.go2speed.org/brand/files/arabclicks/642/ALADDINARB_970X90.jpg" width="100%" height="100%" border="0" /></a>
+      <a target="_blank" rel="nofollow" href="https://ad.admitad.com/g/xrmgzhxni6e2f65081d2f0af71e07a/?i=4"><img width="468" height="60" border="0" src="https://ad.admitad.com/b/xrmgzhxni6e2f65081d2f0af71e07a/" alt="SHEIN Many GEO&#39;s"/></a>
     </div>
 
     <vue-plyr class="player-mov" :ref="'film' + id" clickToPlay="true" seektime="10" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
@@ -124,11 +124,11 @@ export default {
         // Banner Ads Get To Video Container
         this.ads = document.createElement("div");
         var linke = document.createElement("a");
-        linke.href = 'http://go.arabclicks.com/aff_c?offer_id=642&aff_id=2065&file_id=9851&file_id=9851';
+        linke.href = 'https://ad.admitad.com/g/x4le8aupwle2f65081d2f0af71e07a/?i=4';
         linke.targrt = '_blank';
         this.ads.appendChild(linke);
         var images = document.createElement("img");
-        images.src= "https://media.go2speed.org/brand/files/arabclicks/642/ALADDINARB_250X250.jpg";
+        images.src= "https://ad.admitad.com/b/x4le8aupwle2f65081d2f0af71e07a/";
         images.width = "250";
         images.height = "250";
         linke.appendChild(images);
