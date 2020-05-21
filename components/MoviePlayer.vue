@@ -7,9 +7,9 @@
 
         <!-- <span @click="reloadPage()">تحديث المحتوي</span> -->
     </div>
-    <div class="banner-ad">
+    <!-- <div class="banner-ad">
       <a target="_blank" rel="nofollow" href="https://ad.admitad.com/g/xrmgzhxni6e2f65081d2f0af71e07a/?i=4"><img width="468" height="60" border="0" src="https://ad.admitad.com/b/xrmgzhxni6e2f65081d2f0af71e07a/" alt="SHEIN Many GEO&#39;s"/></a>
-    </div>
+    </div> -->
 
     <vue-plyr class="player-mov" :ref="'film' + id" clickToPlay="true" seektime="10" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
         <video preload="none" playsinline crossorigin="anonymous" :id="'vid' +id" :poster="poster">
@@ -122,19 +122,19 @@ export default {
         this.film = this.$refs['film' + this.$props.id].player;
         var list = document.getElementsByClassName("plyr__control--overlaid")[0];
         // Banner Ads Get To Video Container
-        this.ads = document.createElement("div");
-        var linke = document.createElement("a");
-        linke.href = 'https://ad.admitad.com/g/x4le8aupwle2f65081d2f0af71e07a/?i=4';
-        linke.targrt = '_blank';
-        this.ads.appendChild(linke);
-        var images = document.createElement("img");
-        images.src= "https://ad.admitad.com/b/x4le8aupwle2f65081d2f0af71e07a/";
-        images.width = "250";
-        images.height = "250";
-        linke.appendChild(images);
-        this.ads.classList.add("vide-ad");
-        list.parentNode.insertBefore(this.ads, list.nextSibling);
-        this.ads.style.display = 'none';   
+        // this.ads = document.createElement("div");
+        // var linke = document.createElement("a");
+        // linke.href = 'https://ad.admitad.com/g/x4le8aupwle2f65081d2f0af71e07a/?i=4';
+        // linke.targrt = '_blank';
+        // this.ads.appendChild(linke);
+        // var images = document.createElement("img");
+        // images.src= "https://ad.admitad.com/b/x4le8aupwle2f65081d2f0af71e07a/";
+        // images.width = "250";
+        // images.height = "250";
+        // linke.appendChild(images);
+        // this.ads.classList.add("vide-ad");
+        // list.parentNode.insertBefore(this.ads, list.nextSibling);
+        // this.ads.style.display = 'none';   
 
         var adsban = this.ads;
         this.loader = document.createElement("i");
@@ -310,10 +310,10 @@ export default {
             if (this.film != null) {
                 // Ads Start
                 //  this.loadAds();
-                if (adsloadeds == false) {                     
-                        this.AdCountInVideo();
-                        adsloadeds = true;
-                }
+                // if (adsloadeds == false) {                     
+                //         this.AdCountInVideo();
+                //         adsloadeds = true;
+                // }
 
                 if (this.$props.subtitles.length > 0 && this.film.currentTrack == 0) {
                     this.film.currentTrack = 1;
