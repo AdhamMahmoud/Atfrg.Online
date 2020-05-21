@@ -57,7 +57,7 @@
                     </button>
                     <button :class="{ active : active == 'movie'}" @click="activeCol('movie')">
 
-                        الحلقة الأولي الموسم الأول</button>
+                  الحلقة الأولي {{seasons[0].title}}</button>
                     <button :class="{ active : active == 'download'}" @click="activeCol('download')">
                         التحميل</button>
                 </div>
@@ -167,7 +167,7 @@
                 <div class="same-movies">
                   <div class="Slider-block">
                                 <!-- Container End -->
-                                <div v-swiper:mySwiperOn="swiperOption" class="my-swiper">
+                                <div v-swiper:mySwiperOnsq="swiperOption" class="my-swiper">
                                     <div class="swiper-wrapper">
                                         <div v-for="season in seasons" :key="season.id" :class="[{ poster_over : overId == season.id }, 'swiper-slide' ]" @mouseover="itemOver(season.id)" @mouseleave="itemNotOver">
                                             <SeriesItem :id="season.id" :title="season.title" :poster=" GetPoster(season.posters)" :genres="genres" :audience="audience" :seasons="season.episodes" path="/series/season/" />
@@ -238,7 +238,7 @@ export default {
             notesdone: false,
             currentTimes: 0,
             swiperOption: {
-                slidesPerView: 5,
+                slidesPerView: 4,
                 spaceBetween: 40,
                 navigation: {
                     nextEl: ".swiper-button-next",
@@ -246,11 +246,11 @@ export default {
                 },
                 breakpoints: {
                     1024: {
-                        slidesPerView: 5,
+                        slidesPerView: 4,
                         spaceBetween: 40
                     },
                     768: {
-                        slidesPerView: 3,
+                        slidesPerView: 2,
                         spaceBetween: 40
                     },
                     640: {

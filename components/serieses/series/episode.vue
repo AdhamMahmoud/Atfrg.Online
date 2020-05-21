@@ -452,7 +452,7 @@ export default {
     },
     head() {
         return {
-            title: "" + this.$props.season[0].title + "" + this.TitleConvert()  + " - Atfrg.Online  اتفرج اون لاين",
+            title: "" + this.$props.season[0].title + " " + this.TitleConvert()  + " - Atfrg.Online  اتفرج اون لاين",
             meta: [
                 // hid is used as unique identifier. Do not use `vmid` for it as it will not work
                 {

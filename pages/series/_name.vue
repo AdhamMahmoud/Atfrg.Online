@@ -22,7 +22,7 @@
                         }
                         keywords
                         overview
-                       seasons(orderBy:order_ASC){
+                       seasons(orderBy:order_DESC){
                           id
                           title
                           slug

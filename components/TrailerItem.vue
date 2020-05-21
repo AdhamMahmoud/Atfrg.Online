@@ -10,10 +10,10 @@
                 {{ watchCount }}
                 <i class="far fa-eye"></i>
             </span>
-            <!-- <span class="rate" v-if="films.imdbRating != null">
-                {{ films.imdbRating }} <i class="far fa-star"></i></span> -->
+            <span class="rate" v-if="films.imdbRating != null">
+                {{ films.imdbRating }} <i class="far fa-star"></i></span>
             <!-- Movie Poster img -->
-            <img :data-src="GetSlide(poster)" :alt="title" />
+            <img :data-src="GetSlide(poster)" :alt="title" /> 
         </div>
 
         <!-- Movie Overlay -->
@@ -71,22 +71,22 @@ export default {
         }
     },
     methods: {
-        // handleSearch() {
-        //     this.films = [];
-        //     fetch(
-        //             "https://www.omdbapi.com/?i=" + this.$props.imdbId + "&apikey=bf7293bf"
-        //         )
-        //         .then(res => {
-        //             return res.json();
-        //         })
-        //         .then(res => {
-        //             this.films = res;
-        //             this.year = this.GetYear(res.Released);
-        //             if (res.Released == null) {
-        //                 this.year = "";
-        //             }
-        //         });
-        // },
+        handleSearch() {
+            this.films = [];
+            fetch(
+                    "https://www.omdbapi.com/?i=" + this.$props.imdbId + "&apikey=bf7293bf"
+                )
+                .then(res => {
+                    return res.json();
+                })
+                .then(res => {
+                    this.films = res;
+                    this.year = this.GetYear(res.Released);
+                    if (res.Released == null) {
+                        this.year = "";
+                    }
+                });
+        },
         runTrailer(id) {
             this.isPlay = true;
             timer: setTimeout(() => {
@@ -170,9 +170,9 @@ export default {
         },
     },
 
-    // mounted() {
-    //     this.handleSearch();
-    // },
+    mounted() {
+        this.handleSearch();
+    },
     props: {
         id: String,
         title: String,
