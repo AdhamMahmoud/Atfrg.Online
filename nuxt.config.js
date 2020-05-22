@@ -67,10 +67,10 @@ export default {
       { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css?family=Tajawal:500&display=swap' },
     ],
     script: [
-      {
-        src:'//imasdk.googleapis.com/js/sdkloader/ima3.js',
-        type: "text/javascript"
-      },
+      // {
+      //   src:'//imasdk.googleapis.com/js/sdkloader/ima3.js',
+      //   type: "text/javascript"
+      // },
       {
         src: "https://kit.fontawesome.com/3e50565740.js?ver=1.1",
         type: "text/javascript"
@@ -80,23 +80,7 @@ export default {
         async :"",
         type: "text/javascript"
       },
-      // {
-      //   async: "async",
-      //   src:'//pl15442421.passtechusa.com/9c/d3/1c/9cd31c6b817458951dc72ca0c6f32ffd.js'
-      // },
-      {
-        async: "async",
-        src: '//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js'
-    },
-    {
-        async: "async",
-        src: '//pl15454349.passtechusa.com/460d6761d1e465c09fca4ee917dd0ccb/invoke.js'
-    },
-    {
-        async: "async",
-        src: '//pl15454350.passtechusa.com/327995df4fccdfc89fe420ae6b341666/invoke.js'
-    },
-  
+
       // {
       //   src: "//inpagepush.com/400/3246513",
       //   async :"async",
@@ -159,7 +143,7 @@ export default {
     '@nuxtjs/sitemap',
     '@nuxtjs/proxy',
     // '@nuxtjs/component-cache',
-    // 'nuxt-polyfill',
+    'nuxt-polyfill',
   ],
 //   oneSignal: {
 //     // cdn: true,
@@ -214,49 +198,48 @@ export default {
     },
     errorHandler: '~/plugins/apollo-error-handler.js'
   },
-//   polyfill: {
-//     features: [
-//         /* 
-//             Feature without detect:
+  polyfill: {
+    features: [
+        /* 
+            Feature without detect:
 
-//             Note: 
-//               This is not recommended for most polyfills
-//               because the polyfill will always be loaded, parsed and executed.
-//         */
-//         {
+            Note: 
+              This is not recommended for most polyfills
+              because the polyfill will always be loaded, parsed and executed.
+        */
+        {
          
-//             require: 'url-polyfill' // NPM package or require path of file
-//         },
+            require: 'url-polyfill' // NPM package or require path of file
+        },
 
-//         /* 
-//             Feature with detect:
+        /* 
+            Feature with detect:
 
-//             Detection is better because the polyfill will not be 
-//             loaded, parsed and executed if it's not necessary.
-//         */
-//         {
-//             require: 'intersection-observer',
-//             detect: () => 'IntersectionObserver' in window,
-//         },
+            Detection is better because the polyfill will not be 
+            loaded, parsed and executed if it's not necessary.
+        */
+        {
+            require: 'intersection-observer',
+            detect: () => 'IntersectionObserver' in window,
+        },
 
-//         /*
-//             Feature with detect & install:
+        /*
+            Feature with detect & install:
 
-//             Some polyfills require a installation step
-//             Hence you could supply a install function which accepts the require result
-//         */
-//         {
-//             require: 'smoothscroll-polyfill',
-//             require: 'core-js/es7/object',
+            Some polyfills require a installation step
+            Hence you could supply a install function which accepts the require result
+        */
+        {
+            require: 'smoothscroll-polyfill',
 
-//             // Detection found in source: https://github.com/iamdustan/smoothscroll/blob/master/src/smoothscroll.js
-//             detect: () => 'scrollBehavior' in document.documentElement.style && window.__forceSmoothScrollPolyfill__ !== true,
+            // Detection found in source: https://github.com/iamdustan/smoothscroll/blob/master/src/smoothscroll.js
+            detect: () => 'scrollBehavior' in document.documentElement.style && window.__forceSmoothScrollPolyfill__ !== true,
 
-//             // Optional install function called client side after the package is required:
-//             install: (smoothscroll) => smoothscroll.polyfill()
-//         }
-//     ]
-// },
+            // Optional install function called client side after the package is required:
+            install: (smoothscroll) => smoothscroll.polyfill()
+        }
+    ]
+},
   /*
   /*
    ** Build configuration

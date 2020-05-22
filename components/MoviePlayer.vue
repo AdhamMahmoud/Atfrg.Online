@@ -3,13 +3,10 @@
     <div class="note2">
         <!-- <p>مشاهدة ممتعة يا صحبي 😘💙</p> -->
         <p> دلوقتي بقا في ابلكيشن للأندرويد تقدر تتفرج وتتابع الموقع اسرع 😘💙</p>
-        <a href='https://play.google.com/store/apps/details?id=com.connect.atfrg&hl=en_US&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img style="height: 65px;width: auto;" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' /></a>
+                <a href='https://play.google.com/store/apps/details?id=com.connect.atfrg&hl=en_US&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img style="height: 65px;width: auto;" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' /></a>
 
         <!-- <span @click="reloadPage()">تحديث المحتوي</span> -->
     </div>
-    <!-- <div class="banner-ad">
-      <a target="_blank" rel="nofollow" href="https://ad.admitad.com/g/xrmgzhxni6e2f65081d2f0af71e07a/?i=4"><img width="468" height="60" border="0" src="https://ad.admitad.com/b/xrmgzhxni6e2f65081d2f0af71e07a/" alt="SHEIN Many GEO&#39;s"/></a>
-    </div> -->
 
     <vue-plyr class="player-mov" :ref="'film' + id" clickToPlay="true" seektime="10" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
         <video preload="none" playsinline crossorigin="anonymous" :id="'vid' +id" :poster="poster">
@@ -23,16 +20,17 @@
 </template>
 
 <script>
-var adsloadeds = false;
 import 'vue-plyr/dist/vue-plyr.css';
 export default {
-    head: {
-        script: [{
+    head:{
+        script:[
+            {
             src: "//inpagepush.com/400/3246513",
-            async: "async",
-            "data-cfasync": "false",
+            async :"async",
+            "data-cfasync" :"false",
             type: "text/javascript"
-        }, ]
+        },
+        ]
     },
     data() {
         return {
@@ -54,9 +52,10 @@ export default {
             adsWork: false,
             SecoNote2: null,
             adCount: 10,
-            adTime: null,
-            aa: null,
-            AdsTimer: null,
+            adsloadeds: false,
+            adTime:null,
+            aa:null,
+            AdsTimer:null,
             // adsLoaded:false,
         }
     },
@@ -114,27 +113,21 @@ export default {
         },
     },
     beforeDestroy() {
-        // this.ads.style.display = 'none';   
-        // document.getElementById("BannerDefault").appendChild(this.ads); 
+        this.ads.style.display = 'none';   
+        document.getElementById("BannerDefault").appendChild(this.ads); 
         this.$refs['film' + this.$props.id].player.destroy();
     },
     mounted() {
         this.film = this.$refs['film' + this.$props.id].player;
         var list = document.getElementsByClassName("plyr__control--overlaid")[0];
         // Banner Ads Get To Video Container
-        // this.ads = document.createElement("div");
-        // var linke = document.createElement("a");
-        // linke.href = 'https://ad.admitad.com/g/x4le8aupwle2f65081d2f0af71e07a/?i=4';
-        // linke.targrt = '_blank';
-        // this.ads.appendChild(linke);
-        // var images = document.createElement("img");
-        // images.src= "https://ad.admitad.com/b/x4le8aupwle2f65081d2f0af71e07a/";
-        // images.width = "250";
-        // images.height = "250";
-        // linke.appendChild(images);
-        // this.ads.classList.add("vide-ad");
-        // list.parentNode.insertBefore(this.ads, list.nextSibling);
-        // this.ads.style.display = 'none';   
+        if(document.getElementById("container-b7d66cc8d304167ae2aa320276ca566c") != null){
+            this.ads = document.getElementById("container-b7d66cc8d304167ae2aa320276ca566c");
+            this.ads.classList.add("vide-ad");
+            list.parentNode.insertBefore(this.ads, list.nextSibling);
+            this.ads.style.display = 'none';   
+        }
+
 
         var adsban = this.ads;
         this.loader = document.createElement("i");
@@ -192,6 +185,9 @@ export default {
             // document.getElementById('ad-container-' + idd).remove();
             adsban.style.display = 'none';
             this.style.display = 'none';
+            this.innerHTML = "10 sec";
+            tpp.adCount = 10;
+            tpp.AdCountInVideo();          
         };
         this.SkipButton.disabled = true;
         if (this.$props.subtitles.length > 0) {
@@ -282,17 +278,18 @@ export default {
                 }
             }
         },
-        AdCountInVideo() {
-            setTimeout(() => {
-                this.AdWorkdone();
-            }, 120000)
+        AdCountInVideo(){
+            this.AdsTimer = setInterval(this.AdWorkdone, 600000);//10min
         },
-        AdWorkdone() {
-            this.film.pause();
-            this.SkipButton.disabled = true;
-            this.SkipButton.style.display = 'block';
-            this.ads.style.display = "block";
-            this.countDownTimer();
+        AdWorkdone(){
+                    this.film.pause();
+                    this.SkipButton.innerHTML = "10 sec";
+                    this.SkipButton.disabled = true; 
+                    this.SkipButton.style.display = 'block';
+                    this.ads.style.display = "block";
+                    this.countDownTimer();
+                    clearInterval(this.AdsTimer)
+                    // this.AdCountInVideo(); //600000
         },
         countDownTimer() {
             if (this.adCount >= 0) {
@@ -310,10 +307,10 @@ export default {
             if (this.film != null) {
                 // Ads Start
                 //  this.loadAds();
-                // if (adsloadeds == false) {                     
-                //         this.AdCountInVideo();
-                //         adsloadeds = true;
-                // }
+                if (this.adsloadeds == false) {                     
+                        this.AdCountInVideo();
+                        this.adsloadeds = true;
+                }
 
                 if (this.$props.subtitles.length > 0 && this.film.currentTrack == 0) {
                     this.film.currentTrack = 1;
@@ -370,53 +367,42 @@ export default {
 <style lang="scss">
 @import "~/assets/sass/_vars.scss";
 @import "~/assets/sass/_mixins.scss";
-
 .note2 {
     text-align: center;
     margin: 1rem 0;
-
     span {
         color: $secondary-color;
         cursor: pointer;
     }
 }
-
 .plyr--full-ui input[type=range] {
     color: #FFD700;
 }
-
 .plyr__control--overlaid {
     background: rgba(255, 215, 0, 0.67);
 }
-
 .plyr--video .plyr__control.plyr__tab-focus,
 .plyr--video .plyr__control:hover,
 .plyr--video .plyr__control[aria-expanded=true] {
     background: #FFD700;
 }
-
 .plyr__control.plyr__tab-focus {
     box-shadow: 0 0 0 5px rgba(255, 215, 0, 0.67);
 }
-
 .plyr__menu__container .plyr__control[role=menuitemradio][aria-checked=true]::before {
     background: #FFD700;
 }
-
 .plyr--audio .plyr__control.plyr__tab-focus,
 .plyr--audio .plyr__control:hover,
 .plyr--audio .plyr__control[aria-expanded=true] {
     background: #FFD700;
 }
-
 .plyr--video .plyr__progress__buffer {
     color: rgba(8, 108, 248, 0.55);
 }
-
 .plyr--video.plyr--loading .plyr__progress__buffer {
     background-color: rgba(8, 108, 248, 0.55);
 }
-
 /* .plyr__control--pressed{
     opacity: 1 !important;
     visibility: inherit !important;
@@ -426,22 +412,18 @@ export default {
         width: 60px;
     }
 }
-
 .plyr {
     height: 600px;
 }
-
 .plyr video {
     width: 100%;
     object-fit: contain;
     height: 100%;
     border-radius: 0 !important;
 }
-
 .plyr__video-wrapper {
     height: 100%;
 }
-
 .video-loader {
     display: none;
     border: 0;
@@ -457,7 +439,6 @@ export default {
     z-index: 2;
     background-color: transparent !important;
 }
-
 .video-logo {
     border: 0;
     color: #fff;
@@ -470,20 +451,16 @@ export default {
     left: 5%;
     background-color: transparent !important;
 }
-
 .plyr--loading .video-loader {
     display: block;
 }
-
 @include sm {
     .plyr {
         height: 400px;
     }
-
     .plyr video {
         object-fit: contain !important;
     }
-
     .video-logo {
         border: 0;
         color: rgb(187, 153, 153);
@@ -497,7 +474,6 @@ export default {
         background-color: transparent !important;
     }
 }
-
 @include md {
     .video-logo {
         border: 0;
@@ -512,122 +488,81 @@ export default {
         background-color: transparent !important;
     }
 }
-
 .chat-video {
     bottom: 7rem;
     right: 2.2rem;
-
     .mine .message.last:after {
         background: #000;
     }
-
     .mine .message.last:before {
         background-image: none;
         background-color: #393939;
     }
-
     .mine .message {
         background-image: none;
         background-color: #393939;
     }
 }
-
 .ad-chat {
     top: 7rem;
     right: 2.2rem;
-
     .mine .message.last:after {
         background: #000;
     }
-
     .mine .message.last:before {
         background-image: none;
         background-color: #393939;
     }
-
     .mine .message {
         background-image: none;
         background-color: #393939;
     }
 }
-
 .chat .message {
     background-color: #232323;
 }
-
 .plyr:-webkit-full-screen .plyr__captions {
     display: block;
 }
-
 @include xl {
     .plyr__captions {
         font-size: 26px !important;
         bottom: 2rem !important;
     }
-
     .plyr:-webkit-full-screen .plyr__captions {
         font-size: 30px !important;
         bottom: 4rem !important;
     }
 }
-
 @include lg {
     .plyr__captions {
         font-size: 24px !important;
         bottom: 2rem !important;
     }
-
     .plyr:-webkit-full-screen .plyr__captions {
         font-size: 26px !important;
         bottom: 4rem !important;
     }
 }
-
 @include sm {
     .plyr:-webkit-full-screen .plyr__captions {
         z-index: 99999;
     }
 }
-
-.plyr:-webkit-full-screen {
-    .vide-ad {
-        border: 0;
-        color: #fff;
-        position: absolute;
-        z-index: 2;
-        height: 0;
-        width: 0;
-        // z-index: 9999;
-        width: auto;
-        top: 20%;
-        left: 8%;
-        background-color: transparent !important;
-
-        img {
-            width: 100%;
-        }
-    }
-
-}
-
 .vide-ad {
     border: 0;
+    display: none;
     color: #fff;
     position: absolute;
     z-index: 2;
     height: 0;
     width: 0;
     // z-index: 9999;
-    width: auto;
-    top: 30%;
-    left: 38%;
+    width: 60%;
+    top: 36%;
+    left: 22%;
     background-color: transparent !important;
-
-    img {
-        width: 100%;
-    }
 }
-
 @include sm {
     .vide-ad {
         border: 0;
@@ -636,21 +571,20 @@ export default {
         z-index: 2;
         max-height: 150px;
         // overflow: hidden;
-        top: 20%;
-        left: 8%;
-
-        #container-460d6761d1e465c09fca4ee917dd0ccb {
-            max-height: 150px;
-            overflow: hidden;
+        width: 60%;
+        top: 26%;
+        left: 22%;
+        #container-460d6761d1e465c09fca4ee917dd0ccb{
+        max-height: 150px;
+        overflow: hidden;
+        display: none;
         }
     }
-
-    #container-327995df4fccdfc89fe420ae6b341666__stand {
-        max-height: 200px;
-        overflow: hidden;
+    #container-b7d66cc8d304167ae2aa320276ca566c__stand{
+    max-height: 200px;
+    overflow: hidden;
     }
 }
-
 @include md {
     .vide-ad {
         border: 0;
@@ -659,34 +593,28 @@ export default {
         z-index: 2;
         max-height: 150px;
         // overflow: hidden;
-        top: 20%;
-        left: 8%;
-
-        #container-460d6761d1e465c09fca4ee917dd0ccb {
-            max-height: 150px;
-            overflow: hidden;
+         width: 100%;
+        top: 44%;
+        left: 0;
+        #container-460d6761d1e465c09fca4ee917dd0ccb{
+        max-height: 150px;
+        overflow: hidden;
         }
     }
 }
-
 .chat .message p {
     margin-bottom: 0 !important;
 }
-
 .ShowAd {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-
     div {
         height: 100% !important;
         width: 100% !important;
     }
-}
-.banner-ad{
-    text-align: center;
 }
 .skip-button {
     border: 0;
