@@ -30,6 +30,26 @@ export default {
             "data-cfasync" :"false",
             type: "text/javascript"
         },
+        {
+            src: "//pl15497563.passtechusa.com/b7d66cc8d304167ae2aa320276ca566c/invoke.js",
+            async :"async",
+            type: "text/javascript"
+        },
+         {
+            src: "//pl15454349.passtechusa.com/460d6761d1e465c09fca4ee917dd0ccb/invoke.js",
+            async :"async",
+            type: "text/javascript"
+        },
+         {
+            src: "//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js",
+            async :"async",
+            type: "text/javascript"
+        },
+         {
+            src: "//pl15454350.passtechusa.com/327995df4fccdfc89fe420ae6b341666/invoke.js",
+            async :"async",
+            type: "text/javascript"
+        },
         ]
     },
     data() {
