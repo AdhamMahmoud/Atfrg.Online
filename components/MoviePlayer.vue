@@ -300,6 +300,7 @@ export default {
         },
         AdCountInVideo(){
             this.AdsTimer = setInterval(this.AdWorkdone, 600000);//10min
+            this.ads.style.display = 'none';
         },
         AdWorkdone(){
                     this.film.pause();
