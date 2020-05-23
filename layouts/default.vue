@@ -3,15 +3,16 @@
     <!-- Header -->
     <!-- <loading v-if="loading"></loading> -->
     <Header :darkMode.sync="darkMode" />
+    
+    <nuxt />
+
+    <!-- Footer -->
+    <Footer />
     <div id="BannerDefault">
         <div id="container-327995df4fccdfc89fe420ae6b341666" style="display:none"></div>
         <div id="container-460d6761d1e465c09fca4ee917dd0ccb" style="display:none"></div>
         <div id="container-b7d66cc8d304167ae2aa320276ca566c" style="display:none"></div>
     </div>
-    <nuxt />
-
-    <!-- Footer -->
-    <Footer />
 </div>
 </template>
 
@@ -43,44 +44,44 @@ export default {
             StartAds: false,
         }
     },
-     head:{
-        script:[
-            {
-            src: "//pl15497563.passtechusa.com/b7d66cc8d304167ae2aa320276ca566c/invoke.js",
-            async :"async",
-            type: "text/javascript"
-        },
-         {
-            src: "//pl15454349.passtechusa.com/460d6761d1e465c09fca4ee917dd0ccb/invoke.js",
-            async :"async",
-            type: "text/javascript"
-        },
-         {
-            src: "//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js",
-            async :"async",
-            type: "text/javascript"
-        },
-         {
-            src: "//pl15454350.passtechusa.com/327995df4fccdfc89fe420ae6b341666",
-            async :"async",
-            type: "text/javascript"
-        },
-        ]
-    },
+    //  head:{
+    //     script:[
+    //         {
+    //         src: "//pl15497563.passtechusa.com/b7d66cc8d304167ae2aa320276ca566c/invoke.js",
+    //         async :"async",
+    //         type: "text/javascript"
+    //     },
+    //      {
+    //         src: "//pl15454349.passtechusa.com/460d6761d1e465c09fca4ee917dd0ccb/invoke.js",
+    //         async :"async",
+    //         type: "text/javascript"
+    //     },
+    //      {
+    //         src: "//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js",
+    //         async :"async",
+    //         type: "text/javascript"
+    //     },
+    //      {
+    //         src: "//pl15454350.passtechusa.com/327995df4fccdfc89fe420ae6b341666/invoke.js",
+    //         async :"async",
+    //         type: "text/javascript"
+    //     },
+    //     ]
+    // },
     mounted() {
-        // this.addFile("//pl15497563.passtechusa.com/b7d66cc8d304167ae2aa320276ca566c/invoke.js");
-        // // this.addFile("");
-        // this.addFile("//pl15454349.passtechusa.com/460d6761d1e465c09fca4ee917dd0ccb/invoke.js");
-        // // this.addFile("//pl15454350.passtechusa.com/327995df4fccdfc89fe420ae6b341666/invoke.js");
-        // var newScript2 = document.createElement('script');
-        // newScript2.type = 'text/javascript';
-        // newScript2.src = '//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js';
-        // document.getElementsByTagName("head")[0].appendChild(newScript2);
+        this.addFile("//pl15497563.passtechusa.com/b7d66cc8d304167ae2aa320276ca566c/invoke.js");
+        // this.addFile("");
+        this.addFile("//pl15454349.passtechusa.com/460d6761d1e465c09fca4ee917dd0ccb/invoke.js");
+        // this.addFile("//pl15454350.passtechusa.com/327995df4fccdfc89fe420ae6b341666/invoke.js");
+        var newScript2 = document.createElement('script');
+        newScript2.type = 'text/javascript';
+        newScript2.src = '//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js';
+        document.getElementsByTagName("head")[0].appendChild(newScript2);
 
-        // var newScript3 = document.createElement('script');
-        // newScript3.type = 'text/javascript';
-        // newScript3.src = '//pl15454350.passtechusa.com/327995df4fccdfc89fe420ae6b341666';
-        // document.getElementsByTagName("head")[0].appendChild(newScript3);
+        var newScript3 = document.createElement('script');
+        newScript3.type = 'text/javascript';
+        newScript3.src = '//pl15454350.passtechusa.com/327995df4fccdfc89fe420ae6b341666/invoke.js';
+        document.getElementsByTagName("head")[0].appendChild(newScript3);
 
 
         //  document.domain = "atfrg.online";
@@ -99,6 +100,7 @@ export default {
 <style>
 .body{
     overflow-x: hidden;
+    z-index: 99999;
 }
 #BannerDefault {
     z-index: -10;
