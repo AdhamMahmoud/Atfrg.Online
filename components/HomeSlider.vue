@@ -62,7 +62,7 @@
                 </div>
             </div>
         
-        </div>
+      
   
     <!-- Slider Start -->
                 <div v-for="series in tvSerieses" :key="series.id" class="swiper-slide big-slide" :style="'background-image:url(' + GetSlide(series.posters) +')'">
@@ -126,6 +126,7 @@
             <!-- Slide End -->
             </div>
 </div>
+  </div>
 </template>
 
 <script>
