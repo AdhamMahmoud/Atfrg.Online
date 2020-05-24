@@ -162,7 +162,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="other-title">
-                    الحلقات المتاحة
+                     الحلقات المتاحة لـ {{title}}
                 </div>
             </div>
         </div>

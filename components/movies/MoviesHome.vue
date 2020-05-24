@@ -1,7 +1,9 @@
 <template>
 <!-- Movies Home -->
 <div class="home-slider-block">
- 
+  <div class="message">
+        <a href='https://play.google.com/store/apps/details?id=com.connect.atfrg&hl=en_US&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img style="height: 65px;width: auto;" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' /></a>
+    </div>
     <!-- Container -->
     <div class="container-fluid back-color">
         <div class="row">
@@ -183,39 +185,45 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/sass/_vars.scss';
 @import '~/assets/sass/_mixins.scss';
-// .home-slider-block {
-//       margin-top: -19rem;
-//       box-shadow: none;
-// }
-// @include sm{
-//     .home-slider-block{
-//         margin-top: -24rem !important;
-// }
-// }
-.message{
-   position: absolute;
+
+.home-slider-block {
+    margin-top: -19rem;
+    box-shadow: none;
+}
+
+@include sm {
+    .home-slider-block {
+        margin-top: -24rem !important;
+    }
+}
+
+.message {
+    position: absolute;
     display: block;
     margin: 0 auto;
     text-align: center;
-    top: -45px;
-    left: 42%;
+    top: -70px;
+    left: 41%;
     border-radius: 10px;
     padding: 10px;
-    background-color: #0c0a2a;
-    color:#fff;
-    p{
-        margin:0;
-        font-size:15px;
+    // background-color: #0c0a2a;
+    color: #fff;
+
+    p {
+        margin: 0;
+        font-size: 15px;
     }
 }
-@include sm{
-.message{
-    top: -45px;
-    left: 23%;
-    p{
-        margin:0;
-        font-size:14px;
+
+@include sm {
+    .message {
+        top: -73px;
+        left: 20%;
+
+        p {
+            margin: 0;
+            font-size: 14px;
+        }
     }
-}
 }
 </style>

@@ -189,7 +189,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="other-title">
-                    الحلقات المتاحة
+                    الحلقات المتاحة لـ {{$props.season[0].title}}
                 </div>
             </div>
         </div>
@@ -515,16 +515,25 @@ export default {
     },
     mounted() {
         this.handleSearch(this.$props.imdbId);
-        console.log(this.lastTitle);
     },
     methods: {
         TitleConvert(){
-            var title = this.$props.title;
-            var num =  parseInt(title);
-            title = this.$props.title.replace(num,"\u200E");
-            title =  title + " " + num;
-            this.lastTitle = title;
-            return title;
+            if(this.Series.lang.name != "Arabic")
+            {
+                 var title = this.$props.title;
+                 this.lastTitle = title;
+                 return title;
+              
+            }
+           else{
+                 var title = this.$props.title;
+                var num =  parseInt(title);
+                title = this.$props.title.replace(num,"\u200E");
+                title =  title + " " + num;
+                this.lastTitle = title;
+                return title;
+           }
+         
         },
         reverseString(str) {
             return str.split("").reverse().join("");
