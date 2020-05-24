@@ -322,6 +322,12 @@ export default {
             } else {
                 this.SkipButton.innerHTML = "Skip Ad";
                 this.SkipButton.disabled = false;
+                plyr.play();
+                this.SkipButton.style.display = 'none';
+                this.ads.style.display = 'none';
+                this.SkipButton.innerHTML = "10 sec";
+                this.adCount = 10;
+                this.AdCountInVideo();      
             }
         },
         nowPlaying() {
