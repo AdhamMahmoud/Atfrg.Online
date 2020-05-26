@@ -1,17 +1,18 @@
-s.<template>
+<template>
 <div class="movies-genre">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
+                <h2>افلام بترجمة : {{translator}}</h2>
                 <filters :filtersUpdate.sync="filtersUpdate" :genChange.sync="genChange" :LangChange.sync="LangChange" :QualityChange.sync="QualityChange" 
                 :AudienceChange.sync="AudienceChange" :YearStartChange.sync="YearStartChange" :YearEndChange.sync="YearEndChange"/>
             </div>
         </div>
           <ApolloQuery :query="gql => gql`
                       query GetMovies($items: Int , $Filter_languages: [String!], $Filter_years_Start: DateTime!, $Filter_years_End: DateTime!,
-                      $Filter_audiences: [Audience!], $Filter_Qualities:[MovieQuality!], $Filter_genres:[String!]) {
+                      $Filter_audiences: [Audience!], $Filter_Qualities:[MovieQuality!], $Filter_genres:[String!], $translator:String) {
                       movies(orderBy: createdAt_DESC, first: $items, 
-                      where :{ isPublished: true, Production:NETFLIX, lang: { name_in:$Filter_languages }, audience_in: $Filter_audiences , movieQuality_in:$Filter_Qualities, genres_some:{name_in:$Filter_genres}
+                      where :{ isPublished: true, lang: { name_in:$Filter_languages }, audience_in: $Filter_audiences , subtitles_some:{name:$translator} movieQuality_in:$Filter_Qualities, genres_some:{name_in:$Filter_genres}
                        AND: {
                           releaseDate_gte: $Filter_years_Start
                           releaseDate_lte: $Filter_years_End
@@ -29,7 +30,6 @@ s.<template>
                         imdbId
                         videoQualities
                         runtime
-                        releaseDate
                         genres {
                         id
                           name
@@ -37,7 +37,7 @@ s.<template>
                         watchCount
                       }
                     }
-                    `" :variables="{ items, Filter_languages, Filter_years_Start, Filter_years_End, Filter_audiences, Filter_Qualities, Filter_genres }">
+                    `" :variables="{ items, Filter_languages, Filter_years_Start, Filter_years_End, Filter_audiences, Filter_Qualities, Filter_genres ,translator}">
             <template v-slot="{ result: { loading, error, data } }">
                 <!-- Loading -->
                 <div v-if="loading" class="loading apollo">
@@ -51,7 +51,7 @@ s.<template>
                 <div v-else-if="data && data.movies.length > 0" class="row global-items">
                     <!-- Container End -->
                     <div v-for="movie in data.movies" :key="movie.id" class="col-xl-2 col-lg-3 col-md-3 col-6 global-item">
-                        <TrailerItem :releaseDate="movie.releaseDate" :id="movie.id" :title="movie.title" :quality="movie.movieQuality" :poster="movie.posters" :imdbId="movie.imdbId" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :run="false" />
+                        <TrailerItem :id="movie.id" :releaseDate="movie.releaseDate" :title="movie.title" :quality="movie.movieQuality" :poster="movie.posters" :imdbId="movie.imdbId" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :run="false" />
                     </div>
                     <!-- No result -->
                 </div>
@@ -72,35 +72,43 @@ import TrailerItem from "~/components/TrailerItem.vue";
 import filters from "~/components/movies/genre/filters";
 import gql from 'graphql-tag';
 export default {
-      head() {
+        head() {
         return {
-            title: "افلام NetFlix -  اتفرج اون لاين Atfrg.Online",
-            meta: [
-                // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-                {
-                    hid: 'description',
-                    name: 'description',
-                    content: "مشاهدة وتحميل افلام NetFlix  مترجم اون لاين بجودة عالية - اتفرج اون لاين Atfrg.Online" || ""
-                },
-                {
-                    hid: 'keywords',
-                    name: 'keywords',
-                    content: "مشاهدة فيلم,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, افلام NetFlix  , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة" || ""
-                },
-                {
-                    property: "og:title",
-                    content: "افلام NetFlix -  اتفرج اون لاين Atfrg.Online"
-                },
-                {
-                    property: "og:description",
-                    content: "مشاهدة افلام NetFlix مترجم اون لاين بجودة عالية - اتفرج اون لاين Atfrg.Online" || ""
-                },
-                {
-                    property: "og:image",
-                    content: "https://d1qmdf3vop2l07.cloudfront.net/vital-slipper.cloudvent.net/compressed/_min_/4ce4e6669edb5602a6b38f77eca90b8b.svg"
-                },
-            ]
-        }
+        title: "افلام بترجمة "+ this.$route.params.name +" - اتفرج اون لاين",
+        meta: [{
+                hid: 'description',
+                name: 'description',
+                content: "مشاهدة وتحميل افلام مجانا بدون اعلانات علي اتفرج اون لاين Atfrg.Online"
+            },
+            {
+                hid: 'keywords',
+                name: 'keywords',
+                content: "مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل " || ""
+            },
+            {
+                property: "image",
+                content: "https://atfrgimages.b-cdn.net/og2.png"
+            },
+            {
+                property: "og:image",
+                content: "https://atfrgimages.b-cdn.net/og2.png"
+            },
+            {
+
+                property: "og:title",
+                content: "افلام بترجمة "+ this.$route.params.name +" - اتفرج اون لاين"
+            },
+            {
+                property: "og:description",
+                content: "مشاهدة وتحميل افلام مجانا بدون اعلانات علي اتفرج اون لاين Atfrg.Online"
+            },
+            {
+                property: "og:keywords",
+                content: "مشاهدة مسلسل ,اتفرج اون لاين , مشاهدة مسلسل, مترجم, افلام اون لاين, افلام اجنبى, فيلم , تحميل افلام , مشاهدة افلام بجودة عالية , مشاهدة انمي اون لاين, تحميل موسم برابط واحد , مشاهدة بدون اعلانات , تحميل مباشر  , افلام جديدة , مسلسل "
+            },
+           
+        ]
+           }
     },
     data: function () {
         return {
@@ -114,7 +122,7 @@ export default {
             Filter_years_End: "5000",
             Filter_genres: [],
 
-
+            loades:true,
             genChange:[],
             LangChange:[],
             QualityChange:[],
@@ -127,6 +135,11 @@ export default {
         resultNotFound,
         TrailerItem,
         filters
+    },
+      computed:{
+        translator:function(){
+            return this.$route.params.name;
+        }
     },
     methods: {
         scroll() {
@@ -176,5 +189,9 @@ export default {
 <style lang="scss">
 @import '~/assets/sass/_vars.scss';
 @import '~/assets/sass/_mixins.scss';
-
+h2{
+    text-align: center;
+    color:#fff;
+    margin:2rem 0;
+}
 </style>

@@ -27,6 +27,7 @@ const _400280b8 = () => interopDefault(import('..\\pages\\episodetest\\_id.vue' 
 const _6b739211 = () => interopDefault(import('..\\pages\\movie\\_name.vue' /* webpackChunkName: "pages_movie__name" */))
 const _4a0b161b = () => interopDefault(import('..\\pages\\movtest\\_name.vue' /* webpackChunkName: "pages_movtest__name" */))
 const _9fbb9668 = () => interopDefault(import('..\\pages\\series\\_name.vue' /* webpackChunkName: "pages_series__name" */))
+const _55dbd0c8 = () => interopDefault(import('..\\pages\\translators\\_name.vue' /* webpackChunkName: "pages_translators__name" */))
 const _0ca6e18b = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
 
 // TODO: remove in Nuxt 3
@@ -141,6 +142,10 @@ export const routerOptions = {
     path: "/series/:name?",
     component: _9fbb9668,
     name: "series-name"
+  }, {
+    path: "/translators/:name?",
+    component: _55dbd0c8,
+    name: "translators-name"
   }, {
     path: "/",
     component: _0ca6e18b,
