@@ -250,7 +250,7 @@ export default {
      */
     transpile: ["vue-plyr"],
     vendor: ["vue-plyr"],
-    crossorigin:"anonymous",
+     crossorigin:"anonymous",
     cache:true,
     optimization:{
       minimize: true,
