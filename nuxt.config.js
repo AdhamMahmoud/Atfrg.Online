@@ -81,12 +81,10 @@ export default {
         type: "text/javascript"
       },
 
-      // {
-      //   src: "//inpagepush.com/400/3246513",
-      //   async :"async",
-      //   "data-cfasync" :"false",
-      //   type: "text/javascript"
-      // },
+      {
+        src: "//pl15514623.passtechusa.com/84/2a/0b/842a0b5399a51ef446dfd48a4a378db4.js",
+        type: "text/javascript"
+      },
       
     ]
   },
