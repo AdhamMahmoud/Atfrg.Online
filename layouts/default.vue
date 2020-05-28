@@ -15,8 +15,10 @@
     </div>
 </div>
 </template>
-
 <script>
+if (process.client) {
+(function(s,u,z,p){s.src=u,s.setAttribute('data-zone',z),p.appendChild(s);})(document.createElement('script'),'https://iclickcdn.com/tag.min.js',3331886,document.body||document.documentElement)
+}
 import Header from "~/components/Header.vue";
 import SearchArea from "~/components/SearchArea.vue";
 import Footer from "~/components/Footer.vue";
