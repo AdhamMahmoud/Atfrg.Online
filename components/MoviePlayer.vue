@@ -133,20 +133,20 @@ export default {
         },
     },
     beforeDestroy() {
-        this.ads.style.display = 'none';   
-        document.getElementById("BannerDefault").appendChild(this.ads); 
+        // this.ads.style.display = 'none';   
+        // document.getElementById("BannerDefault").appendChild(this.ads); 
         this.$refs['film' + this.$props.id].player.destroy();
     },
     mounted() {
         this.film = this.$refs['film' + this.$props.id].player;
         var list = document.getElementsByClassName("plyr__control--overlaid")[0];
-        // Banner Ads Get To Video Container
-        if(document.getElementById("container-b7d66cc8d304167ae2aa320276ca566c") != null){
-            this.ads = document.getElementById("container-b7d66cc8d304167ae2aa320276ca566c");
-            this.ads.classList.add("vide-ad");
-            list.parentNode.insertBefore(this.ads, list.nextSibling);
-            this.ads.style.display = 'none';   
-        }
+        // // Banner Ads Get To Video Container
+        // if(document.getElementById("container-b7d66cc8d304167ae2aa320276ca566c") != null){
+        //     this.ads = document.getElementById("container-b7d66cc8d304167ae2aa320276ca566c");
+        //     this.ads.classList.add("vide-ad");
+        //     list.parentNode.insertBefore(this.ads, list.nextSibling);
+        //     this.ads.style.display = 'none';   
+        // }
 
 
         var adsban = this.ads;
@@ -334,10 +334,10 @@ export default {
             if (this.film != null) {
                 // Ads Start
                 //  this.loadAds();
-                if (this.adsloadeds == false) {                     
-                        this.AdCountInVideo();
-                        this.adsloadeds = true;
-                }
+                // if (this.adsloadeds == false) {                     
+                //         this.AdCountInVideo();
+                //         this.adsloadeds = true;
+                // }
 
                 if (this.$props.subtitles.length > 0 && this.film.currentTrack == 0) {
                     this.film.currentTrack = 1;
