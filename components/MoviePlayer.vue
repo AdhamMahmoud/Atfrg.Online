@@ -24,12 +24,12 @@ import 'vue-plyr/dist/vue-plyr.css';
 export default {
     head:{
         script:[
-            {
-            src: "//inpagepush.com/400/3246513",
-            async :"async",
-            "data-cfasync" :"false",
-            type: "text/javascript"
-        },
+        //     {
+        //     src: "//inpagepush.com/400/3246513",
+        //     async :"async",
+        //     "data-cfasync" :"false",
+        //     type: "text/javascript"
+        // },
         {
             src: "//pl15497563.passtechusa.com/b7d66cc8d304167ae2aa320276ca566c/invoke.js",
             async :"async",
