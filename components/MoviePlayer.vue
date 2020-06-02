@@ -337,10 +337,11 @@ export default {
                 // Ads Start
                 //  this.loadAds();
                 if (this.adsloadeds == false) {   
-                    this.VideoAd = true;     
+                    this.VideoAd = true;    
+                    this.adsloadeds = true; 
                     this.timer = setTimeout(() => {    
                         this.VideoAd = false; 
-                    }, 12000);         
+                    }, 15000);         
                         // this.AdCountInVideo();
                         // this.adsloadeds = true;
                 }
