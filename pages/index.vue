@@ -11,7 +11,7 @@
                 <!--  Movies Block -->
                 <Movies v-if="movies" />
 
-                 <Ramadan v-if="scrolled" />
+                 <!-- <Ramadan v-if="scrolled" /> -->
                
                 <Netflix v-if="netflix && scrolled" />
                 <!-- Serieses Block -->

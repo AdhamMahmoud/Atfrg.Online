@@ -7,7 +7,7 @@
                     <!-- Apoolo Query -->
                     <ApolloQuery :query='gql => gql`
                       query getMoviestwo {
-                      movies(orderBy: updatedAt_DESC, first:15,  where :{ isPublished: true, releaseDate_lte:"2050"}) {
+                      movies(orderBy: watchCount_DESC, first:15,  where :{ isPublished: true, createdAt_lte:"2050"}) {
                         id
                         title
                         posters {
@@ -64,7 +64,7 @@
                 <div :class="{ col_show : active == 'lastupdatesMovies' , col_hide : active != 'lastupdatesMovies' }" id="lastupdatesMovies">
                     <ApolloQuery :query="gql => gql`
                       query getMoviestwo {
-                      movies(orderBy: updatedAt_DESC, first:10,  where :{ isPublished: true}) {
+                      movies(orderBy: createdAt_DESC, first:10,  where :{ isPublished: true}) {
                         id
                         title
                         posters {
@@ -121,7 +121,7 @@
                 <div :class="{ col_show : active == 'choosen' , col_hide : active != 'choosen' }" id="choosen">
                     <ApolloQuery :query='gql => gql`
                       query getMoviestwo {
-                      movies(orderBy: releaseDate_DESC,  first:10, where :{ isPublished: true, releaseDate_lt:"2020"}) {
+                      movies(orderBy: releaseDate_DESC,  first:10, where :{ isPublished: true}) {
                         id
                         title
                         posters {

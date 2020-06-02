@@ -7,8 +7,9 @@
 
         <!-- <span @click="reloadPage()">تحديث المحتوي</span> -->
     </div>
-
-    <vue-plyr class="player-mov" :ref="'film' + id" clickToPlay="true" seektime="10" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
+     <div style="color:red" class="note2" v-if="VideoAd" >الأعلان 10 ثواني وبعدين اتفرج برحتك 💙</div>
+    <iframe class="player-mov player-trailer" allow="autoplay" v-if="VideoAd" :src="'https://www.youtube.com/embed/UrL-QAfAwv4?autoplay=1'"> </iframe>
+    <vue-plyr class="player-mov" v-if="!VideoAd" :ref="'film' + id" clickToPlay="true" seektime="10" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
         <video preload="none" playsinline crossorigin="anonymous" :id="'vid' +id" :poster="poster">
             <!-- Video Source -->
             <source v-for="video in links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
@@ -76,6 +77,7 @@ export default {
             adTime:null,
             aa:null,
             AdsTimer:null,
+            VideoAd:false,
             // adsLoaded:false,
         }
     },
@@ -334,10 +336,14 @@ export default {
             if (this.film != null) {
                 // Ads Start
                 //  this.loadAds();
-                // if (this.adsloadeds == false) {                     
-                //         this.AdCountInVideo();
-                //         this.adsloadeds = true;
-                // }
+                if (this.adsloadeds == false) {   
+                    this.VideoAd = true;     
+                    this.timer = setTimeout(() => {    
+                        this.VideoAd = false; 
+                    }, 12000);         
+                        // this.AdCountInVideo();
+                        // this.adsloadeds = true;
+                }
 
                 if (this.$props.subtitles.length > 0 && this.film.currentTrack == 0) {
                     this.film.currentTrack = 1;

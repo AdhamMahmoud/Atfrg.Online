@@ -38,7 +38,7 @@ export default {
     .it-client {
         margin: 0 auto !important;
     }
-}f
+}
 #container-327995df4fccdfc89fe420ae6b341666{
 max-height: 260px;
 overflow: hidden;

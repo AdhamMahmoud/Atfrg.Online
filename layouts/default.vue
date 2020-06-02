@@ -16,9 +16,7 @@
 </div>
 </template>
 <script>
-if (process.client) {
-(function(s,u,z,p){s.src=u,s.setAttribute('data-zone',z),p.appendChild(s);})(document.createElement('script'),'https://iclickcdn.com/tag.min.js',3331886,document.body||document.documentElement)
-}
+
 import Header from "~/components/Header.vue";
 import SearchArea from "~/components/SearchArea.vue";
 import Footer from "~/components/Footer.vue";
@@ -70,6 +68,9 @@ export default {
     //     ]
     //  },
     mounted() {
+   
+
+            
         // this.addFile("//pl15497563.passtechusa.com/b7d66cc8d304167ae2aa320276ca566c/invoke.js");
         // // this.addFile("");
         // this.addFile("//pl15454349.passtechusa.com/460d6761d1e465c09fca4ee917dd0ccb/invoke.js");
