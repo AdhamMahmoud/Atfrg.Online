@@ -84,11 +84,11 @@ export default {
       //   src:"https://iclickcdn.com/tag.min.js",
       //   type: "text/javascript"
       // },
-      {
-        src: "//pl15514623.passtechusa.com/84/2a/0b/842a0b5399a51ef446dfd48a4a378db4.js",
-        type: "text/javascript",
-        // defer: true
-      },
+      // {
+      //   src: "//pl15514623.passtechusa.com/84/2a/0b/842a0b5399a51ef446dfd48a4a378db4.js",
+      //   type: "text/javascript",
+      //   // defer: true
+      // },
       
     ]
   },
