@@ -44,47 +44,8 @@ export default {
             StartAds: false,
         }
     },
-    //  head:{
-    //     script:[
-    //         {
-    //         src: "//pl15514623.passtechusa.com/84/2a/0b/842a0b5399a51ef446dfd48a4a378db4.js",
-    //         type: "text/javascript"
-    //     },
-    //      {
-    //         src: "//pl15454349.passtechusa.com/460d6761d1e465c09fca4ee917dd0ccb/invoke.js",
-    //         async :"async",
-    //         type: "text/javascript"
-    //     },
-    //      {
-    //         src: "//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js",
-    //         async :"async",
-    //         type: "text/javascript"
-    //     },
-    //      {
-    //         src: "//pl15454350.passtechusa.com/327995df4fccdfc89fe420ae6b341666/invoke.js",
-    //         async :"async",
-    //         type: "text/javascript"
-    //     },
-    //     ]
-    //  },
     mounted() {
    
-
-            
-        // this.addFile("//pl15497563.passtechusa.com/b7d66cc8d304167ae2aa320276ca566c/invoke.js");
-        // // this.addFile("");
-        // this.addFile("//pl15454349.passtechusa.com/460d6761d1e465c09fca4ee917dd0ccb/invoke.js");
-        // // this.addFile("//pl15454350.passtechusa.com/327995df4fccdfc89fe420ae6b341666/invoke.js");
-        // var newScript2 = document.createElement('script');
-        // newScript2.type = 'text/javascript';
-        // newScript2.src = '//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js';
-        // document.getElementsByTagName("head")[0].appendChild(newScript2);
-
-        // var newScript3 = document.createElement('script');
-        // newScript3.type = 'text/javascript';
-        // newScript3.src = '//pl15454350.passtechusa.com/327995df4fccdfc89fe420ae6b341666/invoke.js';
-        // document.getElementsByTagName("head")[0].appendChild(newScript3);
-
 
         //  document.domain = "atfrg.online";
         // setTimeout(() => this.StartAds = true, 1000);

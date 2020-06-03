@@ -67,10 +67,6 @@ export default {
       { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css?family=Tajawal:500&display=swap' },
     ],
     script: [
-      // {
-      //   src:'//imasdk.googleapis.com/js/sdkloader/ima3.js',
-      //   type: "text/javascript"
-      // },
       {
         src: "https://kit.fontawesome.com/3e50565740.js?ver=1.1",
         type: "text/javascript"
@@ -80,14 +76,10 @@ export default {
         async :"",
         type: "text/javascript"
       },
-      // {
-      //   src:"https://iclickcdn.com/tag.min.js",
-      //   type: "text/javascript"
-      // },
        {
         src: "//pl15514623.passtechusa.com/84/2a/0b/842a0b5399a51ef446dfd48a4a378db4.js",
         type: "text/javascript",
-        // defer: true
+  
       },
       
     ]
