@@ -7,9 +7,9 @@
 
         <!-- <span @click="reloadPage()">تحديث المحتوي</span> -->
     </div>
-     <div style="color:red" class="note2" v-show="VideoAd" >الأعلان 10 ثواني وبعدين اتفرج برحتك 💙</div>
-    <iframe class="player-mov player-trailer" allow="autoplay" v-if="VideoAd" :src="'https://www.youtube.com/embed/UrL-QAfAwv4?autoplay=1'"> </iframe>
-    <vue-plyr class="player-mov" v-show="!VideoAd" :ref="'film' + id" clickToPlay="true" seektime="10" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
+     <!-- <div style="color:red" class="note2" v-show="VideoAd" >الأعلان 10 ثواني وبعدين اتفرج برحتك 💙</div> -->
+    <!-- <iframe class="player-mov player-trailer" allow="autoplay" v-if="VideoAd" :src="'https://www.youtube.com/embed/UrL-QAfAwv4?autoplay=1'"> </iframe> -->
+    <vue-plyr class="player-mov" :ref="'film' + id" clickToPlay="true" seektime="10" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
         <video preload="none" playsinline crossorigin="anonymous" :id="'vid' +id" :poster="poster">
             <!-- Video Source -->
             <source v-for="video in links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
@@ -335,18 +335,18 @@ export default {
         nowPlaying() {
             if (this.film != null) {
                 // Ads Start
-                //  this.loadAds();
-                if (this.adsloadeds == false) {   
-                    this.VideoAd = true;    
-                    this.adsloadeds = true; 
-                    this.film.pause();
-                    this.timer = setTimeout(() => {    
-                        this.VideoAd = false; 
-                         this.film.play();
-                    }, 15000);         
-                        // this.AdCountInVideo();
-                        // this.adsloadeds = true;
-                }
+                // //  this.loadAds();
+                // if (this.adsloadeds == false) {   
+                //     this.VideoAd = true;    
+                //     this.adsloadeds = true; 
+                //     this.film.pause();
+                //     this.timer = setTimeout(() => {    
+                //         this.VideoAd = false; 
+                //          this.film.play();
+                //     }, 15000);         
+                //         // this.AdCountInVideo();
+                //         // this.adsloadeds = true;
+                // }
 
                 if (this.$props.subtitles.length > 0 && this.film.currentTrack == 0) {
                     this.film.currentTrack = 1;
