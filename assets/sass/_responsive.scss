@@ -153,9 +153,9 @@ margin-right: 5px;
     margin:20px 30px;
 }
 .Slider-block .my-swiper{
-    height: 400px;
+    height: 220px;
     .item-slide .poster{
-            height: 400px;
+            height: 180px;
     }
 }
 .Slider-block .my-swiper .swiper-button-prev, .Slider-block .my-swiper .swiper-button-next{
@@ -171,6 +171,14 @@ margin-right: 5px;
 
 /* === Pages === */
 @include sm{
+    .more-btn {
+        font-size: 16px;
+        padding-bottom: 1rem;
+        display: flex;
+        justify-content: flex-end !important;
+        padding: 9px 0 !important;
+        margin-left: 22px !important;
+    }
     .player-mov {
         width:100%;
     }

@@ -195,4 +195,5 @@ export default {
 <style lang="scss">
 @import '~/assets/sass/_vars.scss';
 @import '~/assets/sass/_mixins.scss';
+
 </style>

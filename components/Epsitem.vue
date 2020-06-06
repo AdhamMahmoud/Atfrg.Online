@@ -14,12 +14,12 @@
             <!-- Movie Poster img -->
             <img :data-src="poster" :alt="title"></div>
             <!-- Movie Overlay -->
-            <div class="overlay">
-                    <!-- Movie Overlay Information -->
+            <!-- <div class="overlay">
+                   
                     <div class="information">
-                        <!-- Movie Name -->
+                       
                         <h3 class="name">{{title}}</h3>
-                        <!-- Movie Category -->
+                       
                         <div class="subinfo-block">
                             <span class="audience">{{ getaudience(audience) }}
                             </span>
@@ -28,7 +28,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
     </nuxt-link>
 </template>

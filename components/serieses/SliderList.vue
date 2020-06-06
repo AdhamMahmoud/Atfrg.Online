@@ -92,7 +92,7 @@
                 > <resultNotFound /></div>
               </template>
             </ApolloQuery>
-            <div class="more-btn">
+            <div class="more-btn" style="justify-content: center">
               <nuxt-link to="/serieses/last-updated"> <i class="im im-angle-right-circle"></i> </nuxt-link>
             </div>
           </div>
@@ -185,7 +185,7 @@
                 ><resultNotFound /></div>
               </template>
             </ApolloQuery>
-            <div class="more-btn">
+            <div class="more-btn" style="justify-content: center">
               <nuxt-link to="/serieses/new-release"> <i class="im im-angle-right-circle"></i> </nuxt-link>
             </div>
           </div>
@@ -223,7 +223,7 @@ export default {
       overId: 0,
       timer: null,
       swiperOption: {
-        slidesPerView: 5,
+        slidesPerView: 8,
         spaceBetween: 5,
         navigation: {
           nextEl: ".swiper-button-next",
@@ -231,7 +231,7 @@ export default {
         },
         breakpoints: {
             1024: {
-              slidesPerView: 5,
+              slidesPerView: 8,
               spaceBetween: 5
             },
             768: {
@@ -239,11 +239,11 @@ export default {
               spaceBetween: 5
             },
             640: {
-              slidesPerView: 1,
+              slidesPerView: 2,
               spaceBetween: 5
             },
             320: {
-              slidesPerView: 1,
+              slidesPerView: 2,
               spaceBetween: 5
             }
         }
@@ -305,4 +305,5 @@ export default {
     }
   }
 }
+
 </style>

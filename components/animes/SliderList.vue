@@ -60,7 +60,7 @@
                 ><resultNotFound /></div>
                   </template>
                   </ApolloQuery>
-                   <div class="more-btn"><nuxt-link to="/anime/new-release"> <i class="im im-angle-right-circle"></i> </nuxt-link></div>
+                   <div class="more-btn" style="justify-content: center"><nuxt-link to="/anime/new-release"> <i class="im im-angle-right-circle"></i> </nuxt-link></div>
               </div>
                 <div :class="{ col_show : active == 'choosen' , col_hide : active != 'choosen' }" id="choosen">
                    <ApolloQuery
@@ -119,7 +119,7 @@
                 ><resultNotFound /></div>
                   </template>
                   </ApolloQuery>
-                   <div class="more-btn"><nuxt-link to="/anime/last-updated"> <i class="im im-angle-right-circle"></i></nuxt-link></div>
+                   <div class="more-btn" style="justify-content: center"><nuxt-link to="/anime/last-updated"> <i class="im im-angle-right-circle"></i></nuxt-link></div>
               </div>
             </div>
             </div>
@@ -155,7 +155,7 @@ export default {
       overId:0,
       timer:null,
       swiperOption: {
-          slidesPerView: 5,
+          slidesPerView: 8,
           spaceBetween: 5,
           navigation: {
             nextEl: '.swiper-button-next',
@@ -163,19 +163,19 @@ export default {
           },
         breakpoints: {
             1024: {
-              slidesPerView: 5,
-              spaceBetween: 40
+              slidesPerView: 8,
+              spaceBetween: 5
             },
             768: {
               slidesPerView: 3,
-              spaceBetween: 40
+              spaceBetween: 5
             },
             640: {
-              slidesPerView: 1,
+              slidesPerView: 2,
               spaceBetween: 5
             },
             320: {
-              slidesPerView: 1,
+              slidesPerView: 2,
               spaceBetween: 5
             }
         }
@@ -227,7 +227,8 @@ export default {
 .more-btn{
     padding-bottom: 1rem;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    padding: 5px 0;
     a {
       color:$primary-color !important;
       @include transition(0.3s);
@@ -237,4 +238,5 @@ export default {
       }
     }
 }
+
 </style>

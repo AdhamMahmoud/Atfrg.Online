@@ -3,13 +3,14 @@
 <nuxt-link :to="'/movie/' + title" class="item-fade">
     <div v-lazy-container="{ selector: 'img', loading: 'https://atfrgimages.b-cdn.net/images/loader.png' }" class="item-slide">
         <!-- Movie Poster Container-->
+        
         <div class="poster">
             <!-- quality -->
-            <span class="quality">{{ quality }}</span>
-            <span class="views">
+            <!-- <span class="quality">{{ quality }}</span> -->
+            <!-- <span class="views">
                 {{ watchCount }}
                 <i class="far fa-eye"></i>
-            </span>
+            </span> -->
             <span class="rate" v-if="films.imdbRating != null">
                 {{ films.imdbRating }} <i class="far fa-star"></i></span>
             <!-- Movie Poster img -->
@@ -17,9 +18,9 @@
         </div>
 
         <!-- Movie Overlay -->
-        <div class="overlay">
-            <!-- Movie Trailer -->
-            <!-- <div v-if="run == true" class="overlay-trailer" style="display:none;" :ref="id + 'poster'">
+        <!-- <div class="overlay">
+            
+             <div v-if="run == true" class="overlay-trailer" style="display:none;" :ref="id + 'poster'">
                   <vue-plyr :options="playerOptions" :id="id" class="trailer" :ref="id">
                     <video>
                       <source :src="trailer" type="video/mp4"/>
@@ -27,11 +28,11 @@
                   </vue-plyr>
                 </div> -->
             <!-- Movie Overlay Information -->
-            <div class="information">
-                <!-- Movie Name -->
+            <!-- <div class="information">
+              
                 <h3 v-if="year != ''" class="name">{{ title + " ("+ GetYear(releaseDate) + ")"}}</h3>
                 <h3 v-else class="name">{{ title }}</h3>
-                <!-- Movie Category -->
+               
                 <div class="subinfo-block">
                     <span v-if="year != ''" class="runtime">
                         {{ runTimeCalc(runtime) }}
@@ -41,9 +42,12 @@
                         <i v-for="genre in genres" :key="genre.id"> {{ genre.name }} </i>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div> -->
+        <!-- </div>  -->
     </div>
+    <div>
+                <h5 v-if="year != ''" class="name">{{ title.substring(0,15) + " ("+ GetYear(releaseDate) + ")"}}</h5>
+                <h5 v-else class="name">{{ title }}</h5></div>
 </nuxt-link>
 </template>
 
@@ -218,5 +222,11 @@ function secondsToHms(d) {
 /* .fade-leave-active below version 2.1.8 */
     {
     opacity: 0;
+}
+.name{
+        font-size: 15px;
+    text-align: center;
+    margin: 5px 0;
+    width: 100%;
 }
 </style>

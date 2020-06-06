@@ -545,7 +545,7 @@ export default {
 }
 
 .plyr {
-    height: 600px;
+    height: 400px;
 }
 
 .plyr video {

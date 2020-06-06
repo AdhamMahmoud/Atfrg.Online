@@ -58,7 +58,7 @@
 
                     </nuxt-link>
                     <div class="title">{{ movie.title }}</div>
-                    <div class="overview">{{ movie.overview }}</div>       
+                    <!-- <div class="overview">{{ movie.overview }}</div>        -->
                 </div>
             </div>
         
@@ -118,7 +118,7 @@
 </svg>
 </nuxt-link>
                     <div class="title">{{ series.title }}</div>
-                    <div class="overview">{{ series.overview }}</div>
+                    <!-- <div class="overview">{{ series.overview }}</div> -->
            
                 </div>
 

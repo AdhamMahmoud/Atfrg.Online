@@ -15,6 +15,7 @@
     </div>
 </div>
 </template>
+
 <script>
 
 import Header from "~/components/Header.vue";
@@ -46,7 +47,19 @@ export default {
     },
     mounted() {
    
+           
+             this.timer = setTimeout(() => {
+            var newScript = document.createElement('script');
+            newScript.type = 'text/javascript';
+            newScript.src = '//pl15514623.passtechusa.com/84/2a/0b/842a0b5399a51ef446dfd48a4a378db4.js';
+            document.getElementsByTagName("head")[0].appendChild(newScript);
 
+            var newScript2 = document.createElement('script');
+            newScript2.type = 'text/javascript';
+            newScript2.src = 'https://iclickcdn.com/tag.min.js';
+            newScript2.setAttribute('data-zone',3331886);
+            document.getElementsByTagName("head")[0].appendChild(newScript2);
+                    }, 3000);
         //  document.domain = "atfrg.online";
         // setTimeout(() => this.StartAds = true, 1000);
         window.dataLayer = window.dataLayer || [];

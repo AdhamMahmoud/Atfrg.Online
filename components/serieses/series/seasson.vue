@@ -169,8 +169,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="same-movies Slider-block row">
-                    <div v-for="episode in episodes" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide col-md-3 col-12' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
-                        <Epsitem :id="episode.id" :order="episode.order" :title="episode.title" :poster="GetPoster(posters)" :genres="genres" :audience="audience" path="/series/episode/" />
+                    <div v-for="episode in episodes" :key="episode.id" style="min-width:130px;margin-bottom:1rem;" :class="[{ poster_over : overId == episode.id }, 'swiper-slide col-md-2 col-6' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
+                        <Epsitem :id="episode.id" :order="episode.order" style="margin-left: 10px;" :title="episode.title" :poster="GetPoster(posters)" :genres="genres" :audience="audience" path="/series/episode/" />
                     </div>
                 </div>
             </div>
@@ -335,28 +335,28 @@ export default {
             notesdone: false,
             timer: null,
             swiperOption: {
-                slidesPerView: 4,
-                spaceBetween: 40,
+                slidesPerView: 6,
+                spaceBetween: 5,
                 navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev'
                 },
                 breakpoints: {
                     1024: {
-                        slidesPerView: 4,
-                        spaceBetween: 40
+                        slidesPerView: 6,
+                        spaceBetween: 5
                     },
                     768: {
-                        slidesPerView: 3,
-                        spaceBetween: 40
+                        slidesPerView: 4,
+                        spaceBetween: 5
                     },
                     640: {
-                        slidesPerView: 1,
-                        spaceBetween: 40
+                        slidesPerView: 2,
+                        spaceBetween: 5
                     },
                     320: {
-                        slidesPerView: 1,
-                        spaceBetween: 40
+                        slidesPerView: 2,
+                        spaceBetween: 5
                     }
                 }
             },

@@ -98,14 +98,14 @@ $primary-color:$sColor;
     /* Home */
     .home-slider-block {
         @include boxShadow(0px, 0px, 5px, 0px, #0c0e1f);
-        background-color: $mDark;
+        background-color: #18181885;
         z-index: 9999;
         position: relative;
         transition: 1s ease-in-out;
 
         .back-color {
-           background-color:#131123;
-            border-radius: 20px 20px 0 0;
+           background-color:rgba(5, 11, 44, 0.7);
+            border-radius: 10px 10px 0 0;
             transition: 1s ease-in-out;
 
         }

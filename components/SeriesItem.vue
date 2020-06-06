@@ -6,20 +6,20 @@
         <!-- Movie Poster Container-->
         <div class="poster">
             <!-- quality -->
-            <span class="views">
+            <!-- <span class="views">
                 {{ seassonCount(seasons) }}
-                <i class="fas fa-video"></i>
-            </span>
+               موسم
+            </span> -->
  
             <!-- Movie Poster img -->
             <img :data-src="GetSlide(poster)" :alt="title"></div>
             <!-- Movie Overlay -->
-            <div class="overlay">
-                    <!-- Movie Overlay Information -->
+            <!-- <div class="overlay">
+                 
                     <div class="information">
-                        <!-- Movie Name -->
+                 
                         <h3 class="name">{{title}}</h3>
-                        <!-- Movie Category -->
+                     
                         <div class="subinfo-block">
                             <span class="audience">{{ getaudience(audience) }}
                             </span>
@@ -28,8 +28,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
+              <h3 class="name">{{title}}</h3>
     </nuxt-link>
 </template>
 
@@ -141,6 +142,11 @@ function secondsToHms(d) {
 <style lang= "scss" scoped="">
 @import '~/assets/sass/_vars.scss';
 @import '~/assets/sass/_mixins.scss';
-
+.name{
+        font-size: 15px;
+    text-align: center;
+    margin: 5px 0;
+    width: 100%;
+}
 
 </style>

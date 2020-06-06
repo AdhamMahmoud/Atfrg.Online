@@ -1,11 +1,35 @@
 <template>
-<div class="Slider-list">
-    <div class="container-fluid">
-        <div class="row" ref="collapsedevs">
+<div>
+    <div class="home-slider-block" style=" margin-top: -24rem !important;">
+    <div class="container-fluid back-color">
+        <div class="row">
             <div class="col-md-12">
-                <div :class="{ col_show : active == 'mostviewMovies' , col_hide : active != 'mostviewMovies' }" id="mostviewMovies">
-                    <!-- Apoolo Query -->
-                    <ApolloQuery :query='gql => gql`
+                <div class="row">
+                    <div class="col-md-2 flex col-6">
+                        <!-- Block Title -->
+                        <div class="block-type">
+                            <nuxt-link to="/movies">
+                                الأكثر مشاهدة
+                            </nuxt-link>
+                        </div>
+                    </div>
+                    <div class="col-md-10 col-6">
+                        <!-- Categories List -->
+                        <div class="more-btn">
+                            <nuxt-link to="/movies/most-watched"> المزيد </nuxt-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="Slider-list">
+        <div class="container-fluid">
+            <div class="row" ref="collapsedevs">
+                <div class="col-md-12">
+                    <div :class="{ col_show : active == 'mostviewMovies' , col_hide : active != 'mostviewMovies' }" id="mostviewMovies">
+                        <!-- Apoolo Query -->
+                        <ApolloQuery :query='gql => gql`
                       query getMoviestwo {
                       movies(orderBy: watchCount_DESC, first:15,  where :{ isPublished: true, createdAt_lte:"2050"}) {
                         id
@@ -28,211 +52,128 @@
                       }
                     }
                     `'>
-                        <template v-slot="{ result: { loading, error, data } }">
-                            <!-- Loading -->
-                            <div v-if="loading" class="loading">
-                                <img src="https://atfrgimages.b-cdn.net/images/load.svg" class="svg-load" height="32px" width="32px">
-                            </div>
-                            <!-- Error -->
-                            <div v-else-if="error" class="error apollo">
-                                <resultNotFound />
-                            </div>
-                            <!-- Result -->
-                            <div v-else-if="data && data.movies.length > 0" class="Slider-block">
-                                <!-- Container End -->
-                                <div v-swiper:mySwiperOnwA="swiperOption" class="my-swiper">
-                                    <div class="swiper-wrapper">
-                                        <div v-for="movie in data.movies" :key="movie.id" :class="[{ poster_over : overId == movie.id }, 'swiper-slide' ]" @mouseover="itemOver(movie.id)" @mouseleave="itemNotOver">
-                                            <TrailerItem :releaseDate="movie.releaseDate" :id="movie.id" :title="movie.title" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :run="true" :imdbId="movie.imdbId" />
-                                        </div>
-                                    </div>
-                                    <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>
-                                    <div class="swiper-button-next" slot="button-next"><i class="fas fa-chevron-left"></i></div>
+                            <template v-slot="{ result: { loading, error, data } }">
+                                <!-- Loading -->
+                                <div v-if="loading" class="loading">
+                                    <img src="https://atfrgimages.b-cdn.net/images/load.svg" class="svg-load" height="32px" width="32px">
                                 </div>
-                                <!-- No result -->
-                            </div>
-                            <div v-else class="no-result apollo">
-                                <resultNotFound />
-                            </div>
-                        </template>
-                    </ApolloQuery>
-                    <div class="more-btn">
-                        <nuxt-link to="/movies/most-watched"> <i class="im im-angle-right-circle"></i>
-                        </nuxt-link>
-                    </div>
-                </div>
-                <div :class="{ col_show : active == 'lastupdatesMovies' , col_hide : active != 'lastupdatesMovies' }" id="lastupdatesMovies">
-                    <ApolloQuery :query="gql => gql`
-                      query getMoviestwo {
-                      movies(orderBy: createdAt_DESC, first:10,  where :{ isPublished: true}) {
-                        id
-                        title
-                        posters {
-                          size
-                          path
-                        }
-                        audience
-                        trailerPath
-                        movieQuality
-                        videoQualities
-                        runtime
-                        genres {
-                          name
-                        }
-                        watchCount
-                        releaseDate
-                        imdbId
-                      }
-                    }
-                    `">
-                        <template v-slot="{ result: { loading, error, data } }">
-                            <!-- Loading -->
-                            <div v-if="loading" class="loading apollo">
-                                <img src="https://atfrgimages.b-cdn.net/images/load.svg" class="svg-load" height="32px" width="32px">
-                            </div>
-                            <!-- Error -->
-                            <div v-else-if="error" class="error apollo">
-                                <resultNotFound />
-                            </div>
-                            <!-- Result -->
-                            <div v-else-if="data && data.movies.length > 0" class="Slider-block">
-                                <!-- Container End -->
-                                <div v-swiper:mySwiperTwoEW="swiperOption" class="my-swiper">
-                                    <div class="swiper-wrapper">
-                                        <div v-for="movie in data.movies" :key="movie.id" :class="['swiper-slide' , { poster_over : overId == movie.id }, ]" @mouseover="itemOver(movie.id)" @mouseleave="itemNotOver">
-                                            <TrailerItem :releaseDate="movie.releaseDate" :id="movie.id" :title="movie.title" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :run="true" :imdbId="movie.imdbId" />
-                                        </div>
-                                    </div>
-                                    <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>
-                                    <div class="swiper-button-next" slot="button-next"><i class="fas fa-chevron-left"></i></div>
+                                <!-- Error -->
+                                <div v-else-if="error" class="error apollo">
+                                    <resultNotFound />
                                 </div>
-                                <!-- No result -->
-                            </div>
-                            <div v-else class="no-result apollo">
-                                <resultNotFound />
-                            </div>
-                        </template>
-                    </ApolloQuery>
-                    <div class="more-btn">
-                        <nuxt-link to="/movies/last-release"> <i class="im im-angle-right-circle"></i>
-                        </nuxt-link>
-                    </div>
-                </div>
-                <div :class="{ col_show : active == 'choosen' , col_hide : active != 'choosen' }" id="choosen">
-                    <ApolloQuery :query='gql => gql`
-                      query getMoviestwo {
-                      movies(orderBy: releaseDate_DESC,  first:10, where :{ isPublished: true}) {
-                        id
-                        title
-                        posters {
-                          size
-                          path
-                        }
-                        audience
-                        trailerPath
-                        movieQuality
-                        videoQualities
-                        runtime
-                        releaseDate
-                        genres {
-                          name
-                        }
-                        watchCount
-                        imdbId
-                      }
-                    }
-                    `'>
-                        <template v-slot="{ result: { loading, error, data } }">
-                            <!-- Loading -->
-                            <div v-if="loading" class="loading apollo">
-                                <img src="https://atfrgimages.b-cdn.net/images/load.svg" class="svg-load" height="32px" width="32px">
-                            </div>
-                            <!-- Error -->
-                            <div v-else-if="error" class="error apollo">
-                                <resultNotFound />
-                            </div>
-                            <!-- Result -->
-                            <div v-else-if="data && data.movies.length > 0" class="Slider-block">
-                                <!-- Container End -->
-                                <div v-swiper:mySwiperChoosen="swiperOption" class="my-swiper">
-                                    <div class="swiper-wrapper">
-                                        <div v-for="movie in data.movies" :key="movie.id" :class="[{ poster_over : overId == movie.id }, 'swiper-slide']" @mouseover="itemOver(movie.id)" @mouseleave="itemNotOver">
-                                            <TrailerItem :releaseDate="movie.releaseDate" :id="movie.id" :title="movie.title" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :imdbId="movie.imdbId" :run="true" />
+                                <!-- Result -->
+                                <div v-else-if="data && data.movies.length > 0" class="Slider-block">
+                                    <!-- Container End -->
+                                    <div v-swiper:mySwiperOnw7a="swiperOption" class="my-swiper">
+                                        <div class="swiper-wrapper">
+                                            <div v-for="movie in data.movies" :key="movie.id" :class="[{ poster_over : overId == movie.id }, 'swiper-slide' ]" @mouseover="itemOver(movie.id)" @mouseleave="itemNotOver">
+                                                <TrailerItem :releaseDate="movie.releaseDate" :id="movie.id" :title="movie.title" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :run="true" :imdbId="movie.imdbId" />
+                                            </div>
                                         </div>
+                                        <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>
+                                        <div class="swiper-button-next" slot="button-next"><i class="fas fa-chevron-left"></i></div>
                                     </div>
-                                    <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>
-                                    <div class="swiper-button-next" slot="button-next"><i class="fas fa-chevron-left"></i></div>
+                                    <!-- No result -->
                                 </div>
-                                <!-- No result -->
-                            </div>
-                            <div v-else class="no-result apollo">
-                                <resultNotFound />
-                            </div>
-                        </template>
-                    </ApolloQuery>
-                    <div class="more-btn">
-                        <nuxt-link to="/movies/new-release"> <i class="im im-angle-right-circle"></i> </nuxt-link>
-                    </div>
-                </div>
-                <div  :class="{ col_show : active == 'BluRay' , col_hide : active != 'BluRay' }" id="BluRay">
-                    <ApolloQuery :query='gql => gql`
-                      query getMoviestwo {
-                      movies(orderBy: updatedAt_DESC, first:15,  where :{ isPublished: true,watchCount_lte:9999999,lang:{name:"Arabic"}}) {
-                        id
-                        title
-                        posters {
-                          size
-                          path
-                        }
-                        audience
-                        trailerPath
-                        movieQuality
-                        videoQualities
-                        runtime
-                        releaseDate
-                        genres {
-                          name
-                        }
-                        watchCount
-                        imdbId
-                      }
-                    }
-                    `'>
-                        <template v-slot="{ result: { loading, error, data } }">
-                            <!-- Loading -->
-                            <div v-if="loading" class="loading apollo">
-                                <img src="https://atfrgimages.b-cdn.net/images/load.svg" class="svg-load" height="32px" width="32px">
-                            </div>
-                            <!-- Error -->
-                            <div v-else-if="error" class="error apollo">
-                                <resultNotFound />
-                            </div>
-                            <!-- Result -->
-                            <div v-else-if="data && data.movies.length > 0" class="Slider-block">
-                                <!-- Container End -->
-                                <div v-swiper:mySwiperbluray="swiperOption" class="my-swiper">
-                                    <div class="swiper-wrapper">
-                                        <div v-for="movie in data.movies" :key="movie.id" :class="[{ poster_over : overId == movie.id }, 'swiper-slide']" @mouseover="itemOver(movie.id)" @mouseleave="itemNotOver">
-                                            <TrailerItem :releaseDate="movie.releaseDate" id="movie.id" :title="movie.title" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :run="true" :imdbId="movie.imdbId" />
-                                        </div>
-                                    </div>
-                                    <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>
-                                    <div class="swiper-button-next" slot="button-next"><i class="fas fa-chevron-left"></i></div>
+                                <div v-else class="no-result apollo">
+                                    <resultNotFound />
                                 </div>
-                                <!-- No result -->
-                            </div>
-                            <div v-else class="no-result apollo">
-                                <resultNotFound />
-                            </div>
-                        </template>
-                    </ApolloQuery>
-                    <div class="more-btn">
-                        <nuxt-link to="/movies/arabic"> <i class="im im-angle-right-circle"></i> </nuxt-link>
+                            </template>
+                        </ApolloQuery>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
+     <div class="home-slider-block">
+      <div class="container-fluid back-color">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-2 col-xs-12 flex col-6">
+                        <!-- Block Title -->
+                        <div class="block-type">
+                            <nuxt-link to="/movies">
+                               افلام جديدة
+                            </nuxt-link>
+                        </div>
+                    </div>
+                    <div class="col-md-10 col-6">
+                        <!-- Categories List -->
+                        <div class="more-btn">
+                            <nuxt-link to="/movies/most-watched"> المزيد </nuxt-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="Slider-list">
+        <div class="container-fluid">
+            <div class="row" ref="collapsedevs">
+                <div class="col-md-12">
+                    <div :class="{ col_show : active == 'mostviewMovies' , col_hide : active != 'mostviewMovies' }" id="mostviewMovies">
+                        <!-- Apoolo Query -->
+                        <ApolloQuery :query='gql => gql`
+                      query getMoviestwo {
+                      movies(orderBy: releaseDate_DESC, first:15,  where :{ isPublished: true, watchCount_lte:9999999}) {
+                        id
+                        title
+                        posters {
+                          size
+                          path
+                        }
+                        audience
+                        movieQuality
+                        videoQualities
+                        runtime
+                        genres {
+                          name
+                        }
+                        watchCount
+                        imdbId
+                        releaseDate
+                        trailerPath
+                      }
+                    }
+                    `'>
+                            <template v-slot="{ result: { loading, error, data } }">
+                                <!-- Loading -->
+                                <div v-if="loading" class="loading">
+                                    <img src="https://atfrgimages.b-cdn.net/images/load.svg" class="svg-load" height="32px" width="32px">
+                                </div>
+                                <!-- Error -->
+                                <div v-else-if="error" class="error apollo">
+                                    <resultNotFound />
+                                </div>
+                                <!-- Result -->
+                                <div v-else-if="data && data.movies.length > 0" class="Slider-block">
+                                    <!-- Container End -->
+                                    <div v-swiper:mySwiperOnwA1x="swiperOption" class="my-swiper">
+                                        <div class="swiper-wrapper">
+                                            <div v-for="movie in data.movies" :key="movie.id" :class="[{ poster_over : overId == movie.id }, 'swiper-slide' ]" @mouseover="itemOver(movie.id)" @mouseleave="itemNotOver">
+                                                <TrailerItem :releaseDate="movie.releaseDate" :id="movie.id" :title="movie.title" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :run="true" :imdbId="movie.imdbId" />
+                                            </div>
+                                        </div>
+                                        <div class="swiper-button-prev" slot="button-prev"><i class="fas fa-chevron-right"></i></div>
+                                        <div class="swiper-button-next" slot="button-next"><i class="fas fa-chevron-left"></i></div>
+                                    </div>
+                                    <!-- No result -->
+                                </div>
+                                <div v-else class="no-result apollo">
+                                    <resultNotFound />
+                                </div>
+                            </template>
+                        </ApolloQuery>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     </div>
 </div>
 </template>
 
@@ -264,7 +205,7 @@ export default {
             overId: 0,
             timer: null,
             swiperOption: {
-                slidesPerView: 5,
+                slidesPerView: 8,
                 spaceBetween: 5,
                 navigation: {
                     nextEl: ".swiper-button-next",
@@ -272,19 +213,19 @@ export default {
                 },
                 breakpoints: {
                     1024: {
-                        slidesPerView: 5,
-                        spaceBetween: 40
+                        slidesPerView: 8,
+                        spaceBetween: 5
                     },
                     768: {
                         slidesPerView: 3,
-                        spaceBetween: 40
+                        spaceBetween: 5
                     },
                     640: {
-                        slidesPerView: 1,
+                        slidesPerView: 2,
                         spaceBetween: 5
                     },
                     320: {
-                        slidesPerView: 1,
+                        slidesPerView: 2,
                         spaceBetween: 5
                     }
                 }
@@ -313,6 +254,10 @@ export default {
 <style lang="scss">
 @import "~/assets/sass/_vars.scss";
 @import "~/assets/sass/_mixins.scss";
+// .home-slider-block:first-of-type{
+//     margin-top: -24rem !important;
+//     box-shadow: none;
+// }
 
 .col_show {
     display: block;
@@ -329,7 +274,8 @@ export default {
 .more-btn {
     padding-bottom: 1rem;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+        font-size: 16px;
 
     a {
         color: $primary-color !important;
