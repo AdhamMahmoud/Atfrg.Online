@@ -149,8 +149,11 @@ export default {
         //     list.parentNode.insertBefore(this.ads, list.nextSibling);
         //     this.ads.style.display = 'none';   
         // }
-
-
+        var controls = document.getElementsByClassName("plyr__controls__item")[2];
+        var ItemTitle = document.createElement("div");
+        ItemTitle.innerHTML = this.$props.title;
+        ItemTitle.classList.add("itemtitle");
+        controls.parentNode.insertBefore(ItemTitle, controls.nextSibling);
         var adsban = this.ads;
         this.loader = document.createElement("i");
         this.loader.classList.add("video-loader");
@@ -449,7 +452,7 @@ export default {
     }
 }
 .plyr {
-    height: 400px;
+    height: 500px;
 }
 .plyr video {
     width: 100%;
@@ -459,210 +462,5 @@ export default {
 }
 .plyr__video-wrapper {
     height: 100%;
-}
-.video-loader {
-    display: none;
-    border: 0;
-    border-radius: 100%;
-    color: #fff;
-    display: none;
-    left: 50%;
-    padding: 15px;
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    background-color: transparent !important;
-}
-.video-logo {
-    border: 0;
-    color: #fff;
-    position: absolute;
-    z-index: 2;
-    height: auto;
-    width: 110px;
-    z-index: 9999;
-    top: 5%;
-    left: 5%;
-    background-color: transparent !important;
-}
-.plyr--loading .video-loader {
-    display: block;
-}
-@include sm {
-    .plyr {
-        height: 400px;
-    }
-    .plyr video {
-        object-fit: contain !important;
-    }
-    .video-logo {
-        border: 0;
-        color: rgb(187, 153, 153);
-        position: absolute;
-        z-index: 2;
-        height: auto;
-        width: 50px;
-        z-index: 9999;
-        top: 8%;
-        left: 8%;
-        background-color: transparent !important;
-    }
-}
-@include md {
-    .video-logo {
-        border: 0;
-        color: rgb(187, 153, 153);
-        position: absolute;
-        z-index: 2;
-        height: auto;
-        width: 60px;
-        z-index: 9999;
-        top: 8%;
-        left: 8%;
-        background-color: transparent !important;
-    }
-}
-.chat-video {
-    bottom: 7rem;
-    right: 2.2rem;
-    .mine .message.last:after {
-        background: #000;
-    }
-    .mine .message.last:before {
-        background-image: none;
-        background-color: #393939;
-    }
-    .mine .message {
-        background-image: none;
-        background-color: #393939;
-    }
-}
-.ad-chat {
-    top: 7rem;
-    right: 2.2rem;
-    .mine .message.last:after {
-        background: #000;
-    }
-    .mine .message.last:before {
-        background-image: none;
-        background-color: #393939;
-    }
-    .mine .message {
-        background-image: none;
-        background-color: #393939;
-    }
-}
-.chat .message {
-    background-color: #232323;
-}
-.plyr:-webkit-full-screen .plyr__captions {
-    display: block;
-}
-@include xl {
-    .plyr__captions {
-        font-size: 26px !important;
-        bottom: 2rem !important;
-    }
-    .plyr:-webkit-full-screen .plyr__captions {
-        font-size: 30px !important;
-        bottom: 4rem !important;
-    }
-}
-@include lg {
-    .plyr__captions {
-        font-size: 24px !important;
-        bottom: 2rem !important;
-    }
-    .plyr:-webkit-full-screen .plyr__captions {
-        font-size: 26px !important;
-        bottom: 4rem !important;
-    }
-}
-@include sm {
-    .plyr:-webkit-full-screen .plyr__captions {
-        z-index: 99999;
-    }
-}
-.vide-ad {
-    border: 0;
-    display: none;
-    color: #fff;
-    position: absolute;
-    z-index: 2;
-    height: 0;
-    width: 0;
-    // z-index: 9999;
-    width: 60%;
-    top: 36%;
-    left: 22%;
-    background-color: transparent !important;
-}
-@include sm {
-    .vide-ad {
-        border: 0;
-        color: #fff;
-        position: absolute;
-        z-index: 2;
-        max-height: 150px;
-        // overflow: hidden;
-        width: 60%;
-        top: 26%;
-        left: 22%;
-        #container-460d6761d1e465c09fca4ee917dd0ccb{
-        max-height: 150px;
-        overflow: hidden;
-        display: none;
-        }
-    }
-    #container-b7d66cc8d304167ae2aa320276ca566c__stand{
-    max-height: 200px;
-    overflow: hidden;
-    }
-}
-@include md {
-    .vide-ad {
-        border: 0;
-        color: #fff;
-        position: absolute;
-        z-index: 2;
-        max-height: 150px;
-        // overflow: hidden;
-         width: 100%;
-        top: 44%;
-        left: 0;
-        #container-460d6761d1e465c09fca4ee917dd0ccb{
-        max-height: 150px;
-        overflow: hidden;
-        }
-    }
-}
-.chat .message p {
-    margin-bottom: 0 !important;
-}
-.ShowAd {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    div {
-        height: 100% !important;
-        width: 100% !important;
-    }
-}
-.skip-button {
-    border: 0;
-    color: #fff;
-    position: absolute;
-    z-index: 999;
-    height: auto;
-    padding: 10px 4rem;
-    z-index: 9999;
-    bottom: 18%;
-    right: 5%;
-    letter-spacing: 1px;
-    background-color: rgba(46, 47, 50, 0.84);
 }
 </style>

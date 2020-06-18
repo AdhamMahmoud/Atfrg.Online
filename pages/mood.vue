@@ -1,17 +1,18 @@
 <template>
 <div class="movies-genre" style="min-height:94vh;">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <button class="change" @click="Generate()">
-                    تغير ؟
-                </button>
-            </div>
-        </div>
+      
 
         <div class="row items">
             <div v-for="movie in randoms" :key="movie.id" class="col-xl-3 col-lg-3 col-md-3 col-12 global-item">
                 <TrailerItem :releaseDate="movie.releaseDate" :id="movie.id" :title="movie.title" :imdbId="movie.imdbId" :quality="movie.movieQuality" :poster="movie.posters" :trailer="movie.trailerPath" :genres="movie.genres" :watchCount="movie.watchCount" :audience="movie.audience" :videoQualities="movie.videoQualities[0]" :runtime="movie.runtime" :run="false" />
+            </div>
+        </div>
+          <div class="row">
+            <div class="col-12">
+                <button class="change" @click="Generate()">
+                    تغير ؟
+                </button>
             </div>
         </div>
         <!-- Container End -->
@@ -113,14 +114,14 @@ export default {
         margin: 2rem;
 
         .global-item {
-            height: 400px;
+            height: 300px;
 
             .item-slide {
-                height: 400px;
+                height: 300px;
 
                 .poster {
                     img {
-                        height: 400px !important;
+                        height: 300px !important;
                     }
                 }
 

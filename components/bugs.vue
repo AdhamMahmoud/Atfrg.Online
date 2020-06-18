@@ -2,21 +2,26 @@
  <div class="bug">
    <p>نعتذر عن اي اخطاء .. ساعدنا بتحسين الخدمة 😍</p>
    <br>
-     <h4>التبيلغ عن الأخطاء</h4>
-     <div v-if="form == true">
-    <div class="form-group">
-        <textarea v-model="bug" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-         <button @click="send">ارسال</button>
-     </div>
-        <i v-if="load"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style=" display: block; shape-rendering: auto;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-<circle cx="50" cy="50" fill="none" stroke="#93dbe9" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138" transform="rotate(53.2159 50 50)">
-  <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
-</circle></svg></i>
+    <button @click="show = !show">التبليغ عن مشكلة</button>
+    <br><br>
+    <div v-if="show">
+      <h4>التبيلغ عن الأخطاء</h4>
+      <div v-if="form == true">
+      <div class="form-group">
+          <textarea v-model="bug" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+          <button @click="send">ارسال</button>
+      </div>
+    </div>
+      <i v-if="load"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style=" display: block; shape-rendering: auto;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+      <circle cx="50" cy="50" fill="none" stroke="#93dbe9" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138" transform="rotate(53.2159 50 50)">
+        <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
+      </circle></svg></i>
         <div v-if="done"  class="alert alert-success" role="alert">
-       شكرا لك 😍 ! سيتم حل تلك المشكلة في اقرب وقت.
+            شكرا لك 😍 ! سيتم حل تلك المشكلة في اقرب وقت.
         </div>
- </div>
+   
+  </div>
 </template>
 
 <script>
@@ -32,12 +37,14 @@ const AddBug = gql `
 }
  `;
 export default {
-  data: () => ({
+data() {
+        return {
     load: false,
     done:false,
     form:true,
+    show:false,
     bug:"",
-  }),
+  }},
   props:{
       title:String
   },
@@ -93,11 +100,13 @@ export default {
         background-color: transparent;
     }
     button{
-      background-color: #5f4cff;
+    background-color: #323232;
     color: #fff;
     padding: 8px 2rem;
     border: none;
-    border-radius: 20px;
+    border-radius: 5px;
+    outline: none;
+    box-shadow:none;
     }
 }
 @include sm{

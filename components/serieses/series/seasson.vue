@@ -48,114 +48,7 @@
         </div>
     </div>
     <!-- Container -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <!-- Watch List -->
-                <div class="watch-list">
-                    <button :class="{ active : active == 'trailer'}" @click="activeCol('trailer')">
-                        الاعلان
-                    </button>
-                    <button :class="{ active : active == 'movie'}" @click="activeCol('movie')">
-
-                        الحلقة الاولي</button>
-                    <button :class="{ active : active == 'download'}" @click="activeCol('download')">
-                        التحميل</button>
-                </div>
-            </div>
-        </div>
-        <!-- List -->
-        <div class="row">
-            <div class="col-md-12">
-                <!-- trailer -->
-                <div :class="{ col_show : active == 'trailer' , col_hide : active != 'trailer' }" id="trailer">
-                    <!-- Trailer Player -->
-                    <iframe class="player-mov player-trailer" v-if="active == 'trailer'" :src="'https://www.youtube.com/embed/'+seasons[0].trailerPath"> </iframe>
-                </div>
-                <!-- Movie -->
-                <div :class="{ col_show : active == 'movie' , col_hide : active != 'movie' }" id="movie">
-                    <!-- Movie Player -->
-                       <MoviePlayer v-if="episodes[0] != null" :id="id" :title="title" :poster="GetPoster(seasons[0].posters)" :links="episodes[0].links" :subtitles="episodes[0].subtitles"></MoviePlayer>
-                    <div class="others">
-                      
-                        <nuxt-link v-if="GetPerv(episodes) != '#'" :to="'../episode/' + GetPerv(episodes)"> الحلقة السابقة</nuxt-link>
-                        <nuxt-link v-if="GetNext(episodes) != '#'" :to="'../episode/' + GetNext(episodes)">الحلقة التالية</nuxt-link>
-                    </div>
-                </div>
-                <!-- Download -->
-                <div :class="{ col_show : active == 'download' , col_hide : active != 'download' }" id="download">
-                    <div class="note" v-if="episodes[0].subtitles.length > 0">
-                        للتحميل يرجي تحميل <span>الحلقة + الترجمة. </span>
-                        يتم وضعهم في مكان <span>واحد</span> بنفس الاسم لتعمل الترجمة.
-                        ننصح بأستخدام برنامج <nuxt-link to="https://www.videolan.org/vlc/download-windows.html">VLC</nuxt-link> .
-                    </div>
-                    <!-- <ads2></ads2> -->
-              <!-- <div style="margin:0 auto;margin-bottom:2rem" >
-                        <script data-cfasync='false' type='text/javascript' src='//p393613.clksite.com/adServe/banners?tid=393613_773071_5&eid=393613_773071_5'></script>
-                        <div id="393613_773071_5"></div>
-                     </div> -->
-                     <downloadAds></downloadAds>
-                     <div id="download-ad"></div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">الجودة</th>
-                                <th scope="col">التحمل</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(video,index) in episodes[0].links" :key="video.id">
-                                <th scope="row">{{index}}</th>
-                                <td>{{video.quality.replace('Q','')}}</td>
-                                <td><a :href="Download(validLink(video.path))">تحميل</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table" v-if="episodes[0].subtitles.length > 0">
-                        <thead>
-                            <tr>
-                                <th scope="col">اللغة</th>
-                                <th scope="col">المترجم</th>
-                                <th scope="col">التحمل</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="subtitle in episodes[0].subtitles" :key="subtitle.id">
-                                <th scope="row">{{subtitle.lang.name}}</th>
-                                <td>{{subtitle.name }}</td>
-                                <td v-if="subtitle.path.length > 0"><a :href="Download(validLink(subtitle.path))" >تحميل</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="note">
-                        <span>قريبا تحميل الموسم كامل برابط واحد</span>
-                    </div>
-                    <!-- <div class="note">
-                        <span>لتحميل الموسم كامل اتبع الخطواط</span> <br>
-                        1- بأستخدام برنامج internet download manager <br>
-                        2- انسخ اللينكات ال في البوكس تحت <br>
-                        3- من قائمة file اختارة اضافة تحميل جماعي من الحافظة (Patch) <br>
-                        4- سيتم تحميل الموسم كامل <br>
-                    </div>
-                    
-                    <div class="note">
-                        <span v-for="ep in episodes" :key="ep.id">
-                            <span v-for="link in ep.links" :key="link.id">
-                                {{ LinkToken(validLink(link.path))}}
-                            </span>
-                            <span v-for="subtitle in ep.subtitles" :key="subtitle.id">
-                                {{LinkToken(subtitle.path) }}
-                            </span>
-                        </span>
-
-                    </div> -->
-
-                </div>
-                <bugs :title="title"></bugs>
-            </div>
-        </div>
-    </div>
+   
     <!-- Container -->
     <div class="container" style="padding: 0;
     border-radius: 20px;">
@@ -170,7 +63,7 @@
             <div class="col-md-12">
                 <div class="same-movies Slider-block row">
                     <div v-for="episode in episodes" :key="episode.id" style="min-width:130px;margin-bottom:1rem;" :class="[{ poster_over : overId == episode.id }, 'swiper-slide col-md-2 col-6' ]" @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
-                        <Epsitem :id="episode.id" :order="episode.order" style="margin-left: 10px;" :title="episode.title" :poster="GetPoster(posters)" :genres="genres" :audience="audience" path="/series/episode/" />
+                        <Epsitem :id="episode.id" :order="episode.order"  :title="episode.title" :poster="GetPoster(posters)" :genres="genres" :audience="audience" path="/series/episode/" />
                     </div>
                 </div>
             </div>
@@ -288,7 +181,7 @@ import SeriesItem from '~/components/SeriesItem.vue';
 import Epsitem from '~/components/Epsitem.vue';
 import bugs from '~/components/bugs.vue';
 import gql from 'graphql-tag';
-import MoviePlayer from "~/components/MoviePlayer.vue";
+import episodePlayer from "~/components/episodePlayer.vue";
 import ads from "~/components/ads.vue";
 import downloadAds from "~/components/ads2.vue";
 export default {
@@ -297,7 +190,7 @@ export default {
         SeriesItem,
         Epsitem,
         bugs,
-        MoviePlayer,
+        episodePlayer,
         ads,
         downloadAds
     },

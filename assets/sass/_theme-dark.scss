@@ -214,8 +214,14 @@ $primary-color:$sColor;
                }
            } 
            .watch-list button{
-            @include boxShadow(0px, 0px, 5px, 0px, #0c0e1f);
+            @include boxShadow(0px, 0px, 5px, 0px, #151515);
             color:#fff !important;
+            &:hover{
+                background-color: #343434;
+            }
+           }
+           .watch-list .active{
+            background-color: #343434;
            }
            .other-title{
            background-color:#131123;
@@ -223,7 +229,14 @@ $primary-color:$sColor;
            }
         }
     }
-
+    #download .table a, #download .table button{
+        background-color: #323232;
+        border:none;
+        &:hover{
+            background-color: #1d1d1d; 
+            border:none;
+        }
+    }
     /* Footer */
     .footer {
         background-image: none !important;

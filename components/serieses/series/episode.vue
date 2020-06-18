@@ -75,12 +75,13 @@
                 </div>
                 <!-- Movie -->
                 <div :class="{ col_show : active == 'movie' , col_hide : active != 'movie' }" id="movie">
-                    <MoviePlayer :id="id" :title="title" :poster="GetPoster(poster)" :links="epLinks" :subtitles="subtitles"></MoviePlayer>
+                 
+                   
 
                     <ApolloQuery :query="gql => gql`
                   query gettvSeries($id:ID!) {
                       seasons(orderBy:order_DESC, where: {episodes_some:{id:$id}}){
-                       episodes(orderBy:order_DESC, where: {isPublished: true}) {
+                       episodes(orderBy:order_ASC, where: {isPublished: true}) {
                           id
                           title
                           order
@@ -119,11 +120,12 @@
                             </div>
                             <!-- Result -->
                             <div v-else-if="data && data.seasons[0].episodes.length > 0">
+                                 <episodePlayer :id="id" :title="title" :episodes="data.seasons[0].episodes" :poster="GetPoster(poster)" :links="epLinks" :subtitles="subtitles" :next="GetNext(data.seasons[0])"></episodePlayer>
                                 <!-- Container End -->
                                 <div class="others">
 
-                                    <nuxt-link v-if="GetNext(data.seasons[0]) != '#'" :to="GetNext(data.seasons[0])">الحلقة السابقة</nuxt-link>
-                                    <nuxt-link v-if="GetPerv(data.seasons[0]) != '#'" :to="GetPerv(data.seasons[0])"> الحلقة التالية</nuxt-link>
+                                    <nuxt-link v-if="GetNext(data.seasons[0]) != '#'" :to="GetNext(data.seasons[0])">الحلقة التالية</nuxt-link>
+                                    <nuxt-link v-if="GetPerv(data.seasons[0]) != '#'" :to="GetPerv(data.seasons[0])"> الحلقة السابقة</nuxt-link>
                                 </div>
 
                             </div>
@@ -239,7 +241,7 @@
                         <div v-else-if="data && data.seasons[0].episodes.length > 0" class="same-movies Slider-block row">
                             <!-- Container End -->
                             <div v-for="episode in data.seasons[0].episodes" style="min-width:130px;margin-bottom:1rem;" :key="episode.id" :class="[{ poster_over : overId == episode.id }, 'swiper-slide col-md-2 col-6' ]"  @mouseover="itemOver(episode.id)" @mouseleave="itemNotOver">
-                                <Epsitem :id="episode.id" :title="episode.title" style="margin-left: 10px;" :order="episode.order" :poster="GetPoster(poster)" :genres="Series.genres" :audience="Series.audience" path="/series/episode/" />
+                                <Epsitem :id="episode.id" :title="episode.title" :order="episode.order" :poster="GetPoster(poster)" :genres="Series.genres" :audience="Series.audience" path="/series/episode/" />
                             </div>
                             <!-- No result -->
                         </div>
@@ -322,7 +324,7 @@ import resultNotFound from "~/components/resultNotFound.vue";
 import SeriesItem from '~/components/SeriesItem.vue';
 import Epsitem from '~/components/Epsitem.vue';
 import bugs from '~/components/bugs.vue';
-import MoviePlayer from "~/components/MoviePlayer.vue";
+import episodePlayer from "~/components/episodePlayer.vue";
 import ads from "~/components/ads.vue";
 import downloadAds from "~/components/ads2.vue";
 // import ads2 from "~/components/ads2.vue";
@@ -444,7 +446,7 @@ export default {
         SeriesItem,
         resultNotFound,
         Epsitem,
-        MoviePlayer,
+        episodePlayer,
         bugs,
         ads,
         downloadAds

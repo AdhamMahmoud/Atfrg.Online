@@ -413,7 +413,7 @@ export default {
     }
 }
 .plyr {
-    height: 400px;
+    height: 500px;
 }
 .plyr video {
     width: 100%;
@@ -456,7 +456,7 @@ export default {
 }
 @include sm {
     .plyr {
-        height: 400px;
+        height: 500px;
     }
     .plyr video {
         object-fit: contain !important;

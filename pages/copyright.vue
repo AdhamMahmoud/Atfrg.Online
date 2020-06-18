@@ -39,26 +39,6 @@ export default {
 @import '~/assets/sass/_vars.scss';
 @import '~/assets/sass/_mixins.scss';
 
-.movies-genre {
-    .items {
-        margin: 2rem;
-
-        .global-item {
-            height: 400px;
-
-            .item-slide {
-                height: 400px;
-
-                .poster {
-                    img {
-                        height: 400px !important;
-                    }
-                }
-
-            }
-        }
-    }
-
     .note {
         text-align: center;
         margin-top:2rem;
@@ -83,5 +63,5 @@ export default {
         outline: none;
         margin: 2rem auto;
     }
-}
+
 </style>

@@ -7,7 +7,8 @@
 
         <!-- <span @click="reloadPage()">تحديث المحتوي</span> -->
     </div>
-
+     <!-- <div style="color:red" class="note2" v-show="VideoAd" >الأعلان 10 ثواني وبعدين اتفرج برحتك 💙</div> -->
+    <!-- <iframe class="player-mov player-trailer" allow="autoplay" v-if="VideoAd" :src="'https://www.youtube.com/embed/UrL-QAfAwv4?autoplay=1'"> </iframe> -->
     <vue-plyr class="player-mov" :ref="'film' + id" clickToPlay="true" seektime="10" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
         <video preload="none" playsinline crossorigin="anonymous" :id="'vid' +id" :poster="poster">
             <!-- Video Source -->
@@ -16,6 +17,7 @@
             <track v-for="(subtitle, index) in subtitleNew" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == subtitleNew.length - 2}">
         </video>
     </vue-plyr>
+  
 </div>
 </template>
 
@@ -24,10 +26,30 @@ import 'vue-plyr/dist/vue-plyr.css';
 export default {
     head:{
         script:[
-            {
-            src: "//inpagepush.com/400/3246513",
+        //     {
+        //     src: "//inpagepush.com/400/3246513",
+        //     async :"async",
+        //     "data-cfasync" :"false",
+        //     type: "text/javascript"
+        // },
+        {
+            src: "//pl15497563.passtechusa.com/b7d66cc8d304167ae2aa320276ca566c/invoke.js",
             async :"async",
-            "data-cfasync" :"false",
+            type: "text/javascript"
+        },
+         {
+            src: "//pl15454349.passtechusa.com/460d6761d1e465c09fca4ee917dd0ccb/invoke.js",
+            async :"async",
+            type: "text/javascript"
+        },
+         {
+            src: "//pl15441614.passtechusa.com/af30aca1ff5507bbeb531b00839438e8/invoke.js",
+            async :"async",
+            type: "text/javascript"
+        },
+         {
+            src: "//pl15454350.passtechusa.com/327995df4fccdfc89fe420ae6b341666/invoke.js",
+            async :"async",
             type: "text/javascript"
         },
         ]
@@ -56,6 +78,8 @@ export default {
             adTime:null,
             aa:null,
             AdsTimer:null,
+            VideoAd:false,
+            nextbutton:null,
             // adsLoaded:false,
         }
     },
@@ -65,12 +89,15 @@ export default {
         id: String,
         links: Array,
         subtitles: Array,
+        next:String,
+        episodes:Array
     },
     computed: {
         playerOptions() {
             const options = {
                 toggleInvert: true,
                 clickToPlay: true,
+                storage:false,
                 captions: {
                     active: true
                 },
@@ -113,22 +140,62 @@ export default {
         },
     },
     beforeDestroy() {
-        this.ads.style.display = 'none';   
-        document.getElementById("BannerDefault").appendChild(this.ads); 
+        // this.ads.style.display = 'none';   
+        // document.getElementById("BannerDefault").appendChild(this.ads); 
         this.$refs['film' + this.$props.id].player.destroy();
     },
     mounted() {
         this.film = this.$refs['film' + this.$props.id].player;
         var list = document.getElementsByClassName("plyr__control--overlaid")[0];
-        // Banner Ads Get To Video Container
-        if(document.getElementById("container-327995df4fccdfc89fe420ae6b341666") != null){
-            this.ads = document.getElementById("container-327995df4fccdfc89fe420ae6b341666");
-            this.ads.classList.add("vide-ad");
-            list.parentNode.insertBefore(this.ads, list.nextSibling);
-            this.ads.style.display = 'none';   
+        var controls = document.getElementsByClassName("plyr__controls__item")[2];
+        var rightIcons = document.getElementsByClassName("plyr__controls__item")[6];
+        // // Banner Ads Get To Video Container
+        // if(document.getElementById("container-b7d66cc8d304167ae2aa320276ca566c") != null){
+        //     this.ads = document.getElementById("container-b7d66cc8d304167ae2aa320276ca566c");
+        //     this.ads.classList.add("vide-ad");
+        //     list.parentNode.insertBefore(this.ads, list.nextSibling);
+        //     this.ads.style.display = 'none';   
+        // }
+
+        var ItemTitle = document.createElement("div");
+        ItemTitle.innerHTML = this.$props.title;
+        ItemTitle.classList.add("itemtitle");
+        controls.parentNode.insertBefore(ItemTitle, controls.nextSibling);
+
+
+        var episodesButton = document.createElement("button");
+        episodesButton.type = "button";
+        episodesButton.classList.add("plyr__controls__item");
+        episodesButton.classList.add("plyr__control");
+        episodesButton.innerHTML = '<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 327.241 327.241" style="enable-background:new 0 0 327.241 327.241;" xml:space="preserve"> <g> <g> <path style="fill:currentColor;" d="M81.627,123.311H69.693H37.866H25.932H0v166.768h245.614v-31.451v-11.934v-30.831V203.93v-80.618 H81.627z M153.534,219.867l-34.542,25.162c-3.019,2.184-6.564,3.335-10.251,3.335c-2.727,0-5.448-0.65-7.882-1.886 c-5.871-3.001-9.517-8.938-9.517-15.508v-50.307c0-6.564,3.64-12.507,9.499-15.502c5.77-2.924,12.948-2.345,18.145,1.432 l34.536,25.156c4.481,3.282,7.148,8.539,7.148,14.058S158.003,216.591,153.534,219.867z"/> <path style="fill:currentColor;" d="M111.962,176.243c-0.937-0.68-2.053-1.044-3.216-1.044c-0.859,0-1.718,0.203-2.488,0.603 c-1.838,0.931-2.983,2.798-2.983,4.857v50.307c0,2.065,1.146,3.926,2.995,4.869c1.784,0.913,4.046,0.734,5.71-0.465l34.512-25.144 c1.396-1.026,2.244-2.679,2.244-4.415s-0.847-3.389-2.255-4.427L111.962,176.243z"/> </g> <polygon style="fill:currentColor;" points="283.48,203.93 283.48,215.863 283.48,246.694 257.548,246.694 257.548,215.863 257.548,203.93 257.548,111.378 81.627,111.378 69.693,111.378 37.866,111.378 37.866,79.92 69.693,79.92 81.627,79.92 283.48,79.92 	"/> <polygon style="fill:currentColor;" points="327.241,203.93 295.414,203.93 295.414,67.987 81.627,67.987 81.627,37.162 327.241,37.162 "/> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> </svg>';
+        rightIcons.parentNode.insertBefore(episodesButton, rightIcons.nextSibling);
+            var tpp = this;
+        var episodesList = document.createElement("ul");
+        episodesList.classList.add("episodesList");
+        for(var i = 0; i < this.$props.episodes.length; i++){
+            var ep = document.createElement("li");
+            episodesList.appendChild(ep);
+            var eplink = document.createElement("a");
+            eplink.innerHTML =  this.$props.episodes[i].title;
+            eplink.going =  this.$props.episodes[i].id;
+            var idd = this.$props.episodes[i].id;
+            ep.appendChild(eplink);
+            var iee = this.$props.episodes[i].id;
+            eplink.onclick = function () {
+                 tpp.$router.push(this.going);        
+             };
         }
-
-
+        rightIcons.parentNode.insertBefore(episodesList, rightIcons.nextSibling);
+        episodesList.style.display = 'none';
+         episodesButton.onclick = function () {
+             if(episodesList.style.display == 'block'){
+                episodesList.style.display = 'none';
+        }
+             else{
+                  episodesList.style.display = 'block';
+             }
+           
+        };
         var adsban = this.ads;
         this.loader = document.createElement("i");
         this.loader.classList.add("video-loader");
@@ -178,17 +245,17 @@ export default {
         this.SkipButton.style.display = 'none';
         var idd = this.$props.id;
         var plyr = this.film;
-        var tpp = this;
-        // this.SkipButton.onclick = function () {
-        //     // adsLoader.contentComplete();
-        //     plyr.play();
-        //     // document.getElementById('ad-container-' + idd).remove();
-        //     adsban.style.display = 'none';
-        //     this.style.display = 'none';
-        //     this.innerHTML = "10 sec";
-        //     tpp.adCount = 10;
-        //     tpp.AdCountInVideo();          
-        // };
+      
+        this.SkipButton.onclick = function () {
+            // adsLoader.contentComplete();
+            plyr.play();
+            // document.getElementById('ad-container-' + idd).remove();
+            adsban.style.display = 'none';
+            this.style.display = 'none';
+            this.innerHTML = "10 sec";
+            tpp.adCount = 10;
+            tpp.AdCountInVideo();          
+        };
         this.SkipButton.disabled = true;
         if (this.$props.subtitles.length > 0) {
             if (this.$props.subtitles[0].path.length > 5) {
@@ -198,6 +265,15 @@ export default {
                 list.parentNode.insertBefore(this.logo, list.nextSibling);
             }
         }
+        this.nextbutton = document.createElement("button");
+        this.nextbutton.innerHTML = 'Nex Episode';
+        this.nextbutton.href = this.next;
+        this.nextbutton.classList.add("skip-button");
+        list.parentNode.insertBefore(this.nextbutton, list.nextSibling);
+        this.nextbutton.style.display = 'none';
+         this.nextbutton.onclick = function () {
+            tpp.$router.push(""+tpp.next+"");        
+        };
         if (this.$props.subtitles.length == 0 || this.$props.subtitles == null) {
             this.logo = document.createElement("img");
             this.logo.classList.add("video-logo");
@@ -268,6 +344,10 @@ export default {
                 // }
             }
         },
+        GoLink(link){
+            this.$router.push(link);
+            console.log(link)
+        },
         loadeddata() {
             if (this.readCookie(this.$props.id) != 0) {
                 var time = parseInt(this.readCookie(this.$props.id));
@@ -279,16 +359,17 @@ export default {
             }
         },
         AdCountInVideo(){
-            this.AdsTimer = setInterval(this.AdWorkdone, 11000);
+            this.AdsTimer = setInterval(this.AdWorkdone, 600000);//10min
+            this.ads.style.display = 'none';
         },
         AdWorkdone(){
-                    // this.film.pause();
-                    // this.SkipButton.innerHTML = "10 sec";
-                    // this.SkipButton.disabled = true; 
-                    // this.SkipButton.style.display = 'block';
-                    // this.ads.style.display = "block";
-                    // this.countDownTimer();
-                    // clearInterval(this.AdsTimer)
+                    this.film.pause();
+                    this.SkipButton.innerHTML = "10 sec";
+                    this.SkipButton.disabled = true; 
+                    this.SkipButton.style.display = 'block';
+                    this.ads.style.display = "block";
+                    this.countDownTimer();
+                    clearInterval(this.AdsTimer)
                     // this.AdCountInVideo(); //600000
         },
         countDownTimer() {
@@ -301,17 +382,41 @@ export default {
             } else {
                 this.SkipButton.innerHTML = "Skip Ad";
                 this.SkipButton.disabled = false;
+                plyr.play();
+                this.SkipButton.style.display = 'none';
+                this.ads.style.display = 'none';
+                this.SkipButton.innerHTML = "10 sec";
+                this.adCount = 10;
+                this.AdCountInVideo();      
             }
         },
         nowPlaying() {
             if (this.film != null) {
                 // Ads Start
-                //  this.loadAds();
-                // if (this.adsloadeds == false) {                     
-                //         this.AdCountInVideo();
-                //         this.adsloadeds = true;
+                // //  this.loadAds();
+                // if (this.adsloadeds == false) {   
+                //     this.VideoAd = true;    
+                //     this.adsloadeds = true; 
+                //     this.film.pause();
+                //     this.timer = setTimeout(() => {    
+                //         this.VideoAd = false; 
+                //          this.film.play();
+                //     }, 15000);         
+                //         // this.AdCountInVideo();
+                //         // this.adsloadeds = true;
                 // }
-
+                if(this.film.currentTime > this.film.duration - 120){
+                    if(this.next != '#'){
+                        this.nextbutton.style.display = 'block';
+                    }
+                    else{
+                        this.nextbutton.style.display = 'none';
+                    }
+                    
+                }
+                else{
+                    this.nextbutton.style.display = 'none';
+                }
                 if (this.$props.subtitles.length > 0 && this.film.currentTrack == 0) {
                     this.film.currentTrack = 1;
                     // this.captionStart = true;
@@ -384,18 +489,18 @@ export default {
 .plyr--video .plyr__control.plyr__tab-focus,
 .plyr--video .plyr__control:hover,
 .plyr--video .plyr__control[aria-expanded=true] {
-    background: #FFD700;
+    background: #3a3a3a;
 }
 .plyr__control.plyr__tab-focus {
-    box-shadow: 0 0 0 5px rgba(255, 215, 0, 0.67);
+    box-shadow:none;
 }
 .plyr__menu__container .plyr__control[role=menuitemradio][aria-checked=true]::before {
-    background: #FFD700;
+    background: #3a3a3a;
 }
 .plyr--audio .plyr__control.plyr__tab-focus,
 .plyr--audio .plyr__control:hover,
 .plyr--audio .plyr__control[aria-expanded=true] {
-    background: #FFD700;
+    background: #3a3a3a;
 }
 .plyr--video .plyr__progress__buffer {
     color: rgba(8, 108, 248, 0.55);
@@ -424,207 +529,7 @@ export default {
 .plyr__video-wrapper {
     height: 100%;
 }
-.video-loader {
-    display: none;
-    border: 0;
-    border-radius: 100%;
-    color: #fff;
-    display: none;
-    left: 50%;
-    padding: 15px;
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    background-color: transparent !important;
-}
-.video-logo {
-    border: 0;
-    color: #fff;
-    position: absolute;
-    z-index: 2;
-    height: auto;
-    width: 110px;
-    z-index: 9999;
-    top: 5%;
-    left: 5%;
-    background-color: transparent !important;
-}
-.plyr--loading .video-loader {
-    display: block;
-}
-@include sm {
-    .plyr {
-        height: 500px;
-    }
-    .plyr video {
-        object-fit: contain !important;
-    }
-    .video-logo {
-        border: 0;
-        color: rgb(187, 153, 153);
-        position: absolute;
-        z-index: 2;
-        height: auto;
-        width: 50px;
-        z-index: 9999;
-        top: 8%;
-        left: 8%;
-        background-color: transparent !important;
-    }
-}
-@include md {
-    .video-logo {
-        border: 0;
-        color: rgb(187, 153, 153);
-        position: absolute;
-        z-index: 2;
-        height: auto;
-        width: 60px;
-        z-index: 9999;
-        top: 8%;
-        left: 8%;
-        background-color: transparent !important;
-    }
-}
-.chat-video {
-    bottom: 7rem;
-    right: 2.2rem;
-    .mine .message.last:after {
-        background: #000;
-    }
-    .mine .message.last:before {
-        background-image: none;
-        background-color: #393939;
-    }
-    .mine .message {
-        background-image: none;
-        background-color: #393939;
-    }
-}
-.ad-chat {
-    top: 7rem;
-    right: 2.2rem;
-    .mine .message.last:after {
-        background: #000;
-    }
-    .mine .message.last:before {
-        background-image: none;
-        background-color: #393939;
-    }
-    .mine .message {
-        background-image: none;
-        background-color: #393939;
-    }
-}
-.chat .message {
-    background-color: #232323;
-}
-.plyr:-webkit-full-screen .plyr__captions {
-    display: block;
-}
-@include xl {
-    .plyr__captions {
-        font-size: 26px !important;
-        bottom: 2rem !important;
-    }
-    .plyr:-webkit-full-screen .plyr__captions {
-        font-size: 30px !important;
-        bottom: 4rem !important;
-    }
-}
-@include lg {
-    .plyr__captions {
-        font-size: 24px !important;
-        bottom: 2rem !important;
-    }
-    .plyr:-webkit-full-screen .plyr__captions {
-        font-size: 26px !important;
-        bottom: 4rem !important;
-    }
-}
-@include sm {
-    .plyr:-webkit-full-screen .plyr__captions {
-        z-index: 99999;
-    }
-}
-.vide-ad {
-    border: 0;
-    color: #fff;
-    position: absolute;
-    z-index: 2;
-    height: 0;
-    width: 0;
-    // z-index: 9999;
-    width: 60%;
-    top: 60%;
-    left: 22%;
-    background-color: transparent !important;
-}
-@include sm {
-    .vide-ad {
-        border: 0;
-        color: #fff;
-        position: absolute;
-        z-index: 2;
-        max-height: 150px;
-        // overflow: hidden;
-        width: 60%;
-        top: 26%;
-        left: 22%;
-        #container-460d6761d1e465c09fca4ee917dd0ccb{
-        max-height: 150px;
-        overflow: hidden;
-        }
-    }
-    #container-327995df4fccdfc89fe420ae6b341666__stand{
-    max-height: 200px;
-    overflow: hidden;
-    }
-}
-@include md {
-    .vide-ad {
-        border: 0;
-        color: #fff;
-        position: absolute;
-        z-index: 2;
-        max-height: 150px;
-        // overflow: hidden;
-        width: 60%;
-        top: 15%;
-        left: 22%;
-        #container-460d6761d1e465c09fca4ee917dd0ccb{
-        max-height: 150px;
-        overflow: hidden;
-        }
-    }
-}
-.chat .message p {
-    margin-bottom: 0 !important;
-}
-.ShowAd {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    div {
-        height: 100% !important;
-        width: 100% !important;
-    }
-}
-.skip-button {
-    border: 0;
-    color: #fff;
-    position: absolute;
-    z-index: 999;
-    height: auto;
-    padding: 10px 4rem;
-    z-index: 9999;
-    bottom: 18%;
-    right: 5%;
-    letter-spacing: 1px;
-    background-color: rgba(46, 47, 50, 0.84);
+.episodesList li a{
+    cursor: pointer;
 }
 </style>
