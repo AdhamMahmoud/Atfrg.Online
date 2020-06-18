@@ -57,6 +57,13 @@ export default {
             newScript2.src = 'https://iclickcdn.com/tag.min.js';
             newScript2.setAttribute('data-zone',3331886);
             document.getElementsByTagName("head")[0].appendChild(newScript2);
+
+            var newScript3 = document.createElement('script');
+            newScript3.type = 'text/javascript';
+            newScript3.src = 'https://propu.sh/pfe/current/tag.min.js?z=3380162';
+            newScript3.setAttribute('data-cfasync','false');
+            document.getElementsByTagName("head")[0].appendChild(newScript3);
+
                     }, 3000);
         //  document.domain = "atfrg.online";
         // setTimeout(() => this.StartAds = true, 1000);
