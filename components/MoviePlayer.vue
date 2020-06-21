@@ -351,9 +351,9 @@ export default {
                 //         // this.adsloadeds = true;
                 // }
 
-                if (this.$props.subtitles.length > 0 && this.film.currentTrack == 0) {
+                if (this.$props.subtitles.length > 0 && this.film.currentTrack == 0 && this.captionStart == false) {
                     this.film.currentTrack = 1;
-                    // this.captionStart = true;
+                    this.captionStart = true;
                 }
                 this.timer = setTimeout(() => {
                     this.FirstNote.style.display = 'none';

@@ -43,14 +43,11 @@ export default {
             StartAds: false,
         }
     },
-    mounted() {
-          
-            this.timer = setTimeout(() => {
+    mounted() { 
             var curUrl = window.location.href;
                 if(!curUrl.includes("ar.atfrg.online")){
                     window.location.href = "https://ar.atfrg.online" + window.location.pathname;
                 }
-            }, 500);
             this.timer = setTimeout(() => {
             // var newScript = document.createElement('script');
             // newScript.type = 'text/javascript';
