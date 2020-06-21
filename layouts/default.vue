@@ -15,9 +15,7 @@
     </div>
 </div>
 </template>
-
 <script>
-
 import Header from "~/components/Header.vue";
 import SearchArea from "~/components/SearchArea.vue";
 import Footer from "~/components/Footer.vue";
@@ -46,11 +44,18 @@ export default {
         }
     },
     mounted() {
+          
             this.timer = setTimeout(() => {
-            var newScript = document.createElement('script');
-            newScript.type = 'text/javascript';
-            newScript.src = '//pl15514623.passtechusa.com/84/2a/0b/842a0b5399a51ef446dfd48a4a378db4.js';
-            document.getElementsByTagName("head")[0].appendChild(newScript);
+            var curUrl = window.location.href;
+                if(!curUrl.includes("ar.atfrg.online")){
+                    window.location.href = "https://ar.atfrg.online" + window.location.pathname;
+                }
+            }, 500);
+            this.timer = setTimeout(() => {
+            // var newScript = document.createElement('script');
+            // newScript.type = 'text/javascript';
+            // newScript.src = '//pl15514623.passtechusa.com/84/2a/0b/842a0b5399a51ef446dfd48a4a378db4.js';
+            // document.getElementsByTagName("head")[0].appendChild(newScript);
 
             var newScript2 = document.createElement('script');
             newScript2.type = 'text/javascript';
@@ -60,7 +65,7 @@ export default {
 
             var newScript3 = document.createElement('script');
             newScript3.type = 'text/javascript';
-            newScript3.src = 'https://propu.sh/pfe/current/tag.min.js?z=3380162';
+            newScript3.src = '//inpagepush.com/400/3246513';
             newScript3.setAttribute('data-cfasync','false');
             document.getElementsByTagName("head")[0].appendChild(newScript3);
 
