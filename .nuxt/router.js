@@ -5,6 +5,7 @@ import scrollBehavior from './router.scrollBehavior.js'
 
 const _1d4e9fb5 = () => interopDefault(import('..\\pages\\anime\\index.vue' /* webpackChunkName: "pages_anime_index" */))
 const _7d923180 = () => interopDefault(import('..\\pages\\copyright.vue' /* webpackChunkName: "pages_copyright" */))
+const _504578b6 = () => interopDefault(import('..\\pages\\home.vue' /* webpackChunkName: "pages_home" */))
 const _5b06f2ce = () => interopDefault(import('..\\pages\\mood.vue' /* webpackChunkName: "pages_mood" */))
 const _600b55e8 = () => interopDefault(import('..\\pages\\movies\\index.vue' /* webpackChunkName: "pages_movies_index" */))
 const _1e213b27 = () => interopDefault(import('..\\pages\\ramadan.vue' /* webpackChunkName: "pages_ramadan" */))
@@ -54,6 +55,10 @@ export const routerOptions = {
     path: "/copyright",
     component: _7d923180,
     name: "copyright"
+  }, {
+    path: "/home",
+    component: _504578b6,
+    name: "home"
   }, {
     path: "/mood",
     component: _5b06f2ce,

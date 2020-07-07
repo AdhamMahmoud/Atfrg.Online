@@ -2,7 +2,7 @@
 <div :class="['Headers', {'fixed' : scrolled}]" id="head">
     
     <!-- Top Nav -->
-    <div class="small-nav">
+    <!-- <div class="small-nav">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6 col-12">
@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Start Header -->
     <div class="header">
         <Menu :showSide="showSide" />
@@ -183,7 +183,7 @@
 
                 <!-- Night Mode Switch -->
                 
-                <div class="toggle toggle--daynight mobile-hidden" id="darkss">
+                <div class="toggle toggle--daynight mobile-hidden" id="darkss" style="display:none">
                     <input @change="DarkMode()" type="checkbox" id="toggle--daynight" class="toggle--checkbox">
                     <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
                 </div>
@@ -193,9 +193,12 @@
                     <label class="custom-control-label" for="customSwitch1"></label>
                 </div> -->
             </nav>
+              <div class="sub-head-mob">
+        <SearchArea />
+    </div>
         </div> <!-- End Container -->
     </div>
-  
+    
     <div class="chat" v-if="$store.getters.RemberChoose == false">
         <div class="mine messages">
             <div class="message last">
@@ -206,9 +209,7 @@
         </div>
     </div>
     <!-- Mobile SubHeader -->
-    <div class="sub-head-mob">
-        <SearchArea />
-    </div>
+  
     <!-- End Header -->
 </div>
 </template>

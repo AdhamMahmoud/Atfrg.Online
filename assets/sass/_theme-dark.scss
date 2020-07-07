@@ -11,6 +11,7 @@ $primary-color:$sColor;
     background-color: #0F0F0F;
     transition: 1s ease-in-out;
     color: $sColor;
+    overflow: hidden;
     min-height:100vh;
 .chat .mine .message.last:after{
     background-color: #0F0F0F;
@@ -77,9 +78,9 @@ $primary-color:$sColor;
     color: #fff;
     box-shadow: none;;
     }
-    .sub-head-mob{
-        background-color: rgb(0, 16, 53);
-    }
+    // .sub-head-mob{
+    //     background-color: rgb(0, 16, 53);
+    // }
     .header {
         background-image: none;
         background-image: linear-gradient(to right, #0a0a1e, #080a20, #060a22, #030b25, #000b27);
@@ -105,7 +106,6 @@ $primary-color:$sColor;
 
         .back-color {
            background-color:rgba(5, 11, 44, 0.7);
-            border-radius: 10px 10px 0 0;
             transition: 1s ease-in-out;
 
         }

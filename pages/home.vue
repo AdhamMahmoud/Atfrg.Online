@@ -53,7 +53,6 @@ export default {
         },
     },
     mounted() {
-        this.$router.push('/home');
         this.timer = setTimeout(() => {
             this.homeSlider = true;
             this.movies = true;

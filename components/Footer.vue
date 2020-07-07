@@ -9,7 +9,7 @@
         </div>
     </div>
         <div class="footer">
-    <p>خليك في البيت<i class="fas fa-heart"></i></p>
+    <p>احدث موقع مشاهدة عربي<i class="fas fa-heart"></i></p>
 </div>
 </div>
 

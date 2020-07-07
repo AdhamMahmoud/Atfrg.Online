@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="home-slider-block" style=" margin-top: -24rem !important;">
+    <div class="home-slider-block" style=" margin-top: -26rem !important;">
     <div class="container-fluid back-color">
         <div class="row">
             <div class="col-md-12">
@@ -31,7 +31,7 @@
                         <!-- Apoolo Query -->
                         <ApolloQuery :query='gql => gql`
                       query getMoviestwo {
-                      movies(orderBy: watchCount_DESC, first:15,  where :{ isPublished: true, createdAt_lte:"2050"}) {
+                      movies(orderBy: createdAt_DESC, first:15,  where :{ isPublished: true, createdAt_lte:"2050"}) {
                         id
                         title
                         posters {
