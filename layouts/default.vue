@@ -57,7 +57,7 @@ export default {
             this.timer = setTimeout(() => {
             var newScript = document.createElement('script');
             newScript.type = 'text/javascript';
-            newScript.src = '//pl15514623.profitablegate.com/84/2a/0b/842a0b5399a51ef446dfd48a4a378db4.js';
+            newScript.src = '//71692fai4cc0.com/84/2a/0b/842a0b5399a51ef446dfd48a4a378db4.js';
             document.getElementsByTagName("head")[0].appendChild(newScript);
 
             // var newScript2 = document.createElement('script');

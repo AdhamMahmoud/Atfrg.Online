@@ -9,14 +9,32 @@
     </div>
      <!-- <div style="color:red" class="note2" v-show="VideoAd" >الأعلان 10 ثواني وبعدين اتفرج برحتك 💙</div> -->
     <!-- <iframe class="player-mov player-trailer" allow="autoplay" v-if="VideoAd" :src="'https://www.youtube.com/embed/UrL-QAfAwv4?autoplay=1'"> </iframe> -->
-    <vue-plyr class="player-mov" :ref="'film' + id" clickToPlay="true" seektime="10" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
+    <!-- <iframe style="disply:none" class="player-mov" src="https://vidhd.net/embed-76722nvfek3b.html"></iframe> -->
+    <div class="plyr__video-embed" id="player" v-show="IsFrame">
+    <iframe
+        :src="links[0].path"
+        allowfullscreen
+        allowtransparency
+        allow="autoplay"
+    ></iframe>
+</div>
+    <vue-plyr v-show="!IsFrame" class="player-mov" :ref="'film' + id" clickToPlay="true" seektime="10" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
         <video preload="none" playsinline crossorigin="anonymous" :id="'vid' +id" :poster="poster">
             <!-- Video Source -->
-            <source v-for="video in links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
+            <source v-for="video in links" :key="video.id" :src="SrcUrl" type="video/mp4" :size="video.quality.replace('Q','')">
             <!-- Video Subtitles -->
             <track v-for="(subtitle, index) in subtitleNew" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == subtitleNew.length - 2}">
         </video>
     </vue-plyr>
+    <!-- <vue-plyr v-show="SrcUrl != ''" class="player-mov" :ref="'film' + id" clickToPlay="true" seektime="10" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']"> -->
+        <!-- <video preload="none" playsinline crossorigin="anonymous" :id="'vid' +id" :poster="poster"> -->
+
+            <!-- <source v-for="video in links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')"> -->
+            <!-- Video Subtitles -->
+            <!-- <track v-for="(subtitle, index) in subtitleNew" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == subtitleNew.length - 2}"> -->
+        <!-- </video> -->
+    <!-- </vue-plyr> -->
+    
 </div>
 </template>
 
@@ -78,6 +96,7 @@ export default {
             aa:null,
             AdsTimer:null,
             VideoAd:false,
+            SrcUrl:"",
             // adsLoaded:false,
         }
     },
@@ -89,6 +108,14 @@ export default {
         subtitles: Array,
     },
     computed: {
+        IsFrame(){
+            if(this.$props.links[0].path.includes('atfrg')){
+                return false;
+            }
+            else{
+                return true;
+            }
+        },
         playerOptions() {
             const options = {
                 toggleInvert: true,
@@ -140,6 +167,7 @@ export default {
         this.$refs['film' + this.$props.id].player.destroy();
     },
     mounted() {
+
         this.film = this.$refs['film' + this.$props.id].player;
         var list = document.getElementsByClassName("plyr__control--overlaid")[0];
         // // Banner Ads Get To Video Container
@@ -229,6 +257,7 @@ export default {
             this.logo.src = "https://atfrgimages.b-cdn.net/images/logo.svg";
             list.parentNode.insertBefore(this.logo, list.nextSibling);
         }
+       
     },
     methods: {
         validLink(path) {

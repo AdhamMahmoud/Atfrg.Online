@@ -9,7 +9,16 @@
     </div>
      <!-- <div style="color:red" class="note2" v-show="VideoAd" >الأعلان 10 ثواني وبعدين اتفرج برحتك 💙</div> -->
     <!-- <iframe class="player-mov player-trailer" allow="autoplay" v-if="VideoAd" :src="'https://www.youtube.com/embed/UrL-QAfAwv4?autoplay=1'"> </iframe> -->
-    <vue-plyr class="player-mov" :ref="'film' + id" clickToPlay="true" seektime="10" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
+    <div class="plyr__video-embed" id="player" v-show="IsFrame">
+        <iframe
+            :src="links[0].path"
+            allowfullscreen
+            allowtransparency
+            allow="autoplay"
+        ></iframe>
+    </div>
+
+    <vue-plyr v-show="!IsFrame" class="player-mov" :ref="'film' + id" clickToPlay="true" seektime="10" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
         <video preload="none" playsinline crossorigin="anonymous" :id="'vid' +id" :poster="poster">
             <!-- Video Source -->
             <source v-for="video in links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
@@ -93,6 +102,14 @@ export default {
         episodes:Array
     },
     computed: {
+        IsFrame(){
+            if(this.$props.links[0].path.includes('atfrg')){
+                return false;
+            }
+            else{
+                return true;
+            }
+        },
         playerOptions() {
             const options = {
                 toggleInvert: true,
