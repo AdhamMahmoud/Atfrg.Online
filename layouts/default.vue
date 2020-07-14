@@ -50,11 +50,11 @@ export default {
         }
     },
     mounted() { 
-            // var curUrl = window.location.href;
+            var curUrl = window.location.href;
             //     if(!curUrl.includes("ar.atfrg.online")){
             //         window.location.href = "https://ar.atfrg.online" + window.location.pathname;
             //     }    
-            if (window.innerWidth > 500 && !window.location.href.includes("atfrg.online")) {
+            if (window.innerWidth > 500) {
                 this.timer = setTimeout(() => {
                 var newScript = document.createElement('script');
                 newScript.type = 'text/javascript';
@@ -73,6 +73,28 @@ export default {
                 document.getElementsByTagName("head")[0].appendChild(newScript3);
 
                 }, 3000);
+              }
+              else{
+                  if(!curUrl.includes("atfrg.online")){
+                        this.timer = setTimeout(() => {
+                var newScript = document.createElement('script');
+                newScript.type = 'text/javascript';
+                newScript.src = '//71692fai4cc0.com/84/2a/0b/842a0b5399a51ef446dfd48a4a378db4.js';
+                document.getElementsByTagName("head")[0].appendChild(newScript);
+
+                // var newScript2 = document.createElement('script');
+                // newScript2.type = 'text/javascript';
+                // newScript2.src = 'https://iclickcdn.com/tag.min.js';
+                // newScript2.setAttribute('data-zone',3331886);
+                // document.getElementsByTagName("head")[0].appendChild(newScript2);
+
+                var newScript3 = document.createElement('script');
+                newScript3.type = 'text/javascript';
+                newScript3.src = '//pl15442421.profitablegate.com/9c/d3/1c/9cd31c6b817458951dc72ca0c6f32ffd.js';
+                document.getElementsByTagName("head")[0].appendChild(newScript3);
+
+                }, 3000);
+                  }
               }
         //  document.domain = "atfrg.online";
         // setTimeout(() => this.StartAds = true, 1000);
