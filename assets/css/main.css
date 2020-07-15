@@ -2292,7 +2292,8 @@ i {
   border: 2px solid #eaeaea;
 }
 
-#download .table a, #download .table button {
+#download .table a,
+#download .table button {
   background-color: #008dff;
   padding: 5px 1rem;
   color: #fff;
@@ -2307,7 +2308,8 @@ i {
   transition: 0.4s ease-in-out;
 }
 
-#download .table a:hover, #download .table button:hover {
+#download .table a:hover,
+#download .table button:hover {
   background-color: #fff;
   border: 1px solid #FFD700;
   color: #000;
@@ -2442,7 +2444,7 @@ i {
   height: 700px;
   background-repeat: no-repeat;
   width: 100%;
-  background-position: center;
+  background-position: bottom;
   overflow: hidden;
   position: relative;
   margin: 0 auto;
@@ -2709,12 +2711,14 @@ i {
   top: 38rem;
 }
 
-.swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+.swiper-button-prev,
+.swiper-container-rtl .swiper-button-next {
   left: 10px;
   right: auto;
 }
 
-.swiper-button-prev, .swiper-button-next {
+.swiper-button-prev,
+.swiper-button-next {
   position: absolute;
   top: 37% !important;
   width: 27px;
@@ -2737,8 +2741,8 @@ i {
 
 .plyr__progress__container {
   display: block !important;
-  position: absolute  !important;
-  top: 11px  !important;
+  position: absolute !important;
+  top: 11px !important;
   width: 95%;
   margin: 0 auto;
   text-align: center;

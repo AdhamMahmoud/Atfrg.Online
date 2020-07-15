@@ -206,7 +206,7 @@ export default {
     },
     methods: {
           LinkToken(path){
-            if(path.inculdes("atfrg.online"))
+            if(path.includes("atfrg.online"))
               {
                 var newpath = path.substring(24, path.length);
                 var url = 'https://Atfrgimages.b-cdn.net' + newpath;
