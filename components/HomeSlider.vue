@@ -206,9 +206,13 @@ export default {
     },
     methods: {
           LinkToken(path){
-            var newpath = path.substring(24, path.length);
-            var url = 'https://Atfrgimages.b-cdn.net' + newpath;
-            return url;
+            if(path.inculdes("atfrg.online"))
+              {
+                var newpath = path.substring(24, path.length);
+                var url = 'https://Atfrgimages.b-cdn.net' + newpath;
+                return url;
+              }
+            return path;
         },
         GetSlide(posters) {
             var path = "";
