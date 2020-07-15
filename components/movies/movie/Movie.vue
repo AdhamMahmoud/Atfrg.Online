@@ -87,7 +87,7 @@
 
                 </div>
                 <!-- Download -->
-                <div :class="{ col_show : active == 'download' , col_hide : active != 'download' }" id="download">
+                <div :class="{ col_show : active == 'download' , col_hide : active != 'download' }" id="download" v-if="movLinks[0].path.includes('atfrg')">
                     <div class="note">
                         للتحميل يرجي تحميل <span>الفيلم + الترجمة. </span>
                         يتم وضعهم في مكان <span>واحد</span> بنفس الاسم لتعمل الترجمة.

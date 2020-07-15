@@ -193,10 +193,11 @@
                     <label class="custom-control-label" for="customSwitch1"></label>
                 </div> -->
             </nav>
-              <div class="sub-head-mob">
+          
+        </div> <!-- End Container -->
+            <div class="sub-head-mob">
         <SearchArea />
     </div>
-        </div> <!-- End Container -->
     </div>
     
     <div class="chat" v-if="$store.getters.RemberChoose == false">

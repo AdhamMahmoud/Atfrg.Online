@@ -137,7 +137,7 @@
 
                 </div>
                 <!-- Download -->
-                <div :class="{ col_show : active == 'download' , col_hide : active != 'download' }" id="download">
+                <div :class="{ col_show : active == 'download' , col_hide : active != 'download' }" id="download" v-if="epLinks[0].path.includes('atfrg')">
                     <div class="note" v-if="subtitles.length > 0">
                         للتحميل يرجي تحميل <span>الحلقة + الترجمة. </span>
                         يتم وضعهم في مكان <span>واحد</span> بنفس الاسم لتعمل الترجمة.

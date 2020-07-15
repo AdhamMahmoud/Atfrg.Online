@@ -3372,38 +3372,24 @@ i {
 }
 
 @media (min-width: 225px) and (max-width: 576px) {
-  .search-area .search-form-area .input-div {
-    position: absolute;
-    left: 0;
-    width: 75%;
-  }
-  .search-area .Fast-Search {
-    bottom: 20px;
-    top: inherit;
-  }
-  .Headers {
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    z-index: 99999;
-    top: inherit;
-  }
   .fixed {
     position: fixed;
     width: 100%;
-    bottom: 0;
+    top: 0;
     z-index: 99999;
-    top: inherit;
     -webkit-animation: none;
             animation: none;
   }
   .home-slider .my-swiper .big-slide:hover .slide-info {
     display: block;
   }
-  .Slider-block .my-swiper .swiper-button-prev i, .Slider-block .my-swiper .swiper-button-next i {
+  .Slider-block .my-swiper .swiper-button-prev i,
+  .Slider-block .my-swiper .swiper-button-next i {
     font-size: 3rem;
   }
-  .Single-Movie .chat-video, .Single-Series .chat-video, .episode .chat-video {
+  .Single-Movie .chat-video,
+  .Single-Series .chat-video,
+  .episode .chat-video {
     right: 1rem;
     bottom: 4rem;
   }
@@ -3430,8 +3416,10 @@ i {
   .item-slide .overlay .information {
     text-align: center;
   }
-  .Single-Movie .plyr__volume input, .Single-Series .plyr__volume input, .episode .plyr__volume input {
-    width: 30px  !important;
+  .Single-Movie .plyr__volume input,
+  .Single-Series .plyr__volume input,
+  .episode .plyr__volume input {
+    width: 30px !important;
   }
   .plyr--video .plyr__time {
     display: none;
@@ -3456,27 +3444,26 @@ i {
   .navbar-collapse {
     background: rgba(0, 0, 29, 0.78);
     position: absolute;
-    bottom: 4rem;
+    top: 11rem;
     text-align: right;
     width: 100%;
     left: 0;
   }
   .sub-head-mob {
     display: block;
-    background-color: transparent;
+    background-color: #010025;
     padding: 1rem 0;
-    width: 80%;
+    width: 100%;
     position: absolute;
-    top: 0;
+    top: 69px;
+  }
+  .search-area .search-form-area {
+    margin: 0 auto;
+    z-index: 99;
+    width: 80%;
   }
   .darkMod .search-area .search-form-area .form-control {
     font-size: 14px;
-  }
-  .navbar-brand {
-    display: none;
-  }
-  .input-div i {
-    display: none;
   }
   .pc-hidden {
     display: block !important;
@@ -3523,7 +3510,9 @@ i {
   .Slider-block .my-swiper .item-slide .poster {
     height: 180px;
   }
-  .Single-Movie .watch-list button, .Single-Series .watch-list button, .episode .watch-list button {
+  .Single-Movie .watch-list button,
+  .Single-Series .watch-list button,
+  .episode .watch-list button {
     padding: 8px 15px;
   }
   #download {
@@ -3536,7 +3525,8 @@ i {
   .plyr__controls > .plyr__control:first-child {
     display: none;
   }
-  .plyr__controls > .plyr__control + [data-plyr=rewind], .plyr__controls > .plyr__control + [data-plyr=fast-forward] {
+  .plyr__controls > .plyr__control + [data-plyr=rewind],
+  .plyr__controls > .plyr__control + [data-plyr=fast-forward] {
     display: none;
   }
   .itemtitle {
@@ -3560,21 +3550,31 @@ i {
   .player-mov {
     width: 100%;
   }
-  .Single-Movie, .Single-Series, .episode {
+  .Single-Movie,
+  .Single-Series,
+  .episode {
     margin: 20px !important;
   }
-  .Single-Movie .container, .Single-Series .container, .episode .container {
+  .Single-Movie .container,
+  .Single-Series .container,
+  .episode .container {
     overflow: hidden !important;
   }
-  .Single-Movie .descrption, .Single-Series .descrption, .episode .descrption {
+  .Single-Movie .descrption,
+  .Single-Series .descrption,
+  .episode .descrption {
     margin-bottom: 25px !important;
   }
-  .Single-Movie .movie-information .information-list li span:first-of-type, .Single-Series .movie-information .information-list li span:first-of-type, .episode .movie-information .information-list li span:first-of-type {
+  .Single-Movie .movie-information .information-list li span:first-of-type,
+  .Single-Series .movie-information .information-list li span:first-of-type,
+  .episode .movie-information .information-list li span:first-of-type {
     width: 100px !important;
     min-width: 100px !important;
     max-width: 100px !important;
   }
-  .Single-Movie .movie-information .information-list li i, .Single-Series .movie-information .information-list li i, .episode .movie-information .information-list li i {
+  .Single-Movie .movie-information .information-list li i,
+  .Single-Series .movie-information .information-list li i,
+  .episode .movie-information .information-list li i {
     margin: 0;
   }
   .movies-genre {
