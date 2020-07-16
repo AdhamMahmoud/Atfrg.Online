@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="home-slider-block" style=" margin-top: -26rem !important;">
+    <div class="home-slider-block" style="margin-top: -21rem">
     <div class="container-fluid back-color">
         <div class="row">
             <div class="col-md-12">
@@ -9,7 +9,7 @@
                         <!-- Block Title -->
                         <div class="block-type">
                             <nuxt-link to="/movies">
-                                الأكثر مشاهدة
+                               افلام جديدة
                             </nuxt-link>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                         <!-- Apoolo Query -->
                         <ApolloQuery :query='gql => gql`
                       query getMoviestwo {
-                      movies(orderBy: createdAt_DESC, first:15,  where :{ isPublished: true, createdAt_lte:"2050"}) {
+                      movies(orderBy: releaseDate_DESC, first:15,  where :{ isPublished: true, createdAt_lte:"2050"}) {
                         id
                         title
                         posters {
@@ -96,7 +96,7 @@
                         <!-- Block Title -->
                         <div class="block-type">
                             <nuxt-link to="/movies">
-                               افلام جديدة
+                              الأكثر مشاهدة
                             </nuxt-link>
                         </div>
                     </div>
@@ -118,7 +118,7 @@
                         <!-- Apoolo Query -->
                         <ApolloQuery :query='gql => gql`
                       query getMoviestwo {
-                      movies(orderBy: releaseDate_DESC, first:15,  where :{ isPublished: true, watchCount_lte:9999999}) {
+                      movies(orderBy: watchCount_DESC, first:15,  where :{ isPublished: true}) {
                         id
                         title
                         posters {
