@@ -16,7 +16,7 @@
                     <div class="col-md-10 col-6">
                         <!-- Categories List -->
                         <div class="more-btn">
-                            <nuxt-link to="/movies/most-watched"> المزيد </nuxt-link>
+                            <nuxt-link to="/movies/last-release"> المزيد </nuxt-link>
                         </div>
                     </div>
                 </div>
