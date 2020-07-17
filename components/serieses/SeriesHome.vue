@@ -168,7 +168,7 @@ import SliderList from '~/components/serieses/SliderList.vue';
 export default {
     data() {
         return {
-            CollapseActive: "lastupdatesMovies"
+            CollapseActive: "choosen"
         }
     },
     components: {

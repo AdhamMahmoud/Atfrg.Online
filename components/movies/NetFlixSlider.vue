@@ -1,5 +1,123 @@
 <template>
 <div>
+    <div class="home-slider-block">
+        <div class="container-fluid back-color">
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="row">
+                      <div class="col-md-2 col-6 flex">
+                          <!-- Block Title -->
+                          <div class="block-type">
+                              <nuxt-link to="/movies">
+                                مسلسلات جديدة
+                              </nuxt-link>
+                          </div>
+                      </div>
+                      <div class="col-md-10 col-6">
+                          <!-- Categories List -->
+                          <div class="more-btn">
+                              <nuxt-link to="/serieses/last-updated"> المزيد </nuxt-link>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="Slider-list">
+            <div class="container-fluid">
+                <div class="row" ref="collapsedevs">
+                    <div class="col-md-12">
+                        <div class="col_show" id="mostviewMovies">
+                            <!-- Apoolo Query -->
+                      <ApolloQuery :query='gql => gql`
+                     query GetSerieses {
+                      tvSerieses(orderBy: updatedAt_DESC,first:10,  where: { isPublished: true, seriesType: TV ,lang:{name_not:"Arabic"}, seasons_some:{episodes_some:{id_gt:1}, }}) {
+                        id
+                        title
+                        posters {
+                          size
+                          path
+                        }
+                        audience
+                        releaseDate
+                        genres {
+                          name
+                        }
+                        seasons {
+                          id
+                          imdbId
+                        }
+                      }
+                    }
+                    `'>
+              <template v-slot="{ result: { loading, error, data } }">
+                <!-- Loading -->
+                <div
+                  v-if="loading"
+                  class="loading"
+                >
+                  <img
+                    src="https://atfrgimages.b-cdn.net/images/load.svg"
+                    class="svg-load"
+                    height="32px"
+                    width="32px"
+                  >
+                </div>
+                <!-- Error -->
+                <div
+                  v-else-if="error"
+                  class="error apollo"
+                > <resultNotFound /></div>
+                <!-- Result -->
+                <div
+                  v-else-if="data && data.tvSerieses.length > 0"
+                  class="Slider-block"
+                >
+                  <!-- Container End -->
+                  <div v-swiper:mySwiperx="swiperOption" class="my-swiper">
+                    <div class="swiper-wrapper">
+                      <div
+                        v-for="series in data.tvSerieses"
+                        :key="series.id"
+                        :class="[{ poster_over : overId == series.id }, 'swiper-slide' ]"
+                        @mouseover="itemOver(series.id)"
+                        @mouseleave="itemNotOver"
+                      >
+                        <SeriesItem
+                          :id="series.id"
+                          :title="series.title"
+                          :poster="GetPoster(series.posters)"
+                          :genres="series.genres"
+                          :audience="series.audience"
+                          :seasons="series.seasons"
+                          path="/series/"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="swiper-button-prev"
+                      slot="button-prev"
+                    ><i class="fas fa-chevron-right"></i></div>
+                    <div
+                      class="swiper-button-next"
+                      slot="button-next"
+                    ><i class="fas fa-chevron-left"></i></div>
+                  </div>
+                  <!-- No result -->
+                </div>
+                <div
+                  v-else
+                  class="no-result apollo"
+                > <resultNotFound /></div>
+              </template>
+            </ApolloQuery>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
    <div class="home-slider-block">
       <div class="container-fluid back-color">
           <div class="row">
