@@ -13,6 +13,7 @@
     <div class="plyr__video-embed" id="player" v-show="IsFrame">
     <iframe
         :src="links[0].path"
+        id="mov-iframe"
         allowfullscreen
         allowtransparency
         allow="autoplay"
@@ -21,7 +22,7 @@
     <vue-plyr v-show="!IsFrame" class="player-mov" :ref="'film' + id" clickToPlay="true" seektime="10" :id="id" :options="playerOptions" @playing="nowPlaying" @enterfullscreen="enterfullscreenFull" @loadeddata="loadeddata" :emit="['playing','loadeddata','enterfullscreen']">
         <video preload="none" playsinline crossorigin="anonymous" :id="'vid' +id" :poster="poster">
             <!-- Video Source -->
-            <source v-for="video in links" :key="video.id" :src="SrcUrl" type="video/mp4" :size="video.quality.replace('Q','')">
+            <source v-for="video in links" :key="video.id" :src="LinkToken(validLink(video.path))" type="video/mp4" :size="video.quality.replace('Q','')">
             <!-- Video Subtitles -->
             <track v-for="(subtitle, index) in subtitleNew" :key="subtitle.id" kind="captions" :label="subtitle.name" :srclang="subtitle.lang.name" :src="LinkToken(subtitle.path.substring(0, subtitle.path.length - 4) + '.vtt')" :default="{ 'default': index == subtitleNew.length - 2}">
         </video>
@@ -39,6 +40,22 @@
 </template>
 
 <script>
+// var vid = "";
+//          if (process.client) {
+//              document.getElementById('mov-iframe').onload= function() {
+//                  console.log(document.getElementsByTagName("video")[0].src);
+//                  vid = document.getElementsByTagName("video")[0].src;
+//             };
+
+//                 // if(document.getElementsByClassName("jw-video") != null)
+//                 // {
+//                 //      if(document.getElementsByClassName("jw-video").length > 0)
+//                 //      {
+//                 //          console.log(document.getElementsByClassName("jw-video")[0].src);
+//                 //      }
+                     
+//                 // }   
+//             }
 import 'vue-plyr/dist/vue-plyr.css';
 export default {
     head:{
