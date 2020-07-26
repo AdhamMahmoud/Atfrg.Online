@@ -55,15 +55,16 @@ export default {
             //     }    
             if (window.innerWidth > 500) {
                 this.timer = setTimeout(() => {
+                var newScript2 = document.createElement('script');
+                newScript2.type = 'text/javascript';
+                newScript2.src = '//71692fai4cc0.com/84/2a/0b/842a0b5399a51ef446dfd48a4a378db4.js';
+                document.getElementsByTagName("head")[0].appendChild(newScript2);
+
                 var newScript = document.createElement('script');
                 newScript.type = 'text/javascript';
                 newScript.src = '//71692fai4cc0.com/5c/e2/72/5ce2727d3e68e9d8c6388049cfbcfc23.js';
                 document.getElementsByTagName("head")[0].appendChild(newScript);
 
-                var newScript2 = document.createElement('script');
-                newScript2.type = 'text/javascript';
-                newScript2.src = '//71692fai4cc0.com/84/2a/0b/842a0b5399a51ef446dfd48a4a378db4.js';
-                document.getElementsByTagName("head")[0].appendChild(newScript2);
 
                 // var newScript2 = document.createElement('script');
                 // newScript2.type = 'text/javascript';
@@ -81,6 +82,13 @@ export default {
               else{
                   if(!curUrl.includes("atfrg.online")){
                         this.timer = setTimeout(() => {
+
+
+                var newScript2 = document.createElement('script');
+                newScript2.type = 'text/javascript';
+                newScript2.src = '//71692fai4cc0.com/84/2a/0b/842a0b5399a51ef446dfd48a4a378db4.js';
+                document.getElementsByTagName("head")[0].appendChild(newScript2);
+                
                 var newScript = document.createElement('script');
                 newScript.type = 'text/javascript';
                 newScript.src = '//71692fai4cc0.com/5c/e2/72/5ce2727d3e68e9d8c6388049cfbcfc23.js';
