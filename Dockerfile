@@ -1,4 +1,4 @@
-FROM node:6.11.0 as builder
+FROM node:lts as builder
 
 WORKDIR /app
 
@@ -9,7 +9,7 @@ RUN npm run build
 
 
 
-FROM node:6.11.0
+FROM node:lts
 
 WORKDIR /app
 
