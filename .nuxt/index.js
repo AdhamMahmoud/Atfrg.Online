@@ -12,12 +12,12 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
-import nuxt_plugin_workbox_d47eb70a from 'nuxt_plugin_workbox_d47eb70a' // Source: .\\workbox.js (mode: 'client')
-import nuxt_plugin_bootstrapvue_6dd9ca4e from 'nuxt_plugin_bootstrapvue_6dd9ca4e' // Source: .\\bootstrap-vue.js (mode: 'all')
-import nuxt_plugin_smoothscrollpolyfill_1e1c2812 from 'nuxt_plugin_smoothscrollpolyfill_1e1c2812' // Source: .\\nuxt-polyfill\\smoothscroll-polyfill.js (mode: 'all')
-import nuxt_plugin_intersectionobserver_7babc29e from 'nuxt_plugin_intersectionobserver_7babc29e' // Source: .\\nuxt-polyfill\\intersection-observer.js (mode: 'all')
-import nuxt_plugin_urlpolyfill_90a8796e from 'nuxt_plugin_urlpolyfill_90a8796e' // Source: .\\nuxt-polyfill\\url-polyfill.js (mode: 'all')
-import nuxt_plugin_apollomodule_6283b7eb from 'nuxt_plugin_apollomodule_6283b7eb' // Source: .\\apollo-module.js (mode: 'all')
+import nuxt_plugin_workbox_66cc37a7 from 'nuxt_plugin_workbox_66cc37a7' // Source: .\\workbox.js (mode: 'client')
+import nuxt_plugin_bootstrapvue_563d4c7a from 'nuxt_plugin_bootstrapvue_563d4c7a' // Source: .\\bootstrap-vue.js (mode: 'all')
+import nuxt_plugin_smoothscrollpolyfill_0d6e4523 from 'nuxt_plugin_smoothscrollpolyfill_0d6e4523' // Source: .\\nuxt-polyfill\\smoothscroll-polyfill.js (mode: 'all')
+import nuxt_plugin_intersectionobserver_cfafc86c from 'nuxt_plugin_intersectionobserver_cfafc86c' // Source: .\\nuxt-polyfill\\intersection-observer.js (mode: 'all')
+import nuxt_plugin_urlpolyfill_3aaa289d from 'nuxt_plugin_urlpolyfill_3aaa289d' // Source: .\\nuxt-polyfill\\url-polyfill.js (mode: 'all')
+import nuxt_plugin_apollomodule_4ae73a17 from 'nuxt_plugin_apollomodule_4ae73a17' // Source: .\\apollo-module.js (mode: 'all')
 import nuxt_plugin_vueplyr_9db9a11c from 'nuxt_plugin_vueplyr_9db9a11c' // Source: ..\\plugins\\vue-plyr (mode: 'all')
 import nuxt_plugin_lazyload_af447860 from 'nuxt_plugin_lazyload_af447860' // Source: ..\\plugins\\lazyload (mode: 'client')
 import nuxt_plugin_swiper_3a1c5924 from 'nuxt_plugin_swiper_3a1c5924' // Source: ..\\plugins\\swiper (mode: 'client')
@@ -182,28 +182,28 @@ async function createApp (ssrContext) {
 
   // Plugin execution
 
-  if (process.client && typeof nuxt_plugin_workbox_d47eb70a === 'function') {
-    await nuxt_plugin_workbox_d47eb70a(app.context, inject)
+  if (process.client && typeof nuxt_plugin_workbox_66cc37a7 === 'function') {
+    await nuxt_plugin_workbox_66cc37a7(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_bootstrapvue_6dd9ca4e === 'function') {
-    await nuxt_plugin_bootstrapvue_6dd9ca4e(app.context, inject)
+  if (typeof nuxt_plugin_bootstrapvue_563d4c7a === 'function') {
+    await nuxt_plugin_bootstrapvue_563d4c7a(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_smoothscrollpolyfill_1e1c2812 === 'function') {
-    await nuxt_plugin_smoothscrollpolyfill_1e1c2812(app.context, inject)
+  if (typeof nuxt_plugin_smoothscrollpolyfill_0d6e4523 === 'function') {
+    await nuxt_plugin_smoothscrollpolyfill_0d6e4523(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_intersectionobserver_7babc29e === 'function') {
-    await nuxt_plugin_intersectionobserver_7babc29e(app.context, inject)
+  if (typeof nuxt_plugin_intersectionobserver_cfafc86c === 'function') {
+    await nuxt_plugin_intersectionobserver_cfafc86c(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_urlpolyfill_90a8796e === 'function') {
-    await nuxt_plugin_urlpolyfill_90a8796e(app.context, inject)
+  if (typeof nuxt_plugin_urlpolyfill_3aaa289d === 'function') {
+    await nuxt_plugin_urlpolyfill_3aaa289d(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_apollomodule_6283b7eb === 'function') {
-    await nuxt_plugin_apollomodule_6283b7eb(app.context, inject)
+  if (typeof nuxt_plugin_apollomodule_4ae73a17 === 'function') {
+    await nuxt_plugin_apollomodule_4ae73a17(app.context, inject)
   }
 
   if (typeof nuxt_plugin_vueplyr_9db9a11c === 'function') {
