@@ -5,11 +5,6 @@ FROM node:lts as builder
 WORKDIR /app
 
 COPY . .
-
-# update and install dependency
-RUN apk update && apk upgrade
-RUN apk add git
-
 # copy the app, note .dockerignore
 
 RUN npm install
