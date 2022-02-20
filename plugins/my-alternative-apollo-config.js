@@ -1,6 +1,6 @@
 export default function(context) {
   return {
-    httpEndpoint: "https://api.atfrg.online/",
+    httpEndpoint: "http://164.92.223.193:4466/",
     // httpEndpoint: "https://atfrg.space/database/",
     // ssr: true,
     // optional
@@ -23,6 +23,6 @@ export default function(context) {
     // You need to pass a `wsEndpoint` for this to work
     // websocketsOnly: false, // Optional,
     getAuth: tokenName =>
-      ""
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJkZWZhdWx0QGRlZmF1bHQiLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNjQ1MzU2NTE5LCJleHAiOjE3NDU5NjEzMTl9.8SQLlSZvtpJdQaKQ-8_RHNE0o1YK9GBjt0KYfcxJ55U"
   };
 }
