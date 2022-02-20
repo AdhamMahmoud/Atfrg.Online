@@ -9,7 +9,7 @@ RUN npm run build
 
 
 
-FROM node:lts
+FROM node:6.11.0
 
 WORKDIR /app
 
