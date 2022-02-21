@@ -1,6 +1,6 @@
 export default function(context) {
   return {
-    httpEndpoint: "http://localhost:4466/",
+    httpEndpoint: "http://0.0.0.0:4466/",
     ssr: true,
     //optional
    // override HTTP endpoint in browser only
