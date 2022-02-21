@@ -24,9 +24,4 @@ ENV NUXT_HOST=0.0.0.0
 # set app port
 ENV NUXT_PORT=3001
 
-# Used by pm2
-COPY ecosystem.config.js .
-COPY nuxt-start.js .
-# start the app
-
 CMD [ "npm", "start" ]
