@@ -158,11 +158,6 @@ export default {
 //     },
 //   }
 // },
-    proxy: {
-      // With options
-      '/api2': { target: 'https://atfrg.space/database/', ws: true },
-
-    },
  
     pwa: {
       manifest: {
