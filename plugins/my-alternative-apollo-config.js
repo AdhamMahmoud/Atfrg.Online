@@ -12,8 +12,8 @@ export default function(context) {
     },
     //You can use `wss` for secure connection (recommended in production)
     //Use `null` to disable subscriptions
-     wsEndpoint: 'wss://atfrg.space/database/',
-     wssEndpoint: 'wss://atfrg.space/database/', // optional
+     //wsEndpoint: 'wss://atfrg.space/database/',
+     //wssEndpoint: 'wss://atfrg.space/database/', // optional
    // LocalStorage token
     tokenName: "token", // optional
     //Enable Automatic Query persisting with Apollo Engine
