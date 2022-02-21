@@ -1,6 +1,6 @@
 export default function(context) {
   return {
-    httpEndpoint: "http://172.17.0.2:4466/",
+    httpEndpoint: process.env.PRISMA_ENDPOINT,
     ssr: true,
     //optional
    // override HTTP endpoint in browser only
