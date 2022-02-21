@@ -40,7 +40,7 @@
                 </button>
                 <!-- Header Logo -->
                 <nuxt-link to="/" exact class="navbar-brand" title="logo">
-                <img class="atfrg-logo" src="https://atfrgimages.b-cdn.net/images/logo.svg" alt="logo" title="logo">
+                <img class="atfrg-logo" src="/logo.svg" alt="logo" title="logo">
                 </nuxt-link>
                 <!-- Header List -->
                 <div :class="['collapse navbar-collapse', {'show scale-in-center' : mobMenu}]" id="navbarSupportedContent">

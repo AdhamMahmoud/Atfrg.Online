@@ -44,7 +44,7 @@
             <template v-slot="{ result: { loading, error, data } }">
                 <!-- Loading -->
                 <div v-if="loading" class="loading apollo">
-                    <img src="https://atfrgimages.b-cdn.net/images/load.svg" class="svg-load" height="32px" width="32px" />
+                    <img src="load.svg" class="svg-load" height="32px" width="32px" />
                 </div>
                 <!-- Error -->
                 <div v-else-if="error" class="error apollo">

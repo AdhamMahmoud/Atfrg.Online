@@ -38,7 +38,7 @@
                   class="loading"
                 >
                   <img
-                    src="https://atfrgimages.b-cdn.net/images/load.svg"
+                    src="load.svg"
                     class="svg-load"
                     height="32px"
                     width="32px"
@@ -128,7 +128,7 @@
                   class="loading"
                 >
                   <img
-                    src="https://atfrgimages.b-cdn.net/images/load.svg"
+                    src="load.svg"
                     class="svg-load"
                     height="32px"
                     width="32px"

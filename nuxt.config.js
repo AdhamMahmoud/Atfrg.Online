@@ -62,7 +62,7 @@ export default {
       {
         rel: "icon",
         type: "image/svg",
-        href: "https://atfrgimages.b-cdn.net/images/fav.svg"
+        href: "fav.svg"
       },
       { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css?family=Tajawal:500&display=swap' },
     ],
