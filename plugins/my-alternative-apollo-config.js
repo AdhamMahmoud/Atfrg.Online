@@ -4,12 +4,12 @@ export default function(context) {
     ssr: true,
     //optional
    // override HTTP endpoint in browser only
-    browserHttpEndpoint: '/graphql',
+  //  browserHttpEndpoint: '/graphql',
    // optional
    // See https://www.apollographql.com/docs/link/links/http.html#options
-    httpLinkOptions: {
-      credentials: 'same-origin'
-    },
+    // httpLinkOptions: {
+    //   credentials: 'same-origin'
+    // },
     //You can use `wss` for secure connection (recommended in production)
     //Use `null` to disable subscriptions
      //wsEndpoint: 'wss://atfrg.space/database/',
